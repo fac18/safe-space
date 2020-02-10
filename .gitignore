@@ -22,8 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Local Netlify folder
+# Local Netlify folders
 .netlify
+functions
 
 # Logs
 logs
