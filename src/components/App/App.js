@@ -8,9 +8,10 @@ function App() {
   const [questions, setQuestions] = useState(null);
 
   useEffect(() => {
-    getQuestions.then(records => {
-      setQuestions(records);
-    });
+    // getQuestions().then(records => {
+    //   setQuestions(records);
+    // });
+    setQuestions(getQuestions());
   }, []);
 
   return (
