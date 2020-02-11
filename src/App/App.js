@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { FAQs, Home } from '../Pages/index';
+import { FAQs, Home, About } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Footer } from '../components/index';
 
@@ -11,6 +11,7 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route path="/frequently-asked-questions" render={() => <FAQs />} />
+          <Route exact path="/about" render={() => <About />} />
         </Switch>
       </Router>
       <Footer></Footer>
