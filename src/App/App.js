@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Footer } from '../components/index';
 
 function App() {
