@@ -1,18 +1,7 @@
-const getQuestions = () => {
-  console.log('getQuestions is go');
-  return fetch('./netlify/functions/get-questions.js')
-    .then(res => {
-      if (!res.ok) throw new Error(res.status);
-      return res;
-    })
-    .then(res => {
-      console.log(res);
-      return res.json(); // res.json() returns a promise that fulfils with the object on completion of streaming
-    })
-    .then(obj => {
-      console.log(obj);
-      return obj;
-    });
+const getQuestions = async () => {
+  return await (
+    await fetch('.netlify/functions/get-questions/get-questions.js')
+  ).json();
 };
 
 export default getQuestions;

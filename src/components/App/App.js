@@ -10,11 +10,17 @@ function App() {
   const [hello, setHello] = useState(null);
 
   useEffect(() => {
+    // fetch('.netlify/functions/get-questions/get-questions.js')
+    //   .then(res => res.json())
+    //   .then(data => setQuestions(data));
+
     getQuestions().then(records => {
+      console.log(records);
       setQuestions(records);
     });
 
     helloWorld('Dan').then(hello => {
+      console.log(hello);
       setHello(hello.message);
     });
   }, []);
