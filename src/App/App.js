@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { FAQs, Home, About } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
@@ -7,6 +7,8 @@ import { Footer } from '../components/index';
 import { getQuestions } from '../../utils/getData';
 
 function App() {
+  const [questions, setQuestions] = useState(null);
+
   useEffect(() => {
     getQuestions().then(records => {
       console.log(records);
