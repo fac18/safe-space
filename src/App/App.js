@@ -4,7 +4,7 @@ import { FAQs, Home, About } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Footer } from '../components/index';
 
-import { getQuestions } from '../../utils/getData';
+import { getQuestions } from '../utils/getData';
 
 function App() {
   const [questions, setQuestions] = useState(null);
