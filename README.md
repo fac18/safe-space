@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/safe-space)
+
 # safe-space
 
 A project for the MU
