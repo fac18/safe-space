@@ -3,15 +3,20 @@ import logo from '../../logo.svg';
 import './App.css';
 
 import getQuestions from '../../utils/getQuestions';
+import helloWorld from '../../utils/helloWorld';
 
 function App() {
   const [questions, setQuestions] = useState(null);
+  const [hello, setHello] = useState(null);
 
   useEffect(() => {
-    // getQuestions().then(records => {
-    //   setQuestions(records);
-    // });
-    setQuestions(getQuestions());
+    getQuestions().then(records => {
+      setQuestions(records);
+    });
+
+    helloWorld('Dan').then(hello => {
+      setHello(hello.message);
+    });
   }, []);
 
   return (
@@ -31,6 +36,7 @@ function App() {
         </a>
       </header>
       {questions ? <h2>We have questions!</h2> : null}
+      {hello ? <h2>{hello}</h2> : null}
     </div>
   );
 }
