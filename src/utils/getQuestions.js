@@ -1,6 +1,6 @@
 const getQuestions = () => {
   console.log('getQuestions is go');
-  return fetch('./netlify/functions/get-questions/get-questions.js')
+  return fetch('./netlify/functions/get-questions.js')
     .then(res => {
       if (!res.ok) throw new Error(res.status);
       return res;

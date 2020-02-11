@@ -4,9 +4,7 @@ const helloWorld = async name => {
   // first we wait for the fetch to resolve to a response
   // then we wait for the response to stream as json
 
-  let response = await fetch(
-    `./netlify/functions/hello-world/hello-world.js?name=${name}`
-  );
+  let response = await fetch(`./netlify/functions/hello-world.js?name=${name}`);
 
   console.log(response);
   console.log(typeof response);
