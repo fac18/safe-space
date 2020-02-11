@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Footer } from '../components/index';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Footer></Footer>
     </div>
   );
 }
