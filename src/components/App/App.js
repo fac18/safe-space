@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../logo.svg';
 import './App.css';
 
-import getQuestions from '../../utils/getQuestions';
+import { getQuestions } from '../../utils/getData';
 
 function App() {
   const [questions, setQuestions] = useState(null);
@@ -31,7 +31,6 @@ function App() {
         </a>
       </header>
       {questions ? <h2>We have questions!</h2> : null}
-      {hello ? <h2>{hello}</h2> : null}
     </div>
   );
 }

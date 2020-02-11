@@ -8,4 +8,4 @@ const getQuestions = async () => {
   ).json();
 };
 
-export default getQuestions;
+export { getQuestions };
