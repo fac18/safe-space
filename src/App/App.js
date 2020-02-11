@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { FAQs, Home } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Footer } from '../components/index';
 
