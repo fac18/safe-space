@@ -3,7 +3,6 @@ import logo from '../../logo.svg';
 import './App.css';
 
 import getQuestions from '../../utils/getQuestions';
-import helloWorld from '../../utils/helloWorld';
 
 function App() {
   const [questions, setQuestions] = useState(null);
