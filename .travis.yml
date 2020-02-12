@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-- stable
+  - stable
 cache:
   directories:
-  - node_modules
+    - node_modules
 script:
-- npm test
-- npm run report-coverage
+  - npm test
+  - npm run report-coverage
 notifications:
   slack:
     secure: v2T5aNoRx6ovM+SItZ6WSHMMayj+Lof8n1t9VDXwMd3bCD1/wKd0Lpp/2VM7jVq28yzw5qczSSZKnAXi7wOs+2bXlw/O5636rgBGgy4jKAlQS78rjBjs+4UyT6IVP/XKQOpNmuQggosS0pE3aBgUqpoKHFYTOiX/6VYbM3XdJBD5jvxFuS7p0DrUAhgLd9nTpujBaNn7bc89XA47Sj9qwbMScAazfSdSa4hi3rEL4fxCbey0OqDVOMxGacrTwPWmAtSAzmvLrstUb8LXXCHpx4qtFF+dKJDlYwK+L2oTr5Fpz/THx0QmOmHirYGuWDomuFvU9j6PFZFOUux527xKpip8fsuoqr8NFlJDaJr3hZ0aFOuRr657QIzZ7oYSaZ9z97Zzp7rbVb3eQXbnxiTvgqmcIeEAC5rUf0cpouynPGNuBiz1sHRtu/Mnqog0gKbcW2JqK4qLMOPubD1NhWj+pGovvjuW4cNRj88CzHJ3wGJaNbaiWB67vOr/pV8zpHUMbYy9X0o2oFmwh2kWyk/YAwwj/2nhB/HkljSv7buSD3mPzQuNC4uXYBJPH7pyZLS7aEK500RC4/5HrBW8ZKU88oqQcQSQd0te5oT0ZZtBQWqMOpZkiK9A9iYQjCaeKDJbECpe2imT3JOjBfz5NbdFPYmeiZ6YEdHeC8tdg1JSxKc=
