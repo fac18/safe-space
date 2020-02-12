@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+<<<<<<< HEAD
 import { FAQs, Home, About } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
+||||||| merged common ancestors
+import { FAQs, Home, About } from '../Pages/index';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+=======
+import { FAQs, Home, About } from '../pages/index';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+>>>>>>> master
 import { Footer } from '../components/index';
 
 import { getQuestions } from '../utils/getData';
-import hardQuestionList from '../utils/questions';
+import hardQuestions from '../model/questions';
 
 function App() {
-  // const [questions, setQuestions] = useState(null);
+  const [questions, setQuestions] = useState(null);
 
-  console.log(process.env.NODE_ENV);
+  useEffect(() => {
+    getQuestions()
+      .then(records => {
+        setQuestions(records);
+      })
+      .catch(() => {
+        setQuestions(hardQuestions);
+        console.log('Failed to fetch questions - falling back to hard coding.');
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   getQuestions().then(records => {
-  //     console.log(records);
-  //     setQuestions(records);
-  //   });
-  // }, []);
 
-  console.log({ hardQuestionList });
-  // currently sending hard questions to form
   return (
     <>
       <Router>
@@ -41,6 +50,9 @@ function App() {
             render={() => <FAQs />}
           />
           <Route exact path="/about" render={() => <About />} />
+          {questions.map((question, index) => (
+          <Route path={`/questionnaire/${question.page}`} render={() => <Questionnaire questions={questions} />} />
+
         </Switch>
       </Router>
       <Footer></Footer>
