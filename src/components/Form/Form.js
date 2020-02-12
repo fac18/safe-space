@@ -1,6 +1,6 @@
 import React from 'react';
-const Form = () => {
-  return <p>Form goes here</p>;
+const Form = props => {
+  console.log({ props });
 };
 
 export default Form;
