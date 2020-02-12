@@ -9,6 +9,8 @@ import { getQuestions } from '../utils/getData';
 function App() {
   const [questions, setQuestions] = useState(null);
 
+  console.log(process.env.NODE_ENV);
+
   useEffect(() => {
     getQuestions().then(records => {
       console.log(records);
