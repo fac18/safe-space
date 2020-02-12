@@ -3,8 +3,7 @@
   functions = "functions"
   publish = "build"
 
-# if this doesn't work put '/* /index.html 200' in a '_redirects' file in public folder
 [[redirects]]
   from = "/*"
-  to "/index.html"
+  to = "/index.html"
   status = 200
