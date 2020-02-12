@@ -2,13 +2,6 @@
 // import Airtable from 'airtable'; // produces a SyntaxError ('cannot use import statement outside a module')
 const Airtable = require('airtable');
 
-// import local environment variables if in dev environment - is this necessary?
-// import dotenv from 'dotenv';
-// if (process.env.NODE_ENV === 'development') {
-//   dotenv.config()
-//   { AIRTABLE_API_URL, AIRTABLE_API_KEY, AIRTABLE_BASE_ID } = process.env;
-// }
-
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 // the handler function can take event and context params (not required in this case)
 // it can also take a callback as third argument, but we will stick to promises
