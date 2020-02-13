@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.9.2",
     "@rmwc/button": "^5.7.2",
     "@rmwc/checkbox": "^5.7.2",
     "@rmwc/dialog": "^5.7.2",

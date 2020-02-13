@@ -3,12 +3,7 @@ import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Footer, ButtonPrimary, ButtonSecondary } from '../components/index';
-
-// import {Button} from '@material-ui/core';
-
-
- 
+import { Footer } from '../components/index';
 
 
 import { getQuestions } from '../utils/getData';
@@ -27,8 +22,7 @@ function App() {
 
   return (
     <>
-      <ButtonPrimary raised>Report to SafeSpace</ButtonPrimary><br></br><br></br>
-      <ButtonSecondary outlined>Access Support Services</ButtonSecondary>
+
       
       <Router>
         <Switch>
