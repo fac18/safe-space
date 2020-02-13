@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Questionnaire } from '../pages/index';
+import { FAQs, Home, About, Report } from '../pages/index';
 import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
 
@@ -36,16 +36,16 @@ function App() {
             render={() => (
               <>
                 <Home></Home>
-                <Link to='/questionnaire/0'>Start</Link>
+                <Link to='/report/0'>Start</Link>
               </>
             )}
           />
           {questions
-            ? questions.map(question => (
+            ? questions.map((question, i) => (
               <Route
-                key={question.questionNumber}
-                path={`/questionnaire/${question.page}`}
-                render={() => <Questionnaire questions={questions} />}
+                key={i}
+                path={`/report/${question.page}`}
+                render={() => <Report questions={questions} />}
               />
             ))
             : null}
