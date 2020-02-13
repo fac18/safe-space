@@ -18,21 +18,21 @@ This will run the React app on port 3000 with the survey questions hard coded.
 
 ### Full functionality
 
-If you want to enable the backend functionality - that is, to fetch data from and feed data to an Airtable base - you'll need to use [Netlify Dev](https://www.netlify.com/products/dev/) (or just visit our [stable deploy](https://safespacemu.netlify.com/)).
+If you want to work with the backend functionality - that is, to fetch data from and feed data to an Airtable base - you'll need to use [Netlify Dev](https://www.netlify.com/products/dev/) (visit our [stable deploy](https://safespacemu.netlify.com/) to see this in action).
 
-First make sure you have an Airtable base with 'UserQuestions' and 'Results' tables prepared in accordance with the schema defined later in this documentation.
+First make sure you have an Airtable base with _UserQuestions_ and _Results_ tables prepared in accordance with the schema defined later in this documentation.
 
 Then, you need to have the Netlify CLI installed. You can do this globally on your machine by running `npm i -g netlify-cli`.
 
 Log in to [Netlify](https://app.netlify.com/) in your browser (if you don't have an account, make one). Then, back in the terminal, run `netlify login` and it'll raise the browser to complete the process.
 
-Now to set up [continous deployment](https://docs.netlify.com/cli/get-started/#continuous-deployment). Assuming your project is associated with a Github repo (for example, as a fork of this project), run `netlify init` to raise the browser, where you'll be prompted to give Netlify access to your Github account, and automate the set up.
+Now to set up [continous deployment](https://docs.netlify.com/cli/get-started/#continuous-deployment). Assuming your project is associated with a Github repo (for example, as a fork of this project), run `netlify init` to raise the browser, where you'll be prompted to give Netlify access to your Github account. Netlify will then automate set up.
 
 If instead your project is stored locally, deploy direct to Netlify by running `netlify deploy`.
 
-We need to make sure your Netlify deploy has the environment variables it needs to make the secure Airtable connection. Navigate to your Airtable base, click 'Help' in the top right, and choose 'API Documentation'. Here you will find the _base ID_. Then go to the [account page](https://airtable.com/account) to get your _personal API key_.
+Your Netlify deploy needs access to certain environment variables to connect securely to Airtable. Navigate to your Airtable base, then Help > API Documentation. Here you will find the _base ID_. Then go to your [account page](https://airtable.com/account) and grab your _personal API key_.
 
-Open your site overview on Netlify by writing `netlify open` in the terminal, then add these keys as follows in Settings > Build & deploy > Environment:
+Open your site overview on Netlify by running `netlify open` in the terminal, then add these keys as follows in Settings > Build & deploy > Environment:
 
 - `AIRTABLE_BASE_ID`: your base ID
 - `AIRTABLE_API_KEY`: your personal API key
