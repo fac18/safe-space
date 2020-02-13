@@ -73,6 +73,7 @@ module.exports = [
     section: 'What When Where',
     questionNumber: 2,
     question: 'What is the name and/or address of the location?',
+    content: ['Type your response here'],
     type: 'text',
     other: 'false',
   },
