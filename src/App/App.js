@@ -27,7 +27,8 @@ function App() {
 
   return (
     <>
-
+      <ButtonPrimary raised>Report to SafeSpace</ButtonPrimary><br></br><br></br>
+      <ButtonSecondary outlined>Access Support Services</ButtonSecondary>
       
       <Router>
         <Switch>
