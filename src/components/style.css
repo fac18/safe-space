@@ -1,0 +1,21 @@
+
+:root {
+
+/* colour variables */
+--bg-color: #fff;
+--dark-purple: rebeccapurple;
+
+/* spacing variables: golden ratio */
+   --space-xs: 0.382rem;
+   --space-s: 0.618rem;
+   --space-m: 1rem;
+   --space-l: 1.618rem;
+   --space-xl: 2.618rem;
+   --space-xxl: 4.236rem;
+   --space-gutter: 9.125rem;
+}
+
+.primary-button {
+    color: linear-gradient(277.29deg, #7768A6 2.65%, #CA68A4 86.52%);
+}
+

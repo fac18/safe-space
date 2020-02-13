@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About } from '../Pages/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Footer } from '../components/index';
+import { Footer, ButtonPrimary, ButtonSecondary } from '../components/index';
+
+// import {Button} from '@material-ui/core';
+
+
+ 
+
 
 import { getQuestions } from '../utils/getData';
 
@@ -20,6 +27,8 @@ function App() {
 
   return (
     <>
+
+      
       <Router>
         <Switch>
           <Route exact path='/' render={() => <Home />} />
