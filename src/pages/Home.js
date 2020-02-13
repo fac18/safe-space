@@ -1,7 +1,7 @@
 import React from 'react';
 import { Footer, ButtonPrimary, ButtonSecondary } from '../components/index';
 import { Typography } from '@rmwc/typography';
-import '@material/typography/dist/mdc.typography.css';
+// import './node_modules/@material/typography/dist/mdc.typography.css';
 
 const Home = () => {
   return (
