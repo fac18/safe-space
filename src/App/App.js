@@ -4,7 +4,7 @@ import './App.css';
 import { FAQs, Home, About, Questionnaire } from '../pages/index';
 import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
-
+import { ButtonPrimary } from '../components/Button';
 
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
@@ -26,8 +26,6 @@ function App() {
 
   return (
     <>
-
-      
       <Router>
         <Switch>
           <Route
@@ -36,18 +34,17 @@ function App() {
             render={() => (
               <>
                 <Home></Home>
-                <Link to='/questionnaire/0'>Start</Link>
               </>
             )}
           />
           {questions
             ? questions.map(question => (
-              <Route
-                key={question.questionNumber}
-                path={`/questionnaire/${question.page}`}
-                render={() => <Questionnaire questions={questions} />}
-              />
-            ))
+                <Route
+                  key={question.questionNumber}
+                  path={`/questionnaire/${question.page}`}
+                  render={() => <Questionnaire questions={questions} />}
+                />
+              ))
             : null}
           <Route
             exact
