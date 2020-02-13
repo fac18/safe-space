@@ -6,7 +6,16 @@ const Form = ({ questions }) => {
     return (
       <>
         <p> {question.question}</p>
-        <input type={question.type} name='question' />
+        {question.content
+          ? question.content.map(answer => {
+              return (
+                <>
+                  <input type={question.type} value={answer} id={answer} />
+                  <label for={answer}>{answer}</label>
+                </>
+              );
+            })
+          : null}
       </>
     );
   });
