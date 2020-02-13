@@ -1,3 +1,6 @@
+// these are the hard questions that we will dynamically get from airtable
+// This is only a temp file
+
 export default [
   {
     explainer: 'Please select all that apply.',
@@ -19,7 +22,7 @@ export default [
   {
     page: 1,
     section: 'What When Where',
-    questionNumber: 1,
+    questionNumber: 0,
     question: 'When did the incident take place?',
     type: 'date',
     other: 'false',
@@ -31,7 +34,7 @@ export default [
       'There was a single incident in this period',
       'There were a number of occurrences within this period',
     ],
-    questionNumber: 2,
+    questionNumber: 1,
     question: 'Were there multiple incidents related to the same perpetrator?',
     type: 'radio',
     other: 'false',
@@ -40,7 +43,7 @@ export default [
     page: 2,
     section: 'What When Where',
     content: ['United Kingdom', 'Outside of the UK'],
-    questionNumber: 3,
+    questionNumber: 0,
     question: 'Did the incident take place in the UK?',
     type: 'radio',
     other: 'false',
@@ -61,19 +64,18 @@ export default [
       'School, college or university',
       'Outside of work',
     ],
-    questionNumber: 4,
+    questionNumber: 1,
     question: 'What kind of location did the incident take place in?',
     type: 'checkbox',
     other: 'true',
   },
   {
     explainer:
-      'Only fill this in if you would like to specifically identify the location of the incident.',
+      'Only fill this in if you\'d like to specifically identify the location of the incident.',
     page: 2,
     section: 'What When Where',
-    questionNumber: 5,
+    questionNumber: 2,
     question: 'What is the name and/or address of the location?',
-    content: ['Type your response here'],
     type: 'text',
     other: 'false',
   },
@@ -83,7 +85,7 @@ export default [
     type: 'radio',
     content: ['non-binary', 'a man', 'a woman', 'a group'],
     page: 3,
-    questionNumber: 6,
+    questionNumber: 0,
     other: 'false',
   },
   {
@@ -103,7 +105,7 @@ export default [
     ],
     other: 'true',
     page: 4,
-    questionNumber: 7,
+    questionNumber: 0,
   },
   {
     section: 'Perpetrator',
@@ -112,7 +114,7 @@ export default [
     type: 'radio',
     content: ['Yes', 'No', 'I don\'t know'],
     page: 5,
-    questionNumber: 8,
+    questionNumber: 0,
     other: 'false',
   },
   {
@@ -121,7 +123,7 @@ export default [
     type: 'text',
     content: ['Type your experience here'],
     page: 6,
-    questionNumber: 9,
+    questionNumber: 0,
     other: 'false',
   },
   {
@@ -130,7 +132,7 @@ export default [
     question: 'Have you reported this incident elsewhere?',
     type: 'radio',
     page: 7,
-    questionNumber: 10,
+    questionNumber: 0,
     other: 'false',
   },
   {
@@ -147,14 +149,14 @@ export default [
     ],
     other: 'true',
     page: 8,
-    questionNumber: 11,
+    questionNumber: 0,
   },
   {
     section: 'Reporting',
     question: 'Was any action taken?',
     type: 'radio',
     page: 8,
-    questionNumber: 12,
+    questionNumber: 1,
     content: ['Yes', 'No', 'I don\'t know'],
     other: 'false',
   },
@@ -163,7 +165,7 @@ export default [
     question: 'Did anything discourage you from reporting?',
     type: 'checkbox',
     page: 9,
-    questionNumber: 13,
+    questionNumber: 0,
     explainer: 'Please select all that apply.',
     content: [
       'I thought it might not be taken seriously',
@@ -181,7 +183,7 @@ export default [
     question: 'What was your employment status at the time of the incident?',
     type: 'checkbox',
     page: 10,
-    questionNumber: 14,
+    questionNumber: 0,
     explainer: 'Please select all that apply.',
     content: [
       'Employed',
@@ -196,7 +198,7 @@ export default [
     question: 'What work were performing at the time of the incident?',
     type: 'checkbox',
     page: 11,
-    questionNumber: 15,
+    questionNumber: 0,
     explainer:
       'This will help us identify how sexism, harrassment and abuse manifests in different spaces.',
     content: [
@@ -226,7 +228,7 @@ export default [
       'Over 65',
     ],
     page: 12,
-    questionNumber: 16,
+    questionNumber: 0,
     other: 'false',
   },
   {
@@ -235,7 +237,7 @@ export default [
     type: 'radio',
     content: ['female', 'male', 'non-binary', 'Prefer to self-describe'],
     page: 13,
-    questionNumber: 17,
+    questionNumber: 0,
     other: 'false',
   },
 ];
