@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About, Questionnaire } from '../pages/index';
 import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
+
 
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
@@ -24,6 +26,8 @@ function App() {
 
   return (
     <>
+
+      
       <Router>
         <Switch>
           <Route

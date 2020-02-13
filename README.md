@@ -1,20 +1,45 @@
 # Safe Space
 
-A project for the MU.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9f58c850-0ff9-4e26-9e5d-4fed62c4bf10/deploy-status)](https://app.netlify.com/sites/safespacemu/deploys) | ![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master) | [![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/safe-space)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9f58c850-0ff9-4e26-9e5d-4fed62c4bf10/deploy-status)](https://app.netlify.com/sites/safespacemu/deploys)
+**Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@groupanimal](https://github.com/groupanimal)
 
-![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master)
+We're a team of four developers working on a _Tech for Better_ project for the [Musicians Union](https://www.musiciansunion.org.uk/).
 
-[![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/safe-space)
+Safe Space is a site to make it easier for people in the industry (especially freelance musicians) to report incidents of sexual abuse or harassment at work.
 
-## Installation and architecture
+## Installation
 
-Clone this repo, navigate into the directory and run `npm i`,
+### Showcase version
 
-In order to run the app, you'll need to have the Netlify CLI installed. You can do this globally on your machine by running `npm i -g netlify-cli`.
+Clone this repo, navigate into the directory and run `npm i`, then `npm start`.
 
-We then run `netlify dev` to start both the React server (on port 3000), the Functions server (on a random port), and the combined result on port 8888.
+This will run the React app on port 3000 with the survey questions hard coded.
+
+### Full functionality
+
+If you want to work with the backend functionality - that is, to fetch data from and feed data to an Airtable base - you'll need to use [Netlify Dev](https://www.netlify.com/products/dev/) (visit our [stable deploy](https://safespacemu.netlify.com/) to see this in action).
+
+First make sure you have an Airtable base with _UserQuestions_ and _Results_ tables prepared in accordance with the schema defined later in this documentation.
+
+Then, you need to have the Netlify CLI installed. You can do this globally on your machine by running `npm i -g netlify-cli`.
+
+Log in to [Netlify](https://app.netlify.com/) in your browser (if you don't have an account, make one). Then, back in the terminal, run `netlify login` and it'll raise the browser to complete the process.
+
+Now to set up [continous deployment](https://docs.netlify.com/cli/get-started/#continuous-deployment). Assuming your project is associated with a Github repo (for example, as a fork of this project), run `netlify init` to raise the browser, where you'll be prompted to give Netlify access to your Github account. Netlify will then automate set up.
+
+If instead your project is stored locally, deploy direct to Netlify by running `netlify deploy`.
+
+Your Netlify deploy needs access to certain environment variables to connect securely to Airtable. Navigate to your Airtable base, then Help > API Documentation. Here you will find the _base ID_. Then go to your [account page](https://airtable.com/account) and grab your _personal API key_.
+
+Open your site overview on Netlify by running `netlify open` in the terminal, then add these keys as follows in Settings > Build & deploy > Environment:
+
+- `AIRTABLE_BASE_ID`: your base ID
+- `AIRTABLE_API_KEY`: your personal API key
+- `AIRTABLE_API_URL`: `https://api.airtable.com/`
+
+
+Finally, you can run `netlify dev` in the terminal to start both the React server (on port 3000), the functions server (on a random port), and the combined result on port 8888.
 
 ## Netlify functions
 
@@ -22,7 +47,7 @@ We started by reading FAC developer-in-residence [Oliver James' article](https:/
 
 We used the [Airtable.js](https://github.com/Airtable/airtable.js) npm package within [Netlify functions](https://docs.netlify.com/functions/overview/#manage-your-serverless-functions) (i.e. simpler AWS Lambdas) to conduct CRUD operations on our Airtable base without revealing the API key.
 
-_CRUD_ = Create Read Update Delete. These actions correspond loosely to the http methods often exposed upon a resource by [RESTful APIs](https://restfulapi.net/) (PUT, GET, POST, DELETE resp.).
+*CRUD* = Create Read Update Delete. These actions correspond loosely to the http methods often exposed upon a resource by [RESTful APIs](https://restfulapi.net/) (PUT, GET, POST, DELETE resp.).
 
 Read FaunaDB as Airtable in this image to get an idea of data flows between environments:
 
@@ -37,3 +62,7 @@ Read FaunaDB as Airtable in this image to get an idea of data flows between envi
 - Netlify's own [examples](https://functions.netlify.com/examples/)
 - Netlify's own [playground](https://functions-playground.netlify.com/)
 - Also, someone has made a [Netlify functions workshop](https://docs.netlify.com/functions/overview/)!
+
+## Airtable schema
+
+ADD DBDIAGRAM HERE
