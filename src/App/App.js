@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Questionnaire } from '../pages/index';
+import { FAQs, Home, About, Questionnaire, Support } from '../pages/index';
 import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { ButtonPrimary } from '../components/Button';
@@ -33,7 +33,7 @@ function App() {
             path='/'
             render={() => (
               <>
-                <Home></Home>
+                <Home />
               </>
             )}
           />
@@ -52,9 +52,10 @@ function App() {
             render={() => <FAQs />}
           />
           <Route exact path='/about' render={() => <About />} />
+          <Route exact path='/support' render={() => <Support />} />
         </Switch>
       </Router>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }
