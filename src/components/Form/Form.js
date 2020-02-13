@@ -10,8 +10,12 @@ const Form = ({ questions }) => {
           question.content.map(answer => {
             return (
               <>
-                <input type={question.type} value={answer} id={answer} />
-                <label for={answer}>{answer}</label>
+                <input
+                  type={question.type}
+                  value={answer}
+                  id={answer + ' ' + question.questionNumber}
+                />
+                <label htmlFor={answer}>{answer}</label>
               </>
             );
           })
