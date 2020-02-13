@@ -20,6 +20,7 @@ function App() {
         console.log('Failed to fetch questions - falling back to hard coding.');
       });
   }, []);
+  // console.log(questions.questions);
 
   return (
     <>
@@ -36,8 +37,9 @@ function App() {
             )}
           />
           {questions
-            ? questions.map((question, index) => (
+            ? questions.map(question => (
               <Route
+                key={question.questionNumber}
                 path={`/questionnaire/${question.page}`}
                 render={() => <Questionnaire questions={questions} />}
               />

@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     explainer: 'Please select all that apply.',
     page: 0,
