@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  functions = "functions"
+  publish = "build"
+
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+[context.deploy-preview]
+  environment = { NODE_ENV = "production" }
+
+[context.branch-deploy]
+  environment = { NODE_ENV = "production" }
+
+[dev]
+  # any configs specific to running 'netlify dev' go here
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
