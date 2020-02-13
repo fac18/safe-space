@@ -6,7 +6,7 @@ const Form = ({ questions }) => {
     return (
       <>
         <p> {question.question}</p>
-        <input type={question.type} name='question' />;
+        <input type={question.type} name='question' />
       </>
     );
   });
