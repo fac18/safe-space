@@ -6,6 +6,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
+import { postAnswers } from '../utils/postData';
 
 function App() {
   const [questions, setQuestions] = useState(null);
@@ -13,6 +14,8 @@ function App() {
     getQuestions()
       .then(records => {
         setQuestions(records);
+        console.log(records);
+        postAnswers(records);
       })
       .catch(() => {
         setQuestions(hardQuestions);
@@ -35,12 +38,12 @@ function App() {
         />
         {questions
           ? questions.map((question, i) => (
-            <Route
-              key={i}
-              path={`/report/${question.page}`}
-              render={() => <Report questions={questions} />}
-            />
-          ))
+              <Route
+                key={i}
+                path={`/report/${question.page}`}
+                render={() => <Report questions={questions} />}
+              />
+            ))
           : null}
         <Route
           exact

@@ -1,7 +1,7 @@
 // import Airtable.js package
 // import Airtable from 'airtable'; // produces a SyntaxError ('cannot use import statement outside a module')
 const Airtable = require('airtable');
-import querystring from 'querystring';
+const querystring = require('querystring');
 
 // we are triggering this function when we click to submit the form
 // the event in function we're listening for therefore is 'submission-created'
@@ -20,13 +20,13 @@ exports.handler = async (event, context) => {
   // When the method is POST, the name will no longer be in the event’s
   // queryStringParameters – it’ll be in the event body encoded as a query string
 
-  const params = querystring.parse(event.body);
-  console.log(params);
+  const answers = querystring.parse(event.body);
+  console.log(answers);
   // const name = params.name || 'World';
 
   // Body will be the object from the form
   return {
     statusCode: 200,
-    body: params,
+    body: JSON.stringify({ message: 'Success!' }),
   };
 };

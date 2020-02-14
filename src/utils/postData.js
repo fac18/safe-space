@@ -12,7 +12,7 @@ const postAnswers = async allTheAnswers => {
       },
       body: JSON.stringify(allTheAnswers),
     }
-  ).json();
+  );
   let result = await response.json();
   alert(result.message);
 };
