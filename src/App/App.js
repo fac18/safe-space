@@ -10,7 +10,6 @@ import hardQuestions from '../model/questions';
 
 function App() {
   const [questions, setQuestions] = useState(null);
-
   useEffect(() => {
     getQuestions()
       .then(records => {

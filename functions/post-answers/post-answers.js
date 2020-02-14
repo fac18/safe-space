@@ -1,8 +1,6 @@
 // import Airtable.js package
 // import Airtable from 'airtable'; // produces a SyntaxError ('cannot use import statement outside a module')
 const Airtable = require('airtable');
-
-const gotQuestions = require('');
 import querystring from "querystring";
 
 // we are triggering this function when we click to submit the form
