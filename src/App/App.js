@@ -32,7 +32,6 @@ function App() {
           render={() => (
             <>
               <Home></Home>
-              <Link to='/report/0'>Start</Link>
             </>
           )}
         />

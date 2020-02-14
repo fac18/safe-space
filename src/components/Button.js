@@ -8,8 +8,6 @@ const ButtonPrimary = styled(Button)`
     border-radius: 1rem;
     background: linear-gradient(296.3deg, #7768A6 2.65%, #CA68A4 86.52%);
     font-weight: bold;
-
-    
 }
 `;
 
