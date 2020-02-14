@@ -38,12 +38,7 @@ const Form = ({ questions }) => {
         );
       })
     : null;
-  return (
-    <form>
-      {pageQuestions}
-      <input type={question.type} />
-    </form>
-  );
+  return <form data-testid='test1'>{pageQuestions}</form>;
 };
 
 export default Form;
