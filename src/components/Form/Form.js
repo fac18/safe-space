@@ -38,7 +38,12 @@ const Form = ({ questions }) => {
         );
       })
     : null;
-  return <form>{pageQuestions}</form>;
+  return (
+    <form>
+      {pageQuestions}
+      <input type={question.type} />
+    </form>
+  );
 };
 
 export default Form;

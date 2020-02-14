@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
   // event has properties like the request querystring and body ready for you to use.
 
   // grab airtable variables from Netlify environment (uploaded via UI)
-  const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
+  // const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
 
   // Only allow POST
   if (event.httpMethod !== 'POST') {
@@ -22,18 +22,11 @@ exports.handler = async (event, context) => {
 
   const params = querystring.parse(event.body);
   console.log(params);
-  const name = params.name || 'World';
+  // const name = params.name || 'World';
 
   // Body will be the object from the form
   return {
     statusCode: 200,
-    body: `Hello, ${name}`,
+    body: params,
   };
 };
-
-//   Airtable.configure({
-//     endpointUrl: AIRTABLE_API_URL,
-//     apiKey: AIRTABLE_API_KEY,
-//   });
-//   const base = Airtable.base(AIRTABLE_BASE_ID);
-// };}
