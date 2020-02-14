@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-<<<<<<< HEAD
-import { FAQs, Home, About, Report } from '../pages/index';
+import { FAQs, Home, About, Report, Support} from '../pages/index';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
-=======
-import { FAQs, Home, About, Questionnaire, Support } from '../pages/index';
-import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
-import { Footer } from '../components/index';
-import { ButtonPrimary } from '../components/Button';
->>>>>>> master
-
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
 
