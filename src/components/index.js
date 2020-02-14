@@ -6,4 +6,13 @@ import PrevNext from './PrevNext/PrevNext';
 import ProgressBar from './ProgressBar/ProgressBar';
 import { ButtonPrimary, ButtonSecondary } from './Button.js';
 
-export { Footer, FAQuestion, Form, Header, PrevNext, ProgressBar, ButtonPrimary, ButtonSecondary };
+export {
+  Footer,
+  FAQuestion,
+  Form,
+  Header,
+  PrevNext,
+  ProgressBar,
+  ButtonPrimary,
+  ButtonSecondary,
+};
