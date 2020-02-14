@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Questionnaire, Support } from '../pages/index';
-import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom';
+import { FAQs, Home, About, Report, Support} from '../pages/index';
+import { Route, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
-import { ButtonPrimary } from '../components/Button';
-
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
 
@@ -26,36 +24,36 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path='/'
-            render={() => (
-              <>
-                <Home />
-              </>
-            )}
-          />
-          {questions
-            ? questions.map(question => (
-                <Route
-                  key={question.questionNumber}
-                  path={`/questionnaire/${question.page}`}
-                  render={() => <Questionnaire questions={questions} />}
-                />
-              ))
-            : null}
-          <Route
-            exact
-            path='/frequently-asked-questions'
-            render={() => <FAQs />}
-          />
-          <Route exact path='/about' render={() => <About />} />
-          <Route exact path='/support' render={() => <Support />} />
-        </Switch>
-      </Router>
-      <Footer />
+      <Switch>
+        <Route
+          exact
+          path='/'
+          render={() => (
+            <>
+              <Home></Home>
+            </>
+          )}
+        />
+        {questions
+          ? questions.map((question, i) => (
+              <Route
+                key={i}
+                path={`/report/${question.page}`}
+                render={() => <Report questions={questions} />}
+              />
+            ))
+          : null}
+        <Route
+          exact
+          path='/frequently-asked-questions'
+          render={() => <FAQs />}
+        />
+        <Route exact path='/about' render={() => <About />} />
+        <Route exact path='/support' render={() => <Support />} />
+
+      </Switch>
+
+      <Footer/>
     </>
   );
 }
