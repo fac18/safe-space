@@ -9,7 +9,7 @@ const generateId = async () => {
   let id = uuid();
 
   while (!unique) {
-    let anyMatch = false;
+    let match = false;
 
     await getUsers().then(users => {
       users.forEach(user => {
@@ -17,8 +17,8 @@ const generateId = async () => {
       });
     });
 
-    if (anyMatch) {
-      // if id already used, make a new candidate and while loop repeats
+    if (match) {
+      // if match found (id already used), make a new candidate and while loop repeats
       id = uuid();
     } else {
       // otherwise, set unique to true, escape loop and return certifiably unique id
