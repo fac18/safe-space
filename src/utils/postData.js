@@ -3,11 +3,11 @@
 const postResponses = async responses => {
   // first we wait for the fetch to resolve to a response
   let response = await fetch(
-    '../../.netlify/functions/post-answers/post-answers.js',
+    '../../.netlify/functions/post-responses/post-responses.js',
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(responses),
     }
@@ -17,4 +17,16 @@ const postResponses = async responses => {
   return result;
 };
 
-export { postResponses };
+const postUser = async user => {
+  return await (
+    await fetch('../../.netlify/functions/post-user/post-user.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+  ).json();
+};
+
+export { postResponses, postUser };

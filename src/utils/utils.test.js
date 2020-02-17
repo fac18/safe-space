@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import Report from '../pages/Report';
+import { Report } from '../pages';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import mockResponse from '../model/questions';

@@ -2,7 +2,7 @@ import uuid from 'uuid/v4';
 import { getUsers } from './getData';
 
 // we will enforce uniqueness in this util
-// NB. this may not be strictly necessary since each uuid should be 1 of ~10^38 (256^16) possible results
+// NB. this may not be strictly necessary since each uuid should be 1 of ~10^38 (256^16) possible results!
 const generateId = async () => {
   let unique = true;
   let id = uuid();

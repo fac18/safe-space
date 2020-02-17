@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About, Report, Support } from '../pages';
-import { Route, Switch } from 'react-router-dom';
 import { Footer } from '../components';
 
 // packages and utils
@@ -39,12 +39,14 @@ function App() {
     generateId()
       .then(id => {
         setUser({
-          ref: id,
+          ref: id, // guaranteed to be unique
+          email: '',
         });
       })
       .catch(err => {
         setUser({
-          ref: uuid(),
+          ref: uuid(), // may be non-unique (but very unlikely)
+          email: '',
         });
         console.log(
           'Failed to fetch user data - falling back to hard coding. Error: ',

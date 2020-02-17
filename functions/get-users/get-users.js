@@ -3,12 +3,10 @@ const Airtable = require('airtable');
 exports.handler = async () => {
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
 
-  Airtable.configure({
+  const base = new Airtable({
     endpointUrl: AIRTABLE_API_URL,
     apiKey: AIRTABLE_API_KEY,
-  });
-
-  const base = Airtable.base(AIRTABLE_BASE_ID);
+  }).base(AIRTABLE_BASE_ID);
 
   let data = [];
 
