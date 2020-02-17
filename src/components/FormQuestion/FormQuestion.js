@@ -1,25 +1,36 @@
 import React from 'react';
 
-const FormQuestion = ({ questions, setResponses }) => {
-  return (
-    <>
-      <p> {question.question}</p>
-      {question.content ? (
-        question.content.map(answer => {
+const FormQuestion = ({ page, questions, setResponses }) => {
+  return questions
+    ? questions
+        .filter(question => {
+          return question.page === page;
+        })
+        .map(question => {
           return (
             <>
-              <input
-                type={question.type}
-                value={answer}
-                id={answer + ' ' + question.questionNumber}
-              />
-              <label htmlFor={answer}>{answer}</label>
+              <p>{question.question}</p>
+              {question.content ? (
+                question.content.map(answer => {
+                  return (
+                    <>
+                      <input
+                        name={question.question}
+                        type={question.type}
+                        value={answer}
+                        id={answer + ' ' + question.questionNumber}
+                      />
+                      <label htmlFor={answer}>{answer}</label>
+                    </>
+                  );
+                })
+              ) : (
+                <input type={question.type} />
+              )}
             </>
           );
         })
-      ) : (
-        <input type={question.type} />
-      )}
-    </>
-  );
+    : null;
 };
+
+export default FormQuestion;

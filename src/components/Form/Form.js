@@ -1,45 +1,20 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { FormQuestion } from '../index';
 
-const Form = ({ questions }) => {
+const Form = ({ questions, setResponses }) => {
   const path = useLocation().pathname;
 
   // page question from URL path
   const page = parseInt(path.match(/report\/(\d+)$/i)[1]);
 
-  const pageQuestions = questions
-    ? questions
-        .filter(question => {
-          return question.page === page;
-        })
-        .map(question => {
-          return (
-            <>
-              <p> {question.question}</p>
-              {question.content ? (
-                question.content.map(answer => {
-                  return (
-                    <>
-                      <input
-                        name={question.question}
-                        type={question.type}
-                        value={answer}
-                        id={answer + ' ' + question.questionNumber}
-                      />
-                      <label htmlFor={answer}>{answer}</label>
-                    </>
-                  );
-                })
-              ) : (
-                <input type={question.type} />
-              )}
-            </>
-          );
-        })
-    : null;
   return (
     <form data-testid='test1' key='1'>
-      {pageQuestions}
+      <FormQuestion
+        questions={questions}
+        setResponses={setResponses}
+        page={page}
+      ></FormQuestion>
     </form>
   );
 };
