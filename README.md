@@ -1,10 +1,10 @@
 # Safe Space
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9f58c850-0ff9-4e26-9e5d-4fed62c4bf10/deploy-status)](https://app.netlify.com/sites/safespacemu/deploys) | ![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master) | [![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/safe-space)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5c6fdabe-1590-4128-bdb4-f981780281bf/deploy-status)](https://app.netlify.com/sites/safespacemu/deploys) | ![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master) | [![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/safe-space)
 
 **Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@groupanimal](https://github.com/groupanimal)
 
-We're a team of four developers working on a _Tech for Better_ project for the [Musicians Union](https://www.musiciansunion.org.uk/).
+We're a team of four developers working on a _Tech for Better_ project for the [Musicians' Union](https://www.musiciansunion.org.uk/).
 
 Safe Space is a site to make it easier for people in the industry (especially freelance musicians) to report incidents of sexual abuse or harassment at work.
 
@@ -12,10 +12,7 @@ Safe Space is a site to make it easier for people in the industry (especially fr
 
 ### Showcase version
 
-1. Clone this repo `git clone https://github.com/fac18/safe-space.git`
-2. `cd` into the directory
-3. Run `npm i`
-4. `npm start`
+Clone this repo, navigate into the directory and run `npm i`, then `npm start`.
 
 This will run the React app on port 3000 with the survey questions hard coded.
 
@@ -23,7 +20,7 @@ This will run the React app on port 3000 with the survey questions hard coded.
 
 If you want to work with the backend functionality - that is, to fetch data from and feed data to an Airtable base - you'll need to use [Netlify Dev](https://www.netlify.com/products/dev/) (visit our [stable deploy](https://safespacemu.netlify.com/) to see this in action).
 
-First make sure you have an Airtable base with _UserQuestions_ and _Results_ tables prepared in accordance with the schema defined later in this documentation.
+First make sure you have an Airtable base with _Questions_, _Responses_ and _Users_ tables prepared in accordance with the schema defined later in this documentation.
 
 Then, you need to have the Netlify CLI installed. You can do this globally on your machine by running `npm i -g netlify-cli`.
 
@@ -48,7 +45,7 @@ Finally, you can run `netlify dev` in the terminal to start both the React serve
 
 We started by reading FAC developer-in-residence [Oliver James' article](https://oliverjam.es/blog/we-dont-need-servers/) on running serverless applications entirely in the frontend.
 
-We used the [Airtable.js](https://github.com/Airtable/airtable.js) npm package within [Netlify functions](https://docs.netlify.com/functions/overview/#manage-your-serverless-functions) (i.e. simpler AWS Lambdas) to conduct CRUD operations on our Airtable base without revealing the API key.
+We used the [Airtable.js](https://github.com/Airtable/airtable.js) npm package within [Netlify functions](https://docs.netlify.com/functions/overview/#manage-your-serverless-functions) (i.e. simplified AWS Lambdas) to conduct CRUD operations on our Airtable base without revealing the API key.
 
 *CRUD* = Create Read Update Delete. These actions correspond loosely to the http methods often exposed upon a resource by [RESTful APIs](https://restfulapi.net/) (PUT, GET, POST, DELETE resp.).
 
@@ -68,4 +65,57 @@ Read FaunaDB as Airtable in this image to get an idea of data flows between envi
 
 ## Airtable schema
 
-ADD DBDIAGRAM HERE
+Our Airtable base is not a relational SQL database proper, so this schema (generated with dbdiagram.io) does not map exactly, but is a useful reference.
+
+[![](https://i.imgur.com/UOciiUK.png)](https://dbdiagram.io/d/5e4570b89e76504e0ef16a20)
+
+Some clarifications follow:
+
+- The _Responses_ table has fields for every question in the _Questions_ table, with the name of each field given by the question text; the singular _question_ field in the _Responses_ table above is a shorthand for this 
+- Records in the _Users_ table refer to a single report made on the Safe Space platform, rather than to a unique user. Any person using the platform to make multiple reports will recieve a unique reference every time, so will only be identifiable as a repeat user if they also provide the same email on multiple occasions
+- The _id_ field in each table in the schema is represented in Airtable by the serial integer field which is automatically part of every table. When you make a request for records from Airtable, these numbers are decremented by 1 to become the indices of the returned array of records
+- The only relation in the schema is between the _responses_ field in the _Users_ table and the _user_ field in the _Responses_ table. This is a 1-to-1 relation in that every response submitted will relate to only one user and visa versa. The respective records will be produced simultaneously
+
+## Security and anonymity
+
+This platform will only be a genuinely 'safe space' if:
+
+- we can ensure that any information submitted is securely stored
+- users' anonymity is maintained (unless they knowingly choose otherwise)
+- access to the data (for example, by MU staff) is carefully managed
+- all of the above facts are transparently communicated to users
+
+Establishing trust is therefore both a UX and a software engineering problem.
+
+### Points of vulnerability
+
+[_Roots of trust_](https://csrc.nist.gov/Projects/Hardware-Roots-of-Trust) is a concept in computer security - it usually refers to hardware with guaranteed security, but we'll borrow it for our purposes. It essentially asks us to consider the different points of vulnerability of a system. If we are satisfied that any of these is sufficiently secure, we can say it is trusted. In this way we can identify the weak points in the overally security of the system, and address them (or failing that, at least make them clear to users).
+
+The following sections consider different so called roots.
+
+#### User's device
+
+A given user's phone or laptop may be compromised (for example, with malware which includes a [keylogger](https://en.wikipedia.org/wiki/Keystroke_logging)). Unfortunately, we have no control over this and so consider is outside the scope of this project.
+
+However, in the case that the user
+
+Resolutions:
+
+-
+
+#### User's email account
+
+Similarly, 
+
+
+#### Airtable (data at rest)
+
+
+
+#### Data in transmission
+
+
+
+#### Netlify
+
+

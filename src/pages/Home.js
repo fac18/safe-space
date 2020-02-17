@@ -23,7 +23,7 @@ const Home = () => {
       <Typography use='headline2'>Over 85% felt unable to report it</Typography>
       <Typography use='headline2'>Let’s change this </Typography>
 
-      <ButtonPrimary tag={Link} to='/questionnaire/0' raised>
+      <ButtonPrimary tag={Link} to='/report/0' raised>
         Report to SafeSpace
       </ButtonPrimary>
 
