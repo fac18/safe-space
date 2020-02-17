@@ -2,10 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const Form = ({ questions }) => {
-  const path = useLocation().pathname;
-
-  // page question from URL path
-  const page = parseInt(path.match(/report\/(\d+)$/i)[1]);
+  // get page question from URL path
+  const page = parseInt(useLocation().pathname.match(/report\/(\d+)$/i)[1]);
 
   const pageQuestions = questions
     ? questions
@@ -18,16 +16,15 @@ const Form = ({ questions }) => {
             {question.content ? (
               question.content.map((answer, i) => {
                 return (
-                  <>
+                  <React.Fragment key={i}>
                     <input
-                      key={i}
                       name={question.question}
                       type={question.type}
                       value={answer}
                       id={answer + ' ' + question.questionNumber}
                     />
                     <label htmlFor={answer}>{answer}</label>
-                  </>
+                  </React.Fragment>
                 );
               })
             ) : (

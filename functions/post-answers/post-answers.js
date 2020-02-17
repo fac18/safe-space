@@ -1,5 +1,4 @@
 const Airtable = require('airtable');
-const querystring = require('querystring');
 
 // we are triggering this function when we click to submit the form
 // the event in function we're listening for therefore is 'submission-created'
@@ -15,8 +14,7 @@ exports.handler = async (event, context) => {
   }
 
   // When the method is POST, the name will no longer be in the event’s
-  // queryStringParameters – it’ll be in the event body encoded as a query string
-
+  // queryStringParameters – it’ll be in the event body encoded as stringified json
   const answers = JSON.parse(event.body);
   const base = new Airtable({
     endpointUrl: AIRTABLE_API_URL,

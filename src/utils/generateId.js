@@ -1,5 +1,4 @@
 import uuid from 'uuid/v4';
-
 import { getUsers } from './getData';
 
 // we will enforce uniqueness in this util
@@ -15,7 +14,7 @@ const generateId = async () => {
   });
 
   if (!unique) {
-    // if match found (id already used), recur function
+    // if match found (i.e. id already in use), recur function
     generateId();
   } else {
     // otherwise, return certifiably unique id
