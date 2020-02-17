@@ -13,6 +13,7 @@ function App() {
     getQuestions()
       .then(records => {
         setQuestions(records);
+        console.log(records);
       })
       .catch(() => {
         setQuestions(hardQuestions);
@@ -35,12 +36,12 @@ function App() {
         />
         {questions
           ? questions.map((question, i) => (
-            <Route
-              key={i}
-              path={`/report/${question.page}`}
-              render={() => <Report questions={questions} />}
-            />
-          ))
+              <Route
+                key={i}
+                path={`/report/${question.page}`}
+                render={() => <Report questions={questions} />}
+              />
+            ))
           : null}
         <Route
           exact
