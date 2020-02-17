@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from '../components/index';
-import responses from '../model/resposes';
+import responses from '../model/responses';
 import { postAnswers } from '../model/postData';
 
 const Report = ({ questions }) => {
   // take the questions object and take just the question title for each question
   // and make a new array
-  //CHANGE THIS FUNCTION BELOW WE ARE JUST TESTING
+  // CHANGE THIS FUNCTION BELOW WE ARE JUST TESTING
   postAnswers(responses);
 
   const responseArr = [];
@@ -18,10 +18,10 @@ const Report = ({ questions }) => {
   // of empty strings
   const convertArrayToObject = array => {
     const initialValue = {};
-    return array.reduce((obj, item) => {
+    return array.reduce((obj, ques) => {
       return {
         ...obj,
-        [item]: '',
+        [ques]: '',
       };
     }, initialValue);
   };

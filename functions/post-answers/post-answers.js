@@ -1,5 +1,3 @@
-// import Airtable.js package
-// import Airtable from 'airtable'; // produces a SyntaxError ('cannot use import statement outside a module')
 const Airtable = require('airtable');
 const querystring = require('querystring');
 
@@ -9,7 +7,7 @@ const querystring = require('querystring');
 exports.handler = async (event, context) => {
   // event has properties like the request querystring and body ready for you to use.
 
-  grab airtable variables from Netlify environment (uploaded via UI)
+  // grab airtable variables from Netlify environment (uploaded via UI)
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
 
   // Only allow POST
@@ -21,19 +19,30 @@ exports.handler = async (event, context) => {
   // queryStringParameters – it’ll be in the event body encoded as a query string
 
   const answers = querystring.parse(event.body);
-  const base = new Airtable({ endpointUrl: AIRTABLE_API_URL, apiKey: AIRTABLE_API_KEY }).base(AIRTABLE_BASE_ID);
+  const base = new Airtable({
+    endpointUrl: AIRTABLE_API_URL,
+    apiKey: AIRTABLE_API_KEY,
+  }).base(AIRTABLE_BASE_ID);
 
-  const records = []
-  base('Responses').create(
-    [
+  console.log({ answers });
+
+  // const records = [];
+  base('Responses')
+    .create([
       {
         fields: answers,
       },
-    ]).then(records.forEach(record => {
-      console.log(record.getId());
-      records.push(record)
-    })).catch(err => {console.error(err);
-    return})
+    ])
+    // .then(
+    //   records.forEach(record => {
+    //     console.log(record.getId());
+    //     records.push(record);
+    //   })
+    // )
+    .catch(err => {
+      console.error(err);
+      return;
+    });
 
   // const name = params.name || 'World';
 
