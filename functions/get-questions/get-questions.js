@@ -20,7 +20,7 @@ exports.handler = async () => {
 
   // select all records - only need to check first page since questions won't exceed 100 entries
   // need an await to ensure data is assigned to records before returning response
-  await base('UserQuestions')
+  await base('Questions')
     .select({
       maxRecords: 100,
       view: 'Grid view',

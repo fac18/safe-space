@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Report, Support} from '../pages/index';
+import { FAQs, Home, About, Report, Support } from '../pages/index';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { getQuestions } from '../utils/getData';
@@ -9,18 +9,17 @@ import hardQuestions from '../model/questions';
 
 function App() {
   const [questions, setQuestions] = useState(null);
-
   useEffect(() => {
     getQuestions()
       .then(records => {
         setQuestions(records);
+        console.log(records);
       })
       .catch(() => {
         setQuestions(hardQuestions);
         console.log('Failed to fetch questions - falling back to hard coding.');
       });
   }, []);
-  // console.log(questions.questions);
 
   return (
     <>
@@ -50,10 +49,9 @@ function App() {
         />
         <Route exact path='/about' render={() => <About />} />
         <Route exact path='/support' render={() => <Support />} />
-
       </Switch>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
