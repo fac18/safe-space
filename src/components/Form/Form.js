@@ -23,7 +23,7 @@ const Form = ({ questions }) => {
                   return (
                     <>
                       <input
-                        type={question.question}
+                        name={question.question}
                         type={question.type}
                         value={answer}
                         id={answer + ' ' + question.questionNumber}
