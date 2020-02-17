@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About, Report, Support } from '../pages/index';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
+import generateId from '../utils/generateId';
 
 function App() {
   const [questions, setQuestions] = useState(null);
@@ -19,6 +20,8 @@ function App() {
         setQuestions(hardQuestions);
         console.log('Failed to fetch questions - falling back to hard coding.');
       });
+
+    generateId();
   }, []);
   // console.log(questions.questions);
 
