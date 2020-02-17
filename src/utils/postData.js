@@ -17,7 +17,7 @@ const postData = async allTheAnswers => {
   console.log({ response });
   // then we wait for the response to stream as json, and return the result
   let result = await response.json();
-
+  console.log({ result });
   alert(result.message);
   return result;
 };
