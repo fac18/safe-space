@@ -12,7 +12,10 @@ Safe Space is a site to make it easier for people in the industry (especially fr
 
 ### Showcase version
 
-Clone this repo, navigate into the directory and run `npm i`, then `npm start`.
+1. Clone this repo `git clone https://github.com/fac18/safe-space.git`
+2. `cd` into the directory
+3. Run `npm i`
+4. `npm start`
 
 This will run the React app on port 3000 with the survey questions hard coded.
 

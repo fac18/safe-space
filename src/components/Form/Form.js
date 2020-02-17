@@ -11,34 +11,39 @@ const Form = ({ questions }) => {
 
   const pageQuestions = questions
     ? questions
-      .filter(question => {
-        return question.page === page;
-      })
-      .map(question => {
-        return (
-          <>
-            <p> {question.question}</p>
-            {question.content ? (
-              question.content.map(answer => {
-                return (
-                  <>
-                    <input
-                      type={question.type}
-                      value={answer}
-                      id={answer + ' ' + question.questionNumber}
-                    />
-                    <label htmlFor={answer}>{answer}</label>
-                  </>
-                );
-              })
-            ) : (
-              <input type={question.type} />
-            )}
-          </>
-        );
-      })
+        .filter(question => {
+          return question.page === page;
+        })
+        .map(question => {
+          return (
+            <>
+              <p> {question.question}</p>
+              {question.content ? (
+                question.content.map(answer => {
+                  return (
+                    <>
+                      <input
+                        name={question.question}
+                        type={question.type}
+                        value={answer}
+                        id={answer + ' ' + question.questionNumber}
+                      />
+                      <label htmlFor={answer}>{answer}</label>
+                    </>
+                  );
+                })
+              ) : (
+                <input type={question.type} />
+              )}
+            </>
+          );
+        })
     : null;
-  return <form data-testid='test1'>{pageQuestions}</form>;
+  return (
+    <form data-testid='test1' key='1'>
+      {pageQuestions}
+    </form>
+  );
 };
 
 export default Form;
