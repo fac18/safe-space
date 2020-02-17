@@ -6,7 +6,6 @@ import { Route, Switch } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
-import generateId from '../utils/generateId';
 
 function App() {
   const [questions, setQuestions] = useState(null);
@@ -20,10 +19,6 @@ function App() {
         setQuestions(hardQuestions);
         console.log('Failed to fetch questions - falling back to hard coding.');
       });
-
-    generateId().then(id => {
-      console.log(id);
-    });
   }, []);
   // console.log(questions.questions);
 

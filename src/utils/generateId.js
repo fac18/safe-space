@@ -13,7 +13,7 @@ const generateId = async () => {
 
     await getUsers().then(users => {
       users.forEach(user => {
-        if (user.ref === id) anyMatch = true;
+        if (user.ref === id) match = true;
       });
     });
 

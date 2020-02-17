@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from '../components/index';
+import generateId from '../utils/generateId';
 
 const Report = ({ questions }) => {
   // take the questions object and take just the question title for each question
@@ -23,12 +24,23 @@ const Report = ({ questions }) => {
 
   // set the responses to the object
   const [responses, setResponses] = useState(responsesObj);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    generateId().then(id => {
+      setUser({
+        ref: id,
+      });
+    });
+  });
 
   return (
     <Form
       questions={questions}
       responses={responses}
       setResponses={setResponses}
+      user={user}
+      setUser={setUser}
     ></Form>
   );
 };
