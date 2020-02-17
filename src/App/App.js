@@ -21,7 +21,9 @@ function App() {
         console.log('Failed to fetch questions - falling back to hard coding.');
       });
 
-    generateId();
+    generateId().then(id => {
+      console.log(id);
+    });
   }, []);
   // console.log(questions.questions);
 
