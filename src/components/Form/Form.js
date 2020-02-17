@@ -38,7 +38,7 @@ const Form = ({ questions }) => {
           );
         })
     : null;
-  return <form data-testid="test1">{pageQuestions}</form>;
+  return <form data-testid="test1" key="1">{pageQuestions}</form>;
 };
 
 export default Form;
