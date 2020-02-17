@@ -5,14 +5,12 @@ import Report from '../pages/Report';
 import App from '../App/App';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
+import mockResponse from '../model/questions';
 
 afterEach(cleanup);
 
 const history = createMemoryHistory();
-
-const mockResponse = {
-  mockQuestions: ['All of the questions', 'and some more information'],
-};
+history.push('/report/1');
 
 global.fetch = jest.fn().mockImplementation(() =>
   Promise.resolve({
@@ -23,20 +21,17 @@ global.fetch = jest.fn().mockImplementation(() =>
 it('mocks a returns of expected data', () => {
   const { getByPlaceholderText, getByText } = render(
     <Router history={history}>
-      <App />
+      <Report questions={mockResponse} />
     </Router>
   );
-  render(
-    <Router history={history}>
-      <Search />
-    </Router>
-  );
+  // render(
+  //   <Router history={history}>
+  //     <Report
+  //   </Router>
+  // );
 
-  const input = getByPlaceholderText('Search');
-  fireEvent.change(input, { target: { value: 'Collection name' } });
-
-  const searchButton = getByText('SEARCH');
-  fireEvent.click(searchButton);
+  const questionTitle = getByText('When did the incident take place?');
+  expect(questionTitle).toBeInTheDocument();
 
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });

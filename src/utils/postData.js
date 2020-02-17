@@ -3,6 +3,7 @@
 const postAnswers = async allTheAnswers => {
   // first we wait for the fetch to resolve to a response
   // then we wait for the response to stream as json, and return the result
+  console.log({ allTheAnswers });
   let response = await fetch(
     '.netlify/functions/post-answers/post-answers.js',
     {
@@ -10,7 +11,7 @@ const postAnswers = async allTheAnswers => {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(allTheAnswers),
+      body: allTheAnswers,
     }
   );
   let result = await response.json();
