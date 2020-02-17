@@ -5,13 +5,13 @@ const getQuestions = async () => {
   // first we wait for the fetch to resolve to a response
   // then we wait for the response to stream as json, and return the result
   return await (
-    await fetch('.netlify/functions/get-questions/get-questions.js')
+    await fetch('../../.netlify/functions/get-questions/get-questions.js')
   ).json();
 };
 
 const getUsers = async () => {
   return await (
-    await fetch('.netlify/functions/get-users/get-users.js')
+    await fetch('../../.netlify/functions/get-users/get-users.js')
   ).json();
 };
 

@@ -12,30 +12,29 @@ const Form = ({ questions }) => {
         .filter(question => {
           return question.page === page;
         })
-        .map(question => {
-          return (
-            <>
-              <p> {question.question}</p>
-              {question.content ? (
-                question.content.map(answer => {
-                  return (
-                    <>
-                      <input
-                        name={question.question}
-                        type={question.type}
-                        value={answer}
-                        id={answer + ' ' + question.questionNumber}
-                      />
-                      <label htmlFor={answer}>{answer}</label>
-                    </>
-                  );
-                })
-              ) : (
-                <input type={question.type} />
-              )}
-            </>
-          );
-        })
+        .map((question, i) => (
+          <React.Fragment key={i}>
+            <p> {question.question}</p>
+            {question.content ? (
+              question.content.map((answer, i) => {
+                return (
+                  <>
+                    <input
+                      key={i}
+                      name={question.question}
+                      type={question.type}
+                      value={answer}
+                      id={answer + ' ' + question.questionNumber}
+                    />
+                    <label htmlFor={answer}>{answer}</label>
+                  </>
+                );
+              })
+            ) : (
+              <input type={question.type} />
+            )}
+          </React.Fragment>
+        ))
     : null;
   return (
     <form data-testid='test1' key='1'>

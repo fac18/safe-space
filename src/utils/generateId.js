@@ -5,28 +5,22 @@ import { getUsers } from './getData';
 // we will enforce uniqueness in this util
 // NB. this may not be strictly necessary since each uuid should be 1 of ~10^38 (256^16) possible results
 const generateId = async () => {
-  let unique = false;
+  let unique = true;
   let id = uuid();
 
-  while (!unique) {
-    let match = false;
-
-    await getUsers().then(users => {
-      users.forEach(user => {
-        if (user.ref === id) match = true;
-      });
+  await getUsers().then(users => {
+    users.forEach(user => {
+      if (id === user.ref) unique = false;
     });
+  });
 
-    if (match) {
-      // if match found (id already used), make a new candidate and while loop repeats
-      id = uuid();
-    } else {
-      // otherwise, set unique to true, escape loop and return certifiably unique id
-      unique = true;
-    }
+  if (!unique) {
+    // if match found (id already used), recur function
+    generateId();
+  } else {
+    // otherwise, return certifiably unique id
+    return id;
   }
-
-  return id;
 };
 
 export default generateId;
