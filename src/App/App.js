@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Report, Support} from '../pages/index';
+import { FAQs, Home, About, Report, Support } from '../pages/index';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
+import dividers from '..model/dividers';
+import SectionDivider from '../pages/SectionDivider';
 
 function App() {
   const [questions, setQuestions] = useState(null);
@@ -44,16 +46,21 @@ function App() {
             ))
           : null}
         <Route
+          key={i}
+          path={`/report/${divider.section}`}
+          render={() => <SectionDivider dividers={dividers} />}
+        />
+
+        <Route
           exact
           path='/frequently-asked-questions'
           render={() => <FAQs />}
         />
         <Route exact path='/about' render={() => <About />} />
         <Route exact path='/support' render={() => <Support />} />
-
       </Switch>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

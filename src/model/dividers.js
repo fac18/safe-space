@@ -1,4 +1,4 @@
-export default [
+const dividers = [
   {
     paras: [
       'There are four sections to this survey.',
@@ -31,3 +31,5 @@ export default [
     section: 'Victim',
   },
 ];
+
+export default dividers;
