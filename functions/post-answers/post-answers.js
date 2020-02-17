@@ -49,6 +49,6 @@ exports.handler = async (event, context) => {
   // Body will be the object from the form
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: 'Success!' }),
+    body: JSON.stringify({ message: "Success you've posted to the lambda" }),
   };
 };

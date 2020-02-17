@@ -2,10 +2,10 @@
 //which will contain all of the user's answers
 const postData = async allTheAnswers => {
   // first we wait for the fetch to resolve to a response
-  // then we wait for the response to stream as json, and return the result
+
   console.log({ allTheAnswers });
   let response = await fetch(
-    '.netlify/functions/post-answers/post-answers.js',
+    '../../.netlify/functions/post-answers/post-answers.js',
     {
       method: 'POST',
       headers: {
@@ -14,8 +14,12 @@ const postData = async allTheAnswers => {
       body: JSON.stringify(allTheAnswers),
     }
   );
+  console.log({ response });
+  // then we wait for the response to stream as json, and return the result
   let result = await response.json();
+
   alert(result.message);
+  return result;
 };
 
 export { postData };
