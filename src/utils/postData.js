@@ -1,6 +1,6 @@
 // we'll be calling postAnswers on submit and passing it the state 'responses'
 //which will contain all of the user's answers
-const postAnswers = async allTheAnswers => {
+const postData = async allTheAnswers => {
   // first we wait for the fetch to resolve to a response
   // then we wait for the response to stream as json, and return the result
   console.log({ allTheAnswers });
@@ -11,11 +11,11 @@ const postAnswers = async allTheAnswers => {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: allTheAnswers,
+      body: JSON.stringify(allTheAnswers),
     }
   );
   let result = await response.json();
   alert(result.message);
 };
 
-export { postAnswers };
+export { postData };

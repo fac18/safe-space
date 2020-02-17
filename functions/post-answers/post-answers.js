@@ -6,13 +6,13 @@ const querystring = require('querystring');
 // there are a list of events to listen for here https://docs.netlify.com/functions/trigger-on-events/#available-triggers
 exports.handler = async (event, context) => {
   // event has properties like the request querystring and body ready for you to use.
-
+  console.log({ event });
   // grab airtable variables from Netlify environment (uploaded via UI)
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
 
   // Only allow POST
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { statusCode: 405, body: event.httpMethod };
   }
 
   // When the method is POST, the name will no longer be in the event’s
@@ -33,16 +33,16 @@ exports.handler = async (event, context) => {
         fields: answers,
       },
     ])
-    // .then(
-    //   records.forEach(record => {
-    //     console.log(record.getId());
-    //     records.push(record);
-    //   })
-    // )
     .catch(err => {
       console.error(err);
       return;
     });
+  // .then(
+  //   records.forEach(record => {
+  //     console.log(record.getId());
+  //     records.push(record);
+  //   })
+  // )
 
   // const name = params.name || 'World';
 

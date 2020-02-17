@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from '../components/index';
-import responses from '../model/responses';
-import { postAnswers } from '../utils/postData';
+import hardResponses from '../model/responses';
+import { postData } from '../utils/postData';
 
 const Report = ({ questions }) => {
   // take the questions object and take just the question title for each question
@@ -29,7 +29,7 @@ const Report = ({ questions }) => {
   // set the responses to the object
   const [responses, setResponses] = useState(responsesObj);
   // CHANGE THIS FUNCTION BELOW WE ARE JUST TESTING
-  postAnswers(responses);
+  postData(hardResponses);
   return (
     <Form
       questions={questions}
