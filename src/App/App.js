@@ -20,7 +20,6 @@ function App() {
         console.log('Failed to fetch questions - falling back to hard coding.');
       });
   }, []);
-  // console.log(questions.questions);
 
   return (
     <>

@@ -27,4 +27,28 @@ const ButtonSecondary = styled(Button)`
   }
 `;
 
-export { ButtonPrimary, ButtonSecondary };
+const ButtonNext = styled(Button)`
+  && {
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.2px;
+    text-decoration-line: underline;
+    color: #7768a6;
+    // color: linear-gradient(296.3deg, #7768a6 2.65%, #ca68a4 86.52%) !important;
+    cursor: pointer;
+  }
+`;
+
+const ButtonBack = styled(Button)`
+  && {
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.2px;
+    text-decoration-line: underline;
+    color: #e16a1e;
+    // color: linear-gradient(296.3deg, #7768a6 2.65%, #ca68a4 86.52%) !important;
+    cursor: pointer;
+  }
+`;
+
+export { ButtonPrimary, ButtonSecondary, ButtonNext, ButtonBack };

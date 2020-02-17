@@ -7,8 +7,6 @@ const Form = ({ questions }) => {
   // page question from URL path
   const page = parseInt(path.match(/report\/(\d+)$/i)[1]);
 
-  console.log({ page });
-
   const pageQuestions = questions
     ? questions
         .filter(question => {
