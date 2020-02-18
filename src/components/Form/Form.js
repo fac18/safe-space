@@ -10,8 +10,7 @@ const Form = ({ responses, setResponses, questions }) => {
   // get page question from URL path
   const page = parseInt(useLocation().pathname.match(/report\/(\d+)$/i)[1]);
 
-  // initialState is an object where all of the responses to questions
-  // are empty strings
+  // initialState is an object that will be updated with interactions on the form
   let initialState = {};
 
   const reducer = (state, { field, value, type }) => {
@@ -32,8 +31,9 @@ const Form = ({ responses, setResponses, questions }) => {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  // array of questions with no answers is given the value state
   responses = state;
+
   const onChange = event => {
     dispatch({
       type: event.target.type, //send the input type, i.e. checkbox/radio
@@ -41,8 +41,6 @@ const Form = ({ responses, setResponses, questions }) => {
       value: event.target.value, // the response value
     });
   };
-
-  console.log({ responses });
 
   return (
     <form data-testid='test1' key='1'>
