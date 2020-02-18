@@ -3,6 +3,8 @@ import FAQuestion from './FAQuestion/FAQuestion';
 import Form from './Form/Form';
 import Header from './Header/Header';
 import ProgressBar from './ProgressBar/ProgressBar';
+import FormQuestion from './FormQuestion/FormQuestion';
+
 import {
   ButtonPrimary,
   ButtonSecondary,
@@ -15,6 +17,7 @@ export {
   Footer,
   FAQuestion,
   Form,
+  FormQuestion,
   Header,
   ProgressBar,
   ButtonPrimary,
