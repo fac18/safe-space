@@ -1,11 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-const SectionDivider = ({ sections }) => {
+const SectionDivider = ({ dividers }) => {
   const params = useParams();
 
   const index = parseInt(params.index, 10);
 
-  const section = sections[index];
+  const section = dividers[index];
   const { paras, explainer } = section;
 
   return (

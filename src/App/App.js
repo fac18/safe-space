@@ -6,12 +6,11 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { Footer } from '../components/index';
 import { getQuestions } from '../utils/getData';
 import hardQuestions from '../model/questions';
-import dividers from '..model/dividers';
+import dividers from '../model/dividers';
 import SectionDivider from '../pages/SectionDivider';
 
 function App() {
   const [questions, setQuestions] = useState(null);
-  const [sections, setSections] = useState({dividers});
 
   useEffect(() => {
     getQuestions()
@@ -47,7 +46,10 @@ function App() {
             ))
           : null}
 
-        <Route path='/dividers/:index' component={<SectionDivider />} />
+        <Route
+          path='/dividers/:index'
+          render={() => <SectionDivider dividers={dividers} />}
+        />
 
         <Route
           exact
