@@ -1,5 +1,5 @@
 // make every item in array a key in a new object, with empty strings for values
-const convertArrayToObject = array =>
+const convertArrayToObjectWithString = array =>
   array.reduce((obj, ques) => {
     return {
       ...obj,
@@ -7,4 +7,13 @@ const convertArrayToObject = array =>
     };
   }, {});
 
-export default convertArrayToObject;
+// make every item in array a key in a new object, with empty arrays for values
+const convertArrayToObjectWithArray = array =>
+  array.reduce((obj, ques) => {
+    return {
+      ...obj,
+      [ques]: [],
+    };
+  }, {});
+
+export { convertArrayToObjectWithString, convertArrayToObjectWithArray };

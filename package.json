@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@rmwc/button": "^5.7.2",
+    "@rmwc/card": "^5.7.2",
     "@rmwc/checkbox": "^5.7.2",
     "@rmwc/dialog": "^5.7.2",
     "@rmwc/formfield": "^5.7.2",
