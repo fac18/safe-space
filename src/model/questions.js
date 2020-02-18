@@ -78,6 +78,7 @@ export default [
     content: ['Write your experience here'],
     question: 'Describe what happened in your own words.',
     type: 'text',
+    last: 'true',
   },
   {
     page: 4,
@@ -123,6 +124,7 @@ export default [
     question:
       'Do you know if anyone else has been harassed by this person before?',
     type: 'radio',
+    last: 'true',
   },
   {
     page: 7,
@@ -187,6 +189,7 @@ export default [
     ],
     question: 'Did anything discourage you from reporting?',
     type: 'checkbox',
+    last: 'true',
   },
   {
     explainer: 'Please select all that apply.',
@@ -295,5 +298,6 @@ export default [
     ],
     question: 'Which of the following best describes your sexuality?',
     type: 'radio',
+    last: 'true',
   },
 ];
