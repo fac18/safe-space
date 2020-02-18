@@ -1,7 +1,7 @@
 import { getQuestions, getUsers } from './getData';
 import { postResponses, postUser } from './postData';
 import generateId from './generateId';
-import convertArrayToObject from './convertArrayToObject';
+// import convertArrayToObject from './convertArrayToObject';
 
 export {
   getQuestions,
@@ -9,5 +9,5 @@ export {
   postResponses,
   postUser,
   generateId,
-  convertArrayToObject,
+  // convertArrayToObject,
 };

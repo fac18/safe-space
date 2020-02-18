@@ -25,7 +25,7 @@ function App() {
         setQuestions(records);
         let responseArr = [];
         records.map(question => responseArr.push(question.question));
-        setResponses(convertArrayToObject(responseArr));
+        setResponses(responseArr);
       })
       .catch(err => {
         setQuestions(hardQuestions);

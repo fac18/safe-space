@@ -1,29 +1,12 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 
-const reducer = (state, { field, value }) => {
-  return {
-    ...state,
-    [field]: value,
-  };
-};
-
-const FormQuestion = ({ page, questions, responses, setResponses }) => {
-  const initialValue = responses;
-  console.log({ initialValue });
-  const [state, dispatch] = useReducer(reducer, responses);
-  const onChange = event => {
-    console.log({ responses });
-    const val =
-      event.target.type === 'checkbox'
-        ? event.target.value
-        : event.target.value;
-    dispatch({ field: event.target.name, value: val });
-  };
-  let arr = [];
-  questions.map(single => arr.push(single.question));
-  arr = state;
-  console.log({ state });
-
+const FormQuestion = ({
+  page,
+  questions,
+  responses,
+  setResponses,
+  funcOnChange,
+}) => {
   return questions
     ? questions
         .filter(question => {
@@ -42,7 +25,7 @@ const FormQuestion = ({ page, questions, responses, setResponses }) => {
                         type={question.type}
                         defaultValue={answer}
                         id={answer + ' ' + question.questionNumber}
-                        onChange={onChange}
+                        onChange={funcOnChange}
                       />
                       <label htmlFor={answer}>{answer}</label>
                     </React.Fragment>
