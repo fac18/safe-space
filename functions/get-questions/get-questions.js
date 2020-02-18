@@ -10,17 +10,16 @@ exports.handler = async () => {
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
 
   // configure connection to airtable base
-  Airtable.configure({
+  const base = new Airtable({
     endpointUrl: AIRTABLE_API_URL,
     apiKey: AIRTABLE_API_KEY,
-  });
-  const base = Airtable.base(AIRTABLE_BASE_ID);
+  }).base(AIRTABLE_BASE_ID);
 
   let data = [];
 
   // select all records - only need to check first page since questions won't exceed 100 entries
   // need an await to ensure data is assigned to records before returning response
-  await base('UserQuestions')
+  await base('Questions')
     .select({
       maxRecords: 100,
       view: 'Grid view',

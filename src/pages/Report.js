@@ -1,28 +1,34 @@
 import React from 'react';
-import { Form } from '../components/index';
-import { ButtonNext, ButtonBack } from '../components/index';
-import { useLocation } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
+import { ButtonNext, ButtonBack, Form, Loading } from '../components';
+import { postResponses, postUser } from '../utils';
 
-const Report = ({ questions }) => {
-  const history = useHistory();
-
+const Report = ({ questions, responses, setResponses, user, setUser }) => {
   const path = useLocation().pathname;
   let page = parseInt(path.match(/report\/(\d+)$/i)[1]);
 
+  const history = useHistory();
   const handleNext = () => {
-    let nextPage = page + 1;
-    history.push(`/report/${nextPage}`);
+    history.push(`/report/${page + 1}`);
+    // logic to check if next question is different section (go to section divider)
+    // logic to check if final question (go to review > submit stage)
   };
   const handleBack = () => {
-    let backPage = page - 1;
-    history.push(`/report/${backPage}`);
+    history.push(`/report/${page - 1}`);
   };
 
-  console.log('props at Report page', questions);
+  // if any API calls have yet to resolve, render Loading component
+  // if (!(questions && responses && user)) return <Loading />;
+
   return (
     <>
-      <Form questions={questions}></Form>
+      <Form
+        questions={questions}
+        responses={responses}
+        setResponses={setResponses}
+        user={user}
+        setUser={setUser}
+      ></Form>
       <ButtonBack onClick={handleBack}>Back</ButtonBack>
       <ButtonNext onClick={handleNext}>Next</ButtonNext>
     </>
