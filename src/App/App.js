@@ -11,6 +11,7 @@ import SectionDivider from '../pages/SectionDivider';
 
 function App() {
   const [questions, setQuestions] = useState(null);
+  const [sections, setSections] = useState({dividers});
 
   useEffect(() => {
     getQuestions()
@@ -45,11 +46,8 @@ function App() {
               />
             ))
           : null}
-        <Route
-          key={i}
-          path={`/report/${divider.section}`}
-          render={() => <SectionDivider dividers={dividers} />}
-        />
+
+        <Route path='/dividers/:index' component={<SectionDivider />} />
 
         <Route
           exact

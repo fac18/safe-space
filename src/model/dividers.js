@@ -6,6 +6,7 @@ const dividers = [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'What When Where',
+    index: 1,
   },
   {
     paras: [
@@ -13,6 +14,7 @@ const dividers = [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'Perpetrator',
+    index: 2,
   },
   {
     paras: [
@@ -21,6 +23,7 @@ const dividers = [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'Reporting',
+    index: 3,
   },
   {
     paras: [
@@ -29,6 +32,7 @@ const dividers = [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'Victim',
+    index: 4,
   },
 ];
 
