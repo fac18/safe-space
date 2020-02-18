@@ -19,6 +19,7 @@ function App() {
   const [questions, setQuestions] = useState(null);
   const [responses, setResponses] = useState(null);
   const [user, setUser] = useState(null);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     getQuestions()
@@ -76,6 +77,8 @@ function App() {
                 path={`/report/${question.page}`}
                 render={() => (
                   <Report
+                    page={page}
+                    setPage={setPage}
                     questions={questions}
                     responses={responses}
                     setResponses={setResponses}
