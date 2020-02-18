@@ -1,46 +1,24 @@
-import React, { useCallback } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useHistory, useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Form, Loading } from '../components';
 import { postResponses, postUser } from '../utils';
 
-const Report = ({
-  questions,
-  responses,
-  setResponses,
-  user,
-  setUser,
-  page,
-  setPage,
-}) => {
-  const path = useLocation().pathname;
+const Report = ({ questions, responses, setResponses, user, setUser }) => {
+  const params = useParams();
+  console.log(params);
 
-  const history = useHistory();
-
-  const handleNext = useCallback(() => {
-    let index = 0;
-    questions.forEach((question, i) => {
-      if (question.page === page) {
-        index = i;
-      }
-    });
-    if (questions[index].last === true) {
-      history.push(`/dividers/${questions[index].section}`);
-    } else {
-      setPage(page => page + 1);
-      history.push(`/report/${page}`);
-    }
-  }, [questions, page, history]);
-
-  // logic to check if next question is different section (go to section divider)
-  // logic to check if final question (go to review > submit stage)
-
-  const handleBack = () => {
-    setPage(page => page - 1);
-    history.push(`/report/${page}`);
-  };
+  const page = parseInt(params.index, 10);
+  console.log(page);
 
   // if any API calls have yet to resolve, render Loading component
   // if (!(questions && responses && user)) return <Loading />;
+
+  let i = 0;
+  questions.forEach((question, index) => {
+    if (question.page === page) {
+      i = index;
+    }
+  });
 
   return (
     <>
@@ -52,8 +30,19 @@ const Report = ({
         user={user}
         setUser={setUser}
       ></Form>
-      <ButtonBack onClick={handleBack}>Back</ButtonBack>
-      <ButtonNext onClick={handleNext}>Next</ButtonNext>
+      <ButtonBack tag={Link} to={`/report/${page - 1}`}>
+        Back
+      </ButtonBack>
+      <ButtonNext
+        tag={Link}
+        to={
+          questions[i].last === true
+            ? `/dividers/${questions[i + 1].section}`
+            : `/report/${page + 1}`
+        }
+      >
+        Next
+      </ButtonNext>
     </>
   );
 };

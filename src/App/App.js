@@ -19,7 +19,6 @@ function App() {
   const [questions, setQuestions] = useState(null);
   const [responses, setResponses] = useState(null);
   const [user, setUser] = useState(null);
-  const [page, setPage] = useState(0);
 
   useEffect(() => {
     getQuestions()
@@ -74,11 +73,9 @@ function App() {
           ? questions.map((question, i) => (
               <Route
                 key={i}
-                path={`/report/${question.page}`}
+                path='/report/:index'
                 render={() => (
                   <Report
-                    page={page}
-                    setPage={setPage}
                     questions={questions}
                     responses={responses}
                     setResponses={setResponses}
