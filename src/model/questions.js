@@ -1,50 +1,51 @@
 export default [
   {
-    'explainer': 'Please select all that apply.',
-    'page': 0,
-    'section': 'What When Where',
-    'content': [
+    explainer: 'Please select all that apply.',
+    page: 0,
+    section: 'What When Where',
+    other: true,
+    content: [
       'Sexual comments or jokes',
-      'Unwanted sexual advances',
+      'Unwelcome sexual advances',
       'Unwanted touching',
-      'Another form of sexual assault',
-      'Displaying pictures, photos, drawings of a sexual nature',
-      'Sending messages with sexual content'
+      'A form of sexual assault',
+      'Displaying pictures, photos or drawings of sexual nature',
+      'Receiving messages with sexual content',
+      'Other (please specify)',
     ],
-    'question': 'What form of sexual harrassment did you experience?',
-    'type': 'checkbox'
+    question: 'What form of sexual harrassment did you experience?',
+    type: 'checkbox',
   },
   {
-    'page': 1,
-    'section': 'What When Where',
-    'question': 'When did the incident take place?',
-    'type': 'date'
+    page: 1,
+    section: 'What When Where',
+    question: 'When did the incident take place?',
+    type: 'date',
   },
   {
-    'page': 1,
-    'section': 'What When Where',
-    'content': [
+    page: 1,
+    section: 'What When Where',
+    content: [
       'There was a single incident in this period',
-      'There were a number of occurrences within this period'
+      'There were a number of occurrences within this period',
     ],
-    'question': 'Were there multiple incidents related to the same perpetrator?',
-    'type': 'radio'
+    question: 'Were there multiple incidents related to the same perpetrator?',
+    type: 'radio',
   },
   {
-    'page': 2,
-    'section': 'What When Where',
-    'content': [
-      'United Kingdom',
-      'Outside of the UK'
-    ],
-    'question': 'Did the incident take place in the UK?',
-    'type': 'radio'
+    page: 2,
+    section: 'What When Where',
+    other: true,
+    content: ['In the UK', 'Outside the UK'],
+    question: 'Did the incident take place in the UK?',
+    type: 'radio',
   },
   {
-    'page': 2,
-    'section': 'What When Where',
-    'other': true,
-    'content': [
+    explainer: 'Please select all that apply.',
+    page: 2,
+    section: 'What When Where',
+    other: true,
+    content: [
       'Online',
       'Music venue',
       'Function venue',
@@ -52,181 +53,247 @@ export default [
       'Studio',
       'Busking',
       'Orchestra pit',
-      'Theatre pit',
+      'Theatre',
       'On tour',
       'School, college or university',
-      'Outside of work'
+      'Outside of work',
+      'Other (please specify)',
     ],
-    'question': 'What kind of location did the incident take place in?',
-    'type': 'checkbox'
+    question: 'What kind of location did the incident take place in?',
+    type: 'checkbox',
   },
   {
-    'explainer': 'Only fill this in if you\'d like to specifically identify the location of the incident.',
-    'page': 2,
-    'section': 'What When Where',
-    'question': 'What is the name and/or address of the location?',
-    'type': 'text'
+    explainer:
+      "Only fill this in if you'd like to specifically identify the location of the incident.",
+    page: 2,
+    section: 'What When Where',
+    content: ['Write the location here'],
+    question: 'Where exactly did the incident take place?',
+    type: 'text',
   },
   {
-    'page': 3,
-    'section': 'Perpetrator',
-    'content': [
-      'non-binary',
-      'a man',
-      'a woman',
-      'a group'
-    ],
-    'question': 'The harrasser or perpetrator was...',
-    'type': 'radio'
+    explainer: "You can share as much or as little as you'd like.",
+    page: 3,
+    section: 'What When Where',
+    content: ['Write your experience here'],
+    question: 'Describe what happened in your own words.',
+    type: 'text',
   },
   {
-    'page': 4,
-    'section': 'Perpetrator',
-    'other': true,
-    'content': [
-      'Manager',
+    page: 4,
+    section: 'Perpetrator',
+    content: ['Man', 'Woman'],
+    question: 'Was the harrasser(s) or perpetrator(s) a...',
+    type: 'radio',
+  },
+  {
+    explainer: 'Please select all that apply.',
+    page: 5,
+    section: 'Perpetrator',
+    other: true,
+    content: [
+      'Manager or agent',
       'Client',
       'Teacher',
       'Audience member',
       'Colleague',
       'Student',
       'Engager',
-      'Employer',
-      'Unknown'
+      'Employer, engager or fixer',
+      'Label or publisher',
+      'Not sure',
+      'Senior figure',
+      'Other (please specify)',
     ],
-    'question': 'What is their relationship to you?',
-    'type': 'checkbox'
+    question: 'What is their relationship to you?',
+    type: 'checkbox',
   },
   {
-    'page': 5,
-    'section': 'Perpetrator',
-    'content': [
-      'Yes',
-      'No',
-      'I don\'t know'
-    ],
-    'question': 'Have you experienced sexual harrassment by the same perpetrator before?',
-    'type': 'radio'
+    page: 6,
+    section: 'Perpetrator',
+    content: ['Yes', 'No', 'Not sure'],
+    question:
+      'Have you experienced sexual harrassment by the same perpetrator before?',
+    type: 'radio',
   },
   {
-    'page': 6,
-    'section': 'Perpetrator',
-    'content': [
-      'Type your experience here'
-    ],
-    'question': 'In your own words please describe what happened.',
-    'type': 'text'
+    page: 6,
+    section: 'Perpetrator',
+    content: ['Yes', 'No', 'Not sure'],
+    question:
+      'Do you know if anyone else has been harassed by this person before?',
+    type: 'radio',
   },
   {
-    'page': 7,
-    'section': 'Reporting',
-    'content': [
-      'Yes',
-      'No'
-    ],
-    'question': 'Have you reported this incident elsewhere?',
-    'type': 'radio'
+    page: 7,
+    section: 'Reporting',
+    content: ['Yes', 'No'],
+    split: true,
+    question: 'Have you reported this incident elsewhere?',
+    type: 'radio',
   },
   {
-    'page': 8,
-    'section': 'Reporting',
-    'other': true,
-    'content': [
-      'Employer',
+    condition: 'yes',
+    explainer: 'Please select all that apply.',
+    page: 8,
+    section: 'Reporting',
+    other: true,
+    content: [
+      'Employer, engager or fixer',
       'Engager',
       'Colleague',
       'Police',
-      'Support Services (e.g. SARC, Rape Crisis etc.)',
-      'Other (please specify)'
+      'Support services (e.g. SARC, Rape Crisis etc.)',
+      'Client',
+      'Manager or agent',
+      'School, college or university',
+      "Musicians' Union (by another means)",
+      'Other (please specify)',
     ],
-    'question': 'Who did you report this incident to?',
-    'type': 'checkbox'
+    question: 'Who did you report this incident to?',
+    type: 'checkbox',
   },
   {
-    'page': 8,
-    'section': 'Reporting',
-    'content': [
-      'Yes',
-      'No',
-      'I don\'t know'
-    ],
-    'question': 'Was any action taken?',
-    'type': 'radio'
+    condition: 'yes',
+    page: 8,
+    section: 'Reporting',
+    content: ['Yes', 'No', "Don't know"],
+    question: 'Was any action taken?',
+    type: 'radio',
   },
   {
-    'explainer': 'Please select all that apply.',
-    'page': 9,
-    'section': 'Reporting',
-    'other': true,
-    'content': [
-      'I thought it might not be taken seriously',
+    condition: 'yes',
+    page: 8,
+    section: 'Reporting',
+    content: ['Very', 'Somewhat', 'Not at all'],
+    question: 'How satisfied are you with the way your report(s) was handled?',
+    type: 'radio',
+  },
+  {
+    condition: 'no',
+    explainer: 'Please select all that apply.',
+    page: 8,
+    section: 'Reporting',
+    other: true,
+    content: [
+      'I thought I might not be believed or taken seriously',
       'I was scared of losing work',
       'The workplace culture',
       'I thought the issue would not be properly handled',
       'I was scared of the person who did this',
-      'There were no other witnesses',
-      'Other (please specify)'
+      'There were no witnesses',
+      'Other (please specify)',
+      "I didn't know who I could report to",
     ],
-    'question': 'Did anything discourage you from reporting?',
-    'type': 'checkbox'
+    question: 'Did anything discourage you from reporting?',
+    type: 'checkbox',
   },
   {
-    'explainer': 'Please select all that apply.',
-    'page': 10,
-    'section': 'Victim',
-    'other': true,
-    'content': [
+    explainer: 'Please select all that apply.',
+    page: 10,
+    section: 'Victim',
+    other: true,
+    content: [
       'Employed',
       'Self-employed',
       'Not working at the time',
-      'Other (please specify)'
+      'Other (please specify)',
     ],
-    'question': 'What was your employment status at the time of the incident?',
-    'type': 'checkbox'
+    question: 'What was your employment status at the time of the incident?',
+    type: 'checkbox',
   },
   {
-    'explainer': 'This will help us identify how sexism, harrassment and abuse manifests in different spaces.',
-    'page': 11,
-    'section': 'Victim',
-    'content': [
+    explainer:
+      'Please select all that apply. This will help us identify how sexism, harrassment and abuse manifest in different spaces.',
+    page: 11,
+    section: 'Victim',
+    content: [
       'Musician',
       'Featured Artist',
       'Orchestral player',
       'Composer, songwriter or lyricist',
       'Music producer',
       'Music engineer',
-      'Record Label',
-      'Music Teacher',
-      'Student'
+      'Record label',
+      'Music teacher',
+      'Student',
+      'Session player',
+      'Other (please specify)',
     ],
-    'question': 'What work were performing at the time of the incident?',
-    'type': 'checkbox'
+    question: 'What work were performing at the time of the incident?',
+    type: 'checkbox',
   },
   {
-    'page': 12,
-    'section': 'Victim',
-    'content': [
-      'Under 18',
-      '18-24',
-      '25-34',
-      '35-44',
-      '45-54',
-      '55-64',
-      'Over 65'
-    ],
-    'question': 'What age were you at the time of the incident',
-    'type': 'radio'
+    page: 12,
+    section: 'Victim',
+    content: ['16-18', '18-24', '25-34', '35-44', '45-54', '55-64', 'Over 65'],
+    question: 'What age were you at the time of the incident',
+    type: 'radio',
   },
   {
-    'page': 13,
-    'section': 'Victim',
-    'content': [
-      'female',
-      'male',
-      'non-binary',
-      'Prefer to self-describe'
+    page: 13,
+    section: 'Victim',
+    other: true,
+    content: ['Man', 'Woman', 'Non-binary', 'Prefer to self-describe'],
+    question: 'What is your gender?',
+    type: 'radio',
+  },
+  {
+    page: 13,
+    section: 'Victim',
+    content: ['Yes', 'No'],
+    question: 'Is your gender identity the same as that assigned at birth?',
+    type: 'radio',
+  },
+  {
+    page: 14,
+    section: 'Victim',
+    other: true,
+    content: [
+      'White - British, English, Northern Irish, Scottish, Welsh',
+      'White - Irish',
+      'White - Gypsy, Roma or Irish Traveller',
+      'White - European',
+      'White - Any other White background',
+      'Mixed / Dual heritage - White & Black Caribbean',
+      'Mixed / Dual heritage - White & Black African',
+      'Mixed / Dual heritage - White & Asian',
+      'Mixed / Dual heritage - Any other Mixed / Dual heritage background',
+      'Asian / Asian British - Indian',
+      'Asian / Asian British - Pakistani',
+      'Asian / Asian British - Bangladeshi',
+      'Asian / Asian British - Chinese',
+      'Asian / Asian British - Other Asian background',
+      'Black / African - African',
+      'Black - British',
+      'Black / Caribbean - Caribbean',
+      'Black - Any other African / Caribbean background',
+      'Arab',
+      'Other (please specify)',
     ],
-    'question': 'What is your gender?',
-    'type': 'radio'
-  }
+    question: 'What option best describes your ethinicity?',
+    type: 'radio',
+  },
+  {
+    page: 15,
+    section: 'Victim',
+    content: ['Yes', 'No'],
+    question: 'Do you identify as a deaf or disabled person?',
+    type: 'radio',
+  },
+  {
+    page: 16,
+    section: 'Victim',
+    content: [
+      'Asexual',
+      'Bi / Bisexual',
+      'Gay man',
+      'Gay woman / lesbian',
+      'Heterosexual / straight',
+      'Queer',
+      'Other (please specify)',
+    ],
+    question: 'Which of the following best describes your sexuality?',
+    type: 'radio',
+  },
 ];

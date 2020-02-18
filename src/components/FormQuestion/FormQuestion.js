@@ -24,19 +24,49 @@ const FormQuestion = ({ page, questions, responses, setResponses }) => {
   arr = state;
   console.log({ state });
 
-  return questions
+  return;
+  questions
     ? questions
         .filter(question => {
           return question.page === page;
         })
-        .map(question => {
+        .map((question, i) => (
+          <React.Fragment key={i}>
+            <p> {question.question}</p>
+            {question.content ? (
+              question.content.map((answer, i) => {
+                return (
+                  <React.Fragment key={i}>
+                    <input
+                      name={question.question}
+                      type={question.type}
+                      value={answer}
+                      id={answer + ' ' + question.questionNumber}
+                    />
+                    <label htmlFor={answer}>{answer}</label>
+                  </React.Fragment>
+                );
+              })
+            ) : (
+              <input type={question.type} />
+            )}
+          </React.Fragment>
+        ))
+    : null;
+
+  questions
+    ? questions
+        .filter(question => {
+          return question.page === page;
+        })
+        .map((question, i) => {
           return (
-            <>
+            <React.Fragment key={i}>
               <p>{question.question}</p>
               {question.content ? (
-                question.content.map(answer => {
+                question.content.map((answer, i) => {
                   return (
-                    <>
+                    <React.Fragment key={i}>
                       <input
                         name={question.question}
                         type={question.type}
@@ -45,13 +75,13 @@ const FormQuestion = ({ page, questions, responses, setResponses }) => {
                         onChange={onChange}
                       />
                       <label htmlFor={answer}>{answer}</label>
-                    </>
+                    </React.Fragment>
                   );
                 })
               ) : (
                 <input type={question.type} />
               )}
-            </>
+            </React.Fragment>
           );
         })
     : null;

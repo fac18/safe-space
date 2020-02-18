@@ -2,11 +2,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { FormQuestion } from '../index';
 
-const Form = ({ responses, questions, setResponses }) => {
-  const path = useLocation().pathname;
-
-  // page question from URL path
-  const page = parseInt(path.match(/report\/(\d+)$/i)[1]);
+const Form = ({ questions }) => {
+  // get page question from URL path
+  const page = parseInt(useLocation().pathname.match(/report\/(\d+)$/i)[1]);
 
   return (
     <form data-testid='test1' key='1'>

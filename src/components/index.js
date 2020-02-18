@@ -10,7 +10,8 @@ import {
   ButtonSecondary,
   ButtonNext,
   ButtonBack,
-} from './Button/Button.js';
+} from './Button/Button';
+import Loading from './Loading/Loading';
 
 export {
   Footer,
@@ -23,4 +24,5 @@ export {
   ButtonSecondary,
   ButtonNext,
   ButtonBack,
+  Loading,
 };
