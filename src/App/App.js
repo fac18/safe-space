@@ -4,10 +4,12 @@ import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About, Report, Support } from '../pages';
 import { Footer } from '../components';
+import SectionDivider from '../pages/SectionDivider';
 
 // packages and utils
 import uuid from 'uuid/v4';
 import { getQuestions, generateId, convertArrayToObject } from '../utils';
+import dividers from '../model/dividers';
 
 // fallback data
 import hardQuestions from '../model/questions';
@@ -84,6 +86,12 @@ function App() {
               />
             ))
           : null}
+
+        <Route
+          path='/dividers/:index'
+          render={() => <SectionDivider dividers={dividers} />}
+        />
+
         <Route
           exact
           path='/frequently-asked-questions'
