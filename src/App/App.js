@@ -73,7 +73,7 @@ function App() {
           ? questions.map((question, i) => (
               <Route
                 key={i}
-                path={`/report/${question.page}`}
+                path='/report/:index'
                 render={() => (
                   <Report
                     questions={questions}

@@ -6,7 +6,7 @@ export default [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'What When Where',
-    index: 1,
+    index: 0,
   },
   {
     paras: [
@@ -14,7 +14,7 @@ export default [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'Perpetrator',
-    index: 2,
+    index: 1,
   },
   {
     paras: [
@@ -23,7 +23,7 @@ export default [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'Reporting',
-    index: 3,
+    index: 2,
   },
   {
     paras: [
@@ -32,6 +32,6 @@ export default [
     ],
     explainer: 'All information you provide is confidential.',
     section: 'Victim',
-    index: 4,
+    index: 3,
   },
 ];
