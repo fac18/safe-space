@@ -8,10 +8,15 @@ import '@material/typography/dist/mdc.typography.css';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  align-items: center;
   line-height: 50px;
-  margin: 150px;
+  margin: 2em;
+`;
+
+const Type = styled(Typography)`
+  && {
+    text-align: center;
+  }
 `;
 
 const Home = () => {
@@ -19,13 +24,11 @@ const Home = () => {
     <>
       <Header />
       <Container>
-        <Typography use='headline2'>
+        <Type use='headline5'>
           48% of musicians have experienced sexual harassment at work
-        </Typography>
-        <Typography use='headline2'>
-          Over 85% felt unable to report it
-        </Typography>
-        <Typography use='headline2'>Let’s change this </Typography>
+        </Type>
+        <Type use='headline5'>Over 85% felt unable to report it</Type>
+        <Type use='headline5'>Let’s change this </Type>
 
         <ButtonPrimary tag={Link} to='/report/0' raised>
           Report to SafeSpace

@@ -6,12 +6,14 @@ const Bubbles = styled(HeaderBubbles)`
   position: absolute;
   left: -4em;
   top: -104px;
+  overflow: hidden;
 `;
 
 const FooterBubbles = styled(LowerBubbles)`
   position: absolute;
   left: -4em;
   top: -104px;
+  overflow: hidden;
 `;
 
 export { Bubbles, FooterBubbles };
