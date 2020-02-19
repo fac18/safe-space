@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonPrimary, ButtonSecondary } from '../components/index';
+import { Header, ButtonPrimary, ButtonSecondary } from '../components/index';
 import { Typography } from '@rmwc/typography';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -16,21 +16,26 @@ const Container = styled.div`
 
 const Home = () => {
   return (
-    <Container>
-      <Typography use='headline2'>
-        48% of musicians have experienced sexual harassment at work
-      </Typography>
-      <Typography use='headline2'>Over 85% felt unable to report it</Typography>
-      <Typography use='headline2'>Let’s change this </Typography>
+    <>
+      <Header />
+      <Container>
+        <Typography use='headline2'>
+          48% of musicians have experienced sexual harassment at work
+        </Typography>
+        <Typography use='headline2'>
+          Over 85% felt unable to report it
+        </Typography>
+        <Typography use='headline2'>Let’s change this </Typography>
 
-      <ButtonPrimary tag={Link} to='/report/0' raised>
-        Report to SafeSpace
-      </ButtonPrimary>
+        <ButtonPrimary tag={Link} to='/report/0' raised>
+          Report to SafeSpace
+        </ButtonPrimary>
 
-      <ButtonSecondary outlined tag={Link} to='/support'>
-        Access Support Services
-      </ButtonSecondary>
-    </Container>
+        <ButtonSecondary outlined tag={Link} to='/support'>
+          Access Support Services
+        </ButtonSecondary>
+      </Container>
+    </>
   );
 };
 export default Home;
