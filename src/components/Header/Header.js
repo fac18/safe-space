@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   TopAppBar,
   TopAppBarRow,
@@ -7,14 +8,7 @@ import {
   TopAppBarTitle,
 } from '@rmwc/top-app-bar';
 import '@material/top-app-bar/dist/mdc.top-app-bar.css';
-import styled from 'styled-components';
-import { ReactComponent as HeaderBubbles } from '../../assets/Header-bubbles.svg';
-
-const Bubbles = styled(HeaderBubbles)`
-  position: absolute;
-  left: -4em;
-  top: -104px;
-`;
+import { Bubbles } from '../style';
 
 const AppBar = styled(TopAppBar)`
   && {
@@ -33,8 +27,8 @@ const Header = () => {
         <TopAppBarRow>
           <TopAppBarSection>
             <TopAppBarTitle>
-              <a href='/about'>About</a>
-              <a href=''>FAQ</a>
+              {/* <a href='/about'>About</a>
+              <a href='/freq'>FAQ</a> */}
             </TopAppBarTitle>
           </TopAppBarSection>
         </TopAppBarRow>
