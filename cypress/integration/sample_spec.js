@@ -35,13 +35,24 @@ describe('Visiting website', function() {
     // .contains(selector, content, options)
   });
 
-  it('Clicks on different form elements and navigates through the form', function() {
+  it('Clicks on form elements first page and navigates to second', function() {
     cy.get(
-      'input[name="What form of sexual harrassment did you experience?"][value="Sexual comments or jokes"]'
-    ).click();
+      'input[name="What form of sexual harrassment did you experience?"]'
+    ).check(['Sexual comments or jokes']); // add assertion
 
     // go to next page
     cy.contains(/next/i).click();
     cy.url().should('include', '/report/1');
+  });
+
+  it('Types date, clicks radio buttons on second page and navigates to third', function() {
+    cy.get('input[type="date"]')
+      .click()
+      .type('2020-10-10')
+      .should('have.value', '2020-10-10');
+
+    // go to next page
+    // cy.contains(/next/i).click();
+    // cy.url().should('include', '/report/1');
   });
 });

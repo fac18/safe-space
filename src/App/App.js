@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     getQuestions()
       .then(records => {
-        console.log(records);
+        // console.log(records);
         setQuestions(records);
         let responseArr = [];
         records.map(question => responseArr.push(question.question));
