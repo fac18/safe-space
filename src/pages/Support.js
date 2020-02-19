@@ -46,4 +46,5 @@ const Support = () => {
     </Container>
   );
 };
+
 export default Support;

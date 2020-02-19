@@ -32,6 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
     "report-coverage": "npm test -- --coverage --watchAll=false && codecov"
   },
   "eslintConfig": {
@@ -51,10 +52,10 @@
   },
   "devDependencies": {
     "codecov": "^3.6.5",
-    "cypress": "^4.0.1",
+    "cypress": "^4.0.2",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.18.3",
-    "dotenv": "^8.2.0"
+    "eslint-plugin-react": "^7.18.3"
   },
   "engines": {
     "node": ">=12"

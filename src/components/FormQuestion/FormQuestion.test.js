@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Form from './Form';
-import questions from '../../model/questions';
+import FormQuestion from './FormQuestion';
+import hardQuestions from '../../model/questions';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
@@ -11,7 +11,7 @@ test('Page 2 of report form renders with the correct questions', async () => {
 
   const { findByText, debug } = render(
     <Router history={history}>
-      <Form page={2} questions={questions} />
+      <FormQuestion page={2} questions={hardQuestions} />
     </Router>
   );
   const pg2q1 = await findByText(/Did the incident take place in the UK?/i);
@@ -19,7 +19,8 @@ test('Page 2 of report form renders with the correct questions', async () => {
     /What kind of location did the incident take place in?/i
   );
   const pg2q3 = await findByText(/Where exactly did the incident take place?/i);
-  // use debug() if you wish to see the component printed to the console
+
+  // debug();
 
   expect(pg2q1).toBeInTheDocument();
   expect(pg2q2).toBeInTheDocument();

@@ -1,22 +1,22 @@
 import React from 'react';
-import { useLocation, useHistory, useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Form, Loading } from '../components';
-import { postResponses, postUser } from '../utils';
 
 const Report = ({ questions, responses, setResponses, user, setUser }) => {
   const params = useParams();
-  console.log(params);
 
   const page = parseInt(params.index, 10);
-  console.log(page);
 
   // if any API calls have yet to resolve, render Loading component
   // if (!(questions && responses && user)) return <Loading />;
 
-  let i = 0;
-  questions.forEach((question, index) => {
+  // find indices (in questions array) of first and last questions to appear on this page
+  let firstIndex = Infinity;
+  let lastIndex = 0;
+  questions.forEach((question, i) => {
     if (question.page === page) {
-      i = index;
+      if (i < firstIndex) firstIndex = i;
+      if (i > lastIndex) lastIndex = i;
     }
   });
 
@@ -30,14 +30,26 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
         user={user}
         setUser={setUser}
       ></Form>
-      <ButtonBack tag={Link} to={`/report/${page - 1}`}>
+      <ButtonBack
+        tag={Link}
+        to={
+          firstIndex === 0
+            ? `/dividers/${questions[0].section}`
+            : questions[firstIndex].section !==
+              questions[firstIndex - 1].section
+            ? `/dividers/${questions[firstIndex].section}`
+            : `/report/${page - 1}`
+        }
+      >
         Back
       </ButtonBack>
       <ButtonNext
         tag={Link}
         to={
-          questions[i].last === true
-            ? `/dividers/${questions[i + 1].section}`
+          lastIndex === questions.length - 1
+            ? `/review` // send to review page upon completion - yet to be made
+            : questions[lastIndex].section !== questions[lastIndex + 1].section
+            ? `/dividers/${questions[lastIndex + 1].section}`
             : `/report/${page + 1}`
         }
       >
