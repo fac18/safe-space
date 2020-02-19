@@ -27,7 +27,7 @@ function App() {
         setQuestions(records);
         let responseArr = [];
         records.map(question => responseArr.push(question.question));
-        setResponses(responseArr);
+        setResponses(responseArr); // why is response array no longer being converted to object?
       })
       .catch(err => {
         setQuestions(hardQuestions);
