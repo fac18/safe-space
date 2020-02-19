@@ -16,6 +16,8 @@ const Container = styled.div`
 const Type = styled(Typography)`
   && {
     text-align: center;
+    padding-bottom: 1em;
+    color: #5763a2;
   }
 `;
 
