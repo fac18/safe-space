@@ -1,36 +1,48 @@
 import React from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Form, Loading } from '../components';
 import { postResponses, postUser } from '../utils';
 
 const Report = ({ questions, responses, setResponses, user, setUser }) => {
-  const path = useLocation().pathname;
-  let page = parseInt(path.match(/report\/(\d+)$/i)[1]);
+  const params = useParams();
+  console.log(params);
 
-  const history = useHistory();
-  const handleNext = () => {
-    history.push(`/report/${page + 1}`);
-    // logic to check if next question is different section (go to section divider)
-    // logic to check if final question (go to review > submit stage)
-  };
-  const handleBack = () => {
-    history.push(`/report/${page - 1}`);
-  };
+  const page = parseInt(params.index, 10);
+  console.log(page);
 
   // if any API calls have yet to resolve, render Loading component
   // if (!(questions && responses && user)) return <Loading />;
 
+  let i = 0;
+  questions.forEach((question, index) => {
+    if (question.page === page) {
+      i = index;
+    }
+  });
+
   return (
     <>
       <Form
+        page={page}
         questions={questions}
         responses={responses}
         setResponses={setResponses}
         user={user}
         setUser={setUser}
       ></Form>
-      <ButtonBack onClick={handleBack}>Back</ButtonBack>
-      <ButtonNext onClick={handleNext}>Next</ButtonNext>
+      <ButtonBack tag={Link} to={`/report/${page - 1}`}>
+        Back
+      </ButtonBack>
+      <ButtonNext
+        tag={Link}
+        to={
+          questions[i].last === true
+            ? `/dividers/${questions[i + 1].section}`
+            : `/report/${page + 1}`
+        }
+      >
+        Next
+      </ButtonNext>
     </>
   );
 };

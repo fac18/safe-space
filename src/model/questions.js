@@ -2,7 +2,7 @@ export default [
   {
     explainer: 'Please select all that apply.',
     page: 0,
-    section: 'What When Where',
+    section: 0,
     other: true,
     content: [
       'Sexual comments or jokes',
@@ -18,13 +18,13 @@ export default [
   },
   {
     page: 1,
-    section: 'What When Where',
+    section: 0,
     question: 'When did the incident take place?',
     type: 'date',
   },
   {
     page: 1,
-    section: 'What When Where',
+    section: 0,
     content: [
       'There was a single incident in this period',
       'There were a number of occurrences within this period',
@@ -34,7 +34,7 @@ export default [
   },
   {
     page: 2,
-    section: 'What When Where',
+    section: 0,
     other: true,
     content: ['In the UK', 'Outside the UK'],
     question: 'Did the incident take place in the UK?',
@@ -43,7 +43,7 @@ export default [
   {
     explainer: 'Please select all that apply.',
     page: 2,
-    section: 'What When Where',
+    section: 0,
     other: true,
     content: [
       'Online',
@@ -66,7 +66,7 @@ export default [
     explainer:
       "Only fill this in if you'd like to specifically identify the location of the incident.",
     page: 2,
-    section: 'What When Where',
+    section: 0,
     content: ['Write the location here'],
     question: 'Where exactly did the incident take place?',
     type: 'text',
@@ -74,14 +74,15 @@ export default [
   {
     explainer: "You can share as much or as little as you'd like.",
     page: 3,
-    section: 'What When Where',
+    section: 0,
     content: ['Write your experience here'],
     question: 'Describe what happened in your own words.',
     type: 'text',
+    last: true,
   },
   {
     page: 4,
-    section: 'Perpetrator',
+    section: 1,
     content: ['Man', 'Woman'],
     question: 'Was the harrasser(s) or perpetrator(s) a...',
     type: 'radio',
@@ -89,7 +90,7 @@ export default [
   {
     explainer: 'Please select all that apply.',
     page: 5,
-    section: 'Perpetrator',
+    section: 1,
     other: true,
     content: [
       'Manager or agent',
@@ -110,7 +111,7 @@ export default [
   },
   {
     page: 6,
-    section: 'Perpetrator',
+    section: 1,
     content: ['Yes', 'No', 'Not sure'],
     question:
       'Have you experienced sexual harrassment by the same perpetrator before?',
@@ -118,15 +119,16 @@ export default [
   },
   {
     page: 6,
-    section: 'Perpetrator',
+    section: 1,
     content: ['Yes', 'No', 'Not sure'],
     question:
       'Do you know if anyone else has been harassed by this person before?',
     type: 'radio',
+    last: true,
   },
   {
     page: 7,
-    section: 'Reporting',
+    section: 2,
     content: ['Yes', 'No'],
     split: true,
     question: 'Have you reported this incident elsewhere?',
@@ -136,7 +138,7 @@ export default [
     condition: 'yes',
     explainer: 'Please select all that apply.',
     page: 8,
-    section: 'Reporting',
+    section: 2,
     other: true,
     content: [
       'Employer, engager or fixer',
@@ -156,7 +158,7 @@ export default [
   {
     condition: 'yes',
     page: 8,
-    section: 'Reporting',
+    section: 2,
     content: ['Yes', 'No', "Don't know"],
     question: 'Was any action taken?',
     type: 'radio',
@@ -164,7 +166,7 @@ export default [
   {
     condition: 'yes',
     page: 8,
-    section: 'Reporting',
+    section: 2,
     content: ['Very', 'Somewhat', 'Not at all'],
     question: 'How satisfied are you with the way your report(s) was handled?',
     type: 'radio',
@@ -173,7 +175,7 @@ export default [
     condition: 'no',
     explainer: 'Please select all that apply.',
     page: 8,
-    section: 'Reporting',
+    section: 2,
     other: true,
     content: [
       'I thought I might not be believed or taken seriously',
@@ -187,11 +189,12 @@ export default [
     ],
     question: 'Did anything discourage you from reporting?',
     type: 'checkbox',
+    last: true,
   },
   {
     explainer: 'Please select all that apply.',
     page: 10,
-    section: 'Victim',
+    section: 3,
     other: true,
     content: [
       'Employed',
@@ -206,7 +209,7 @@ export default [
     explainer:
       'Please select all that apply. This will help us identify how sexism, harrassment and abuse manifest in different spaces.',
     page: 11,
-    section: 'Victim',
+    section: 3,
     content: [
       'Musician',
       'Featured Artist',
@@ -225,14 +228,14 @@ export default [
   },
   {
     page: 12,
-    section: 'Victim',
+    section: 3,
     content: ['16-18', '18-24', '25-34', '35-44', '45-54', '55-64', 'Over 65'],
     question: 'What age were you at the time of the incident',
     type: 'radio',
   },
   {
     page: 13,
-    section: 'Victim',
+    section: 3,
     other: true,
     content: ['Man', 'Woman', 'Non-binary', 'Prefer to self-describe'],
     question: 'What is your gender?',
@@ -240,14 +243,14 @@ export default [
   },
   {
     page: 13,
-    section: 'Victim',
+    section: 3,
     content: ['Yes', 'No'],
     question: 'Is your gender identity the same as that assigned at birth?',
     type: 'radio',
   },
   {
     page: 14,
-    section: 'Victim',
+    section: 3,
     other: true,
     content: [
       'White - British, English, Northern Irish, Scottish, Welsh',
@@ -276,14 +279,14 @@ export default [
   },
   {
     page: 15,
-    section: 'Victim',
+    section: 3,
     content: ['Yes', 'No'],
     question: 'Do you identify as a deaf or disabled person?',
     type: 'radio',
   },
   {
     page: 16,
-    section: 'Victim',
+    section: 3,
     content: [
       'Asexual',
       'Bi / Bisexual',
@@ -295,5 +298,6 @@ export default [
     ],
     question: 'Which of the following best describes your sexuality?',
     type: 'radio',
+    last: true,
   },
 ];

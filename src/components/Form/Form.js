@@ -6,9 +6,8 @@ import {
   convertArrayToObjectWithArray,
 } from '../../utils/convertArrayToObject';
 
-const Form = ({ responses, setResponses, questions }) => {
+const Form = ({ responses, setResponses, questions, page }) => {
   // get page question from URL path
-  const page = parseInt(useLocation().pathname.match(/report\/(\d+)$/i)[1]);
 
   // initialState is an object that will be updated with interactions on the form
   let initialState = {};
