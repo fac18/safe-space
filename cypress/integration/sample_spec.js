@@ -12,7 +12,7 @@ describe('My First Test', function() {
 // https://docs.cypress.io/guides/references/bundled-tools.html#Mocha
 
 describe('Visiting website', function() {
-  it('Visits safespacemu', function() {
+  it('Visits safespacemu and clicks report button', function() {
     // VISIT WEBSITE
     // Set up the application state.
     cy.visit('https://safespacemu.netlify.com/');
@@ -33,5 +33,15 @@ describe('Visiting website', function() {
     // .contains(content, options)
     // .contains(selector, content)
     // .contains(selector, content, options)
+  });
+
+  it('Clicks on different form elements and navigates through the form', function() {
+    cy.get(
+      'input[name="What form of sexual harrassment did you experience?"][value="Sexual comments or jokes"]'
+    ).click();
+
+    // go to next page
+    cy.contains(/next/i).click();
+    cy.url().should('include', '/report/1');
   });
 });
