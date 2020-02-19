@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Report, Support } from '../pages';
+import { FAQs, Home, About, Report, Support, Review } from '../pages';
 import { Footer } from '../components';
 import SectionDivider from '../pages/SectionDivider';
 
@@ -84,13 +84,13 @@ function App() {
             <SectionDivider questions={questions} dividers={dividers} />
           )}
         />
+        <Route path='/frequently-asked-questions' render={() => <FAQs />} />
+        <Route path='/about' render={() => <About />} />
+        <Route path='/support' render={() => <Support />} />
         <Route
-          exact
-          path='/frequently-asked-questions'
-          render={() => <FAQs />}
+          path='/review'
+          render={() => <Review questions={questions} responses={responses} />}
         />
-        <Route exact path='/about' render={() => <About />} />
-        <Route exact path='/support' render={() => <Support />} />
       </Switch>
 
       <Footer />
