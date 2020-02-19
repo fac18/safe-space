@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Report, Support } from '../pages';
+import { FAQs, Home, About, Report, Support, Review, Submit } from '../pages';
 import { Footer } from '../components';
 import SectionDivider from '../pages/SectionDivider';
 
 // packages and utils
 import uuid from 'uuid/v4';
-import { getQuestions, generateId, convertArrayToObject } from '../utils';
+import { getQuestions, generateId } from '../utils';
 import dividers from '../model/dividers';
 
 // fallback data
@@ -27,7 +27,7 @@ function App() {
         setQuestions(records);
         let responseArr = [];
         records.map(question => responseArr.push(question.question));
-        setResponses(responseArr);
+        setResponses(responseArr); // why is response array no longer being converted to object?
       })
       .catch(err => {
         setQuestions(hardQuestions);
@@ -47,7 +47,7 @@ function App() {
       })
       .catch(err => {
         setUser({
-          ref: uuid(), // may be non-unique (but very unlikely)
+          ref: uuid(), // may be non-unique (but almost impossibly unlikely)
           email: '',
         });
         console.log(
@@ -60,15 +60,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route
-          exact
-          path='/'
-          render={() => (
-            <>
-              <Home />
-            </>
-          )}
-        />
+        <Route exact path='/' render={() => <Home />} />
         {questions
           ? questions.map((question, i) => (
               <Route
@@ -86,19 +78,30 @@ function App() {
               />
             ))
           : null}
-
         <Route
           path='/dividers/:index'
-          render={() => <SectionDivider dividers={dividers} />}
+          render={() => (
+            <SectionDivider questions={questions} dividers={dividers} />
+          )}
         />
-
+        <Route path='/frequently-asked-questions' render={() => <FAQs />} />
+        <Route path='/about' render={() => <About />} />
+        <Route path='/support' render={() => <Support />} />
         <Route
-          exact
-          path='/frequently-asked-questions'
-          render={() => <FAQs />}
+          path='/review'
+          render={() => <Review questions={questions} responses={responses} />}
         />
-        <Route exact path='/about' render={() => <About />} />
-        <Route exact path='/support' render={() => <Support />} />
+        <Route
+          path='/submit'
+          render={() => (
+            <Submit
+              user={user}
+              setUser={setUser}
+              questions={questions}
+              responses={responses}
+            />
+          )}
+        />
       </Switch>
 
       <Footer />
