@@ -7,7 +7,7 @@ const ServiceCard = styled(Card)`
     flex-direction: column;
     border: 2px solid #ca68a4;
     border-radius: 3rem;
-    background: #d5d8e8;
+    background: #d5d8e8b3;
     font-weight: bold;
     width: 20rem;
     height: 15rem;
