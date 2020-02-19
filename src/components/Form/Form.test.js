@@ -11,7 +11,7 @@ test('Page 2 of report form renders with the correct questions', async () => {
 
   const { findByText, debug } = render(
     <Router history={history}>
-      <Form page={'2'} questions={questions} />
+      <Form page={2} questions={questions} />
     </Router>
   );
   const pg2q1 = await findByText(/Did the incident take place in the UK?/i);
@@ -19,10 +19,7 @@ test('Page 2 of report form renders with the correct questions', async () => {
     /What kind of location did the incident take place in?/i
   );
   const pg2q3 = await findByText(/Where exactly did the incident take place?/i);
-
-  debug(pg2q1);
-  debug(pg2q2);
-  debug(pg2q3);
+  // use debug() if you wish to see the component printed to the console
 
   expect(pg2q1).toBeInTheDocument();
   expect(pg2q2).toBeInTheDocument();

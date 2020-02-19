@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { Report } from '../pages';
@@ -18,7 +18,7 @@ global.fetch = jest.fn().mockImplementation(() =>
   }).catch(console.error)
 );
 
-it('mocks a returns of expected data', () => {
+it('mocks a returns of expected data', async () => {
   // act(() => {
   const { getByText, debug } = render(
     <Router history={history}>
@@ -36,5 +36,7 @@ it('mocks a returns of expected data', () => {
   expect(global.fetch.mock.calls[1][0]).toBe(
     '../../.netlify/functions/get-users/get-users.js'
   );
-  debug();
+  await wait();
+  // Why use async await in a test? :
+  // https://kentcdodds.com/blog/write-fewer-longer-tests
 });
