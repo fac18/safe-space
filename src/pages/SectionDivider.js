@@ -22,9 +22,6 @@ const SectionDivider = ({ questions, dividers }) => {
     }
   });
 
-  console.log({ prevIndex });
-  console.log({ nextIndex });
-
   return (
     <div>
       <h2>{title}</h2>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Report, Support, Review } from '../pages';
+import { FAQs, Home, About, Report, Support, Review, Submit } from '../pages';
 import { Footer } from '../components';
 import SectionDivider from '../pages/SectionDivider';
 
@@ -90,6 +90,17 @@ function App() {
         <Route
           path='/review'
           render={() => <Review questions={questions} responses={responses} />}
+        />
+        <Route
+          path='/submit'
+          render={() => (
+            <Submit
+              user={user}
+              setUser={setUser}
+              questions={questions}
+              responses={responses}
+            />
+          )}
         />
       </Switch>
 

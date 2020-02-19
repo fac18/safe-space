@@ -20,9 +20,6 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
     }
   });
 
-  console.log({ firstIndex });
-  console.log({ lastIndex });
-
   return (
     <>
       <Form

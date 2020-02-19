@@ -2,8 +2,6 @@ import React, { useReducer } from 'react';
 import { FormQuestion } from '../index';
 
 const Form = ({ responses, setResponses, questions, page }) => {
-  // get page question from URL path
-
   // initialState is an object that will be updated with interactions on the form
   let initialState = {};
 
@@ -25,7 +23,7 @@ const Form = ({ responses, setResponses, questions, page }) => {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  // array of questions with no answers is given the value state
+  // array of responses with no answers is given the value state
   responses = state;
 
   const onChange = event => {
