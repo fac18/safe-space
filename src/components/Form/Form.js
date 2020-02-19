@@ -1,10 +1,5 @@
 import React, { useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
 import { FormQuestion } from '../index';
-import {
-  convertArrayToObjectWithString,
-  convertArrayToObjectWithArray,
-} from '../../utils/convertArrayToObject';
 
 const Form = ({ responses, setResponses, questions, page }) => {
   // get page question from URL path

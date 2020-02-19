@@ -8,7 +8,7 @@ import SectionDivider from '../pages/SectionDivider';
 
 // packages and utils
 import uuid from 'uuid/v4';
-import { getQuestions, generateId, convertArrayToObject } from '../utils';
+import { getQuestions, generateId } from '../utils';
 import dividers from '../model/dividers';
 
 // fallback data
@@ -47,7 +47,7 @@ function App() {
       })
       .catch(err => {
         setUser({
-          ref: uuid(), // may be non-unique (but very unlikely)
+          ref: uuid(), // may be non-unique (but almost impossibly unlikely)
           email: '',
         });
         console.log(
@@ -60,15 +60,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route
-          exact
-          path='/'
-          render={() => (
-            <>
-              <Home />
-            </>
-          )}
-        />
+        <Route exact path='/' render={() => <Home />} />
         {questions
           ? questions.map((question, i) => (
               <Route
@@ -86,12 +78,12 @@ function App() {
               />
             ))
           : null}
-
         <Route
           path='/dividers/:index'
-          render={() => <SectionDivider dividers={dividers} />}
+          render={() => (
+            <SectionDivider questions={questions} dividers={dividers} />
+          )}
         />
-
         <Route
           exact
           path='/frequently-asked-questions'
