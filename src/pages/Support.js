@@ -14,18 +14,17 @@ const Container = styled.section`
   margin-top: 1rem;
   margin-bottom: 10rem;
 `;
-
-const Type = styled(Typography)`
-  margin-bottom: 0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  color: #2d3c8a;
-`;
 const Text = styled.section`
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
+`;
+const Type = styled(Typography)`
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: #2d3c8a;
 `;
 
 const Support = () => {
