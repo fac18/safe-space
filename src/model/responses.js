@@ -6,7 +6,7 @@ export default {
   'Did the incident take place in the UK?': 'renewedTest',
   'What kind of location did the incident take place in?': 'renewedTest',
   'Where exactly did the incident take place?': 'renewedTest',
-  'Was the harrasser(s) or perpetrator(s) a...': 'renewedTest',
+  'Was the person who did this a:': 'renewedTest',
   'What is their relationship to you?': 'renewedTest',
   'Have you experienced sexual harrassment by the same perpetrator before?':
     'renewedTest',
