@@ -104,6 +104,11 @@ const Report = () => {
       if (i > lastIndex) lastIndex = i;
     }
   });
+  console.log(params.index);
+  if (params.index.includes('section')) {
+    const sectionNum = params.index.split('section')[1];
+    console.log(sectionNum);
+  }
 
   return (
     <>
@@ -121,7 +126,7 @@ const Report = () => {
             ? `/report/${questions[0].section}`
             : questions[firstIndex].section !==
               questions[firstIndex - 1].section
-            ? `/report/section${questions[firstIndex].section + 1}`
+            ? `/report/section${questions[firstIndex].section}`
             : `/report/${page - 1}`
         }
       >
@@ -133,7 +138,7 @@ const Report = () => {
           lastIndex === questions.length - 1
             ? `/review` // send to review page upon completion - yet to be made
             : questions[lastIndex].section !== questions[lastIndex + 1].section
-            ? `/dividers/${questions[lastIndex + 1].section}`
+            ? `/report/section${questions[lastIndex + 1].section}`
             : `/report/${page + 1}`
         }
       >
