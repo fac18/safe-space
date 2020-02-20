@@ -5,6 +5,7 @@ import Header from '../../../components/Header/Header';
 import { ButtonNext, ButtonBack } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 
+
 const Form = ({ questions, page, funcOnChange }) => {
   // find indices (in questions array) of first and last questions to appear on this page
   let firstIndex = Infinity;

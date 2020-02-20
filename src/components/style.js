@@ -88,6 +88,7 @@ const FlexRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
   padding-bottom: 0.5em;
+  justify-content: space-between;
 `;
 
 export { Bubbles, FooterBubbles, FormContainer, TypeQ, FlexColumn, FlexRow };
