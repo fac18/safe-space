@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Loading } from '../../components';
 import Form from './Form/Form';
 import { postResponses } from '../../utils/index';
@@ -70,7 +70,9 @@ const Report = () => {
   }, []);
   // (questions && responses && user)) return <Loading />;
   const params = useParams();
+  const location = useLocation();
   console.log({ params });
+  console.log({ location });
 
   const page = parseInt(params.index, 10);
 
@@ -94,7 +96,7 @@ const Report = () => {
     }
   };
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [responses, dispatch] = useReducer(reducer, initialState);
   // array of responses with no answers is given the value state
 
   const onChange = event => {
