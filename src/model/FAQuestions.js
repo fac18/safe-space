@@ -18,19 +18,19 @@ answer: ["We want to hear from you if you do or wish to make all or part of your
 "If you need an immediate help and support, check the services you can contact now [link to the immediate help page]"
 ]},{faq:"What the MU Safe Space can do...",
 answer:["For MU members:"
-"We can advise you on your legal rights"
-We can provide information about relevant support services
-We can support you if you would like to seek redress
-We may be able to raise a complaint with the employer, engager, or even directly with the perpetrator
-If both the alleged perpetrator and the complainant are MU members, then we also have the option of disciplinary action under MU rules.
-For everyone:
-We can provide advice on what your rights are
-We can provide information about relevant support services
-In cases of bullying, discrimination and other inappropriate behaviour we can provide advice on your options and further steps.
-What the MU Safe Space cannot do
-We cannot provide counselling. But we will always provide information on relevant support services
-We are very limited in terms of what can be done industrially to address a complaint of a sexual assault.
-We cannot guarantee the outcome that you want.
-
-
-}];
+"We can advise you on your legal rights".
+'We can provide information about relevant support services'
+'We can support you if you would like to seek redress',
+'We may be able to raise a complaint with the employer, engager, or even directly with the perpetrator',
+'If both the alleged perpetrator and the complainant are MU members, then we also have the option of disciplinary action under MU rules.'
+'For everyone:'
+'We can provide advice on what your rights are',
+'We can provide information about relevant support services',
+'In cases of bullying, discrimination and other inappropriate behaviour we can provide advice on your options and further steps.',
+]},{faq:'What the MU Safe Space cannot do',
+answer:[
+'We cannot provide counselling. But we will always provide information on relevant support services',
+'We are very limited in terms of what can be done industrially to address a complaint of a sexual assault.',
+'We cannot guarantee the outcome that you want.',
+]}
+]};
