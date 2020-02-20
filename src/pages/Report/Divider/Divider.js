@@ -6,6 +6,7 @@ import {
   FlexColumn,
   FlexRow,
   TypeQ,
+  Bubbles2,
 } from '../../../components/style';
 
 const SectionDivider = ({ questions, dividers }) => {
@@ -28,10 +29,11 @@ const SectionDivider = ({ questions, dividers }) => {
 
   return (
     <>
+      <Bubbles2 />
       <FormContainer>
         <FlexColumn>
           {paras.map((para, i) => (
-            <TypeQ use='headline5' key={i}>
+            <TypeQ use='headline6' key={i}>
               {para}
             </TypeQ>
           ))}

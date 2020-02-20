@@ -1,10 +1,19 @@
 import React from 'react';
 import { ReactComponent as HeaderBubbles } from '../assets/Header-bubbles.svg';
+import { ReactComponent as HeaderBubbles2 } from '../assets/Header-bubbles2.svg';
 import { ReactComponent as LowerBubbles } from '../assets/Footer-bubbles.svg';
 import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 
 const StyledBubbles = styled(HeaderBubbles)`
+  position: relative;
+  left: -4em;
+  top: -104px;
+  max-width: 130%;
+  height: 100%;
+`;
+
+const StyledBubbles2 = styled(HeaderBubbles2)`
   position: relative;
   left: -4em;
   top: -104px;
@@ -30,6 +39,14 @@ const Bubbles = () => {
   );
 };
 
+const Bubbles2 = () => {
+  return (
+    <BubblesContainer>
+      <StyledBubbles2 />
+    </BubblesContainer>
+  );
+};
+
 const FooterBubbles = styled(LowerBubbles)`
   position: absolute;
   left: -4em;
@@ -51,7 +68,7 @@ const FormContainer = styled.div`
   #text {
     color: pink;
   }
-  input[type='text'] {
+  input[placeholder] {
     color: #abb1d0;
   }
 
@@ -91,4 +108,12 @@ const FlexRow = styled.div`
   justify-content: space-between;
 `;
 
-export { Bubbles, FooterBubbles, FormContainer, TypeQ, FlexColumn, FlexRow };
+export {
+  Bubbles,
+  Bubbles2,
+  FooterBubbles,
+  FormContainer,
+  TypeQ,
+  FlexColumn,
+  FlexRow,
+};
