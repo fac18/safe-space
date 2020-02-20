@@ -3,21 +3,27 @@ import { ReactComponent as HeaderBubbles } from '../assets/Header-bubbles.svg';
 import { ReactComponent as LowerBubbles } from '../assets/Footer-bubbles.svg';
 import styled from 'styled-components';
 
-// const Bubbles = styled(HeaderBubbles)`
-
-// `;
-
-const BubblesContainer = styled.div`
-  overflow: hidden;
-  position: absolute;
+const StyledBubbles = styled(HeaderBubbles)`
+  position: relative;
   left: -4em;
   top: -104px;
+  max-width: 130%;
+  height: 100%;
+`;
+
+const BubblesContainer = styled.div`
+  top: 0em;
+  position: absolute;
+  overflow: hidden;
+  width: 100vw;
+  z-index: 0;
+  /* height: 200px; */
 `;
 
 const Bubbles = () => {
   return (
     <BubblesContainer>
-      <HeaderBubbles />
+      <StyledBubbles />
     </BubblesContainer>
   );
 };
