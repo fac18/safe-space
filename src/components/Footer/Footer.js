@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 const Bottom = styled.footer`
   display: flex;
-  position: absolute;
-
+  position: fixed;
   flex-direction: column;
   padding: 0.5rem;
   line-height: 1.5rem;
