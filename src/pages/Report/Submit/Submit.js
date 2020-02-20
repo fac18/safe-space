@@ -1,7 +1,9 @@
 import React from 'react';
+import { postResponses } from '../../../utils/index';
 
 const Submit = ({ responses, user, setUser }) => {
-  return <FormContainer></FormContainer>;
+  return <></>;
+  // return <FormContainer></FormContainer>;
 };
 
 export default Submit;

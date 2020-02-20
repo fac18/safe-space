@@ -1,37 +1,34 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
-import { ButtonNext, ButtonBack, Loading } from '../../components';
+
+// import subcomponents and reusables
 import Form from './Form/Form';
-import { postResponses } from '../../utils/index';
-// packages and utils
+import Divider from './Divider/Divider';
+import Review from './Review/Review';
+import Submit from './Submit/Submit';
+import { ButtonNext, ButtonBack, Loading } from '../../components';
+
+// and packages and utils
 import uuid from 'uuid/v4';
-import { getQuestions, generateId, getDividers } from '../../utils/index';
+import { getQuestions, getDividers } from '../../utils/index';
 
 // fallback data
 import hardQuestions from '../../model/questions';
-// import hardResponses from '../../model/responses';
 import hardDividers from '../../model/dividers';
 
 const Report = () => {
-  // if any API calls have yet to resolve, render Loading component
-
+  // set up states
   const [questions, setQuestions] = useState(null);
-  // const [responses, setResponses] = useState(null);
   const [user, setUser] = useState(null);
   const [dividers, setDividers] = useState(null);
 
   useEffect(() => {
     getQuestions()
       .then(records => {
-        // console.log(records);
         setQuestions(records);
-        // let responseArr = [];
-        // records.map(question => responseArr.push(question.question));
-        // setResponses(responseArr); // why is response array no longer being converted to object?
       })
       .catch(err => {
         setQuestions(hardQuestions);
-        // setResponses(hardResponses);
         console.log(
           'Failed to fetch question data - falling back to hard coding. Error: ',
           err
@@ -39,13 +36,13 @@ const Report = () => {
       });
 
     getDividers()
-      .then(dividerSections => {
-        setDividers(dividerSections);
+      .then(dividers => {
+        setDividers(dividers);
       })
       .catch(err => {
         setDividers(hardDividers);
         console.log(
-          'Failed to fetch dividers - falling back to hard coding. Error: ',
+          'Failed to fetch divider data - falling back to hard coding. Error: ',
           err
         );
       });
@@ -55,16 +52,6 @@ const Report = () => {
       email: '',
     });
   }, []);
-  // (questions && responses && user)) return <Loading />;
-  const params = useParams();
-  const location = useLocation();
-  console.log({ params });
-  console.log({ location });
-
-  const page = parseInt(params.index, 10);
-
-  // initialState is an object that will be updated with interactions on the form
-  let initialState = {};
 
   const reducer = (state, { field, value, type }) => {
     if (type === 'checkbox') {
@@ -83,8 +70,9 @@ const Report = () => {
     }
   };
 
+  // set up responses state with reducer
+  let initialState = {};
   const [responses, dispatch] = useReducer(reducer, initialState);
-  // array of responses with no answers is given the value state
 
   const onChange = event => {
     dispatch({
@@ -94,35 +82,35 @@ const Report = () => {
     });
   };
 
-  // show Loading component until all states fetched and ready
+  // grab React Router states to determine which components to render at Report level
+  const params = useParams();
+  const location = useLocation();
+
+  // if any API calls have yet to resolve, render Loading component
   if (!(questions && user && dividers)) {
     return <Loading />;
   }
 
-  // find indices (in questions array) of first and last questions to appear on this page
-  let firstIndex = Infinity;
-  let lastIndex = 0;
-  questions.forEach((question, i) => {
-    if (question.page === page) {
-      if (i < firstIndex) firstIndex = i;
-      if (i > lastIndex) lastIndex = i;
-    }
-  });
-
   // if the user is at a section interval the params should indicate this
   // we will therefore render a section, else we will render the questions
-  if (params.index.includes('section')) {
-    let sectionNum = params.index.split('section')[1];
-    parseInt(sectionNum);
-    return (
-      <>
-        <h1>Divider Section {sectionNum}</h1>
-        <ButtonNext tag={Link} to={`/report/${sectionNum + 1}`}>
-          Start Section
-        </ButtonNext>
-      </>
-    ); // divider that takes index
+  if (location.pathname.includes('section')) {
+    return <Divider questions={questions} dividers={dividers} />;
+  } else if (location.pathname.includes('review')) {
+    return <Review questions={questions} responses={responses} />;
+  } else if (location.pathname.includes('submit')) {
+    return <Submit responses={responses} user={user} setUser={setUser} />;
   } else {
+    const page = parseInt(params.index);
+    // find indices (in questions array) of first and last questions to appear on this page
+    let firstIndex = Infinity;
+    let lastIndex = 0;
+    questions.forEach((question, i) => {
+      if (question.page === page) {
+        if (i < firstIndex) firstIndex = i;
+        if (i > lastIndex) lastIndex = i;
+      }
+    });
+
     return (
       <>
         <Form
@@ -139,7 +127,7 @@ const Report = () => {
               ? `/report/${questions[0].section}`
               : questions[firstIndex].section !==
                 questions[firstIndex - 1].section
-              ? `/report/section${questions[firstIndex].section}`
+              ? `/report/section/${questions[firstIndex].section}`
               : `/report/${page - 1}`
           }
         >
@@ -152,7 +140,7 @@ const Report = () => {
               ? `/review` // send to review page upon completion - yet to be made
               : questions[lastIndex].section !==
                 questions[lastIndex + 1].section
-              ? `/report/section${questions[lastIndex + 1].section}`
+              ? `/report/section/${questions[lastIndex + 1].section}`
               : `/report/${page + 1}`
           }
         >
