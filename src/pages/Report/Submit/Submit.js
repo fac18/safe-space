@@ -29,6 +29,13 @@ const Type5 = styled(Typography)`
     z-index: 50;
   }
 `;
+const TypeB1 = styled(Typography)`
+  && {
+    text-align: center;
+    color: #5763a2;
+    padding-bottom: 0.8em;
+  }
+`;
 
 const Submit = ({ responses, user, funcOnChange }) => {
   const history = useHistory();
@@ -47,19 +54,20 @@ const Submit = ({ responses, user, funcOnChange }) => {
         <Type5 use='headline5' tag='h5'>
           Thank you for reporting
         </Type5>
-        <Type5 use='subtitle1'>
+        <TypeB1 use='subtitle1'>
           Please confirm that you give permission to the MU to use this report
           to bring about change in the music industry.
-        </Type5>
+        </TypeB1>
 
-        <Type5 use='subtitle1'>
+        <TypeB1 use='subtitle1'>
           This is entirely optional, but if you wish to be contacted by the MU
           in regard to this report, please provide your email below:
-        </Type5>
+        </TypeB1>
 
         <TextField
+          use='body1'
           fullwidth
-          label='enter email'
+          label='email'
           pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
           onChange={funcOnChange}
           name='userEmail'
