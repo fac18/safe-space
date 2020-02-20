@@ -1,4 +1,4 @@
-import React { useReducer, useState, useEffect } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Loading } from '../../components';
 import Form from './Form/Form';
@@ -9,12 +9,14 @@ import { getQuestions, generateId } from '../../utils/index';
 // import dividers from '../model/dividers';
 
 // fallback data
-import hardQuestions from '../model/questions';
-import hardResponses from '../model/responses';
+import hardQuestions from '../../model/questions';
+import hardResponses from '../../model/responses';
 
-const Report = ({ questions, responses, setResponses, user, setUser }) => {
+const Report = () => {
+  // if any API calls have yet to resolve, render Loading component
+
   const [questions, setQuestions] = useState(null);
-  const [responses, setResponses] = useState(null);
+  // const [responses, setResponses] = useState(null);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -22,13 +24,13 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
       .then(records => {
         // console.log(records);
         setQuestions(records);
-        let responseArr = [];
-        records.map(question => responseArr.push(question.question));
-        setResponses(responseArr); // why is response array no longer being converted to object?
+        // let responseArr = [];
+        // records.map(question => responseArr.push(question.question));
+        // setResponses(responseArr); // why is response array no longer being converted to object?
       })
       .catch(err => {
         setQuestions(hardQuestions);
-        setResponses(hardResponses);
+        // setResponses(hardResponses);
         console.log(
           'Failed to fetch question data - falling back to hard coding. Error: ',
           err
@@ -53,23 +55,10 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
         );
       });
   }, []);
-
+  // (questions && responses && user)) return <Loading />;
   const params = useParams();
 
   const page = parseInt(params.index, 10);
-
-  // if any API calls have yet to resolve, render Loading component
-  // if (!(questions && responses && user)) return <Loading />;
-
-  // find indices (in questions array) of first and last questions to appear on this page
-  let firstIndex = Infinity;
-  let lastIndex = 0;
-  questions.forEach((question, i) => {
-    if (question.page === page) {
-      if (i < firstIndex) firstIndex = i;
-      if (i > lastIndex) lastIndex = i;
-    }
-  });
 
   // initialState is an object that will be updated with interactions on the form
   let initialState = {};
@@ -102,17 +91,26 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
     });
   };
 
-  setResponses(state);
+  if (!(questions && user)) {
+    return <Loading />;
+  }
+  // find indices (in questions array) of first and last questions to appear on this page
+  let firstIndex = Infinity;
+  let lastIndex = 0;
+  questions.forEach((question, i) => {
+    if (question.page === page) {
+      if (i < firstIndex) firstIndex = i;
+      if (i > lastIndex) lastIndex = i;
+    }
+  });
+
   return (
     <>
       <Form
         page={page}
         questions={questions}
-        responses={responses}
-        setResponses={setResponses}
         user={user}
         setUser={setUser}
-        onSubmit={postResponses(responses)}
         funcOnChange={onChange}
       ></Form>
       <ButtonBack
