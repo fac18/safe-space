@@ -1,10 +1,9 @@
 import Footer from './Footer/Footer';
 import FAQuestion from './FAQuestion/FAQuestion';
-import Form from './Form/Form';
+// import Form from './Form/Form';
 import Header from './Header/Header';
 import ProgressBar from './ProgressBar/ProgressBar';
-import FormQuestion from './FormQuestion/FormQuestion';
-
+// import FormQuestion from './FormQuestion/FormQuestion';
 
 import {
   ButtonPrimary,
@@ -18,8 +17,8 @@ import ServiceCard from './ServiceCard/ServiceCard';
 export {
   Footer,
   FAQuestion,
-  Form,
-  FormQuestion,
+  // Form,
+  // FormQuestion,
   Header,
   ProgressBar,
   ButtonPrimary,
