@@ -50,23 +50,10 @@ const Report = () => {
         );
       });
 
-    generateId()
-      .then(id => {
-        setUser({
-          ref: id, // guaranteed to be unique
-          email: '',
-        });
-      })
-      .catch(err => {
-        setUser({
-          ref: uuid(), // may be non-unique (but almost impossibly unlikely)
-          email: '',
-        });
-        console.log(
-          'Failed to fetch user data - falling back to hard coding. Error: ',
-          err
-        );
-      });
+    setUser({
+      ref: uuid(), // may be non-unique (but almost impossibly unlikely)
+      email: '',
+    });
   }, []);
   // (questions && responses && user)) return <Loading />;
   const params = useParams();
@@ -107,9 +94,11 @@ const Report = () => {
     });
   };
 
+  // show Loading component until all states fetched and ready
   if (!(questions && user && dividers)) {
     return <Loading />;
   }
+
   // find indices (in questions array) of first and last questions to appear on this page
   let firstIndex = Infinity;
   let lastIndex = 0;
