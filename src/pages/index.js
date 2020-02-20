@@ -5,6 +5,6 @@ import Report from './Report/Report';
 import Review from './Review';
 import Submit from './Submit';
 import Support from './Support';
-import SectionDivider from './SectionDivider';
+import Dividers from './Report/Dividers';
 
-export { FAQs, Home, About, Report, Review, Submit, Support, SectionDivider };
+export { FAQs, Home, About, Report, Review, Submit, Support, Dividers };

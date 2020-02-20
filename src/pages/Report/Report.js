@@ -117,10 +117,10 @@ const Report = () => {
         tag={Link}
         to={
           firstIndex === 0
-            ? `/report/dividers/${questions[0].section}`
+            ? `/report/${questions[0].section}`
             : questions[firstIndex].section !==
               questions[firstIndex - 1].section
-            ? `/dividers/${questions[firstIndex].section}`
+            ? `/report/section${questions[firstIndex].section}`
             : `/report/${page - 1}`
         }
       >
@@ -132,7 +132,7 @@ const Report = () => {
           lastIndex === questions.length - 1
             ? `/review` // send to review page upon completion - yet to be made
             : questions[lastIndex].section !== questions[lastIndex + 1].section
-            ? `/dividers/${questions[lastIndex + 1].section}`
+            ? `/report/section/${questions[lastIndex + 1].section}`
             : `/report/${page + 1}`
         }
       >

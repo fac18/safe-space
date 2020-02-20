@@ -32,9 +32,9 @@ const Home = () => {
         <Type use='headline5'>Over 85% felt unable to report it</Type>
         <Type use='headline5'>Let’s change this </Type>
 
-      <ButtonPrimary tag={Link} to='/dividers/0' raised>
-        Report to SafeSpace
-      </ButtonPrimary>
+        <ButtonPrimary tag={Link} to='/report/section/0' raised>
+          Report to SafeSpace
+        </ButtonPrimary>
 
         <ButtonSecondary outlined tag={Link} to='/support'>
           Access Support Services
