@@ -17,11 +17,13 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
                       <input
                         name={question.question}
                         type={question.type}
-                        defaultValue={answer}
-                        id={answer + ' ' + question.questionNumber}
+                        placeholder={answer}
+                        id={`${page}.${i}`}
                         onChange={funcOnChange}
                       />
-                      <label htmlFor={answer}>{answer}</label>
+                      <label htmlFor={`${page}.${i}`}>
+                        {question.type === 'text' ? null : answer}
+                      </label>
                     </React.Fragment>
                   );
                 })
