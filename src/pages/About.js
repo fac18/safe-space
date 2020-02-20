@@ -43,7 +43,7 @@ const About = () => {
           However, there may come a point where we cannot maintain
           confidentiality or anonymity in order to act and we will make this
           clear in order to give you a choice as to whether to move forward or
-          not. [read more on what we can and cannot do]
+          not.
         </TypeQ>
         <ButtonBack tag={Link} to={'/'}>
           Home
