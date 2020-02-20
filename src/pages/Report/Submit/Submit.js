@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Submit = () => {
+const Submit = ({ responses, user, setUser }) => {
   return <FormContainer></FormContainer>;
 };
 

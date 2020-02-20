@@ -11,10 +11,10 @@ function App() {
     <>
       <Switch>
         <Route exact path='/' render={() => <Home />} />
-        <Route path='/report/:index' render={() => <Report />} />
-        <Route path='/report/dividers/:index' render={() => <Report />} />
-        <Route path='/report/review' render={() => <Report />} />
-        <Route path='/report/submit' render={() => <Report />} />
+        <Route exact path='/report/:index' render={() => <Report />} />
+        <Route exact path='/report/section/:index' render={() => <Report />} />
+        <Route exact path='/report/review' render={() => <Report />} />
+        <Route exact path='/report/submit' render={() => <Report />} />
         <Route path='/frequently-asked-questions' render={() => <FAQs />} />
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />

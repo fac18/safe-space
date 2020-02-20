@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Review = () => {
+const Review = ({ questions, responses }) => {
   return <FormContainer></FormContainer>;
 };
 
