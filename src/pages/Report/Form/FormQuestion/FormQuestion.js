@@ -1,4 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
+// import { TypeQ } from '../../../../components/style'
+
+// const input = styled.p`
+//   padding-bottom: 2em;
+// `;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const FlexRow = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+`;
 
 const FormQuestion = ({ page, questions, funcOnChange }) => {
   return questions
@@ -9,22 +26,24 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
         .map((question, i) => {
           return (
             <React.Fragment key={i}>
-              <p>{question.question}</p>
+              {question.question}
               {question.content ? (
-                question.content.map((answer, i) => {
-                  return (
-                    <React.Fragment key={i}>
-                      <input
-                        name={question.question}
-                        type={question.type}
-                        defaultValue={answer}
-                        id={answer + ' ' + question.questionNumber}
-                        onChange={funcOnChange}
-                      />
-                      <label htmlFor={answer}>{answer}</label>
-                    </React.Fragment>
-                  );
-                })
+                <InputWrapper>
+                  {question.content.map((answer, i) => {
+                    return (
+                      <FlexRow key={i}>
+                        <input
+                          name={question.question}
+                          type={question.type}
+                          defaultValue={answer}
+                          id={answer + ' ' + question.questionNumber}
+                          onChange={funcOnChange}
+                        />
+                        <label htmlFor={answer}>{answer}</label>
+                      </FlexRow>
+                    );
+                  })}{' '}
+                </InputWrapper>
               ) : (
                 <input type={question.type} />
               )}

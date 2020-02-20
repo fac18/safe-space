@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactComponent as HeaderBubbles } from '../assets/Header-bubbles.svg';
 import { ReactComponent as LowerBubbles } from '../assets/Footer-bubbles.svg';
 import styled from 'styled-components';
+import { Typography } from '@rmwc/typography';
 
 const StyledBubbles = styled(HeaderBubbles)`
   position: relative;
@@ -35,6 +36,7 @@ const FooterBubbles = styled(LowerBubbles)`
   overflow: hidden;
 `;
 
+// used in report, divider, review and submit pages
 const FormContainer = styled.div`
   border: 2px solid #ca68a4;
   border-radius: 15px;
@@ -43,6 +45,27 @@ const FormContainer = styled.div`
   justify-content: flex-start;
   margin: 2em;
   padding: 2em;
+  background-color: white;
+
+  input[type='text'] {
+    color: #ABB1D0;
+  }
+
+  input[type='checkbox'] {
+    color: blue;
+  }
+
+  input[type='radio'] {
+  }
+
+  input[type='date'] {
+ 
+  }
 `;
+
+// const TypeQ = styled(Typography)`
+//   color: blue;
+//   padding-bottom: 2em;
+// `;
 
 export { Bubbles, FooterBubbles, FormContainer };
