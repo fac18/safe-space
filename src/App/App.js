@@ -20,7 +20,7 @@ function App() {
         <Route path='/submit' render={() => <Submit />} />
       </Switch>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

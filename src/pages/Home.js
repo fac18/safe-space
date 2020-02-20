@@ -9,14 +9,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  line-height: 50px;
-  margin: 2em;
+  line-height: 3rem;
+  margin: 2rem;
 `;
 
-const Type = styled(Typography)`
+const Type5 = styled(Typography)`
   && {
     text-align: center;
-    padding-bottom: 1em;
+    padding-bottom: 0.8em;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    color: #5763a2;
+    z-index: 50;
+  }
+`;
+
+const TypeB1 = styled(Typography)`
+  && {
+    text-align: center;
     color: #5763a2;
   }
 `;
@@ -26,15 +36,24 @@ const Home = () => {
     <>
       <Header />
       <Container>
-        <Type use='headline5'>
+        <Type5 use='headline5 tag="h5"'>
           48% of musicians have experienced sexual harassment at work
-        </Type>
-        <Type use='headline5'>Over 85% felt unable to report it</Type>
-        <Type use='headline5'>Let’s change this </Type>
+        </Type5>
+        <Type5 use='headline5' tag='h5'>
+          Over 85% felt unable to report it
+        </Type5>
+        <Type5 use='headline5' tag='h2'>
+          Let’s change this{' '}
+        </Type5>
 
-      <ButtonPrimary tag={Link} to='/dividers/0' raised>
-        Report to SafeSpace
-      </ButtonPrimary>
+        <TypeB1 use='body1'>
+          Welcome to a safe space for all musicians to log instances of sexism,
+          sexual harassment and sexual abuse in the music industry.
+        </TypeB1>
+
+        <ButtonPrimary tag={Link} to='/dividers/0' raised>
+          Report to SafeSpace
+        </ButtonPrimary>
 
         <ButtonSecondary outlined tag={Link} to='/support'>
           Access Support Services
