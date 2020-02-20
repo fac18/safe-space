@@ -1,8 +1,34 @@
 import React from 'react';
 import { postResponses, postUser } from '../../../utils/index';
-import { ButtonSecondary } from '../../../components/index';
+
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
+import { Typography } from '@rmwc/typography';
+import Header from '../../../components/Header/Header';
+import { ButtonPrimary } from '../../../components/index';
+import styled from 'styled-components';
+import '@material/textfield/dist/mdc.textfield.css';
+import '@material/typography/dist/mdc.typography.css';
+import { Link } from 'react-router-dom';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 3rem;
+  margin: 2rem;
+`;
+
+const Type5 = styled(Typography)`
+  && {
+    text-align: center;
+    padding-bottom: 0.8em;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    color: #5763a2;
+    z-index: 50;
+  }
+`;
 
 const Submit = ({ responses, user, funcOnChange }) => {
   const history = useHistory();
@@ -16,22 +42,32 @@ const Submit = ({ responses, user, funcOnChange }) => {
   };
   return (
     <>
-      <p>
-        I give permission to the MU to use the information I have provided to
-        bring about change in the music industry
-      </p>
+      <Container>
+        <Header />
+        <Type5 use='headline5' tag='h5'>
+          Thank you for reporting
+        </Type5>
+        <Type5 use='subtitle1'>
+          Please confirm that you give permission to the MU to use this report
+          to bring about change in the music industry.
+        </Type5>
 
-      <p>
-        If you wish to be contacted by the Musician's Union in regard to this
-        report, please provide your email below
-      </p>
-      <TextField
-        label='Enter email address'
-        pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
-        onChange={funcOnChange}
-        name='userEmail'
-      ></TextField>
-      <ButtonSecondary onClick={handleSubmit}>Submit</ButtonSecondary>
+        <Type5 use='subtitle1'>
+          This is entirely optional, but if you wish to be contacted by the MU
+          in regard to this report, please provide your email below:
+        </Type5>
+
+        <TextField
+          fullwidth
+          label='enter email'
+          pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+          onChange={funcOnChange}
+          name='userEmail'
+        ></TextField>
+        <ButtonPrimary onClick={handleSubmit} raised>
+          Submit
+        </ButtonPrimary>
+      </Container>
     </>
   );
 };
