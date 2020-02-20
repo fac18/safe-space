@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ServiceCard from '../components/ServiceCard/ServiceCard.js';
 import { Typography } from '@rmwc/typography';
-import { List } from '@rmwc/list';
 import { services } from '../model/services';
-import { Bubbles, FooterBubbles } from '../components/style';
+import { Bubbles } from '../components/style';
 
 const Container = styled.section`
   display: flex;
