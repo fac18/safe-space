@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TypeQ } from '../style';
 
 const Bottom = styled.footer`
   display: flex;
