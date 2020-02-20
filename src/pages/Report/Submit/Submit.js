@@ -1,14 +1,16 @@
 import React from 'react';
 import { postResponses, postUser } from '../../../utils/index';
-import { ButtonPrimary } from '../../../components/index';
+import { ButtonSecondary } from '../../../components/index';
 import { TextField } from '@rmwc/textfield';
+import { useHistory } from 'react-router-dom';
 
 const Submit = ({ questions, responses, user, setUser, funcOnChange }) => {
+  const history = useHistory();
   console.log({ responses });
   const handleSubmit = event => {
     console.log('I am submitting');
     event.preventDefault();
-    postResponses(responses);
+    postResponses(responses).then(history.push('/report/confirm'));
   };
   return (
     <>
@@ -27,7 +29,7 @@ const Submit = ({ questions, responses, user, setUser, funcOnChange }) => {
         onChange={funcOnChange}
         name='userEmail'
       ></TextField>
-      <ButtonPrimary onClick={handleSubmit}>Submit</ButtonPrimary>
+      <ButtonSecondary onClick={handleSubmit}>Submit</ButtonSecondary>
     </>
   );
 };
