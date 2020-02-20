@@ -1,4 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+import { TypeQ, FlexRow } from '../../../../components/style';
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 1em;
+`;
 
 const FormQuestion = ({ page, questions, funcOnChange }) => {
   return questions
@@ -9,22 +18,26 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
         .map((question, i) => {
           return (
             <React.Fragment key={i}>
-              <p>{question.question}</p>
+              <TypeQ use='headline5'>{question.question}</TypeQ>
               {question.content ? (
-                question.content.map((answer, i) => {
-                  return (
-                    <React.Fragment key={i}>
-                      <input
-                        name={question.question}
-                        type={question.type}
-                        defaultValue={answer}
-                        id={answer + ' ' + question.questionNumber}
-                        onChange={funcOnChange}
-                      />
-                      <label htmlFor={answer}>{answer}</label>
-                    </React.Fragment>
-                  );
-                })
+                <InputWrapper>
+                  {question.content.map((answer, i) => {
+                    return (
+                      <FlexRow key={i}>
+                        <input
+                          name={question.question}
+                          type={question.type}
+                          placeholder={answer}
+                          id={answer + ' ' + question.questionNumber}
+                          onChange={funcOnChange}
+                        />
+                        <label htmlFor={`${page}.${i}`}>
+                          {question.type === 'text' ? null : answer}
+                        </label>
+                      </FlexRow>
+                    );
+                  })}{' '}
+                </InputWrapper>
               ) : (
                 <input
                   name={question.question}

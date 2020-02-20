@@ -6,7 +6,7 @@ import Form from './Form/Form';
 import Divider from './Divider/Divider';
 import Confirm from './Confirm/Confirm';
 import Submit from './Submit/Submit';
-import { ButtonNext, ButtonBack, Loading } from '../../components';
+import { Loading } from '../../components';
 
 // and packages and utils
 import uuid from 'uuid/v4';
@@ -85,7 +85,6 @@ const Report = () => {
   if (!(questions && user && dividers)) {
     return <Loading />;
   }
-
   // if the user is at a section interval the params should indicate this
   // we will therefore render a section, else we will render the questions
   if (location.pathname.includes('section')) {
@@ -115,6 +114,7 @@ const Report = () => {
           setUser={setUser}
           funcOnChange={onChange}
         ></Form>
+<<<<<<< HEAD
         <ButtonBack
           tag={Link}
           to={
@@ -141,6 +141,8 @@ const Report = () => {
         >
           Next
         </ButtonNext>
+=======
+>>>>>>> master
       </>
     );
   }
