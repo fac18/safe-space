@@ -1,12 +1,6 @@
 import React from 'react';
 
-const FormQuestion = ({
-  page,
-  questions,
-  responses,
-  setResponses,
-  funcOnChange,
-}) => {
+const FormQuestion = ({ page, questions, funcOnChange }) => {
   return questions
     ? questions
         .filter(question => {
