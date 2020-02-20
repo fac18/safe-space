@@ -3,9 +3,12 @@ import FormQuestion from './FormQuestion/FormQuestion';
 import { FormContainer, FlexColumn, FlexRow } from '../../../components/style';
 import Header from '../../../components/Header/Header';
 import { ButtonNext, ButtonBack } from '../../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
-const Form = ({ questions, page, funcOnChange }) => {
+const Form = ({ questions, responses, funcOnChange }) => {
+  const params = useParams();
+  const page = parseInt(params.index, 10);
+
   // find indices (in questions array) of first and last questions to appear on this page
   let firstIndex = Infinity;
   let lastIndex = 0;
@@ -16,6 +19,8 @@ const Form = ({ questions, page, funcOnChange }) => {
     }
   });
 
+  console.log({ responses });
+
   return (
     <>
       <Header />
@@ -24,6 +29,7 @@ const Form = ({ questions, page, funcOnChange }) => {
           <form>
             <FormQuestion
               questions={questions}
+              responses={responses}
               funcOnChange={funcOnChange}
               page={page}
             ></FormQuestion>

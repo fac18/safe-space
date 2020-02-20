@@ -9,17 +9,27 @@ const InputWrapper = styled.div`
   padding-bottom: 1em;
 `;
 
-const FormQuestion = ({ page, questions, funcOnChange }) => {
+const FormQuestion = ({ page, questions, responses, funcOnChange }) => {
+  console.log({ questions });
+
   return questions
     ? questions
         .filter(question => {
-          return question.page === page;
+          if (question.page === page) {
+            if (question.split) {
+              return question.condition.includes(responses[question.split]);
+            } else {
+              return true;
+            }
+          } else {
+            return false;
+          }
         })
         .map((question, i) => {
           return (
             <React.Fragment key={i}>
               <TypeQ use='headline5'>{question.question}</TypeQ>
-              {question.content ? (
+              {question.type === 'text' ? (
                 <InputWrapper>
                   {question.content.map((answer, i) => {
                     return (
@@ -28,22 +38,36 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
                           name={question.question}
                           type={question.type}
                           placeholder={answer}
-                          id={answer + ' ' + question.questionNumber}
+                          id={`${page}.${i}`}
                           onChange={funcOnChange}
                         />
-                        <label htmlFor={`${page}.${i}`}>
-                          {question.type === 'text' ? null : answer}
-                        </label>
                       </FlexRow>
                     );
-                  })}{' '}
+                  })}
+                </InputWrapper>
+              ) : question.type === 'radio' || question.type === 'checkbox' ? (
+                <InputWrapper>
+                  {question.content.map((answer, i) => {
+                    return (
+                      <FlexRow key={i}>
+                        <input
+                          name={question.question}
+                          type={question.type}
+                          value={answer}
+                          id={`${page}.${i}`}
+                          onChange={funcOnChange}
+                        />
+                        <label htmlFor={`${page}.${i}`}>{answer}</label>
+                      </FlexRow>
+                    );
+                  })}
                 </InputWrapper>
               ) : (
                 <input
                   name={question.question}
                   type={question.type}
+                  id={`${page}.${i}`}
                   onChange={funcOnChange}
-                  defaultValue={''}
                 />
               )}
             </React.Fragment>
