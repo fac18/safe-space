@@ -35,4 +35,14 @@ const FooterBubbles = styled(LowerBubbles)`
   overflow: hidden;
 `;
 
-export { Bubbles, FooterBubbles };
+const FormContainer = styled.div`
+  border: 2px solid #ca68a4;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: flex-start;
+  margin: 2em;
+  padding: 2em;
+`;
+
+export { Bubbles, FooterBubbles, FormContainer };
