@@ -17,6 +17,7 @@ const Container = styled.div`
   align-items: center;
   line-height: 3rem;
   margin: 2rem;
+  padding-top: 2.5rem;
 `;
 
 const Type5 = styled(Typography)`
@@ -49,8 +50,8 @@ const Submit = ({ responses, user, funcOnChange }) => {
   };
   return (
     <>
+      <Header />
       <Container>
-        <Header />
         <Type5 use='headline5' tag='h5'>
           Thank you for reporting
         </Type5>
