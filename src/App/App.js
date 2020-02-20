@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route exact path='/' render={() => <Home />} />
         <Route path='/report/:index' render={() => <Report />} />
-        <Route path='/dividers/:index' render={() => <SectionDivider />} />
+        <Route path='/report/dividers/:index' render={() => <Report />} />
         <Route path='/report/review' render={() => <Report />} />
         <Route path='/report/submit' render={() => <Report />} />
         <Route path='/frequently-asked-questions' render={() => <FAQs />} />
