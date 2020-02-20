@@ -48,7 +48,12 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
                   })}{' '}
                 </InputWrapper>
               ) : (
-                <input type={question.type} />
+                <input
+                  name={question.question}
+                  type={question.type}
+                  onChange={funcOnChange}
+                  defaultValue={''}
+                />
               )}
             </React.Fragment>
           );
