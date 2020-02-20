@@ -4,7 +4,7 @@ import { useParams, useLocation, Link } from 'react-router-dom';
 // import subcomponents and reusables
 import Form from './Form/Form';
 import Divider from './Divider/Divider';
-import Review from './Review/Review';
+import Confirm from './Confirm/Confirm';
 import Submit from './Submit/Submit';
 import { Loading } from '../../components';
 
@@ -19,8 +19,8 @@ import hardDividers from '../../model/dividers';
 const Report = () => {
   // set up states
   const [questions, setQuestions] = useState(null);
-  const [user, setUser] = useState(null);
   const [dividers, setDividers] = useState(null);
+  const [user, setUser] = useState(uuid());
 
   useEffect(() => {
     getQuestions()
@@ -46,11 +46,6 @@ const Report = () => {
           err
         );
       });
-
-    setUser({
-      ref: uuid(), // may be non-unique (but almost impossibly unlikely)
-      email: '',
-    });
   }, []);
 
   const reducer = (state, { field, value, type }) => {
@@ -94,10 +89,10 @@ const Report = () => {
   // we will therefore render a section, else we will render the questions
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
-  } else if (location.pathname.includes('review')) {
-    return <Review questions={questions} responses={responses} />;
+  } else if (location.pathname.includes('confirm')) {
+    return <Confirm questions={questions} responses={responses} user={user} />;
   } else if (location.pathname.includes('submit')) {
-    return <Submit responses={responses} user={user} setUser={setUser} />;
+    return <Submit funcOnChange={onChange} responses={responses} user={user} />;
   } else {
     const page = parseInt(params.index);
     // find indices (in questions array) of first and last questions to appear on this page
