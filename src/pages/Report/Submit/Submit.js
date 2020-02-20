@@ -4,13 +4,15 @@ import { ButtonSecondary } from '../../../components/index';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
 
-const Submit = ({ questions, responses, user, setUser, funcOnChange }) => {
+const Submit = ({ responses, user, funcOnChange }) => {
   const history = useHistory();
-  console.log({ responses });
   const handleSubmit = event => {
-    console.log('I am submitting');
     event.preventDefault();
-    postResponses(responses).then(history.push('/report/confirm'));
+    const finalRecord = {
+      ...responses,
+      userRef: user,
+    };
+    postResponses(finalRecord).then(history.push('/report/confirm'));
   };
   return (
     <>
