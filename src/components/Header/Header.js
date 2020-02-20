@@ -9,6 +9,7 @@ import {
 } from '@rmwc/top-app-bar';
 import '@material/top-app-bar/dist/mdc.top-app-bar.css';
 import { Bubbles } from '../style';
+import { ReactComponent as Logo } from '../../assets/safespace-logo.svg';
 
 const AppBar = styled(TopAppBar)`
   && {
@@ -18,6 +19,10 @@ const AppBar = styled(TopAppBar)`
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
+`;
+
+const SSLogo = styled(Logo)`
+  width: 50vw;
 `;
 
 const Header = () => {
@@ -30,6 +35,7 @@ const Header = () => {
               {/* <a href='/about'>About</a>
               <a href='/freq'>FAQ</a> */}
             </TopAppBarTitle>
+            <SSLogo />
           </TopAppBarSection>
         </TopAppBarRow>
       </AppBar>
