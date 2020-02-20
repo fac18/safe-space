@@ -1,8 +1,8 @@
 # Safe Space
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5c6fdabe-1590-4128-bdb4-f981780281bf/deploy-status)](https://app.netlify.com/sites/safespacemu/deploys) | ![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master) | [![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/safe-space)
+![Netlify Status](https://api.netlify.com/api/v1/badges/5c6fdabe-1590-4128-bdb4-f981780281bf/deploy-status) | ![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master) | ![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)
 
-**Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@groupanimal](https://github.com/groupanimal)
+**Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@edificex](https://github.com/edificex)
 
 We're a team of four developers working on a _Tech for Better_ project for the [Musicians' Union](https://www.musiciansunion.org.uk/).
 
@@ -67,14 +67,14 @@ Read FaunaDB as Airtable in this image to get an idea of data flows between envi
 
 Our Airtable base is not a relational SQL database proper, so this schema (generated with dbdiagram.io) does not map exactly, but is a useful reference.
 
-[![](https://i.imgur.com/UOciiUK.png)](https://dbdiagram.io/d/5e4570b89e76504e0ef16a20)
+[![](https://i.imgur.com/sGLJFMZ.png)](https://dbdiagram.io/d/5e4570b89e76504e0ef16a20)
 
 Some clarifications follow:
 
-- The _Responses_ table has fields for every question in the _Questions_ table, with the name of each field given by the question text; the singular _question_ field in the _Responses_ table above is a shorthand for this 
-- Records in the _Users_ table refer to a single report made on the Safe Space platform, rather than to a unique user. Any person using the platform to make multiple reports will recieve a unique reference every time, so will only be identifiable as a repeat user if they also provide the same email on multiple occasions
-- The _id_ field in each table in the schema is represented in Airtable by the serial integer field which is automatically part of every table. When you make a request for records from Airtable, these numbers are decremented by 1 to become the indices of the returned array of records
-- The only relation in the schema is between the _responses_ field in the _Users_ table and the _user_ field in the _Responses_ table. This is a 1-to-1 relation in that every response submitted will relate to only one user and visa versa. The respective records will be produced simultaneously
+- The _Responses_ table has fields for every question in the _Questions_ table, with the name of each field given by the question text; the singular _questionName_ field in the schema above is a shorthand for this
+- Records in the _Responses_ table refer to a single report made on the Safe Space platform. Any person using the platform to make multiple reports will recieve a unique reference every time, so will only be identifiable as a repeat user if they also provide the same email on multiple occasions
+- The _recordId_ field of each table in the schema is built in to Airtable and not visible in their UI, but accessible via the API. They are 17 characters strings like `rec5Aw88283xE3kvK`
+- We did have a separate _Users_ table container the unique ref and email, with each record having a 1-to-1 relation with a record in _Responses_. We changed this because [Airtable recommends managing such a relation](https://support.airtable.com/hc/en-us/articles/218734758) by co-locating all such data in the same table
 
 ## Security and anonymity
 
@@ -102,6 +102,8 @@ However, in the case that the user
 Resolutions:
 
 -
+
+
 
 #### User's email account
 

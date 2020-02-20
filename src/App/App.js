@@ -14,8 +14,7 @@ function App() {
         <Route exact path='/' render={() => <Home />} />
         <Route exact path='/report/:index' render={() => <Report />} />
         <Route exact path='/report/section/:index' render={() => <Report />} />
-        <Route exact path='/report/review' render={() => <Report />} />
-        <Route exact path='/report/submit' render={() => <Report />} />
+
         <Route path='/frequently-asked-questions' render={() => <FAQs />} />
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
@@ -23,7 +22,7 @@ function App() {
         <Route path='/submit' render={() => <Submit />} />
       </Switch>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
