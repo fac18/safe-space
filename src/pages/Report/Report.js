@@ -1,10 +1,59 @@
-import React from 'react';
+import React { useReducer, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Loading } from '../../components';
 import Form from './Form/Form';
-import {postData} from '../../utils/index'
+import { postResponses } from '../../utils/index';
+// packages and utils
+import uuid from 'uuid/v4';
+import { getQuestions, generateId } from '../../utils/index';
+// import dividers from '../model/dividers';
+
+// fallback data
+import hardQuestions from '../model/questions';
+import hardResponses from '../model/responses';
 
 const Report = ({ questions, responses, setResponses, user, setUser }) => {
+  const [questions, setQuestions] = useState(null);
+  const [responses, setResponses] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getQuestions()
+      .then(records => {
+        // console.log(records);
+        setQuestions(records);
+        let responseArr = [];
+        records.map(question => responseArr.push(question.question));
+        setResponses(responseArr); // why is response array no longer being converted to object?
+      })
+      .catch(err => {
+        setQuestions(hardQuestions);
+        setResponses(hardResponses);
+        console.log(
+          'Failed to fetch question data - falling back to hard coding. Error: ',
+          err
+        );
+      });
+
+    generateId()
+      .then(id => {
+        setUser({
+          ref: id, // guaranteed to be unique
+          email: '',
+        });
+      })
+      .catch(err => {
+        setUser({
+          ref: uuid(), // may be non-unique (but almost impossibly unlikely)
+          email: '',
+        });
+        console.log(
+          'Failed to fetch user data - falling back to hard coding. Error: ',
+          err
+        );
+      });
+  }, []);
+
   const params = useParams();
 
   const page = parseInt(params.index, 10);
@@ -44,7 +93,6 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   // array of responses with no answers is given the value state
-  responses = state;
 
   const onChange = event => {
     dispatch({
@@ -54,6 +102,7 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
     });
   };
 
+  setResponses(state);
   return (
     <>
       <Form
@@ -63,14 +112,14 @@ const Report = ({ questions, responses, setResponses, user, setUser }) => {
         setResponses={setResponses}
         user={user}
         setUser={setUser}
+        onSubmit={postResponses(responses)}
         funcOnChange={onChange}
-        onSubmit={}
       ></Form>
       <ButtonBack
         tag={Link}
         to={
           firstIndex === 0
-            ? `/dividers/${questions[0].section}`
+            ? `/report/dividers/${questions[0].section}`
             : questions[firstIndex].section !==
               questions[firstIndex - 1].section
             ? `/dividers/${questions[firstIndex].section}`
