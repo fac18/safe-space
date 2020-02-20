@@ -6,7 +6,7 @@ import Form from './Form/Form';
 import Divider from './Divider/Divider';
 import Review from './Review/Review';
 import Submit from './Submit/Submit';
-import { ButtonNext, ButtonBack, Loading } from '../../components';
+import { Loading } from '../../components';
 
 // and packages and utils
 import uuid from 'uuid/v4';
@@ -90,7 +90,6 @@ const Report = () => {
   if (!(questions && user && dividers)) {
     return <Loading />;
   }
-
   // if the user is at a section interval the params should indicate this
   // we will therefore render a section, else we will render the questions
   if (location.pathname.includes('section')) {
@@ -120,32 +119,6 @@ const Report = () => {
           setUser={setUser}
           funcOnChange={onChange}
         ></Form>
-        <ButtonBack
-          tag={Link}
-          to={
-            firstIndex === 0
-              ? `/report/${questions[0].section}`
-              : questions[firstIndex].section !==
-                questions[firstIndex - 1].section
-              ? `/report/section/${questions[firstIndex].section}`
-              : `/report/${page - 1}`
-          }
-        >
-          Back
-        </ButtonBack>
-        <ButtonNext
-          tag={Link}
-          to={
-            lastIndex === questions.length - 1
-              ? `/review` // send to review page upon completion - yet to be made
-              : questions[lastIndex].section !==
-                questions[lastIndex + 1].section
-              ? `/report/section/${questions[lastIndex + 1].section}`
-              : `/report/${page + 1}`
-          }
-        >
-          Next
-        </ButtonNext>
       </>
     );
   }
