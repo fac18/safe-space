@@ -114,35 +114,6 @@ const Report = () => {
           setUser={setUser}
           funcOnChange={onChange}
         ></Form>
-<<<<<<< HEAD
-        <ButtonBack
-          tag={Link}
-          to={
-            firstIndex === 0
-              ? `/report/${questions[0].section}`
-              : questions[firstIndex].section !==
-                questions[firstIndex - 1].section
-              ? `/report/section/${questions[firstIndex].section}`
-              : `/report/${page - 1}`
-          }
-        >
-          Back
-        </ButtonBack>
-        <ButtonNext
-          tag={Link}
-          to={
-            lastIndex === questions.length - 1
-              ? `/report/submit` // send to confirm page upon completion - yet to be made
-              : questions[lastIndex].section !==
-                questions[lastIndex + 1].section
-              ? `/report/section/${questions[lastIndex + 1].section}`
-              : `/report/${page + 1}`
-          }
-        >
-          Next
-        </ButtonNext>
-=======
->>>>>>> master
       </>
     );
   }
