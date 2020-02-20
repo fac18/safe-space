@@ -57,6 +57,7 @@ const Report = () => {
   }, []);
   // (questions && responses && user)) return <Loading />;
   const params = useParams();
+  console.log({ params });
 
   const page = parseInt(params.index, 10);
 
@@ -117,10 +118,10 @@ const Report = () => {
         tag={Link}
         to={
           firstIndex === 0
-            ? `/report/dividers/${questions[0].section}`
+            ? `/report/${questions[0].section}`
             : questions[firstIndex].section !==
               questions[firstIndex - 1].section
-            ? `/dividers/${questions[firstIndex].section}`
+            ? `/report/section${questions[firstIndex].section + 1}`
             : `/report/${page - 1}`
         }
       >
