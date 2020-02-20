@@ -1,4 +1,4 @@
-import { getQuestions, getUsers } from './getData';
+import { getQuestions, getUsers, getDividers } from './getData';
 import { postResponses, postUser } from './postData';
 import generateId from './generateId';
 // import convertArrayToObject from './convertArrayToObject';
@@ -6,6 +6,7 @@ import generateId from './generateId';
 export {
   getQuestions,
   getUsers,
+  getDividers,
   postResponses,
   postUser,
   generateId,
