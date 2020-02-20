@@ -84,4 +84,10 @@ const FlexColumn = styled.div`
   flex-direction: column;
 `;
 
-export { Bubbles, FooterBubbles, FormContainer, TypeQ, FlexColumn };
+const FlexRow = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  padding-bottom: 0.5em;
+`;
+
+export { Bubbles, FooterBubbles, FormContainer, TypeQ, FlexColumn, FlexRow };

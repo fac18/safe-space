@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TypeQ } from '../../../../components/style';
+import { TypeQ, FlexRow } from '../../../../components/style';
 // import { Typography } from '@rmwc/typography';
 
 // const input = styled.p`
@@ -18,11 +18,7 @@ const InputWrapper = styled.div`
   padding-bottom: 1em;
 `;
 
-const FlexRow = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  padding-bottom: 0.5em;
-`;
+
 
 const FormQuestion = ({ page, questions, funcOnChange }) => {
   return questions
