@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ButtonBack } from '../components/index';
 import Header from '../components/Header/Header';
 
-import { TypeQ, Bubbles, FormContainer, FlexColumn } from '../components/style';
+import { TypeQ, FormContainer, FlexColumn } from '../components/style';
 
 const FAQs = () => {
   return (
