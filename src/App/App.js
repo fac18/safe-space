@@ -4,7 +4,7 @@ import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About, Support, Review, Submit } from '../pages';
 import Report from '../pages/Report/Report';
-import Dividers from '../pages/Report/Dividers';
+
 import { Footer } from '../components';
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
       <Switch>
         <Route exact path='/' render={() => <Home />} />
         <Route exact path='/report/:index' render={() => <Report />} />
-        <Route exact path='/report/section/:index' render={() => <Report />} />
 
         <Route path='/frequently-asked-questions' render={() => <FAQs />} />
         <Route path='/about' render={() => <About />} />

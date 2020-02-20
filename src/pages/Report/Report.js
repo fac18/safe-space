@@ -2,6 +2,7 @@ import React, { useReducer, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack, Loading } from '../../components';
 import Form from './Form/Form';
+import Dividers from './Dividers';
 import { postResponses } from '../../utils/index';
 // packages and utils
 import uuid from 'uuid/v4';
@@ -125,7 +126,7 @@ const Report = () => {
     parseInt(sectionNum);
     return (
       <>
-        <h1>Divider Section {sectionNum}</h1>
+        <Dividers />
         <ButtonNext tag={Link} to={`/report/${sectionNum + 1}`}>
           Start Section
         </ButtonNext>
