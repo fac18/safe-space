@@ -1,7 +1,5 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import '@material/button/dist/mdc.button.css';
-import './App.css';
 import { FAQs, Home, About, Report, Support } from '../pages';
 
 function App() {
@@ -17,8 +15,6 @@ function App() {
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
       </Switch>
-
-      {/* <Footer /> */}
     </>
   );
 }
