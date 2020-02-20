@@ -13,11 +13,11 @@ function App() {
         <Route exact path='/' render={() => <Home />} />
         <Route path='/report/:index' render={() => <Report />} />
         <Route path='/dividers/:index' render={() => <SectionDivider />} />
+        <Route path='/report/review' render={() => <Report />} />
+        <Route path='/report/submit' render={() => <Report />} />
         <Route path='/frequently-asked-questions' render={() => <FAQs />} />
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
-        <Route path='/review' render={() => <Review />} />
-        <Route path='/submit' render={() => <Submit />} />
       </Switch>
 
       {/* <Footer /> */}
