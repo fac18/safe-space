@@ -18,8 +18,8 @@ const Submit = ({ questions, responses, user, setUser, funcOnChange }) => {
       </p>
 
       <p>
-        I give permission to the MU to contact me about the information I have
-        provided
+        If you wish to be contacted by the Musician's Union in regard to this
+        report, please provide your email below
       </p>
       <TextField
         label='Enter email address'

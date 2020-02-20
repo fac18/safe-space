@@ -4,7 +4,7 @@ import { useParams, useLocation, Link } from 'react-router-dom';
 // import subcomponents and reusables
 import Form from './Form/Form';
 import Divider from './Divider/Divider';
-import Review from './Review/Review';
+import Confirm from './Confirm/Confirm';
 import Submit from './Submit/Submit';
 import { ButtonNext, ButtonBack, Loading } from '../../components';
 
@@ -95,8 +95,8 @@ const Report = () => {
   // we will therefore render a section, else we will render the questions
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
-  } else if (location.pathname.includes('review')) {
-    return <Review questions={questions} responses={responses} />;
+  } else if (location.pathname.includes('confirm')) {
+    return <Confirm questions={questions} responses={responses} />;
   } else if (location.pathname.includes('submit')) {
     return (
       <Submit
@@ -144,7 +144,7 @@ const Report = () => {
           tag={Link}
           to={
             lastIndex === questions.length - 1
-              ? `/report/submit` // send to review page upon completion - yet to be made
+              ? `/report/submit` // send to confirm page upon completion - yet to be made
               : questions[lastIndex].section !==
                 questions[lastIndex + 1].section
               ? `/report/section/${questions[lastIndex + 1].section}`
