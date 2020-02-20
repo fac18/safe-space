@@ -17,7 +17,8 @@ const BubblesContainer = styled.div`
   position: absolute;
   overflow: hidden;
   width: 100vw;
-  z-index: 0;
+  z-index: -10;
+
   /* height: 200px; */
 `;
 
@@ -45,10 +46,13 @@ const FormContainer = styled.div`
   justify-content: flex-start;
   margin: 2em;
   padding: 2em;
-  background-color: white;
+  background: white;
 
+  #text {
+    color: pink;
+  }
   input[type='text'] {
-    color: #ABB1D0;
+    color: #abb1d0;
   }
 
   input[type='checkbox'] {
@@ -59,13 +63,25 @@ const FormContainer = styled.div`
   }
 
   input[type='date'] {
- 
+  }
+
+  label {
+    color: #2d3c8a;
   }
 `;
 
-// const TypeQ = styled(Typography)`
-//   color: blue;
-//   padding-bottom: 2em;
-// `;
+const TypeQ = styled(Typography)`
+  && {
+    color: #2d3c8a;
+    display: block;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+`;
 
-export { Bubbles, FooterBubbles, FormContainer };
+const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export { Bubbles, FooterBubbles, FormContainer, TypeQ, FlexColumn };

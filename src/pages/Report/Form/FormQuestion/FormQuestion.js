@@ -1,20 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { TypeQ } from '../../../../components/style'
+import { TypeQ } from '../../../../components/style';
+// import { Typography } from '@rmwc/typography';
 
 // const input = styled.p`
 //   padding-bottom: 2em;
+// `;
+
+// const TypeQ = styled(Typography)`
+//     color:
 // `;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-bottom: 1em;
 `;
 
 const FlexRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  padding-bottom: 0.5em;
 `;
 
 const FormQuestion = ({ page, questions, funcOnChange }) => {
@@ -26,7 +33,7 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
         .map((question, i) => {
           return (
             <React.Fragment key={i}>
-              {question.question}
+              <TypeQ use='headline5'>{question.question}</TypeQ>
               {question.content ? (
                 <InputWrapper>
                   {question.content.map((answer, i) => {
