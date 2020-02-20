@@ -137,7 +137,7 @@ const Report = () => {
           tag={Link}
           to={
             lastIndex === questions.length - 1
-              ? `/review` // send to review page upon completion - yet to be made
+              ? `/report/submit` // send to review page upon completion - yet to be made
               : questions[lastIndex].section !==
                 questions[lastIndex + 1].section
               ? `/report/section/${questions[lastIndex + 1].section}`
