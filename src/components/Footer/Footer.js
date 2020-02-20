@@ -7,7 +7,7 @@ const Bottom = styled.footer`
   flex-direction: column;
   padding: 0.5rem;
   line-height: 1.5rem;
-  background-color: #7768a6;
+  background-color: #abb1d0;
   width: 100%;
   bottom: 0;
 `;
