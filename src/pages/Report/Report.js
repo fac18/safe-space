@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 // import subcomponents and reusables
 import Form from './Form/Form';
 import Divider from './Divider/Divider';
-import Review from './Review/Review';
+import Confirm from './Confirm/Confirm';
 import Submit from './Submit/Submit';
 import { Loading } from '../../components';
 
@@ -19,8 +19,8 @@ import hardDividers from '../../model/dividers';
 const Report = () => {
   // set up states
   const [questions, setQuestions] = useState(null);
-  const [user, setUser] = useState(null);
   const [dividers, setDividers] = useState(null);
+  const user = uuid();
 
   useEffect(() => {
     getQuestions()
@@ -46,11 +46,6 @@ const Report = () => {
           err
         );
       });
-
-    setUser({
-      ref: uuid(), // may be non-unique (but almost impossibly unlikely)
-      email: '',
-    });
   }, []);
 
   const reducer = (state, { field, value, type }) => {
@@ -89,10 +84,12 @@ const Report = () => {
 
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
-  } else if (location.pathname.includes('review')) {
-    return <Review questions={questions} responses={responses} />;
+  } else if (location.pathname.includes('confirm')) {
+    return <Confirm questions={questions} responses={responses} user={user} />;
   } else if (location.pathname.includes('submit')) {
-    return <Submit responses={responses} user={user} />;
+    return (
+      <Submit funcOnChange={funcOnChange} responses={responses} user={user} />
+    );
   } else {
     return (
       <Form

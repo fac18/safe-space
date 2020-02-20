@@ -84,7 +84,7 @@ export default [
     page: 4,
     section: 1,
     content: ['Man', 'Woman'],
-    question: 'Was the harrasser(s) or perpetrator(s) a...',
+    question: 'Was the person who did this a:',
     type: 'radio',
   },
   {

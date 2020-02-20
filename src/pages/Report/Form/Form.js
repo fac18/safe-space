@@ -22,12 +22,9 @@ const Form = ({ questions, responses, funcOnChange }) => {
     }
   });
 
-  console.log({ responses });
-  console.log(questions.length);
-
   const triggerChange = e => {
     const changeEvent = new Event('click', { bubbles: true });
-    otherOption.current.dispatchEvent(changeEvent);
+    if (otherOption.current) otherOption.current.dispatchEvent(changeEvent);
   };
 
   return (
@@ -64,7 +61,7 @@ const Form = ({ questions, responses, funcOnChange }) => {
               tag={Link}
               to={
                 lastIndex === questions.length - 1
-                  ? `/review` // send to review page upon completion - yet to be made
+                  ? `/report/submit` // send to review page upon completion - yet to be made
                   : questions[lastIndex].section !==
                     questions[lastIndex + 1].section
                   ? `/report/section/${questions[lastIndex + 1].section}`

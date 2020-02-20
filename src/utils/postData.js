@@ -2,6 +2,7 @@
 //which will contain all of the user's answers
 const postResponses = async responses => {
   // first we wait for the fetch to resolve to a response
+  console.log({ responses });
   let response = await fetch(
     '../../.netlify/functions/post-responses/post-responses.js',
     {
@@ -17,16 +18,4 @@ const postResponses = async responses => {
   return result;
 };
 
-const postUser = async user => {
-  return await (
-    await fetch('../../.netlify/functions/post-user/post-user.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    })
-  ).json();
-};
-
-export { postResponses, postUser };
+export { postResponses };

@@ -9,16 +9,10 @@ const getQuestions = async () => {
   ).json();
 };
 
-const getUsers = async () => {
-  return await (
-    await fetch('../../.netlify/functions/get-users/get-users.js')
-  ).json();
-};
-
 const getDividers = async () => {
   return await (
     await fetch('../../.netlify/functions/get-dividers/get-dividers.js')
   ).json();
 };
 
-export { getQuestions, getUsers, getDividers };
+export { getQuestions, getDividers };

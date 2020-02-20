@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { TypeQ, FlexRow } from '../../../../components/style';
 
+const FlexInputs = styled(FlexRow)`
+  justify-content: flex-start;
+`;
+
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,7 +47,7 @@ const FormQuestion = ({
                 <InputWrapper>
                   {question.content.map((answer, i) => {
                     return (
-                      <FlexRow key={i}>
+                      <FlexInputs key={i}>
                         <input
                           name={question.question}
                           type={question.type}
@@ -51,7 +55,7 @@ const FormQuestion = ({
                           id={`${page}.${i}`}
                           onChange={funcOnChange}
                         />
-                      </FlexRow>
+                      </FlexInputs>
                     );
                   })}
                 </InputWrapper>
@@ -59,7 +63,7 @@ const FormQuestion = ({
                 <InputWrapper>
                   {question.content.map((answer, i) => {
                     return (
-                      <FlexRow key={i}>
+                      <FlexInputs key={i}>
                         <input
                           ref={
                             answer === 'Other (please specify)'
@@ -79,7 +83,7 @@ const FormQuestion = ({
                           onClick={funcOnChange}
                         />
                         <label htmlFor={`${page}.${i}`}>{answer}</label>
-                      </FlexRow>
+                      </FlexInputs>
                     );
                   })}
                   {(() => {

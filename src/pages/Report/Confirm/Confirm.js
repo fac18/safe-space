@@ -1,9 +1,10 @@
 import React from 'react';
-import { Header, ButtonPrimary, ButtonSecondary } from '../components/index';
 import { Typography } from '@rmwc/typography';
-import { Link } from 'react-router-dom';
+import Header from '../../../components/Header/Header';
+import { ButtonPrimary } from '../../../components/index';
 import styled from 'styled-components';
 import '@material/typography/dist/mdc.typography.css';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -31,35 +32,38 @@ const TypeB1 = styled(Typography)`
   }
 `;
 
-const Home = () => {
+const TypeB2 = styled(Typography)`
+  && {
+    text-align: center;
+    color: #5763a2;
+    text-decoration: underline;
+  }
+`;
+
+const Confirm = ({ questions, responses, user }) => {
   return (
     <>
       <Header />
       <Container>
-        <Type5 use='headline5 tag="h5"'>
-          48% of musicians have experienced sexual harassment at work
+        <Type5 use='headline5' tag='h5'>
+          Survey complete
         </Type5>
         <Type5 use='headline5' tag='h5'>
-          Over 85% felt unable to report it
+          Thank you for taking the time to add your experience to the report.
         </Type5>
-        <Type5 use='headline5' tag='h2'>
-          Let’s change this{' '}
+        <Type5 use='headline5' tag='h5'>
+          Together we can make a change.
         </Type5>
-
         <TypeB1 use='body1'>
-          Welcome to a safe space for all musicians to log instances of sexism,
-          sexual harassment and sexual abuse in the music industry.
+          Please save your unique reference no. somewhere safe:
         </TypeB1>
-
-        <ButtonPrimary raised tag={Link} to='/report/section/0'>
-          Report to SafeSpace
+        <TypeB2 use='body2'>{user}</TypeB2>
+        <ButtonPrimary raised tag={Link} to='/'>
+          Home
         </ButtonPrimary>
-
-        <ButtonSecondary outlined tag={Link} to='/support'>
-          Access Support Services
-        </ButtonSecondary>
       </Container>
     </>
   );
 };
-export default Home;
+
+export default Confirm;

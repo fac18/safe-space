@@ -1,6 +1,13 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ButtonNext, ButtonBack } from '../../../components';
+import {
+  FormContainer,
+  FlexColumn,
+  FlexRow,
+  TypeQ,
+  Bubbles2,
+} from '../../../components/style';
 
 const SectionDivider = ({ questions, dividers }) => {
   const params = useParams();
@@ -22,19 +29,28 @@ const SectionDivider = ({ questions, dividers }) => {
 
   return (
     <>
-      {paras.map((para, i) => (
-        <p key={i}>{para}</p>
-      ))}
-      <p>{explainer}</p>
-      <ButtonBack
-        tag={Link}
-        to={section === 0 ? `/` : `/report/${questions[prevIndex].page}`}
-      >
-        Back
-      </ButtonBack>
-      <ButtonNext tag={Link} to={`/report/${questions[nextIndex].page}`}>
-        Next
-      </ButtonNext>
+      <Bubbles2 />
+      <FormContainer>
+        <FlexColumn>
+          {paras.map((para, i) => (
+            <TypeQ use='headline6' key={i}>
+              {para}
+            </TypeQ>
+          ))}
+          <TypeQ use='body1'>{explainer}</TypeQ>
+          <FlexRow>
+            <ButtonBack
+              tag={Link}
+              to={section === 0 ? `/` : `/report/${questions[prevIndex].page}`}
+            >
+              Back
+            </ButtonBack>
+            <ButtonNext tag={Link} to={`/report/${questions[nextIndex].page}`}>
+              OK
+            </ButtonNext>
+          </FlexRow>
+        </FlexColumn>
+      </FormContainer>
     </>
   );
 };
