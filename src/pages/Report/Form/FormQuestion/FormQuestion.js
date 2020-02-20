@@ -9,8 +9,18 @@ const InputWrapper = styled.div`
   padding-bottom: 1em;
 `;
 
-const FormQuestion = ({ page, questions, responses, funcOnChange }) => {
-  console.log({ questions });
+const FormQuestion = ({
+  page,
+  questions,
+  responses,
+  funcOnChange,
+  other,
+  setOther,
+  otherOption,
+}) => {
+  const changeOther = e => {
+    setOther(e.target.value);
+  };
 
   return questions
     ? questions
@@ -29,7 +39,7 @@ const FormQuestion = ({ page, questions, responses, funcOnChange }) => {
           return (
             <React.Fragment key={i}>
               <TypeQ use='headline5'>{question.question}</TypeQ>
-              {question.type === 'text' ? (
+              {question.type === 'text' || question.type === 'textarea' ? (
                 <InputWrapper>
                   {question.content.map((answer, i) => {
                     return (
@@ -51,16 +61,48 @@ const FormQuestion = ({ page, questions, responses, funcOnChange }) => {
                     return (
                       <FlexRow key={i}>
                         <input
+                          ref={
+                            answer === 'Other (please specify)'
+                              ? otherOption
+                              : null
+                          }
                           name={question.question}
                           type={question.type}
-                          value={answer}
+                          value={(() => {
+                            if (answer === 'Other (please specify)') {
+                              return other ? other : '';
+                            } else {
+                              return answer;
+                            }
+                          })()}
                           id={`${page}.${i}`}
-                          onChange={funcOnChange}
+                          onClick={funcOnChange}
                         />
                         <label htmlFor={`${page}.${i}`}>{answer}</label>
                       </FlexRow>
                     );
                   })}
+                  {(() => {
+                    // if any checkboxes/radio buttons have been clicked already
+                    if (responses[question.question]) {
+                      // and if the question has an 'other' flag and the responses object contains the empty string or our other state
+                      if (
+                        question.other === true &&
+                        (responses[question.question].includes('') ||
+                          responses[question.question].includes(other))
+                      ) {
+                        // then we display a text box to capture the 'other' submission
+                        return (
+                          <input
+                            name={`${question.question} - other`}
+                            type='text'
+                            placeholder='Give more detail here'
+                            onChange={changeOther}
+                          />
+                        );
+                      }
+                    }
+                  })()}
                 </InputWrapper>
               ) : (
                 <input

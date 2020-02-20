@@ -71,10 +71,9 @@ const Report = () => {
   };
 
   // set up responses state with reducer
-  let initialState = {};
-  const [responses, dispatch] = useReducer(reducer, initialState);
+  const [responses, dispatch] = useReducer(reducer, {});
 
-  const onChange = event => {
+  const funcOnChange = event => {
     dispatch({
       type: event.target.type, //send the input type, i.e. checkbox/radio
       field: event.target.name, //the name of the field (questionName)
@@ -99,7 +98,7 @@ const Report = () => {
       <Form
         questions={questions}
         responses={responses}
-        funcOnChange={onChange}
+        funcOnChange={funcOnChange}
       />
     );
   }

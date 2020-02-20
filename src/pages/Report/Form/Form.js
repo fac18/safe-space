@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import FormQuestion from './FormQuestion/FormQuestion';
 import { FormContainer, FlexColumn, FlexRow } from '../../../components/style';
 import Header from '../../../components/Header/Header';
@@ -6,6 +6,9 @@ import { ButtonNext, ButtonBack } from '../../../components/Button/Button';
 import { useParams, Link } from 'react-router-dom';
 
 const Form = ({ questions, responses, funcOnChange }) => {
+  const [other, setOther] = useState(null);
+  const otherOption = useRef();
+
   const params = useParams();
   const page = parseInt(params.index, 10);
 
@@ -20,6 +23,12 @@ const Form = ({ questions, responses, funcOnChange }) => {
   });
 
   console.log({ responses });
+  console.log(questions.length);
+
+  const triggerChange = e => {
+    const changeEvent = new Event('click', { bubbles: true });
+    otherOption.current.dispatchEvent(changeEvent);
+  };
 
   return (
     <>
@@ -32,6 +41,9 @@ const Form = ({ questions, responses, funcOnChange }) => {
               responses={responses}
               funcOnChange={funcOnChange}
               page={page}
+              other={other}
+              setOther={setOther}
+              otherOption={otherOption}
             ></FormQuestion>
           </form>
           <FlexRow>
@@ -58,6 +70,7 @@ const Form = ({ questions, responses, funcOnChange }) => {
                   ? `/report/section/${questions[lastIndex + 1].section}`
                   : `/report/${page + 1}`
               }
+              onClick={triggerChange}
             >
               Next
             </ButtonNext>
