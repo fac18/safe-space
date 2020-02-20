@@ -2,10 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
-import { FAQs, Home, About, Support, Review, Submit } from '../pages';
-import Report from '../pages/Report/Report';
-
-import { Footer } from '../components';
+import { FAQs, Home, About, Report, Support } from '../pages';
 
 function App() {
   return (
@@ -13,12 +10,12 @@ function App() {
       <Switch>
         <Route exact path='/' render={() => <Home />} />
         <Route exact path='/report/:index' render={() => <Report />} />
-
+        <Route exact path='/report/section/:index' render={() => <Report />} />
+        <Route exact path='/report/review' render={() => <Report />} />
+        <Route exact path='/report/submit' render={() => <Report />} />
         <Route path='/frequently-asked-questions' render={() => <FAQs />} />
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
-        <Route path='/review' render={() => <Review />} />
-        <Route path='/submit' render={() => <Submit />} />
       </Switch>
 
       {/* <Footer /> */}
