@@ -1,15 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TypeQ, FlexRow } from '../../../../components/style';
-// import { Typography } from '@rmwc/typography';
-
-// const input = styled.p`
-//   padding-bottom: 2em;
-// `;
-
-// const TypeQ = styled(Typography)`
-//     color:
-// `;
 
 const InputWrapper = styled.div`
   display: flex;
@@ -17,8 +8,6 @@ const InputWrapper = styled.div`
   justify-content: flex-start;
   padding-bottom: 1em;
 `;
-
-
 
 const FormQuestion = ({ page, questions, funcOnChange }) => {
   return questions
@@ -38,11 +27,13 @@ const FormQuestion = ({ page, questions, funcOnChange }) => {
                         <input
                           name={question.question}
                           type={question.type}
-                          defaultValue={answer}
+                          placeholder={answer}
                           id={answer + ' ' + question.questionNumber}
                           onChange={funcOnChange}
                         />
-                        <label htmlFor={answer}>{answer}</label>
+                        <label htmlFor={`${page}.${i}`}>
+                          {question.type === 'text' ? null : answer}
+                        </label>
                       </FlexRow>
                     );
                   })}{' '}
