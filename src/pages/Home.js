@@ -51,7 +51,7 @@ const Home = () => {
           sexual harassment and sexual abuse in the music industry.
         </TypeB1>
 
-        <ButtonPrimary tag={Link} to='/report/section0' raised>
+        <ButtonPrimary tag={Link} to='/report/section/0' raised>
           Report to SafeSpace
         </ButtonPrimary>
 
