@@ -98,7 +98,14 @@ const Report = () => {
   } else if (location.pathname.includes('review')) {
     return <Review questions={questions} responses={responses} />;
   } else if (location.pathname.includes('submit')) {
-    return <Submit responses={responses} user={user} setUser={setUser} />;
+    return (
+      <Submit
+        funcOnChange={onChange}
+        responses={responses}
+        user={user}
+        setUser={setUser}
+      />
+    );
   } else {
     const page = parseInt(params.index);
     // find indices (in questions array) of first and last questions to appear on this page

@@ -1,8 +1,9 @@
 import React from 'react';
 import { postResponses, postUser } from '../../../utils/index';
 import { ButtonPrimary } from '../../../components/index';
+import { TextField } from '@rmwc/textfield';
 
-const Submit = ({ questions, responses, user, setUser }) => {
+const Submit = ({ questions, responses, user, setUser, funcOnChange }) => {
   console.log({ responses });
   const handleSubmit = event => {
     console.log('I am submitting');
@@ -20,6 +21,12 @@ const Submit = ({ questions, responses, user, setUser }) => {
         I give permission to the MU to contact me about the information I have
         provided
       </p>
+      <TextField
+        label='Enter email address'
+        pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+        onChange={funcOnChange}
+        name='userEmail'
+      ></TextField>
       <ButtonPrimary onClick={handleSubmit}>Submit</ButtonPrimary>
     </>
   );
