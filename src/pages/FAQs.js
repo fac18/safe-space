@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonBack } from '../components/index';
-import { TypeQ, Bubbles, FormContainer, FlexColumn } from '../components/style';
+import Header from '../components/Header/Header';
+
+import { TypeQ, FormContainer, FlexColumn } from '../components/style';
 
 const FAQs = () => {
   return (
     <>
-      <Bubbles></Bubbles>
+      <Header />
       <FormContainer>
         <FlexColumn>
           <TypeQ use='headline5'>What is sexual harassment?</TypeQ>
