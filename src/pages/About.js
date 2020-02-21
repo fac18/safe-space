@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { TypeQ, Bubbles, FormContainer, FlexColumn } from '../components/style';
 import { ButtonBack } from '../components/index';
 import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer'
 
 const About = () => {
   return (
@@ -53,6 +54,7 @@ const About = () => {
           </ButtonBack>
         </FlexColumn>
       </FormContainer>
+      <Footer />
     </>
   );
 };

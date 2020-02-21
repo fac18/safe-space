@@ -19,7 +19,7 @@ function App() {
         <Route path='/support' render={() => <Support />} />
       </Switch>
 
-      <Footer />
+  
     </>
   );
 }

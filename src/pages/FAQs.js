@@ -2,8 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonBack } from '../components/index';
 import Header from '../components/Header/Header';
-
+import { CollapsibleList, SimpleListItem, List } from '@rmwc/list';
 import { TypeQ, FormContainer, FlexColumn } from '../components/style';
+import '@material/list/dist/mdc.list.css';
+import '@rmwc/list/collapsible-list.css';
+import styled from 'styled-components';
+import Footer from '../components/Footer/Footer'
+
+
+// let SListItem = styled(SimpleListItem)`
+//   && {
+//     #text {
+//       font-size: 2em;
+//       color: blue important!;
+//     }
+//   }
+// `;
 
 const FAQs = () => {
   return (
@@ -11,6 +25,70 @@ const FAQs = () => {
       <Header />
       <FormContainer>
         <FlexColumn>
+
+
+          {/* <List>
+            <CollapsibleList
+              handle={
+                <SListItem
+                  text='Icecream'
+                  graphic='star'
+                  metaIcon='chevron_right'
+                />
+              }
+            >
+              <SListItem text='Vanilla' />
+              <SListItem text='Chocolate' />
+              <CollapsibleList
+                handle={
+                  <SListItem
+                    text='Nested Collapsible'
+                    graphic='touch_app'
+                    metaIcon='chevron_right'
+                  />
+                }
+              >
+                <SListItem text='Orange' />
+                <SListItem text='Strawberry' />
+                <SListItem text='Blueberry' />
+              </CollapsibleList>
+            </CollapsibleList>
+
+            <CollapsibleList
+              handle={<SListItem text='What is sexual harassment?' />}
+              onOpen={() => console.log('open')}
+              onClose={() => console.log('close')}
+            >
+              <SListItem
+                text='Sexual harassment is when someone behaves in a way that makes you
+            feel distressed, intimidated or offended and the behaviour is of a
+            sexual nature.'
+              />
+              <SListItem
+                text='This includes: Sexual comments or jokes, hysical behaviour: unwelcome sexual advances, touching and various
+            forms of sexual assault.'
+              />
+              <SListItem text='Peanut Butter' />
+            </CollapsibleList>
+
+            <CollapsibleList
+              handle={<SListItem text='What is sexual harassment?' />}
+              onOpen={() => console.log('open')}
+              onClose={() => console.log('close')}
+            >
+              <SListItem
+                text='Sexual harassment is when someone behaves in a way that makes you
+            feel distressed, intimidated or offended and the behaviour is of a
+            sexual nature.'
+              />
+              <SListItem
+                text='This includes: Sexual comments or jokes, hysical behaviour: unwelcome sexual advances, touching and various
+            forms of sexual assault.'
+              />
+              <SListItem text='Peanut Butter' />
+            </CollapsibleList>
+          </List> */}
+
           <TypeQ use='headline5'>What is sexual harassment?</TypeQ>
 
           <TypeQ use='body1'>
@@ -110,6 +188,7 @@ const FAQs = () => {
           </ButtonBack>
         </FlexColumn>
       </FormContainer>
+      <Footer/>
     </>
   );
 };
