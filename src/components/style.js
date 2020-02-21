@@ -5,6 +5,15 @@ import { ReactComponent as LowerBubbles } from '../assets/Footer-bubbles.svg';
 import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 
+const PageContainer = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
+
+const ContentWrap = styled.div`
+  padding-bottom: 5.5rem; /* Footer height */
+`;
+
 const StyledBubbles = styled(HeaderBubbles)`
   position: relative;
   left: -4em;
@@ -118,4 +127,6 @@ export {
   TypeQ,
   FlexColumn,
   FlexRow,
+  PageContainer,
+  ContentWrap,
 };
