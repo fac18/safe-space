@@ -12,6 +12,7 @@ const Container = styled.div`
   align-items: center;
   line-height: 3rem;
   margin: 2rem;
+  padding-top: 2rem;
 `;
 
 const Type5 = styled(Typography)`

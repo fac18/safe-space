@@ -30,9 +30,7 @@ const FAQuestion = () => {
   // What the MU Safe Space cannot do
   // We cannot provide counselling. But we will always provide information on relevant support services
   // We are very limited in terms of what can be done industrially to address a complaint of a sexual assault.
-  // We cannot guarantee the outcome that you want.
-
-  return <p>FAQuestion goes here</p>;
+  // We cannot guarantee the outcome that you want.  return <p>FAQuestion goes here</p>;
 };
 
 export default FAQuestion;
