@@ -4,6 +4,16 @@ import { ReactComponent as HeaderBubbles2 } from '../assets/Header-bubbles2.svg'
 import { ReactComponent as LowerBubbles } from '../assets/Footer-bubbles.svg';
 import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
+import '@material/button/dist/mdc.button.css';
+
+const PageContainer = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
+
+const ContentWrap = styled.div`
+  padding-bottom: 5.5rem; /* Footer height */
+`;
 
 const PageContainer = styled.div`
   position: relative;
@@ -36,7 +46,6 @@ const BubblesContainer = styled.div`
   overflow: hidden;
   width: 100vw;
   z-index: -10;
-
   /* height: 200px; */
 `;
 
@@ -80,7 +89,7 @@ const FormContainer = styled.div`
     color: pink;
   }
   input[placeholder] {
-    color: #abb1d0;
+    color: #2d3c8a;
   }
 
   input[type='checkbox'] {
