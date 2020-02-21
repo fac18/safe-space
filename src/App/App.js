@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { FAQs, Home, About, Report, Support } from '../pages';
-import Footer from '../components/Footer/Footer';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
       </Switch>
-      <Footer />
     </>
   );
 }
