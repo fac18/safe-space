@@ -28,7 +28,7 @@ describe('Visiting website', function() {
 
     // ASSERT
     // Make an assertion about the resulting application state
-    cy.url().should('include', '/report/0');
+    cy.url().should('include', '/report/section/0');
     // .contains(content)
     // .contains(content, options)
     // .contains(selector, content)
@@ -36,6 +36,8 @@ describe('Visiting website', function() {
   });
 
   it('Clicks on form elements first page and navigates to second', function() {
+    cy.contains(/ok/i).click();
+    cy.url().should('include', '/report/0');
     cy.get(
       'input[name="What form of sexual harrassment did you experience?"]'
     ).check(['Sexual comments or jokes']); // add assertion
@@ -51,8 +53,29 @@ describe('Visiting website', function() {
       .type('2020-10-10')
       .should('have.value', '2020-10-10');
 
+    cy.get(
+      'input[type="radio"][value="There was a single incident in this period"]'
+    ).click();
+
+    cy.get(
+      'input[type="radio"][value="There were a number of occurrences within this period"]'
+    ).click();
+
     // go to next page
-    // cy.contains(/next/i).click();
-    // cy.url().should('include', '/report/1');
+    cy.contains(/next/i).click();
+    cy.url().should('include', '/report/1');
+  });
+
+  it('clicks several buttons on the third page and navigates to third', function() {
+    cy.get('input[type="radio"][value="In the UK"]').click();
+    cy.get('input[type="radio"][value="Outside the UK"]').click();
+
+    cy.get('input[type="checkbox"][value="Function Venue]').click();
+
+    cy.get('input[type="text"][placeholder="Write the location here"]');
+
+    // go to next page
+    cy.contains(/next/i).click();
+    cy.url().should('include', '/report/1');
   });
 });
