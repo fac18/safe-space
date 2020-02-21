@@ -4,7 +4,7 @@ import { TypeQ } from '../style';
 
 const Bottom = styled.footer`
   display: flex;
-  position: absolute;
+  /* position: absolute; FIX THIS*/ 
   flex-direction: column;
   align-items: flex-end;
   padding: 0.5rem;
