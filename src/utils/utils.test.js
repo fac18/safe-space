@@ -7,6 +7,19 @@ import App from '../App/App';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import mockResponse from '../model/questions';
+import { stringify } from './index';
+
+describe('stringify makes arrays in an object into comma separated strings', () => {
+  const obj = {
+    yes: ['H', 'E', 'L', 'L', 'O'],
+    no: [0, 1, 2],
+  };
+  let stringifiedObj = stringify(obj);
+  console.log({ stringifiedObj });
+  console.log(stringifiedObj.yes);
+  expect(stringifiedObj.yes).toBe('H, E, L, L, O');
+  expect(stringifiedObj.no).toBe('0, 1, 2');
+});
 
 afterEach(cleanup);
 
