@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ServiceCard from '../components/ServiceCard/ServiceCard.js';
 import { Typography } from '@rmwc/typography';
 import { services } from '../model/services';
-import { TypeQ, Bubbles } from '../components/style';
 import { Link } from 'react-router-dom';
 import { Header, Footer, ButtonPrimary } from '../components/index';
 

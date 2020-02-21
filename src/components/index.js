@@ -14,8 +14,6 @@ import Loading from './Loading/Loading';
 import ServiceCard from './ServiceCard/ServiceCard';
 
 export {
-  FAQuestion,
-  Footer,
   Header,
   Footer,
   ProgressBar,
