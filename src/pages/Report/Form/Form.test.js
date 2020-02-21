@@ -1,17 +1,18 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Form from './Form';
-import questions from '../../model/questions';
+import hardQuestions from '../../../model/questions';
+import hardResponses from '../../../model/responses';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
 test('Page 2 of report form renders with the correct questions', async () => {
   const history = createMemoryHistory();
   history.push('/report/2');
-
+  // need to test how to get the dynamic indices from useParams()
   const { findByText, debug } = render(
     <Router history={history}>
-      <Form page={2} questions={questions} />
+      <Form questions={hardQuestions} responses={hardResponses} />
     </Router>
   );
   const pg2q1 = await findByText(/Did the incident take place in the UK?/i);

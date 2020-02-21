@@ -23,6 +23,7 @@ const AppBar = styled(TopAppBar)`
 
 const SSLogo = styled(Logo)`
   width: 50vw;
+  position: fixed;
 `;
 
 const Header = () => {

@@ -4,6 +4,8 @@ import { Typography } from '@rmwc/typography';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import '@material/typography/dist/mdc.typography.css';
+import Footer from '../components/Footer/Footer'
+
 
 const Container = styled.div`
   display: flex;
@@ -59,6 +61,7 @@ const Home = () => {
           Access Support Services
         </ButtonSecondary>
       </Container>
+      <Footer/>
     </>
   );
 };

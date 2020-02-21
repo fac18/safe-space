@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TypeQ } from '../style';
 
 const Bottom = styled.footer`
   display: flex;
-  position: absolute;
   flex-direction: column;
   align-items: flex-end;
-  padding: 0.5rem;
   line-height: 1.5rem;
   background-color: #abb1d0;
-  width: 100vw;
-  bottom: 0;
   margin-right: 2em;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 5rem;
+  padding-top: 0.5rem;
 `;
 
 const Link = styled.a`

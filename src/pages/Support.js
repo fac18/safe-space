@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import ServiceCard from '../components/ServiceCard/ServiceCard.js';
 import { Typography } from '@rmwc/typography';
 import { services } from '../model/services';
-import { TypeQ, Bubbles } from '../components/style';
 import { Link } from 'react-router-dom';
-import { Header, ButtonPrimary } from '../components/index';
+import { Header, Footer, ButtonPrimary } from '../components/index';
+
 
 const Container = styled.section`
   display: flex;
@@ -61,6 +61,7 @@ const Support = () => {
           Home
         </ButtonPrimary>
       </Container>
+      <Footer/>
     </>
   );
 };

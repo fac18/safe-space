@@ -3,7 +3,6 @@ import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { Report } from '../pages';
-import App from '../App/App';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import mockResponse from '../model/questions';
@@ -35,7 +34,7 @@ it('mocks a returns of expected data', async () => {
   // act(() => {
   const { getByText, debug } = render(
     <Router history={history}>
-      <App />
+      <Report />
     </Router>
   );
   // });
@@ -47,7 +46,7 @@ it('mocks a returns of expected data', async () => {
   // and the second to be to get-users
 
   expect(global.fetch.mock.calls[1][0]).toBe(
-    '../../.netlify/functions/get-users/get-users.js'
+    '../../.netlify/functions/get-dividers/get-dividers.js'
   );
   await wait();
   // Why use async await in a test? :
