@@ -11,7 +11,7 @@ describe('My First Test', function() {
 // expect comes from Chai
 // https://docs.cypress.io/guides/references/bundled-tools.html#Mocha
 
-describe('Visiting website', function() {
+describe('First section flow', function() {
   it('Visits safespacemu and clicks report button', function() {
     // VISIT WEBSITE
     // Set up the application state.
@@ -63,19 +63,31 @@ describe('Visiting website', function() {
 
     // go to next page
     cy.contains(/next/i).click();
-    cy.url().should('include', '/report/1');
+    cy.url().should('include', '/report/2');
   });
 
-  it('clicks several buttons on the third page and navigates to third', function() {
+  it('clicks several buttons on the third page and navigates to the last page of the section', function() {
     cy.get('input[type="radio"][value="In the UK"]').click();
     cy.get('input[type="radio"][value="Outside the UK"]').click();
 
-    cy.get('input[type="checkbox"][value="Function Venue]').click();
+    cy.get('input[type="checkbox"][value="Online"]').click();
 
-    cy.get('input[type="text"][placeholder="Write the location here"]');
+    cy.get('input[type="text"][placeholder="Write the location here"]')
+      .type('Hello my name is Alex')
+      .should('have.value', 'Hello my name is Alex');
 
     // go to next page
     cy.contains(/next/i).click();
-    cy.url().should('include', '/report/1');
+    cy.url().should('include', '/report/3');
+  });
+
+  it('writes experience in the last page of the section and navigates to divider', function() {
+    cy.get('input[type="textarea"][placeholder="Write your experience here"]')
+      .type('Hello my name is Alex')
+      .should('have.value', 'Hello my name is Alex');
+
+    // go to next page
+    cy.contains(/next/i).click();
+    cy.url().should('include', '/report/section/1');
   });
 });
