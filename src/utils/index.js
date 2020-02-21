@@ -4,11 +4,13 @@ import {
   convertArrayToObjectWithString,
   convertArrayToObjectWithArray,
 } from './convertArray';
+import stringify from './stringify';
 
 export {
   getQuestions,
   getDividers,
   postResponses,
+  stringify,
   convertArrayToObjectWithString,
   convertArrayToObjectWithArray,
 };

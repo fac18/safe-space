@@ -1,6 +1,6 @@
 import React from 'react';
 import { postResponses } from '../../../utils/index';
-
+import { stringify } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
 import { Typography } from '@rmwc/typography';
@@ -39,14 +39,18 @@ const TypeB1 = styled(Typography)`
 
 const Submit = ({ responses, user, funcOnChange }) => {
   const history = useHistory();
+
   const handleSubmit = event => {
     event.preventDefault();
-    const finalRecord = {
+    const responsesWithUser = {
       ...responses,
       userRef: user,
     };
-    postResponses(finalRecord).then(history.push('/report/confirm'));
+    postResponses(stringify(responsesWithUser)).then(
+      history.push('/report/confirm')
+    );
   };
+
   return (
     <>
       <Header />
