@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TypeQ, Bubbles, FormContainer, FlexColumn } from '../components/style';
+import { TypeQ, FormContainer, FlexColumn } from '../components/style';
 import { ButtonBack } from '../components/index';
 import Header from '../components/Header/Header';
 

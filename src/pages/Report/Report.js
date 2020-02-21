@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useEffect } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 // import subcomponents and reusables
 import Form from './Form/Form';
@@ -20,7 +20,7 @@ const Report = () => {
   // set up states
   const [questions, setQuestions] = useState(null);
   const [dividers, setDividers] = useState(null);
-  const [user, setUser] = useState(uuid());
+  const user = uuid();
 
   useEffect(() => {
     getQuestions()
@@ -66,10 +66,9 @@ const Report = () => {
   };
 
   // set up responses state with reducer
-  let initialState = {};
-  const [responses, dispatch] = useReducer(reducer, initialState);
+  const [responses, dispatch] = useReducer(reducer, {});
 
-  const onChange = event => {
+  const funcOnChange = event => {
     dispatch({
       type: event.target.type, //send the input type, i.e. checkbox/radio
       field: event.target.name, //the name of the field (questionName)
@@ -78,43 +77,26 @@ const Report = () => {
   };
 
   // grab React Router states to determine which components to render at Report level
-  const params = useParams();
   const location = useLocation();
 
   // if any API calls have yet to resolve, render Loading component
-  if (!(questions && user && dividers)) {
-    return <Loading />;
-  }
-  // if the user is at a section interval the params should indicate this
-  // we will therefore render a section, else we will render the questions
+  if (!(questions && user && dividers)) return <Loading />;
+
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
   } else if (location.pathname.includes('confirm')) {
     return <Confirm questions={questions} responses={responses} user={user} />;
   } else if (location.pathname.includes('submit')) {
-    return <Submit funcOnChange={onChange} responses={responses} user={user} />;
-  } else {
-    const page = parseInt(params.index);
-    // find indices (in questions array) of first and last questions to appear on this page
-    let firstIndex = Infinity;
-    let lastIndex = 0;
-    questions.forEach((question, i) => {
-      if (question.page === page) {
-        if (i < firstIndex) firstIndex = i;
-        if (i > lastIndex) lastIndex = i;
-      }
-    });
-
     return (
-      <>
-        <Form
-          page={page}
-          questions={questions}
-          user={user}
-          setUser={setUser}
-          funcOnChange={onChange}
-        ></Form>
-      </>
+      <Submit funcOnChange={funcOnChange} responses={responses} user={user} />
+    );
+  } else {
+    return (
+      <Form
+        questions={questions}
+        responses={responses}
+        funcOnChange={funcOnChange}
+      />
     );
   }
 };

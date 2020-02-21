@@ -1,5 +1,5 @@
-import { getQuestions, getUsers, getDividers } from './getData';
-import { postResponses, postUser } from './postData';
+import { getQuestions, getDividers } from './getData';
+import { postResponses } from './postData';
 import {
   convertArrayToObjectWithString,
   convertArrayToObjectWithArray,
@@ -7,10 +7,8 @@ import {
 
 export {
   getQuestions,
-  getUsers,
   getDividers,
   postResponses,
-  postUser,
   convertArrayToObjectWithString,
   convertArrayToObjectWithArray,
 };

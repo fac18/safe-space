@@ -1,5 +1,5 @@
 import React from 'react';
-import { postResponses, postUser } from '../../../utils/index';
+import { postResponses } from '../../../utils/index';
 
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +9,6 @@ import { ButtonPrimary } from '../../../components/index';
 import styled from 'styled-components';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
-import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;

@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import FormQuestion from './FormQuestion/FormQuestion';
 import { FormContainer, FlexColumn, FlexRow } from '../../../components/style';
 import Header from '../../../components/Header/Header';
 import { ButtonNext, ButtonBack } from '../../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
+const Form = ({ questions, responses, funcOnChange }) => {
+  const [other, setOther] = useState(null);
+  const otherOption = useRef();
 
-const Form = ({ questions, page, funcOnChange }) => {
+  const params = useParams();
+  const page = parseInt(params.index, 10);
+
   // find indices (in questions array) of first and last questions to appear on this page
   let firstIndex = Infinity;
   let lastIndex = 0;
@@ -17,6 +22,11 @@ const Form = ({ questions, page, funcOnChange }) => {
     }
   });
 
+  const triggerChange = e => {
+    const changeEvent = new Event('click', { bubbles: true });
+    if (otherOption.current) otherOption.current.dispatchEvent(changeEvent);
+  };
+
   return (
     <>
       <Header />
@@ -25,8 +35,12 @@ const Form = ({ questions, page, funcOnChange }) => {
           <form>
             <FormQuestion
               questions={questions}
+              responses={responses}
               funcOnChange={funcOnChange}
               page={page}
+              other={other}
+              setOther={setOther}
+              otherOption={otherOption}
             ></FormQuestion>
           </form>
           <FlexRow>
@@ -47,12 +61,13 @@ const Form = ({ questions, page, funcOnChange }) => {
               tag={Link}
               to={
                 lastIndex === questions.length - 1
-                  ? `/review` // send to review page upon completion - yet to be made
+                  ? `/report/submit` // send to review page upon completion - yet to be made
                   : questions[lastIndex].section !==
                     questions[lastIndex + 1].section
                   ? `/report/section/${questions[lastIndex + 1].section}`
                   : `/report/${page + 1}`
               }
+              onClick={triggerChange}
             >
               Next
             </ButtonNext>
