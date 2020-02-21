@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import '@material/button/dist/mdc.button.css';
 import './App.css';
 import { FAQs, Home, About, Report, Support } from '../pages';
+import Footer from '../components/Footer/Footer';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path='/support' render={() => <Support />} />
       </Switch>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -6,6 +6,7 @@
     "@rmwc/button": "^5.7.2",
     "@rmwc/card": "^5.7.2",
     "@rmwc/checkbox": "^5.7.2",
+    "@rmwc/circular-progress": "^5.7.2",
     "@rmwc/dialog": "^5.7.2",
     "@rmwc/formfield": "^5.7.2",
     "@rmwc/list": "^5.7.2",
