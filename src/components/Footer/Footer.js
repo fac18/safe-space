@@ -6,22 +6,26 @@ const Bottom = styled.footer`
   display: flex;
   position: fixed;
   flex-direction: column;
+  align-items: flex-end;
   padding: 0.5rem;
   line-height: 1.5rem;
   background-color: #abb1d0;
-  width: 100%;
+  width: 100vw;
   bottom: 0;
+  margin-right: 2em;
 `;
 
-// Change font colour and align at bottom-right?
+const Link = styled.a`
+  color: black;
+  padding-right: 1.5em;
+`;
 
 const Footer = () => {
   return (
     <Bottom>
-      <a href='/about'>About</a>
-      <a href='/support'>Support Services</a>
-      <a href='/data'>Your Data</a>
-      <a href='/frequently-asked-questions'>FAQs</a>
+      <Link href='/about'>About</Link>
+      <Link href='/support'>Support Services</Link>
+      <Link href='/frequently-asked-questions'>FAQs</Link>
     </Bottom>
   );
 };
