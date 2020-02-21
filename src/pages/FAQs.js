@@ -56,14 +56,17 @@ const FAQs = () => {
           <TypeQ use='body1'>
             If you are aged 16 or under, or the incident happened when you were
             16 or under, it will not be covered by this survey. Please contact
-            the <a href='https://rapecrisis.org.uk/'>Rape Crisis</a> or the
+            the <a href='https://rapecrisis.org.uk/'>Rape Crisis</a> or the{' '}
             <a href='https://www.nspcc.org.uk/'>NSPCC</a> for advice and
             support. You can also find a list of organisations at{' '}
             <a href='http://themu.org/safespace'>theMU.org/safespace</a>
           </TypeQ>
           <TypeQ use='body1'>
             If you need an immediate help and support, check the services you
-            can contact now [link to the immediate help page]
+            can contact now:{' '}
+            <a href='https://www.musiciansunion.org.uk/Home/Advice/Your-Career/Sexual-Harassment-and-Discrimination/help-and-support'>
+              Help & Support
+            </a>
           </TypeQ>
           <TypeQ use='headline5'>What the MU Safe Space can do</TypeQ>
           <TypeQ use='headline6'>For MU members:</TypeQ>
