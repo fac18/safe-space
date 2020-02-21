@@ -13,7 +13,7 @@ const Form = ({ questions, responses, funcOnChange }) => {
   const page = parseInt(params.index, 10);
 
   // find indices (in questions array) of first and last questions to appear on this page
-  let firstIndex = Infinity;
+  let firstIndex = 1000;
   let lastIndex = 0;
   questions.forEach((question, i) => {
     if (question.page === page) {
@@ -21,7 +21,6 @@ const Form = ({ questions, responses, funcOnChange }) => {
       if (i > lastIndex) lastIndex = i;
     }
   });
-
   const triggerChange = e => {
     const changeEvent = new Event('click', { bubbles: true });
     if (otherOption.current) otherOption.current.dispatchEvent(changeEvent);

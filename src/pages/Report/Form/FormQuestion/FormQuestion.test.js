@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import FormQuestion from './FormQuestion';
-import hardQuestions from '../../model/questions';
+import hardQuestions from '../../../../model/questions';
+import hardResponses from '../../../../model/responses';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
@@ -11,7 +12,11 @@ test('Page 2 of report form renders with the correct questions', async () => {
 
   const { findByText, debug } = render(
     <Router history={history}>
-      <FormQuestion page={2} questions={hardQuestions} />
+      <FormQuestion
+        page={2}
+        questions={hardQuestions}
+        responses={hardResponses}
+      />
     </Router>
   );
   const pg2q1 = await findByText(/Did the incident take place in the UK?/i);
