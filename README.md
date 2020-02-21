@@ -105,19 +105,45 @@ Resolutions:
 
 
 
-#### User's email account
+### User's email account
 
 Similarly, 
 
 
-#### Airtable (data at rest)
+### Airtable (data at rest)
 
 
 
-#### Data in transmission
+### Data in transmission
 
 
 
-#### Netlify
+### Netlify
 
+### Problem Statement
+A recent survey by the Musician’s Union revealed that 48% of musicians face sexual harassment and abuse at work, but only 85% feel comfortable to report.
+The MU want the industry to be safer for all, and particularly freelance musicians who are often the most vulnerable.
+They currently operate a Safe Space email inbox where people can share their experiences and get advice on how to access support services, or potential routes to them.
+#### For users:
+Reporting can be a very difficult and this app hopes to make it a less daunting experience by asking specific questions 
+#### For the MU:
+The qualitative nature of the data and human resource required to process and understand it means the MU are not able to gain a sense of overall trends or collate data to enable them to raise awareness or identify and work with specific venues that may be areas of vulnerability.
+
+### Solution
+A mobile and desktop friendly website survey that allows those within the music industry to report their incidents of harassment in the format of a multi-step form.
+By using input fields the users are guided through information to provide and have the option to leave longer answers.
+
+### Prototype
+![](https://i.imgur.com/j9D1hhM.png)
+
+### Stretch Goals
+Progress Bar
+Button to skip questions one by one
+Button on section dividers to skip entire sections
+Share button to tweet the website 
+Style the inputs
+Fix text styling on section dividers
+Collate all responses on a review page where users can see what they’ve answered for each quetion
+Enable download of collated responses as a PDF file
+Refactor - generally
 
