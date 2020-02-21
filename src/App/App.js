@@ -16,7 +16,6 @@ function App() {
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
       </Switch>
-      <Footer />
     </>
   );
 }
