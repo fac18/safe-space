@@ -55,6 +55,7 @@ const FooterBubbles = styled(LowerBubbles)`
 `;
 
 // used in report, divider, review and submit pages
+// margin is causing overlap if next back buttons when body pos rel and footer pos absolute
 const FormContainer = styled.div`
   border: 2px solid #ca68a4;
   border-radius: 15px;
@@ -64,6 +65,7 @@ const FormContainer = styled.div`
   margin: 2em;
   padding: 2em;
   background: white;
+  /* padding-bottom: 3em; */
 
   #text {
     color: pink;
