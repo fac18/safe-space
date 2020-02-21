@@ -15,11 +15,11 @@ import Loading from './Loading/Loading';
 import ServiceCard from './ServiceCard/ServiceCard';
 
 export {
-  Footer,
   FAQuestion,
   // Form,
   // FormQuestion,
   Header,
+  Footer,
   ProgressBar,
   ButtonPrimary,
   ButtonSecondary,

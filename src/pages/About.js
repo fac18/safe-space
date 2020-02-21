@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TypeQ, FormContainer, FlexColumn } from '../components/style';
+import {
+  TypeQ,
+  FormContainer,
+  FlexColumn,
+  PageContainer,
+  ContentWrap,
+} from '../components/style';
 import { ButtonBack } from '../components/index';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer'
+import Footer from '../components/Footer/Footer';
 
 const About = () => {
   return (
     <>
+    <PageContainer>
+      <ContentWrap>
       <Header />
       <FormContainer>
         <FlexColumn>
@@ -54,7 +62,9 @@ const About = () => {
           </ButtonBack>
         </FlexColumn>
       </FormContainer>
+      </ContentWrap>
       <Footer />
+      </PageContainer>
     </>
   );
 };

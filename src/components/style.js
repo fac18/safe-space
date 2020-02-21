@@ -6,7 +6,15 @@ import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 import '@material/button/dist/mdc.button.css';
 
-// Refactor styling!! :')
+const PageContainer = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
+
+const ContentWrap = styled.div`
+  padding-bottom: 5.5rem; /* Footer height */
+`;
+
 const StyledBubbles = styled(HeaderBubbles)`
   position: relative;
   left: -4em;
@@ -29,7 +37,6 @@ const BubblesContainer = styled.div`
   overflow: hidden;
   width: 100vw;
   z-index: -10;
-
   /* height: 200px; */
 `;
 
@@ -120,4 +127,6 @@ export {
   TypeQ,
   FlexColumn,
   FlexRow,
+  PageContainer,
+  ContentWrap,
 };
