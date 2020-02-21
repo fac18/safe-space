@@ -15,15 +15,6 @@ const ContentWrap = styled.div`
   padding-bottom: 5.5rem; /* Footer height */
 `;
 
-const PageContainer = styled.div`
-  position: relative;
-  min-height: 100vh;
-`;
-
-const ContentWrap = styled.div`
-  padding-bottom: 5.5rem; /* Footer height */
-`;
-
 const StyledBubbles = styled(HeaderBubbles)`
   position: relative;
   left: -4em;
