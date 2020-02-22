@@ -30,17 +30,17 @@ They currently operate a Safe Space email inbox where people can share their exp
 
 ### For users
 
-Reporting can be a very difficult and this app hopes to make it less daunting experience by asking specific questions 
+Reporting can be very difficult and potentially triggering thing to do, and this app hopes to eliminate barriers to entry and make it a slightly less daunting experience by guiding users through with questions
 
 ### For the MU
 
-The qualitative nature of the data and human resource required to process and understand it means the MU are not able to gain a sense of overall trends or collate data to enable them to raise awareness or identify and work with specific venues that may be areas of vulnerability.
+The current process where the MU recieve reports by email means that they are working with a lot of qualitative information . They are unable to gain a sense of overall trends or collate data effectively to enable them to raise awareness or identify and work with specific venues that may be areas of vulnerability etc
 
 ## Solution
 
-A mobile and desktop friendly website survey that allows those within the music industry to report their incidents of harassment in the format of a multi-step form.
+A mobile and desktop friendly website survey that allows those within the music industry to report their incidents of harassment in the format of a multi-step form
 
-Buy using input fields they’re guided through information to provide and have the option to leave longer answers.
+By using input fields - radio buttons, checkboxes and text fields - users are guided through the information to provide and have the option to leave longer answers
 
 ## Installation
 
