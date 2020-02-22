@@ -33,11 +33,11 @@ const SectionDivider = ({ questions, dividers }) => {
       <FormContainer>
         <FlexColumn>
           {paras.map((para, i) => (
-            <TypeQ use='headline6' key={i}>
+            <TypeQ use='headline5' tag='p' key={i}>
               {para}
             </TypeQ>
           ))}
-          <TypeQ use='body1'>{explainer}</TypeQ>
+          <TypeQ use='body1' tag='h5'>{explainer}</TypeQ>
           <FlexRow>
             <ButtonBack
               tag={Link}

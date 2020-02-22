@@ -3,8 +3,8 @@ import { Button } from '@rmwc/button';
 
 const ButtonPrimary = styled(Button)`
   && {
-    // border: 2px solid #CA68A4;
-    border-radius: 1rem;
+    height: 4em;
+    border-radius: 2rem;
     background: linear-gradient(296.3deg, #7768a6 2.65%, #ca68a4 86.52%);
     font-weight: bold;
     width: 17rem;
@@ -16,8 +16,9 @@ const ButtonPrimary = styled(Button)`
 
 const ButtonSecondary = styled(Button)`
   && {
+    height: 4em;
     border: 2px solid #7768a6;
-    border-radius: 1rem;
+    border-radius: 2rem;
     color: #7768a6;
     background: -webkit-linear-gradient(
       296.3deg,
@@ -26,11 +27,11 @@ const ButtonSecondary = styled(Button)`
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    // color: linear-gradient(296.3deg, #7768A6 2.65%, #CA68A4 86.52%) !important;
     font-weight: bold;
-    max-width: 20rem;
-    margin: auto;
+    /* margin: auto; */
     justify-content: center;
+    margin-bottom: 1rem;
+
   }
 `;
 

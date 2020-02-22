@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 import '@material/button/dist/mdc.button.css';
 
+
+
+
 const PageContainer = styled.div`
   position: relative;
   min-height: 100vh;
@@ -102,8 +105,8 @@ const TypeQ = styled(Typography)`
   && {
     color: #2d3c8a;
     display: block;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    /* padding-bottom: 1rem;
+    padding-top: 1rem; */
   }
 `;
 
