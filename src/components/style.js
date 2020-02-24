@@ -75,6 +75,7 @@ const FormContainer = styled.main`
   padding: 2em;
   background: white;
   min-height: 70vh;
+  max-width: 38rem;
   /* padding-bottom: 3em; */
 
   #text {
@@ -104,8 +105,7 @@ const TypeQ = styled(Typography)`
   && {
     color: #2d3c8a;
     display: block;
-    /* padding-bottom: 1rem;
-    padding-top: 1rem; */
+    margin-top: 0.5rem; 
   }
 `;
 

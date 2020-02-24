@@ -22,7 +22,7 @@ const AppBar = styled(TopAppBar)`
 `;
 
 const SSLogo = styled(Logo)`
-  width: 15rem;
+  width: 12rem;
   position: fixed;
   margin-left: 2em;
 `;

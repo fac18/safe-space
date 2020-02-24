@@ -19,8 +19,9 @@ const Bottom = styled.footer`
 const Link = styled.a`
   color: black;
   padding-right: 1.5em;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  /* text-decoration: none; */
 `;
 
 const Footer = () => {
