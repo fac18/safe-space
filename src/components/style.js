@@ -6,9 +6,6 @@ import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 import '@material/button/dist/mdc.button.css';
 
-
-
-
 const PageContainer = styled.div`
   position: relative;
   min-height: 100vh;
@@ -68,7 +65,7 @@ const FooterBubbles = styled(LowerBubbles)`
 
 // used in report, divider, review and submit pages
 // margin is causing overlap if next back buttons when body pos rel and footer pos absolute
-const FormContainer = styled.div`
+const FormContainer = styled.main`
   border: 2px solid #ca68a4;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -77,6 +74,7 @@ const FormContainer = styled.div`
   margin: 2em;
   padding: 2em;
   background: white;
+  min-height: 70vh;
   /* padding-bottom: 3em; */
 
   #text {
@@ -84,6 +82,7 @@ const FormContainer = styled.div`
   }
   input[placeholder] {
     color: #2d3c8a;
+    width: 20em;
   }
 
   input[type='checkbox'] {

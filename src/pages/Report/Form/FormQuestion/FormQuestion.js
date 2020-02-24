@@ -42,7 +42,9 @@ const FormQuestion = ({
         .map((question, i) => {
           return (
             <React.Fragment key={i}>
-              <TypeQ use='headline5'>{question.question}</TypeQ>
+              <TypeQ use='headline5' tag='h2'>
+                {question.question}
+              </TypeQ>
               {question.type === 'text' || question.type === 'textarea' ? (
                 <InputWrapper>
                   {question.content.map((answer, i) => {
