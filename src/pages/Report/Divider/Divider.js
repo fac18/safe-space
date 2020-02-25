@@ -8,6 +8,8 @@ import {
   TypeQ,
   Bubbles2,
 } from '../../../components/style';
+import Header from '../../../components/Header/Header';
+
 
 const SectionDivider = ({ questions, dividers }) => {
   const params = useParams();
@@ -29,15 +31,18 @@ const SectionDivider = ({ questions, dividers }) => {
 
   return (
     <>
-      <Bubbles2 />
+          <Bubbles2 />
+
+          <Header />
+
       <FormContainer>
         <FlexColumn>
           {paras.map((para, i) => (
-            <TypeQ use='headline6' key={i}>
+            <TypeQ use='headline5' tag='p' key={i}>
               {para}
             </TypeQ>
           ))}
-          <TypeQ use='body1'>{explainer}</TypeQ>
+          <TypeQ use='body1' tag='h5'>{explainer}</TypeQ>
           <FlexRow>
             <ButtonBack
               tag={Link}

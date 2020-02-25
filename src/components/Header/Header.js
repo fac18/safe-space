@@ -22,8 +22,9 @@ const AppBar = styled(TopAppBar)`
 `;
 
 const SSLogo = styled(Logo)`
-  width: 50vw;
+  width: 12rem;
   position: fixed;
+  margin-left: 2em;
 `;
 
 const Header = () => {
@@ -32,10 +33,7 @@ const Header = () => {
       <AppBar>
         <TopAppBarRow>
           <TopAppBarSection>
-            <TopAppBarTitle>
-              {/* <a href='/about'>About</a>
-              <a href='/freq'>FAQ</a> */}
-            </TopAppBarTitle>
+            <TopAppBarTitle></TopAppBarTitle>
             <SSLogo />
           </TopAppBarSection>
         </TopAppBarRow>
