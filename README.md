@@ -4,9 +4,43 @@
 
 **Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@edificex](https://github.com/edificex)
 
-We're a team of four developers working on a _Tech for Better_ project for the [Musicians' Union](https://www.musiciansunion.org.uk/).
+We're a team of four developers working on a [_Tech for Better_](https://www.foundersandcoders.com/tech-for-better) project for the [Musicians' Union](https://www.musiciansunion.org.uk/).
 
 Safe Space is a site to make it easier for people in the industry (especially freelance musicians) to report incidents of sexual abuse or harassment at work.
+
+## Contents
+
+ - [Problem statement](#problem-statement)
+ - [The solution](#the-solution)
+ - [Installation](#installation)
+ - [Architecture & stack](#architecture-and-stack)
+ - [Netlify functions](#netlify-functions)
+ - [Airtable schema](#airtable-schema)
+ - [A week in git](#a-week-in-git)
+ - [To do](#to-do)
+ - [License](#license)
+
+## Problem statement
+
+A recent survey by the Musician’s Union revealed that 48% of musicians face sexual harassment and abuse at work, but only 85% feel comfortable to report.
+
+The MU want the industry to be safer for all, and particularly freelance musicians who are often the most vulnerable.
+
+They currently operate a Safe Space email inbox where people can share their experiences and get advice on how to access support services, or potential routes to them.
+
+### For users
+
+Reporting can be very difficult and potentially triggering thing to do, and this app hopes to eliminate barriers to entry and make it a slightly less daunting experience by guiding users through with questions
+
+### For the MU
+
+The current process where the MU recieve reports by email means that they are working with a lot of qualitative information . They are unable to gain a sense of overall trends or collate data effectively to enable them to raise awareness or identify and work with specific venues that may be areas of vulnerability etc
+
+## Solution
+
+A mobile and desktop friendly website survey that allows those within the music industry to report their incidents of harassment in the format of a multi-step form
+
+By using input fields - radio buttons, checkboxes and text fields - users are guided through the information to provide and have the option to leave longer answers
 
 ## Installation
 
@@ -41,6 +75,10 @@ Open your site overview on Netlify by running `netlify open` in the terminal, th
 
 Finally, you can run `netlify dev` in the terminal to start both the React server (on port 3000), the functions server (on a random port), and the combined result on port 8888.
 
+## Architecture and stack
+
+
+
 ## Netlify functions
 
 We started by reading FAC developer-in-residence [Oliver James' article](https://oliverjam.es/blog/we-dont-need-servers/) on running serverless applications entirely in the frontend.
@@ -67,7 +105,7 @@ Read FaunaDB as Airtable in this image to get an idea of data flows between envi
 
 Our Airtable base is not a relational SQL database proper, so this schema (generated with dbdiagram.io) does not map exactly, but is a useful reference.
 
-[![](https://i.imgur.com/sGLJFMZ.png)](https://dbdiagram.io/d/5e4570b89e76504e0ef16a20)
+[![](https://i.imgur.com/jGmJDAX.png)](https://dbdiagram.io/d/5e4570b89e76504e0ef16a20)
 
 Some clarifications follow:
 
@@ -75,6 +113,7 @@ Some clarifications follow:
 - Records in the _Responses_ table refer to a single report made on the Safe Space platform. Any person using the platform to make multiple reports will recieve a unique reference every time, so will only be identifiable as a repeat user if they also provide the same email on multiple occasions
 - The _recordId_ field of each table in the schema is built in to Airtable and not visible in their UI, but accessible via the API. They are 17 characters strings like `rec5Aw88283xE3kvK`
 - We did have a separate _Users_ table container the unique ref and email, with each record having a 1-to-1 relation with a record in _Responses_. We changed this because [Airtable recommends managing such a relation](https://support.airtable.com/hc/en-us/articles/218734758) by co-locating all such data in the same table
+- In the _Questions_ table, if the _split_ field is populated (with the text from another question) this indicates that the associated question should only be shown if the response to the referenced question is one of the options given in _condition_
 
 ## Security and anonymity
 
@@ -97,53 +136,30 @@ The following sections consider different so called roots.
 
 A given user's phone or laptop may be compromised (for example, with malware which includes a [keylogger](https://en.wikipedia.org/wiki/Keystroke_logging)). Unfortunately, we have no control over this and so consider is outside the scope of this project.
 
-However, in the case that the user
+However, in the case that the user...
 
-Resolutions:
+Further aspects to develop:
 
--
-
-
-
-### User's email account
-
-Similarly, 
+#### User's email account
+#### Airtable (data at rest)
+#### Data in transmission
+#### Netlify
 
 
-### Airtable (data at rest)
+## A Week in Git
 
+We thought we might git together again some time.
 
+![](https://i.imgur.com/bJj2VOT.png)
 
-### Data in transmission
+## To do
 
-
-
-### Netlify
-
-### Problem Statement
-A recent survey by the Musician’s Union revealed that 48% of musicians face sexual harassment and abuse at work, but only 85% feel comfortable to report.
-The MU want the industry to be safer for all, and particularly freelance musicians who are often the most vulnerable.
-They currently operate a Safe Space email inbox where people can share their experiences and get advice on how to access support services, or potential routes to them.
-#### For users:
-Reporting can be a very difficult and this app hopes to make it a less daunting experience by asking specific questions 
-#### For the MU:
-The qualitative nature of the data and human resource required to process and understand it means the MU are not able to gain a sense of overall trends or collate data to enable them to raise awareness or identify and work with specific venues that may be areas of vulnerability.
-
-### Solution
-A mobile and desktop friendly website survey that allows those within the music industry to report their incidents of harassment in the format of a multi-step form.
-By using input fields the users are guided through information to provide and have the option to leave longer answers.
-
-### Prototype
-![](https://i.imgur.com/j9D1hhM.png)
-
-### Stretch Goals
-Progress Bar
-Button to skip questions one by one
-Button on section dividers to skip entire sections
-Share button to tweet the website 
-Style the inputs
-Fix text styling on section dividers
-Collate all responses on a review page where users can see what they’ve answered for each quetion
-Enable download of collated responses as a PDF file
-Refactor - generally
-
+- Progress Bar
+- Button to skip questions one by one
+- Button on section dividers to skip entire sections
+- Share button to tweet the website 
+- Style the inputs
+- Fix text styling on section dividers
+- Collate all responses on a review page where users can see what they’ve answered for each quetion
+-  Enable download of collated responses as a PDF file
+- Refactor - generally
