@@ -54,7 +54,7 @@ const FormQuestion = ({
                           name={question.question}
                           type={question.type}
                           placeholder={answer}
-                          id={`${page}.${i}`}
+                          id={`${question.question}.${page}.${i}`}
                           onChange={funcOnChange}
                         />
                       </FlexInputs>
