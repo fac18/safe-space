@@ -38,9 +38,7 @@ The qualitative nature of the data and human resource required to process and un
 
 ## Solution
 
-A mobile and desktop friendly website survey that allows those within the music industry to report their incidents of harassment in the format of a multi-step form.
-
-Buy using input fields they’re guided through information to provide and have the option to leave longer answers.
+Our solution was to build an app with a mobile and desktop friendly, multi-step form that guides the user to submit only the information they feel comfortable with. This submits report data to a secure store which is easily accessible to MU staff.
 
 ## Installation
 
