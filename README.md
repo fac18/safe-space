@@ -14,8 +14,8 @@ Safe Space is a site to make it easier for people in the industry (especially fr
  - [The solution](#the-solution)
  - [Installation](#installation)
  - [Architecture & stack](#architecture-and-stack)
- - [Netlify functions](#netlify-functions)
- - [Airtable schema](#airtable-schema)
+     - [Netlify functions](#netlify-functions)
+     - [Airtable schema](#airtable-schema)
  - [A week in git](#a-week-in-git)
  - [To do](#to-do)
  - [License](#license)
@@ -72,14 +72,13 @@ Open your site overview on Netlify by running `netlify open` in the terminal, th
 - `AIRTABLE_API_KEY`: your personal API key
 - `AIRTABLE_API_URL`: `https://api.airtable.com/`
 
-
 Finally, you can run `netlify dev` in the terminal to start both the React server (on port 3000), the functions server (on a random port), and the combined result on port 8888.
 
 ## Architecture and stack
 
+We decided to build a serverless app with a React frontend and any backend functionality served by Netlify functions (an implementation of AWS Lambdas), and Airtable as a store.
 
-
-## Netlify functions
+### Netlify functions
 
 We started by reading FAC developer-in-residence [Oliver James' article](https://oliverjam.es/blog/we-dont-need-servers/) on running serverless applications entirely in the frontend.
 
@@ -101,7 +100,7 @@ Here's a figure describing our overall architecture:
 - Netlify's own [playground](https://functions-playground.netlify.com/)
 - Also, someone has made a [Netlify functions workshop](https://docs.netlify.com/functions/overview/)!
 
-## Airtable schema
+### Airtable schema
 
 Our Airtable base is not a relational SQL database proper, so this schema (generated with dbdiagram.io) does not map exactly, but is a useful reference.
 
