@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
-import FormQuestion from './FormQuestion/FormQuestion';
-import { FormContainer, FlexColumn, FlexRow } from '../../../components/style';
-import Header from '../../../components/Header/Header';
-import { ButtonNext, ButtonBack } from '../../../components/Button/Button';
+import { FormContainer, FlexColumn, FlexRow } from '../../style';
+import { Header, ButtonNext, ButtonBack } from '../../index';
+import { FormQuestion } from './index';
 import { useParams, Link } from 'react-router-dom';
 
 const Form = ({ questions, responses, funcOnChange }) => {

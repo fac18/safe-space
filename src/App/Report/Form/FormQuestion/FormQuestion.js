@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TypeQ, FlexRow } from '../../../../components/style';
+import { TypeQ, FlexRow } from '../../../style';
 
 const FlexInputs = styled(FlexRow)`
   justify-content: flex-start;
