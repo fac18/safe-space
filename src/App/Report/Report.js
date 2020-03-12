@@ -2,11 +2,7 @@ import React, { useReducer, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // import subcomponents and reusables
-import Form from './Form/Form';
-import Divider from './Divider/Divider';
-import Confirm from './Confirm/Confirm';
-import Submit from './Submit/Submit';
-import { Loading } from '../../components';
+import { Form, Divider, Confirm, Submit, Loading } from './index';
 
 // and packages and utils
 import uuid from 'uuid/v4';

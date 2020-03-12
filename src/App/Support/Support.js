@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import ServiceCard from '../components/ServiceCard/ServiceCard.js';
 import { Typography } from '@rmwc/typography';
-import { services } from '../model/services';
+import { services } from '../../model/services'; // replace with Airtable source
 import { Link } from 'react-router-dom';
-import { Header, Footer, ButtonPrimary } from '../components/index';
-
+import { ServiceCard } from './index';
+import { Header, Footer, ButtonPrimary } from '../index';
 
 const Container = styled.section`
   display: flex;
@@ -61,7 +60,7 @@ const Support = () => {
           Home
         </ButtonPrimary>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 };
