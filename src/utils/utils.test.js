@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { Report } from '../pages';
+import { Report } from '../App/index';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import mockResponse from '../model/questions';
