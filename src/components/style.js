@@ -13,6 +13,11 @@ const PageContainer = styled.div`
 
 const ContentWrap = styled.div`
   padding-bottom: 5.5rem; /* Footer height */
+  /* display: flex;
+  justify-content: center; */
+  @media (max-width: 768px) {
+    /* flex-direction: column; */
+  }
 `;
 
 const StyledBubbles = styled(HeaderBubbles)`
@@ -65,25 +70,23 @@ const FooterBubbles = styled(LowerBubbles)`
 
 // used in report, divider, review and submit pages
 // margin is causing overlap if next back buttons when body pos rel and footer pos absolute
-const FormContainer = styled.main`
+const FormContainer = styled.div`
   border: 2px solid #ca68a4;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 2em;
   padding: 2em;
   background: white;
-  min-height: 70vh;
-  max-width: 38rem;
-  /* padding-bottom: 3em; */
+  width: 50vw;
+  justify-self: center; /* padding-bottom: 3em; */
 
   #text {
     color: pink;
   }
   input[placeholder] {
     color: #2d3c8a;
-    width: 20em;
   }
 
   input[type='checkbox'] {
@@ -105,7 +108,8 @@ const TypeQ = styled(Typography)`
   && {
     color: #2d3c8a;
     display: block;
-    margin-top: 0.5rem; 
+    /* padding-bottom: 1rem; */
+    /* padding-top: 1rem; */
   }
 `;
 

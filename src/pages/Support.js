@@ -5,15 +5,13 @@ import { Typography } from '@rmwc/typography';
 import { services } from '../model/services';
 import { Link } from 'react-router-dom';
 import { Header, Footer, ButtonPrimary } from '../components/index';
+import { PageContainer, ContentWrap } from '../components/style';
 
-
-const Container = styled.section`
+const ContentWrapper = styled(ContentWrap)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 10rem;
+  /* text-align: center; */
 `;
 const Text = styled.section`
   display: flex;
@@ -31,7 +29,6 @@ const Type = styled(Typography)`
 const Type5 = styled(Typography)`
   && {
     text-align: center;
-    padding-bottom: 0.8em;
     margin-block-start: 0em;
     margin-block-end: 0em;
     color: #5763a2;
@@ -44,24 +41,26 @@ const Support = () => {
   return (
     <>
       <Header />
-      <Container>
-        <Type5 use='headline4'>Support Services</Type5>
-        <Text>
-          {services.map(service => (
-            <ServiceCard>
-              <Type use='headline5'> {service.title}</Type>
-              <Type use='body1'>{service.description}</Type>
-              <Type use='body1'>{service.website}</Type>
-              <Type use='body1'>{service.phone}</Type>
-              <Type use='body1'>{service.email}</Type>
-            </ServiceCard>
-          ))}
-        </Text>
-        <ButtonPrimary raised tag={Link} to='/'>
-          Home
-        </ButtonPrimary>
-      </Container>
-      <Footer/>
+      <PageContainer>
+        <ContentWrapper>
+          <Type5 use='headline4'>Support Services</Type5>
+          <Text>
+            {services.map(service => (
+              <ServiceCard>
+                <Type use='headline5'> {service.title}</Type>
+                <Type use='body1'>{service.description}</Type>
+                <Type use='body1'>{service.website}</Type>
+                <Type use='body1'>{service.phone}</Type>
+                <Type use='body1'>{service.email}</Type>
+              </ServiceCard>
+            ))}
+          </Text>
+          <ButtonPrimary raised tag={Link} to='/'>
+            Home
+          </ButtonPrimary>
+        </ContentWrapper>
+        <Footer />
+      </PageContainer>
     </>
   );
 };

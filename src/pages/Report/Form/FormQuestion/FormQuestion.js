@@ -9,7 +9,7 @@ const FlexInputs = styled(FlexRow)`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   padding-bottom: 1em;
 `;
 

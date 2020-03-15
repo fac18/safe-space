@@ -23,22 +23,24 @@ const AppBar = styled(TopAppBar)`
 
 const SSLogo = styled(Logo)`
   width: 12rem;
-  position: fixed;
   margin-left: 2em;
+  z-index: -10;
+
+  /* margin-bottom: 3rem; */
 `;
 
 const Header = () => {
   return (
     <>
-      <AppBar>
+      {/* <AppBar>
         <TopAppBarRow>
           <TopAppBarSection>
-            <TopAppBarTitle></TopAppBarTitle>
-            <SSLogo />
-          </TopAppBarSection>
+            <TopAppBarTitle></TopAppBarTitle> */}
+      <SSLogo />
+      {/* </TopAppBarSection>
         </TopAppBarRow>
       </AppBar>
-      <TopAppBarFixedAdjust />
+      <TopAppBarFixedAdjust /> */}
       <Bubbles />
     </>
   );
