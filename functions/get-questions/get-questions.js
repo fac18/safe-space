@@ -5,9 +5,11 @@ const Airtable = require('airtable');
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 // the handler function can take event and context params (not required in this case)
 // it can also take a callback as third argument, but we will stick to promises
-exports.handler = async () => {
+exports.handler = async (event, context) => {
   // grab airtable variables from Netlify environment (uploaded via UI)
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
+  // grab table from event object (submitted via query string in fetch made from util)
+  const table = event.queryStringParameters.table;
 
   // configure connection to airtable base
   const base = new Airtable({
@@ -19,7 +21,7 @@ exports.handler = async () => {
 
   // select all records - only need to check first page since questions won't exceed 100 entries
   // need an await to ensure data is assigned to records before returning response
-  await base('Questions')
+  await base(table)
     .select({
       maxRecords: 100,
       view: 'Grid view',

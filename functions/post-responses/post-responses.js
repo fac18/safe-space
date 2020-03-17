@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
   }).base(AIRTABLE_BASE_ID);
 
   let data = [];
-  await base('Responses')
+  await base(table)
     .create([
       {
         fields: responses,

@@ -19,7 +19,7 @@ const Report = () => {
   const user = uuid();
 
   useEffect(() => {
-    getQuestions()
+    getQuestions('first-questions')
       .then(records => {
         setQuestions(records);
       })

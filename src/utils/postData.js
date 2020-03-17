@@ -1,10 +1,10 @@
 // we'll be calling postResponses on submit and passing it the state 'responses'
 //which will contain all of the user's answers
-const postResponses = async responses => {
+const postResponses = async (table, responses) => {
   // first we wait for the fetch to resolve to a response
   console.log({ responses });
   let response = await fetch(
-    '../../.netlify/functions/post-responses/post-responses.js',
+    `../../.netlify/functions/post-responses/post-responses.js?table=${table}`,
     {
       method: 'POST',
       headers: {
