@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonBack } from '../components/index';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import { Header, Footer, ButtonBack } from '../index';
 import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 import {
@@ -11,7 +9,7 @@ import {
   FlexColumn,
   PageContainer,
   ContentWrap,
-} from '../components/style';
+} from '../style';
 
 const Type5 = styled(Typography)`
   && {

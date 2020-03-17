@@ -1,11 +1,9 @@
 import React from 'react';
-import { postResponses } from '../../../utils/index';
-import { stringify } from '../../../utils';
+import { postResponses, stringify } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
 import { Typography } from '@rmwc/typography';
-import Header from '../../../components/Header/Header';
-import { ButtonPrimary } from '../../../components/index';
+import { Header, ButtonPrimary } from '../../index';
 import styled from 'styled-components';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';

@@ -1,15 +1,13 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ButtonNext, ButtonBack } from '../../../components';
+import { ButtonNext, ButtonBack, Header } from '../../index';
 import {
   FormContainer,
   FlexColumn,
   FlexRow,
   TypeQ,
   Bubbles2,
-} from '../../../components/style';
-import Header from '../../../components/Header/Header';
-
+} from '../../style';
 
 const SectionDivider = ({ questions, dividers }) => {
   const params = useParams();
@@ -31,9 +29,9 @@ const SectionDivider = ({ questions, dividers }) => {
 
   return (
     <>
-          <Bubbles2 />
+      <Bubbles2 />
 
-          <Header />
+      <Header />
 
       <FormContainer>
         <FlexColumn>
@@ -42,7 +40,9 @@ const SectionDivider = ({ questions, dividers }) => {
               {para}
             </TypeQ>
           ))}
-          <TypeQ use='body1' tag='h5'>{explainer}</TypeQ>
+          <TypeQ use='body1' tag='h5'>
+            {explainer}
+          </TypeQ>
           <FlexRow>
             <ButtonBack
               tag={Link}

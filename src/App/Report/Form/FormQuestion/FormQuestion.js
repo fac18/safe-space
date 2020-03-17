@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TypeQ, FlexRow } from '../../../../components/style';
+import { TypeQ, FlexRow } from '../../../style';
 
 const FlexInputs = styled(FlexRow)`
   justify-content: flex-start;
@@ -54,7 +54,7 @@ const FormQuestion = ({
                           name={question.question}
                           type={question.type}
                           placeholder={answer}
-                          id={`${page}.${i}`}
+                          id={`${question.question}.${page}.${i}`}
                           onChange={funcOnChange}
                         />
                       </FlexInputs>

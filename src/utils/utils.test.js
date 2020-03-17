@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { Report } from '../pages';
+import { Report } from '../App/index';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import mockResponse from '../model/questions';
@@ -14,8 +14,8 @@ describe('stringify makes arrays in an object into comma separated strings', () 
     no: [0, 1, 2],
   };
   let stringifiedObj = stringify(obj);
-  console.log({ stringifiedObj });
-  console.log(stringifiedObj.yes);
+  // console.log({ stringifiedObj });
+  // console.log(stringifiedObj.yes);
   expect(stringifiedObj.yes).toBe('H, E, L, L, O');
   expect(stringifiedObj.no).toBe('0, 1, 2');
 });
