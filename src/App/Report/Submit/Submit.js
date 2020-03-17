@@ -44,7 +44,7 @@ const Submit = ({ responses, user, funcOnChange }) => {
       ...responses,
       userRef: user,
     };
-    postResponses(stringify(responsesWithUser)).then(
+    postResponses('first-responses', stringify(responsesWithUser)).then(
       history.push('/report/confirm')
     );
   };
