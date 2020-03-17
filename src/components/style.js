@@ -79,7 +79,6 @@ const FormContainer = styled.div`
   margin: 2em;
   padding: 2em;
   background: white;
-  width: 50vw;
   justify-self: center; /* padding-bottom: 3em; */
 
   #text {
