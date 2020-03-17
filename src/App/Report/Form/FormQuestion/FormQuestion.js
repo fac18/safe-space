@@ -1,7 +1,6 @@
 import React from 'react';
-import { TypeQ } from '../../../style';
-import { FlexInputs, InputWrapper } from '../../../style';
-
+import styled from 'styled-components';
+import { TypeQ, FlexInputs, InputWrapper } from '../../../style';
 const FormQuestion = ({
   page,
   questions,
