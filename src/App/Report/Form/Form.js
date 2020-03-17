@@ -5,6 +5,7 @@ import { FormQuestion } from './index';
 import { useParams, Link } from 'react-router-dom';
 
 const Form = ({ questions, responses, funcOnChange }) => {
+  // set up 'other' state and ref
   const [other, setOther] = useState(null);
   const otherOption = useRef();
 
@@ -20,8 +21,11 @@ const Form = ({ questions, responses, funcOnChange }) => {
       if (i > lastIndex) lastIndex = i;
     }
   });
+
+  // force inclusion of text from 'Other' field into responses object, where applicable
   const triggerChange = e => {
     const changeEvent = new Event('click', { bubbles: true });
+    // if ref contains information, i.e. text field used, simulate a click on said field (bubbles to form)
     if (otherOption.current) otherOption.current.dispatchEvent(changeEvent);
   };
 
@@ -30,7 +34,7 @@ const Form = ({ questions, responses, funcOnChange }) => {
       <Header />
       <FormContainer>
         <FlexColumn>
-          <form>
+          <form id='report-form'>
             <FormQuestion
               questions={questions}
               responses={responses}
@@ -52,6 +56,7 @@ const Form = ({ questions, responses, funcOnChange }) => {
                   ? `/report/section/${questions[firstIndex].section}`
                   : `/report/${page - 1}`
               }
+              onClick={triggerChange}
             >
               Back
             </ButtonBack>
