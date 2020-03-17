@@ -3,17 +3,12 @@ import styled from 'styled-components';
 import { Typography } from '@rmwc/typography';
 import { services } from '../../model/services'; // replace with Airtable source
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD:src/pages/Support.js
-import { Header, Footer, ButtonPrimary } from '../components/index';
-import { PageContainer, ContentWrap } from '../components/style';
+import { PageContainer, ContentWrap } from '../style';
+import { Header, Footer, ButtonPrimary } from '../index';
+import { ServiceCard } from './index';
+
 
 const ContentWrapper = styled(ContentWrap)`
-=======
-import { ServiceCard } from './index';
-import { Header, Footer, ButtonPrimary } from '../index';
-
-const Container = styled.section`
->>>>>>> master:src/App/Support/Support.js
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,29 +42,8 @@ const Support = () => {
   return (
     <>
       <Header />
-<<<<<<< HEAD:src/pages/Support.js
-      <PageContainer>
+<PageContainer>
         <ContentWrapper>
-          <Type5 use='headline4'>Support Services</Type5>
-          <Text>
-            {services.map(service => (
-              <ServiceCard>
-                <Type use='headline5'> {service.title}</Type>
-                <Type use='body1'>{service.description}</Type>
-                <Type use='body1'>{service.website}</Type>
-                <Type use='body1'>{service.phone}</Type>
-                <Type use='body1'>{service.email}</Type>
-              </ServiceCard>
-            ))}
-          </Text>
-          <ButtonPrimary raised tag={Link} to='/'>
-            Home
-          </ButtonPrimary>
-        </ContentWrapper>
-        <Footer />
-      </PageContainer>
-=======
-      <Container>
         <Type5 use='headline4'>Support Services</Type5>
         <Text>
           {services.map(service => (
@@ -85,9 +59,10 @@ const Support = () => {
         <ButtonPrimary raised tag={Link} to='/'>
           Home
         </ButtonPrimary>
-      </Container>
+        </ContentWrapper>
       <Footer />
->>>>>>> master:src/App/Support/Support.js
+      </PageContainer>
+
     </>
   );
 };
