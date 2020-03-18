@@ -35,15 +35,33 @@ const Form = ({ questions, responses, funcOnChange }) => {
       <FormContainer>
         <FlexColumn>
           <form id='report-form'>
-            <FormQuestion
-              questions={questions}
-              responses={responses}
-              funcOnChange={funcOnChange}
-              page={page}
-              other={other}
-              setOther={setOther}
-              otherOption={otherOption}
-            ></FormQuestion>
+            {(() =>
+              questions
+                .filter(question => {
+                  if (question.page === page) {
+                    if (question.split) {
+                      return question.condition.includes(
+                        responses[question.split]
+                      ); // BUG ??
+                    } else {
+                      return true;
+                    }
+                  } else {
+                    return false;
+                  }
+                })
+                .map((question, i) => (
+                  <FormQuestion
+                    key={`${page}.${i}`}
+                    question={question}
+                    responses={responses}
+                    funcOnChange={funcOnChange}
+                    page={page}
+                    other={other}
+                    setOther={setOther}
+                    otherOption={otherOption}
+                  ></FormQuestion>
+                )))()}
           </form>
           <FlexRow>
             <ButtonBack
