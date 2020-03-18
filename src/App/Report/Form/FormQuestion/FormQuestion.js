@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { TypeQ } from '../../../style';
 import { FlexInputs, InputWrapper } from './style';
+
 const FormQuestion = ({
   page,
   questions,
@@ -19,7 +19,7 @@ const FormQuestion = ({
     .filter(question => {
       if (question.page === page) {
         if (question.split) {
-          return question.condition.includes(responses[question.split]); // BUG
+          return question.condition.includes(responses[question.split]); // BUG ??
         } else {
           return true;
         }
