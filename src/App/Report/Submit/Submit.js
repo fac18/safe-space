@@ -38,6 +38,8 @@ const TypeB1 = styled(Typography)`
 const Submit = ({ responses, user, updateResponses }) => {
   const history = useHistory();
 
+  // NEED TO devise a way to submit multiple responses to Airtable, rather than just concatenate into one string
+  // OR split them up in separate columns in the responses tables
   const handleSubmit = event => {
     event.preventDefault();
     const responsesWithUser = {

@@ -1,27 +1,24 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { TypeQ } from '../../../style';
 import { FlexInputs, InputWrapper } from './style';
 
 const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
-  // set up 'other' state and ref for this specific question
-  const [other, setOther] = useState(null);
+  // to capture text in optional 'Other' field, we will trick the dispatch in updateResponses into including it
+  // first we set up a state and ref to track 'Other' text and element respectively, for this question
+  const [other, setOther] = useState('');
   const otherOption = useRef();
 
+  // replace other state w/ new content when text field changes
   const changeOther = e => {
     setOther(e.target.value);
   };
 
-  // force inclusion of text from 'Other' field into responses object, where applicable
-  const triggerChange = ref => {
+  // force inclusion of 'Other' text into responses object when text field loses focus (onblur)
+  const triggerChange = () => {
+    // we do this by simulating a click on the 'Other' checkbox (bubbles to form ??)
     const changeEvent = new Event('click', { bubbles: true });
-    // if ref contains information, i.e. text field used, simulate a click on said field (bubbles to form)
-    if (ref.current) ref.current.dispatchEvent(changeEvent);
+    otherOption.current.dispatchEvent(changeEvent);
   };
-
-  // trigger inclusion of 'Other' text in response object on dismount
-  useEffect(() => {
-    return triggerChange(otherOption);
-  }, []);
 
   return (
     <>
@@ -85,13 +82,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         }
                         name={question.question}
                         type={question.type}
-                        value={(() => {
-                          if (answer === 'Other (please specify)') {
-                            return other ? other : '';
-                          } else {
-                            return answer;
-                          }
-                        })()}
+                        value={answer === 'Other (please specify)' ? other : ''}
                         id={`${page}.${i}.${j}`}
                         onClick={updateResponses}
                       />
@@ -100,24 +91,24 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   );
                 })}
                 {(() => {
-                  // if any checkboxes/radio buttons have been clicked already
-                  if (responses[question.question]) {
-                    // and if the question has an 'other' flag and the responses object contains the empty string or our other state
-                    if (
-                      question.other === true &&
-                      (responses[question.question].includes('') ||
-                        responses[question.question].includes(other))
-                    ) {
-                      // then we display a text box to capture the 'other' submission
-                      return (
+                  // if the question has an 'other' flag and the 'Other' option is checked by user
+                  if (
+                    question.other === true &&
+                    otherOption.current &&
+                    otherOption.current.checked
+                  ) {
+                    // then we display a text box to capture the 'other' submission
+                    return (
+                      <FlexInputs>
                         <input
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
                           onChange={changeOther}
+                          onBlur={triggerChange}
                         />
-                      );
-                    }
+                      </FlexInputs>
+                    );
                   }
                 })()}
               </InputWrapper>
@@ -151,24 +142,22 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   );
                 })}
                 {(() => {
-                  // if any checkboxes/radio buttons have been clicked already
-                  if (responses[question.question]) {
-                    // and if the question has an 'other' flag and the responses object contains the empty string or our other state
-                    if (
-                      question.other === true &&
-                      (responses[question.question].includes('') ||
-                        responses[question.question].includes(other))
-                    ) {
-                      // then we display a text box to capture the 'other' submission
-                      return (
+                  if (
+                    question.other === true &&
+                    otherOption.current &&
+                    otherOption.current.checked
+                  ) {
+                    return (
+                      <FlexInputs>
                         <input
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
                           onChange={changeOther}
+                          onBlur={triggerChange}
                         />
-                      );
-                    }
+                      </FlexInputs>
+                    );
                   }
                 })()}
               </InputWrapper>

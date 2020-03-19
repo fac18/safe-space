@@ -9,6 +9,8 @@ const Form = ({ questions, responses, updateResponses }) => {
   const page = parseInt(useParams().index, 10);
   const history = useHistory();
 
+  console.log({ responses });
+
   // fn: filter full questions object to determine which to display on page being rendered
   const filterQuestions = (questions, page) => {
     return questions.filter((question, i) => {
