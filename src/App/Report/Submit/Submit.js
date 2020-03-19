@@ -35,7 +35,7 @@ const TypeB1 = styled(Typography)`
   }
 `;
 
-const Submit = ({ responses, user, funcOnChange }) => {
+const Submit = ({ responses, user, updateResponses }) => {
   const history = useHistory();
 
   const handleSubmit = event => {
@@ -71,7 +71,7 @@ const Submit = ({ responses, user, funcOnChange }) => {
           fullwidth
           label='email'
           pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
-          onChange={funcOnChange}
+          onChange={updateResponses}
           name='userEmail'
         ></TextField>
         <ButtonPrimary onClick={handleSubmit} raised>

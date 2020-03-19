@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TypeQ } from '../../../style';
 import { FlexInputs, InputWrapper } from './style';
 
-const FormQuestion = ({
-  i,
-  page,
-  question,
-  responses,
-  funcOnChange,
-  other,
-  setOther,
-  otherOption,
-}) => {
+const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
+  // set up 'other' state and ref for this specific question
+  const [other, setOther] = useState(null);
+  const otherOption = useRef();
+
   const changeOther = e => {
     setOther(e.target.value);
   };
 
-  console.log({ other });
-  console.log(responses);
+  // force inclusion of text from 'Other' field into responses object, where applicable
+  const triggerChange = ref => {
+    const changeEvent = new Event('click', { bubbles: true });
+    // if ref contains information, i.e. text field used, simulate a click on said field (bubbles to form)
+    if (ref.current) ref.current.dispatchEvent(changeEvent);
+  };
+
+  // trigger inclusion of 'Other' text in response object on dismount
+  useEffect(() => {
+    return triggerChange(otherOption);
+  }, []);
 
   return (
     <>
@@ -35,7 +39,7 @@ const FormQuestion = ({
                     type={question.type}
                     placeholder={question.content[0]}
                     id={`${page}.${i}`}
-                    onChange={funcOnChange}
+                    onChange={updateResponses}
                     value={
                       responses[question.question]
                         ? responses[question.question]
@@ -56,7 +60,7 @@ const FormQuestion = ({
                     wrap='soft'
                     rows='10'
                     cols='70'
-                    onChange={funcOnChange}
+                    onChange={updateResponses}
                     id={`${page}.${i}`}
                     value={
                       responses[question.question]
@@ -89,7 +93,7 @@ const FormQuestion = ({
                           }
                         })()}
                         id={`${page}.${i}.${j}`}
-                        onClick={funcOnChange}
+                        onClick={updateResponses}
                       />
                       <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
                     </FlexInputs>
@@ -140,7 +144,7 @@ const FormQuestion = ({
                           }
                         })()}
                         id={`${page}.${i}.${j}`}
-                        onClick={funcOnChange}
+                        onClick={updateResponses}
                       />
                       <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
                     </FlexInputs>
@@ -169,7 +173,7 @@ const FormQuestion = ({
                 })()}
               </InputWrapper>
             );
-          // default handles 'date' case
+          // default handles te remaining 'date' case
           default:
             return (
               <InputWrapper>
@@ -178,7 +182,7 @@ const FormQuestion = ({
                     name={question.question}
                     type={question.type}
                     id={`${page}.${i}`}
-                    onChange={funcOnChange}
+                    onChange={updateResponses}
                   />
                 </FlexInputs>
               </InputWrapper>
