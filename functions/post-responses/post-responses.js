@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
   // event has properties like the request querystring and body ready for you to use
   // grab airtable variables from Netlify environment (uploaded via UI)
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
+  const table = event.queryStringParameters.table;
 
   // Only allow POST
   if (event.httpMethod !== 'POST') {

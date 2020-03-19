@@ -2,51 +2,38 @@ import React from 'react';
 import { postResponses, stringify } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
-import { Typography } from '@rmwc/typography';
 import { Header, ButtonPrimary } from '../../index';
-import styled from 'styled-components';
+import { Container, Type5, TypeB1 } from './style';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 3rem;
-  margin: 2rem;
-  padding-top: 2.5rem;
-`;
-
-const Type5 = styled(Typography)`
-  && {
-    text-align: center;
-    padding-bottom: 0.8em;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    color: #2d3c8a;
-    z-index: 50;
-  }
-`;
-const TypeB1 = styled(Typography)`
-  && {
-    text-align: center;
-    color: #5763a2;
-    padding-bottom: 0.8em;
-  }
-`;
 
 const Submit = ({ responses, user, updateResponses }) => {
   const history = useHistory();
 
+  // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
+  const processResponses = responses => {
+    for (let question in responses) {
+      // use hasOwnProperty to avoid considering inherited properties (objects are messy)
+      if (responses.hasOwnProperty(question)) {
+        if (Array.isArray(responses[question])) {
+          responses[question].filter(answer => {
+            return !(answer === '');
+          });
+        }
+      }
+    }
+    return responses;
+  };
+
   // NEED TO devise a way to submit multiple responses to Airtable, rather than just concatenate into one string
-  // OR split them up in separate columns in the responses tables
+  // OR have them arrive in separate columns in the responses tables
   const handleSubmit = event => {
     event.preventDefault();
-    const responsesWithUser = {
-      ...responses,
+    const finalResponses = {
+      ...processResponses(responses),
       userRef: user,
     };
-    postResponses('first-responses', stringify(responsesWithUser)).then(
+    postResponses('first-responses', stringify(finalResponses)).then(
       history.push('/report/confirm')
     );
   };

@@ -14,8 +14,9 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
   };
 
   // force inclusion of 'Other' text into responses object when text field loses focus (onblur)
+  // BUG: if the user focuses the field again, another answer will be submitted to the responses object
   const triggerChange = () => {
-    // we do this by simulating a click on the 'Other' checkbox (bubbles to form ??)
+    // we do this by simulating a click on the 'Other' checkbox (bubbles to form ?)
     const changeEvent = new Event('click', { bubbles: true });
     otherOption.current.dispatchEvent(changeEvent);
   };
@@ -82,7 +83,9 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         }
                         name={question.question}
                         type={question.type}
-                        value={answer === 'Other (please specify)' ? other : ''}
+                        value={
+                          answer === 'Other (please specify)' ? other : answer
+                        }
                         id={`${page}.${i}.${j}`}
                         onClick={updateResponses}
                       />
@@ -127,13 +130,9 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         }
                         name={question.question}
                         type={question.type}
-                        value={(() => {
-                          if (answer === 'Other (please specify)') {
-                            return other ? other : '';
-                          } else {
-                            return answer;
-                          }
-                        })()}
+                        value={
+                          answer === 'Other (please specify)' ? other : answer
+                        }
                         id={`${page}.${i}.${j}`}
                         onClick={updateResponses}
                       />
