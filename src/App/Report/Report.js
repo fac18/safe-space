@@ -64,7 +64,7 @@ const Report = () => {
   // set up responses state with reducer
   const [responses, dispatch] = useReducer(reducer, {});
 
-  const funcOnChange = event => {
+  const updateResponses = event => {
     dispatch({
       type: event.target.type, //send the input type, i.e. checkbox/radio
       field: event.target.name, //the name of the field (questionName)
@@ -84,14 +84,18 @@ const Report = () => {
     return <Confirm questions={questions} responses={responses} user={user} />;
   } else if (location.pathname.includes('submit')) {
     return (
-      <Submit funcOnChange={funcOnChange} responses={responses} user={user} />
+      <Submit
+        updateResponses={updateResponses}
+        responses={responses}
+        user={user}
+      />
     );
   } else {
     return (
       <Form
         questions={questions}
         responses={responses}
-        funcOnChange={funcOnChange}
+        updateResponses={updateResponses}
       />
     );
   }

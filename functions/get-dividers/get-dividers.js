@@ -11,7 +11,7 @@ exports.handler = async () => {
   let data = [];
 
   // need to paginate this time, in case # records exceeds 100
-  await base('Dividers')
+  await base('dividers')
     .select({
       maxRecords: 100,
       view: 'Grid view',
