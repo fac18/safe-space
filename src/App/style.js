@@ -79,7 +79,8 @@ const FormContainer = styled.div`
   margin: 2em;
   padding: 2em;
   background: white;
-  justify-self: center; /* padding-bottom: 3em; */
+  justify-self: center;
+  max-width: 600px;
 
   #text {
     color: pink;
@@ -115,6 +116,7 @@ const TypeQ = styled(Typography)`
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const FlexRow = styled.div`
@@ -122,6 +124,11 @@ const FlexRow = styled.div`
   flex-flow: row nowrap;
   padding-bottom: 0.5em;
   justify-content: space-between;
+`;
+
+const CenterContents = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export {
@@ -132,6 +139,7 @@ export {
   TypeQ,
   FlexColumn,
   FlexRow,
+  CenterContents,
   PageContainer,
   ContentWrap,
 };

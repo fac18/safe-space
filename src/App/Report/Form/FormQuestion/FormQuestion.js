@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { TypeQ } from '../../../style';
-import { FlexInputs, InputWrapper } from './style';
+import { FlexInputs, InputWrapper, TextArea } from './style';
 
 const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
   // to capture text in optional 'Other' field, we will trick the dispatch in updateResponses into including it
@@ -51,7 +51,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <textarea
+                  <TextArea
                     form='report-form'
                     name={question.question}
                     placeholder={question.content[0]}
@@ -65,7 +65,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         ? responses[question.question]
                         : ''
                     }
-                  ></textarea>
+                  ></TextArea>
                 </FlexInputs>
               </InputWrapper>
             );
@@ -103,7 +103,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                     // then we display a text box to capture the 'other' submission
                     return (
                       <FlexInputs>
-                        <input
+                        <TextArea
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
@@ -148,7 +148,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   ) {
                     return (
                       <FlexInputs>
-                        <input
+                        <TextArea
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
@@ -166,7 +166,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <input
+                  <TextArea
                     name={question.question}
                     type={question.type}
                     id={`${page}.${i}`}
