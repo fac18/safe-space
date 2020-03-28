@@ -1,5 +1,10 @@
 import React from 'react';
-import { FormContainer, FlexColumn, FlexRow } from '../../style';
+import {
+  FormContainer,
+  FlexColumn,
+  FlexRow,
+  CenterContents,
+} from '../../style';
 import { Header, ButtonNext, ButtonBack } from '../../index';
 import { FormQuestion } from './index';
 import { useParams, useHistory, Link } from 'react-router-dom';
@@ -95,39 +100,41 @@ const Form = ({ questions, responses, updateResponses }) => {
   return (
     <>
       <Header />
-      <FormContainer>
-        <FlexColumn>
-          <form id='report-form'>
-            {(() =>
-              pageQuestions.map((question, i) => (
-                <FormQuestion
-                  key={`${page}.${i}`}
-                  i={i}
-                  question={question}
-                  responses={responses}
-                  updateResponses={updateResponses}
-                  page={page}
-                ></FormQuestion>
-              )))()}
-          </form>
-          <FlexRow>
-            <ButtonBack
-              tag={Link}
-              to={findPrevPage(questions, page)}
-              // onClick={triggerChange}
-            >
-              Back
-            </ButtonBack>
-            <ButtonNext
-              tag={Link}
-              to={findNextPage(questions, page)}
-              // onClick={triggerChange}
-            >
-              Next
-            </ButtonNext>
-          </FlexRow>
-        </FlexColumn>
-      </FormContainer>
+      <CenterContents>
+        <FormContainer>
+          <FlexColumn>
+            <form id='report-form'>
+              {(() =>
+                pageQuestions.map((question, i) => (
+                  <FormQuestion
+                    key={`${page}.${i}`}
+                    i={i}
+                    question={question}
+                    responses={responses}
+                    updateResponses={updateResponses}
+                    page={page}
+                  ></FormQuestion>
+                )))()}
+            </form>
+            <FlexRow>
+              <ButtonBack
+                tag={Link}
+                to={findPrevPage(questions, page)}
+                // onClick={triggerChange}
+              >
+                Back
+              </ButtonBack>
+              <ButtonNext
+                tag={Link}
+                to={findNextPage(questions, page)}
+                // onClick={triggerChange}
+              >
+                Next
+              </ButtonNext>
+            </FlexRow>
+          </FlexColumn>
+        </FormContainer>
+      </CenterContents>
     </>
   );
 };

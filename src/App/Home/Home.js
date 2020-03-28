@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   line-height: 3rem;
-  margin: 2rem;
+  margin: 0rem 2rem 2rem 2rem;
 `;
 
 const Type5 = styled(Typography)`
