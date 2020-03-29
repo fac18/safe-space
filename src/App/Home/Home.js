@@ -10,7 +10,13 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   line-height: 3rem;
-  margin: 2rem;
+  margin: 0rem 2rem 2rem 2rem;
+
+  @media (min-width: 600px) {
+    justify-content: space-between;
+    padding-top: 5rem;
+    height: 50vh;
+  }
 `;
 
 const Type5 = styled(Typography)`
@@ -29,6 +35,16 @@ const TypeB1 = styled(Typography)`
     text-align: center;
     color: #5763a2;
     margin: 0;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    justify-content: center;
   }
 `;
 
@@ -52,13 +68,15 @@ const Home = () => {
           sexual harassment and sexual abuse in the music industry.
         </TypeB1>
 
-        <ButtonPrimary raised tag={Link} to='/report/section/0'>
-          Report to SafeSpace
-        </ButtonPrimary>
+        <ButtonWrapper>
+          <ButtonPrimary raised tag={Link} to='/report/section/0'>
+            Report to SafeSpace
+          </ButtonPrimary>
 
-        <ButtonSecondary outlined tag={Link} to='/support'>
-          Access Support Services
-        </ButtonSecondary>
+          <ButtonSecondary outlined tag={Link} to='/support'>
+            Access Support Services
+          </ButtonSecondary>
+        </ButtonWrapper>
       </Container>
       <Footer />
     </>
