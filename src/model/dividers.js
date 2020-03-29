@@ -3,7 +3,7 @@ export default [
     section: 0,
     paras: [
       'There are four sections to this survey.',
-      'No question is compulsory and you can exit the process any time by closing the browser.',
+      "No question is compulsory. You can skip a question by clicking 'next' and you can exit the process at any time by closing the browser.",
       'The first section includes questions on what happened and details about the event.',
     ],
     explainer: 'All information you provide is confidential.',

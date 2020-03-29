@@ -49,6 +49,10 @@ const ButtonNext = styled(Button)`
     text-decoration-line: underline;
     color: #7768a6;
     cursor: pointer;
+
+    @media (min-width: 600px) {
+      font-size: 1.3rem;
+    }
   }
 `;
 
@@ -60,6 +64,10 @@ const ButtonBack = styled(Button)`
     text-decoration-line: underline;
     color: #e16a1e;
     cursor: pointer;
+
+    @media (min-width: 600px) {
+      font-size: 1.3rem;
+    }
   }
 `;
 

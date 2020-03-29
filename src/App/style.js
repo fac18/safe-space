@@ -16,8 +16,8 @@ const ContentWrap = styled.div`
   display: flex;
 
   /* @media (max-width: 768px) { */
-    /* flex-direction: column; */
-  }
+  /* flex-direction: column; */
+  /* } */
 `;
 
 const StyledBubbles = styled(HeaderBubbles)`
@@ -83,7 +83,9 @@ const FormContainer = styled.div`
   max-width: 600px;
 
   @media (min-width: 600px) {
-    width: 500px;
+    width: 40rem;
+    min-height: 37rem;
+    margin-top: 2rem;
   }
 
   #text {
@@ -119,6 +121,10 @@ const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (min-width: 600px) {
+    justify-content: space-between;
+  }
 `;
 
 const FlexRow = styled.div`

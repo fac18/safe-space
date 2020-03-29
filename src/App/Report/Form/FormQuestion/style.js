@@ -19,7 +19,7 @@ const TextArea = styled.textarea`
   height: 10rem;
 
   @media (min-width: 600px) {
-    min-width: 30rem;
+    min-width: 35rem;
     height: 15rem;
   }
 `;
