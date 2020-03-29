@@ -14,11 +14,13 @@ const InputWrapper = styled.div`
 
 const TextArea = styled.textarea`
   border: 1px solid lightgrey;
-  width: 600px;
   margin-top: 0.5rem;
+  width: 16rem;
+  height: 10rem;
 
-  @media (max-width: 600px) {
-    max-width: 15rem;
+  @media (min-width: 600px) {
+    min-width: 30rem;
+    height: 15rem;
   }
 `;
 

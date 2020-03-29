@@ -7,6 +7,7 @@ import {
   FlexRow,
   TypeQ,
   Bubbles2,
+  CenterContents,
 } from '../../style';
 
 const SectionDivider = ({ questions, dividers }) => {
@@ -32,30 +33,36 @@ const SectionDivider = ({ questions, dividers }) => {
       <Bubbles2 />
 
       <Header />
-
-      <FormContainer>
-        <FlexColumn>
-          {paras.map((para, i) => (
-            <TypeQ use='headline5' tag='p' key={i}>
-              {para}
+      <CenterContents>
+        <FormContainer>
+          <FlexColumn>
+            {paras.map((para, i) => (
+              <TypeQ use='headline5' tag='p' key={i}>
+                {para}
+              </TypeQ>
+            ))}
+            <TypeQ use='body1' tag='h5'>
+              {explainer}
             </TypeQ>
-          ))}
-          <TypeQ use='body1' tag='h5'>
-            {explainer}
-          </TypeQ>
-          <FlexRow>
-            <ButtonBack
-              tag={Link}
-              to={section === 0 ? `/` : `/report/${questions[prevIndex].page}`}
-            >
-              Back
-            </ButtonBack>
-            <ButtonNext tag={Link} to={`/report/${questions[nextIndex].page}`}>
-              OK
-            </ButtonNext>
-          </FlexRow>
-        </FlexColumn>
-      </FormContainer>
+            <FlexRow>
+              <ButtonBack
+                tag={Link}
+                to={
+                  section === 0 ? `/` : `/report/${questions[prevIndex].page}`
+                }
+              >
+                Back
+              </ButtonBack>
+              <ButtonNext
+                tag={Link}
+                to={`/report/${questions[nextIndex].page}`}
+              >
+                OK
+              </ButtonNext>
+            </FlexRow>
+          </FlexColumn>
+        </FormContainer>
+      </CenterContents>
     </>
   );
 };

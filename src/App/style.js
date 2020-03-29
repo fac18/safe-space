@@ -13,9 +13,9 @@ const PageContainer = styled.div`
 
 const ContentWrap = styled.div`
   padding-bottom: 5.5rem; /* Footer height */
-  /* display: flex;
-  justify-content: center; */
-  @media (max-width: 768px) {
+  display: flex;
+
+  /* @media (max-width: 768px) { */
     /* flex-direction: column; */
   }
 `;

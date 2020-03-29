@@ -10,10 +10,16 @@ const ServiceCard = styled(Card)`
     background: white;
     font-weight: bold;
     width: 20rem;
-    height: 15rem;
+    min-height: 15rem;
     margin: auto;
     margin-top: 2rem;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 1rem;
+
+    @media (min-width: 600px) {
+      width: 31.25rem;
+      padding: 2rem 2rem 0rem 2rem;
+    }
   }
 `;
 

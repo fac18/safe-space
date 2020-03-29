@@ -10,6 +10,7 @@ const ButtonPrimary = styled(Button)`
     width: 17rem;
     margin: auto;
     margin: 1rem 0rem;
+    align-self: center;
 
     @media (min-width: 600px) {
       margin: 1rem;
