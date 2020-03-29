@@ -1,6 +1,5 @@
 #root {
   width: 100vw;
-
 }
 
 body {
@@ -19,4 +18,67 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+.mdc-checkbox__native-control:enabled:indeterminate
+  ~ .mdc-checkbox__background {
+  border-color: #7768a6 !important;
+  background-color: #7768a6 !important;
+}
+
+.mdc-checkbox.mdc-checkbox--selected::before,
+.mdc-checkbox.mdc-checkbox--selected::after {
+  background-color: #7768a6 !important;
+}
+
+.mdc-checkbox
+  .mdc-checkbox__native-control:checked
+  ~ .mdc-checkbox__background::before,
+.mdc-checkbox
+  .mdc-checkbox__native-control:indeterminate
+  ~ .mdc-checkbox__background::before {
+  background-color: #7768a6 !important;
+}
+
+.mdc-radio
+  .mdc-radio__native-control:enabled:checked
+  + .mdc-radio__background
+  .mdc-radio__outer-circle {
+  border-color: #7768a6 !important;
+}
+
+.mdc-radio
+  .mdc-radio__native-control:enabled
+  + .mdc-radio__background
+  .mdc-radio__inner-circle {
+  border-color: #7768a6 !important;
+}
+
+.mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate)
+  ~ .mdc-checkbox__background {
+  border-color: #5763a2 !important;
+  background-color: transparent !important;
+}
+
+.mdc-radio
+  .mdc-radio__native-control:enabled:not(:checked)
+  + .mdc-radio__background
+  .mdc-radio__outer-circle {
+  border-color: #5763a2 !important;
+}
+
+.mdc-ripple-surface--accent::before,
+.mdc-ripple-surface--accent::after {
+  border-color: #5763a2 !important;
+}
+
+.mdc-text-field .mdc-text-field__input {
+  border-color: #5763a2 !important;
+}
+
+.mdc-ripple-upgraded--foreground-activation {
+  border-color: #5763a2 !important;
+  /* background-color: #5763a2 !important; */
+  color: #5763a2 !important;
 }

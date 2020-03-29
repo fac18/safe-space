@@ -1,6 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { TypeQ } from '../../../style';
-import { FlexInputs, InputWrapper, TextArea } from './style';
+import {
+  FlexInputs,
+  InputWrapper,
+  TextArea,
+  Radio,
+  Checkbox,
+  FormField,
+} from './style';
 
 const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
   // to capture text in optional 'Other' field, we will trick the dispatch in updateResponses into including it
@@ -31,27 +38,27 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
           case 'text':
             return (
               <InputWrapper>
-                <FlexInputs>
-                  <input
-                    name={question.question}
-                    type={question.type}
-                    placeholder={question.content[0]}
-                    id={`${page}.${i}`}
-                    onChange={updateResponses}
-                    value={
-                      responses[question.question]
-                        ? responses[question.question]
-                        : ''
-                    }
-                  />
-                </FlexInputs>
+                {/* <FlexInputs> */}
+                <TextArea
+                  name={question.question}
+                  type={question.type}
+                  placeholder={question.content[0]}
+                  id={`${page}.${i}`}
+                  onChange={updateResponses}
+                  value={
+                    responses[question.question]
+                      ? responses[question.question]
+                      : ''
+                  }
+                />
+                {/* </FlexInputs> */}
               </InputWrapper>
             );
           case 'textarea':
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <input
+                  <TextArea
                     form='report-form'
                     name={question.question}
                     placeholder={question.content[0]}
@@ -65,7 +72,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         ? responses[question.question]
                         : ''
                     }
-                  ></input>
+                  />
                 </FlexInputs>
               </InputWrapper>
             );
@@ -75,21 +82,23 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
-                      <input
-                        ref={
-                          answer === 'Other (please specify)'
-                            ? otherOption
-                            : null
-                        }
-                        name={question.question}
-                        type={question.type}
-                        value={
-                          answer === 'Other (please specify)' ? other : answer
-                        }
-                        id={`${page}.${i}.${j}`}
-                        onClick={updateResponses}
-                      />
-                      <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      <FormField>
+                        <Checkbox
+                          ref={
+                            answer === 'Other (please specify)'
+                              ? otherOption
+                              : null
+                          }
+                          name={question.question}
+                          type={question.type}
+                          value={
+                            answer === 'Other (please specify)' ? other : answer
+                          }
+                          id={`${page}.${i}.${j}`}
+                          onClick={updateResponses}
+                        />
+                        <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      </FormField>
                     </FlexInputs>
                   );
                 })}
@@ -122,21 +131,23 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
-                      <input
-                        ref={
-                          answer === 'Other (please specify)'
-                            ? otherOption
-                            : null
-                        }
-                        name={question.question}
-                        type={question.type}
-                        value={
-                          answer === 'Other (please specify)' ? other : answer
-                        }
-                        id={`${page}.${i}.${j}`}
-                        onClick={updateResponses}
-                      />
-                      <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      <FormField>
+                        <Radio
+                          ref={
+                            answer === 'Other (please specify)'
+                              ? otherOption
+                              : null
+                          }
+                          name={question.question}
+                          type={question.type}
+                          value={
+                            answer === 'Other (please specify)' ? other : answer
+                          }
+                          id={`${page}.${i}.${j}`}
+                          onClick={updateResponses}
+                        />
+                        <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      </FormField>
                     </FlexInputs>
                   );
                 })}
@@ -166,7 +177,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <TextArea
+                  <input
                     name={question.question}
                     type={question.type}
                     id={`${page}.${i}`}
