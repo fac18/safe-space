@@ -34,7 +34,14 @@ const TypeB1 = styled(Typography)`
   && {
     text-align: center;
     color: #5763a2;
-    margin: 0;
+    margin: 0.5rem 0rem;
+  }
+`;
+
+const TypeExtra = styled(TypeB1)`
+  display: none;
+  @media (min-width: 600px) {
+    display: block;
   }
 `;
 
@@ -62,11 +69,14 @@ const Home = () => {
         <Type5 use='headline5' tag='h1'>
           Let’s change this{' '}
         </Type5>
-
         <TypeB1 use='body1' tag='p'>
           Welcome to a safe space for all musicians to log instances of sexism,
           sexual harassment and sexual abuse in the music industry.
         </TypeB1>
+        <TypeExtra use='body1' tag='p'>
+          Whatever your role in the music industry, you can report in confidence
+          using this service.
+        </TypeExtra>
 
         <ButtonWrapper>
           <ButtonPrimary raised tag={Link} to='/report/section/0'>

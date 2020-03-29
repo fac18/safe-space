@@ -86,6 +86,7 @@ const FormContainer = styled.div`
     width: 40rem;
     min-height: 37rem;
     margin-top: 2rem;
+    padding: 0.5rem 2rem 1.5rem 2rem;
   }
 
   #text {
@@ -130,7 +131,7 @@ const FlexColumn = styled.div`
 const FlexRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  padding-bottom: 0.5em;
+  /* padding-bottom: 0.5em; */
   justify-content: space-between;
 `;
 
