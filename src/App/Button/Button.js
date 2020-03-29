@@ -9,8 +9,11 @@ const ButtonPrimary = styled(Button)`
     font-weight: bold;
     width: 17rem;
     margin: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0rem;
+
+    @media (min-width: 600px) {
+      margin: 1rem;
+    }
   }
 `;
 
@@ -30,6 +33,10 @@ const ButtonSecondary = styled(Button)`
     font-weight: bold;
     justify-content: center;
     margin-bottom: 1rem;
+
+    @media (min-width: 600px) {
+      margin: 1rem;
+    }
   }
 `;
 
