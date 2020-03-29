@@ -11,6 +11,12 @@ const Container = styled.div`
   align-items: center;
   line-height: 3rem;
   margin: 0rem 2rem 2rem 2rem;
+
+  @media (min-width: 600px) {
+    justify-content: space-between;
+    padding-top: 5rem;
+    height: 50vh;
+  }
 `;
 
 const Type5 = styled(Typography)`

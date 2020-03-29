@@ -28,10 +28,8 @@ const ButtonSecondary = styled(Button)`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    margin: auto;
     justify-content: center;
     margin-bottom: 1rem;
-
   }
 `;
 
