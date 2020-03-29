@@ -14,6 +14,7 @@ const Container = styled.section`
 
   @media (min-width: 600px) {
     width: 45rem;
+    margin: 0rem 2rem;
   }
 `;
 

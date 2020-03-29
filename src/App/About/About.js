@@ -12,6 +12,22 @@ const About = () => {
           <Header />
           <Container>
             <FlexColumn>
+              <Type use='headline4'>What is MU Safe Space?</Type>
+              <Type use='body1'>
+                Safe Space exists to provide a safe space for all musicians to
+                share instances of sexism, sexual harassment and sexual abuse in
+                the music industry.
+              </Type>
+              <Type use='body1'>
+                If you have, whatever your role in the music industry, you can
+                report it in confidence using this service.
+              </Type>
+              <Type use='body1'>
+                All your answers will be treated in the strictest confidence.
+                Only four members of staff will have access to your answers,
+                which we will use to inform our work on making the music
+                industry safer.
+              </Type>
               <Type use='headline4'>Why does the MU Safe Space exist?</Type>
               <Type use='body1'>
                 A recent MU survey revealed that 48% of musicians have been
@@ -38,9 +54,39 @@ const About = () => {
                 musicians at work, and are on a mission to create cultural
                 change within the music industry.
               </Type>
+              <Type use='headline4'>Is the MU Safe Space for you?</Type>
+
+              <Type use='body1'>
+                <i>
+                  If you need immediate help and support, please head to our
+                  Support Services page where you can find services you can
+                  contact now.
+                </i>
+              </Type>
+
+              <Type use='body1'>
+                We want to hear from you if you do or wish to make all or part
+                of your living from music. You could be a student or a
+                professional. You could be employed, self employed, not working
+                at the moment, or looking for work.
+              </Type>
+
+              <Type use='body1'>
+                We also want to hear from you if you are an amateur musician.
+                You could be playing in a community orchestra or performing as
+                part of a choir.
+              </Type>
+
+              <Type use='body1'>
+                We need as many musicians as possible to share their
+                experiences. The more experiences musicians share, the easier it
+                will be for us to spot patterns and identify where we need to
+                focus our work to create meaningful and lasting change.
+              </Type>
+
               <Type use='headline4'>Our principles</Type>
               <Type use='body1'>
-                We always start from a position of belief. We never blame
+                We always start from a position of belief. We never blame the
                 victim. We understand that the survivor is never responsible.
               </Type>
               <Type use='body1'>
