@@ -100,41 +100,6 @@ const Form = ({ questions, responses, updateResponses }) => {
   return (
     <>
       <Header />
-<<<<<<< HEAD
-      <FormContainer>
-        <FlexColumn>
-          <form id='report-form'>
-            {(() =>
-              pageQuestions.map((question, i) => (
-                <FormQuestion
-                  key={`${page}.${i}`}
-                  i={i}
-                  question={question}
-                  responses={responses}
-                  updateResponses={updateResponses}
-                  page={page}
-                ></FormQuestion>
-              )))()}
-          </form>
-          <FlexRow>
-            <ButtonBack
-              tag={Link}
-              to={findPrevPage(questions, page, responses)}
-              // onClick={triggerChange}
-            >
-              Back
-            </ButtonBack>
-            <ButtonNext
-              tag={Link}
-              to={findNextPage(questions, page, responses)}
-              // onClick={triggerChange}
-            >
-              Next
-            </ButtonNext>
-          </FlexRow>
-        </FlexColumn>
-      </FormContainer>
-=======
       <CenterContents>
         <FormContainer>
           <FlexColumn>
@@ -170,7 +135,6 @@ const Form = ({ questions, responses, updateResponses }) => {
           </FlexColumn>
         </FormContainer>
       </CenterContents>
->>>>>>> 894a6fd95cbba74660a0d930c463732ef3c805d3
     </>
   );
 };
