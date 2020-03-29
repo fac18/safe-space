@@ -18,7 +18,9 @@ const Support = () => {
               <ServiceCard>
                 <Type use='headline5'> {service.title}</Type>
                 <Type use='body1'>{service.description}</Type>
-                <Type use='body1'>{service.website}</Type>
+                <Type use='body1'>
+                  <a href={service.website}>Visit {service.title}</a>
+                </Type>
                 <Type use='body1'>{service.phone}</Type>
                 <Type use='body1'>{service.email}</Type>
               </ServiceCard>

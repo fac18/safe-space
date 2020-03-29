@@ -51,7 +51,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <TextArea
+                  <input
                     form='report-form'
                     name={question.question}
                     placeholder={question.content[0]}
@@ -65,7 +65,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         ? responses[question.question]
                         : ''
                     }
-                  ></TextArea>
+                  ></input>
                 </FlexInputs>
               </InputWrapper>
             );

@@ -9,8 +9,12 @@ const ButtonPrimary = styled(Button)`
     font-weight: bold;
     width: 17rem;
     margin: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0rem;
+    align-self: center;
+
+    @media (min-width: 600px) {
+      margin: 1rem;
+    }
   }
 `;
 
@@ -28,10 +32,12 @@ const ButtonSecondary = styled(Button)`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    margin: auto;
     justify-content: center;
     margin-bottom: 1rem;
 
+    @media (min-width: 600px) {
+      margin: 1rem;
+    }
   }
 `;
 
@@ -43,6 +49,10 @@ const ButtonNext = styled(Button)`
     text-decoration-line: underline;
     color: #7768a6;
     cursor: pointer;
+
+    @media (min-width: 600px) {
+      font-size: 1.3rem;
+    }
   }
 `;
 
@@ -54,6 +64,10 @@ const ButtonBack = styled(Button)`
     text-decoration-line: underline;
     color: #e16a1e;
     cursor: pointer;
+
+    @media (min-width: 600px) {
+      font-size: 1.3rem;
+    }
   }
 `;
 

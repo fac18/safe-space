@@ -11,6 +11,11 @@ const SSLogo1 = styled(Logo1)`
   width: 12rem;
   margin-left: 2em;
   z-index: -10;
+
+  /* @media (min-width: 600px) {
+    margin: 3vw auto auto 40vw;
+    width: 20rem;
+  } */
 `;
 
 const SSLogo2 = styled(Logo2)`

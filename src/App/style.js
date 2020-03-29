@@ -13,11 +13,11 @@ const PageContainer = styled.div`
 
 const ContentWrap = styled.div`
   padding-bottom: 5.5rem; /* Footer height */
-  /* display: flex;
-  justify-content: center; */
-  @media (max-width: 768px) {
-    /* flex-direction: column; */
-  }
+  display: flex;
+
+  /* @media (max-width: 768px) { */
+  /* flex-direction: column; */
+  /* } */
 `;
 
 const StyledBubbles = styled(HeaderBubbles)`
@@ -76,11 +76,17 @@ const FormContainer = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
-  margin: 2em;
-  padding: 2em;
+  margin: 0rem 1.5rem 2rem 1.5rem;
+  padding: 0.5rem 2rem;
   background: white;
   justify-self: center;
   max-width: 600px;
+
+  @media (min-width: 600px) {
+    width: 40rem;
+    min-height: 37rem;
+    margin-top: 2rem;
+  }
 
   #text {
     color: pink;
@@ -108,8 +114,6 @@ const TypeQ = styled(Typography)`
   && {
     color: #2d3c8a;
     display: block;
-    /* padding-bottom: 1rem; */
-    /* padding-top: 1rem; */
   }
 `;
 
@@ -117,6 +121,10 @@ const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (min-width: 600px) {
+    justify-content: space-between;
+  }
 `;
 
 const FlexRow = styled.div`
