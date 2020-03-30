@@ -75,7 +75,7 @@ const FormContainer = styled.div`
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   margin: 0rem 1.5rem 2rem 1.5rem;
   padding: 0.5rem 2rem;
   background: white;
@@ -86,6 +86,7 @@ const FormContainer = styled.div`
     width: 40rem;
     min-height: 37rem;
     margin-top: 2rem;
+    padding: 0.5rem 2rem 1.5rem 2rem;
   }
 
   #text {
@@ -124,13 +125,14 @@ const FlexColumn = styled.div`
 
   @media (min-width: 600px) {
     justify-content: space-between;
+    width: 100%;
   }
 `;
 
 const FlexRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  padding-bottom: 0.5em;
+  padding-bottom: 1rem;
   justify-content: space-between;
 `;
 

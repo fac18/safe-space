@@ -1,6 +1,13 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { TypeQ } from '../../../style';
-import { FlexInputs, InputWrapper, TextArea } from './style';
+import {
+  FlexInputs,
+  InputWrapper,
+  TextArea,
+  TextInput,
+  // Radio,
+  // FormField,
+} from './style';
 
 const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
   // get initial value of 'other' state from response object if available
@@ -73,27 +80,27 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
           case 'text':
             return (
               <InputWrapper>
-                <FlexInputs>
-                  <input
-                    name={question.question}
-                    type={question.type}
-                    placeholder={question.content[0]}
-                    id={`${page}.${i}`}
-                    onChange={updateResponses}
-                    value={
-                      responses[question.question]
-                        ? responses[question.question]
-                        : ''
-                    }
-                  />
-                </FlexInputs>
+                {/* <FlexInputs> */}
+                <TextInput
+                  name={question.question}
+                  type={question.type}
+                  placeholder={question.content[0]}
+                  id={`${page}.${i}`}
+                  onChange={updateResponses}
+                  value={
+                    responses[question.question]
+                      ? responses[question.question]
+                      : ''
+                  }
+                />
+                {/* </FlexInputs> */}
               </InputWrapper>
             );
           case 'textarea':
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <input
+                  <TextArea
                     form='report-form'
                     name={question.question}
                     placeholder={question.content[0]}
@@ -107,7 +114,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         ? responses[question.question]
                         : ''
                     }
-                  ></input>
+                  />
                 </FlexInputs>
               </InputWrapper>
             );
@@ -117,6 +124,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
+                      {/* <FormField> */}
                       <input
                         ref={syncRef}
                         name={question.question}
@@ -128,6 +136,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         onChange={updateResponses}
                       />
                       <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      {/* </FormField> */}
                     </FlexInputs>
                   );
                 })}
@@ -141,7 +150,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                     // then we display a text box to capture the 'other' submission
                     return (
                       <FlexInputs>
-                        <TextArea
+                        <input
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
@@ -160,6 +169,8 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
+                      {/* <FormField> */}
+                      {/* <Radio */}
                       <input
                         ref={syncRef}
                         name={question.question}
@@ -171,6 +182,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         onChange={updateResponses}
                       />
                       <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      {/* </FormField> */}
                     </FlexInputs>
                   );
                 })}
@@ -182,7 +194,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   ) {
                     return (
                       <FlexInputs>
-                        <TextArea
+                        <input
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
@@ -200,7 +212,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
             return (
               <InputWrapper>
                 <FlexInputs>
-                  <TextArea
+                  <input
                     name={question.question}
                     type={question.type}
                     id={`${page}.${i}`}
