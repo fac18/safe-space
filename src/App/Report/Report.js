@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import { Form, Divider, Confirm, Submit, Loading } from './index';
 
 // and packages and utils
-import uuid from 'uuid/v4';
 import { getQuestions, getDividers } from '../../utils/index';
 
 // fallback data
@@ -16,7 +15,6 @@ const Report = () => {
   // set up states
   const [questions, setQuestions] = useState(null);
   const [dividers, setDividers] = useState(null);
-  const user = uuid();
 
   useEffect(() => {
     getQuestions('first-questions')
@@ -76,20 +74,14 @@ const Report = () => {
   const location = useLocation();
 
   // if any API calls have yet to resolve, render Loading component
-  if (!(questions && user && dividers)) return <Loading />;
+  if (!(questions && dividers)) return <Loading />;
 
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
   } else if (location.pathname.includes('confirm')) {
-    return <Confirm questions={questions} responses={responses} user={user} />;
+    return <Confirm questions={questions} responses={responses} />;
   } else if (location.pathname.includes('submit')) {
-    return (
-      <Submit
-        updateResponses={updateResponses}
-        responses={responses}
-        user={user}
-      />
-    );
+    return <Submit updateResponses={updateResponses} responses={responses} />;
   } else {
     return (
       <Form

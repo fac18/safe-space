@@ -56,8 +56,6 @@ const findNextPage = (questions, page, responses) => {
     return findNextPage(questions, nextPage, newLastIndex);
   } else {
     // else navigate to next page/section divider/submission page as appropriate
-    console.log('lastIndex', lastIndex);
-    console.log('questions.length - 1', questions.length - 1);
     return lastIndex === questions.length - 1
       ? `/report/submit` // send to review/submission page upon completion
       : questions[lastIndex].section !== questions[lastIndex + 1].section

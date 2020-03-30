@@ -7,8 +7,9 @@ import { ButtonPrimary } from '../../style';
 import { Container, Type5, TypeB1 } from './style';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
+import uuid from 'uuid/v4';
 
-const Submit = ({ responses, user, updateResponses }) => {
+const Submit = ({ responses, updateResponses }) => {
   const history = useHistory();
 
   // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
@@ -32,11 +33,12 @@ const Submit = ({ responses, user, updateResponses }) => {
     event.preventDefault();
     const finalResponses = {
       ...processResponses(responses),
-      userRef: user,
+      userRef: uuid(),
     };
-    postResponses('first-responses', stringify(finalResponses)).then(
-      history.push('/report/confirm')
-    );
+    postResponses('first-responses', stringify(finalResponses)).then(res => {
+      // navigate to confirmation once response from POST successfully received
+      history.push('/report/confirm');
+    });
   };
 
   return (

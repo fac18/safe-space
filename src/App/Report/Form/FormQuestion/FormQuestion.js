@@ -64,7 +64,6 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
         }
       } else if (el.value === other) {
         // in the case that 'Other' has not been selected before, we still need to attach the ref
-        console.log('object ref for other is attached');
         otherOption.current = el;
       }
     }
