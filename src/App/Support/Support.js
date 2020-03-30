@@ -1,11 +1,9 @@
 import React from 'react';
-import { services } from '../../model/services'; // replace with Airtable source
+import services from '../../model/services'; // replace with Airtable source
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../style';
-import { ContentWrapper, Text, Type, Type5 } from './style';
+import { PageContainer, ButtonPrimary } from '../style';
+import { ContentWrapper, Text, Type, Type5, ServiceCard } from './style';
 import { Header, Footer } from '../index';
-import { ButtonPrimary } from '../style';
-import { ServiceCard } from './index';
 
 const Support = () => {
   return (

@@ -1,33 +1,32 @@
 export default [
   {
-    section: 0,
     paras: [
       'There are four sections to this survey.',
-      "No question is compulsory. You can skip a question by clicking 'next' and you can exit the process at any time by closing the browser.",
-      'The first section includes questions on what happened and details about the event.',
+      'No question is compulsory and you can exit the process any time by closing the browser.',
+      'The next few questions are about your experiences. Your answers will tell us what is really happening, and where need to act to create change.',
+      'At the end of this report, you will be able to confirm your submission and that you give permission for the anonymous data to be used towards a movement of change. ',
     ],
+    section: 0,
+  },
+  {
+    paras: [
+      'The next few questions are about the harasser(s) / perpetrator(s). Your answers will help us work out what we need to do to create change. ',
+    ],
+    section: 1,
     explainer: 'All information you provide is confidential.',
   },
   {
-    section: 0,
     paras: [
-      'The next section asks questions about what happened and the person who did this.',
+      'The following questions explore what the barriers to reporting are and where we need to focus our work to overcome them.',
     ],
+    section: 2,
     explainer: 'All information you provide is confidential.',
   },
   {
-    section: 0,
     paras: [
-      'The next section is going to ask about your experience with reporting.',
-      "There is an option to say that you haven't reported before",
+      'We want to know if certain groups are experiencing sexual harassment disproportionately or in different ways. This helps us to be more specific when tackling the issue and lets us know where to direct our services.',
     ],
-    explainer: 'All information you provide is confidential.',
-  },
-  {
-    section: 0,
-    paras: [
-      'The next section covers a few more questions about you to get a broader picture of harassment in the music industry',
-    ],
+    section: 3,
     explainer: 'All information you provide is confidential.',
   },
 ];
