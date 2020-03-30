@@ -5,11 +5,43 @@ import { useLocation } from 'react-router-dom';
 import { Form, Divider, Confirm, Submit, Loading } from './index';
 
 // and packages and utils
-import { getQuestions, getDividers } from '../../utils/index';
+import { getQuestions, getDividers, deleteValue } from '../../utils/index';
 
 // fallback data
 import hardQuestions from '../../model/questions';
 import hardDividers from '../../model/dividers';
+
+// fn: reducer to handle form updates
+// the action object passed in is immediately destructured
+const reducer = (state, { field, value, type, checked }) => {
+  if (value.length === 0) return state; // if value empty (i.e. it's an 'Other' option), no change
+  if (type === 'checkbox') {
+    // checkboxes need special handling since they can take multiple answers
+    if (checked) {
+      // if checkbox is being checked, incorporate response
+      const newResponses = state[field] ? [...state[field], value] : [value];
+      return { ...state, [field]: newResponses };
+      // NB. the square brackets in [field] enable use of the variable as a key in the object literal
+    } else {
+      // else if checkbox is being deselected, remove this value from responses
+      const newResponses = deleteValue(state[field], value);
+      // if this action results in an empty array, this field should be removed altogether (w/o mutation)
+      if (newResponses.length === 0) {
+        const newState = { ...state };
+        delete newState[field];
+        return newState;
+      } else {
+        return { ...state, [field]: newResponses };
+      }
+    }
+  } else {
+    // for all other input types, we simply reproduce the state with new field incorporated
+    return {
+      ...state,
+      [field]: value,
+    };
+  }
+};
 
 const Report = () => {
   // set up states
@@ -42,35 +74,21 @@ const Report = () => {
       });
   }, []);
 
-  const reducer = (state, { field, value, type }) => {
-    if (type === 'checkbox') {
-      // if there is already a value spread ... and then add the new value,
-      // if you don't do this the value is just replaced even for checkboxes
-      const newField = state[field] ? [...state[field], value] : [value];
-      return {
-        ...state,
-        [field]: newField,
-      };
-    } else {
-      return {
-        ...state,
-        [field]: value,
-      };
-    }
-  };
-
-  // set up responses state with reducer
+  // set up responses state with reducer defined outside component
   const [responses, dispatch] = useReducer(reducer, {});
 
+  // fn: pass appropriate parts of a changed element into the dispatch's action object
+  // NB. in this instance we are 'closing over' the dispatch function
   const updateResponses = event => {
     dispatch({
-      type: event.target.type, //send the input type, i.e. checkbox/radio
-      field: event.target.name, //the name of the field (questionName)
-      value: event.target.value, // the response value
+      type: event.target.type, // pass in input type (checkbox, radio, text, date or textarea)
+      field: event.target.name, // the name of the field (question text)
+      value: event.target.value, // the response value i.e. the given answer
+      checked: event.target.checked, // and for a checkbox, whether it's checked!
     });
   };
 
-  // grab React Router states to determine which components to render at Report level
+  // grab React Router state to determine which components to render at Report level
   const location = useLocation();
 
   // if any API calls have yet to resolve, render Loading component
