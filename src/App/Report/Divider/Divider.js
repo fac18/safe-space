@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ButtonNext, ButtonBack, Header } from '../../index';
+import { Header } from '../../index';
 import {
   FormContainer,
   FlexColumn,
@@ -8,6 +8,8 @@ import {
   TypeQ,
   Bubbles2,
   CenterContents,
+  ButtonNext,
+  ButtonBack,
 } from '../../style';
 
 const SectionDivider = ({ questions, dividers }) => {

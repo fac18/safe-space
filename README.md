@@ -10,15 +10,15 @@ Safe Space is a site to make it easier for people in the industry (especially fr
 
 ## Contents
 
- - [Problem statement](#problem-statement)
- - [The solution](#the-solution)
- - [Installation](#installation)
- - [Architecture & stack](#architecture-and-stack)
-     - [Netlify functions](#netlify-functions)
-     - [Airtable schema](#airtable-schema)
- - [A week in git](#a-week-in-git)
- - [To do](#to-do)
- - [License](#license)
+- [Problem statement](#problem-statement)
+- [The solution](#the-solution)
+- [Installation](#installation)
+- [Architecture & stack](#architecture-and-stack)
+  - [Netlify functions](#netlify-functions)
+  - [Airtable schema](#airtable-schema)
+- [A week in git](#a-week-in-git)
+- [To do](#to-do)
+- [License](#license)
 
 ## Problem statement
 
@@ -30,7 +30,7 @@ They currently operate a Safe Space email inbox where people can share their exp
 
 ### For users
 
-Reporting can be a very difficult and this app hopes to make it less daunting experience by asking specific questions 
+Reporting can be a very difficult and this app hopes to make it less daunting experience by asking specific questions
 
 ### For the MU
 
@@ -82,7 +82,7 @@ We started by reading FAC developer-in-residence [Oliver James' article](https:/
 
 We used the [Airtable.js](https://github.com/Airtable/airtable.js) npm package within [Netlify functions](https://docs.netlify.com/functions/overview/#manage-your-serverless-functions) (i.e. simplified AWS Lambdas) to conduct CRUD operations on our Airtable base without revealing the API key.
 
-*CRUD* = Create Read Update Delete. These actions correspond loosely to the http methods often exposed upon a resource by [RESTful APIs](https://restfulapi.net/) (PUT, GET, POST, DELETE resp.).
+_CRUD_ = Create Read Update Delete. These actions correspond loosely to the http methods often exposed upon a resource by [RESTful APIs](https://restfulapi.net/) (PUT, GET, POST, DELETE resp.).
 
 Here's a figure describing our overall architecture:
 
@@ -111,6 +111,7 @@ Some clarifications follow:
 - The _recordId_ field of each table in the schema is built in to Airtable and not visible in their UI, but accessible via the API. They are 17 characters strings like `rec5Aw88283xE3kvK`
 - We did have a separate _Users_ table containing the unique ref and email, with each record having a 1-to-1 relation with a record in _Responses_. We changed this because [Airtable recommends managing such a relation](https://support.airtable.com/hc/en-us/articles/218734758) by co-locating all such data in the same table
 - In the _Questions_ table, if the _split_ field is populated (with the text from another question) this indicates that the associated question should only be shown if the response to the referenced question is one of the options given in _condition_
+- It is important that there are no empty records in the tables - these will break the logic of the site
 
 ## Security and anonymity
 
@@ -143,7 +144,6 @@ Resolutions:
 
 - Prompt users to consider the security of any email they submit, and provide guidance for making an anonymous one just for this purpose
 
-
 #### Airtable
 
 Airtable have a [full treatment of their security protocols](https://airtable.com/security) on their website, which seemed satisfactory as far as we could tell. For example, they encrypt data both in transmission via https (256-bit TLS) and whilst 'at rest' on their servers (AES 256), their data centres meet ISO 27001 standards, and they commission external penetration tests and run a [bug bounty programme](https://hackerone.com/airtable).
@@ -171,11 +171,11 @@ We thought we might git together again some time.
 - [Progress bar](https://github.com/fac18/safe-space/issues/36)
 - Button to skip questions one by one
 - Button on section dividers to skip entire sections
-- Share button to tweet the website 
+- Share button to tweet the website
 - Style the inputs
 - Fix text styling on section dividers
 - Collate all responses on a review page where users can see what they’ve answered for each quetion
--  Enable download of collated responses as a PDF file
+- Enable download of collated responses as a PDF file
 - Refactor - generally
 - [Bug](https://github.com/fac18/safe-space/labels/bug) squashing
 

@@ -8,13 +8,21 @@ const getQuestions = async table => {
     await fetch(
       `../../.netlify/functions/get-questions/get-questions.js?table=${table}`
     )
-  ).json();
+  )
+    .json()
+    .then(records => {
+      return records.filter(record => Object.keys(record).length > 0);
+    });
 };
 
 const getDividers = async () => {
   return await (
     await fetch('../../.netlify/functions/get-dividers/get-dividers.js')
-  ).json();
+  )
+    .json()
+    .then(records => {
+      return records.filter(record => Object.keys(record).length > 0);
+    });
 };
 
 export { getQuestions, getDividers };

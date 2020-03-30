@@ -4,8 +4,10 @@ import {
   FlexColumn,
   FlexRow,
   CenterContents,
+  ButtonNext,
+  ButtonBack,
 } from '../../style';
-import { Header, ButtonNext, ButtonBack } from '../../index';
+import { Header } from '../../index';
 import { FormQuestion } from './index';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
@@ -54,6 +56,8 @@ const findNextPage = (questions, page, responses) => {
     return findNextPage(questions, nextPage, newLastIndex);
   } else {
     // else navigate to next page/section divider/submission page as appropriate
+    console.log('lastIndex', lastIndex);
+    console.log('questions.length - 1', questions.length - 1);
     return lastIndex === questions.length - 1
       ? `/report/submit` // send to review/submission page upon completion
       : questions[lastIndex].section !== questions[lastIndex + 1].section

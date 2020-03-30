@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '@rmwc/typography';
-import { Header, ButtonPrimary } from '../../index';
+import { Header } from '../../index';
+import { ButtonPrimary } from '../../style';
 import styled from 'styled-components';
 import '@material/typography/dist/mdc.typography.css';
 import { Link } from 'react-router-dom';

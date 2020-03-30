@@ -14,6 +14,7 @@ const Text = styled.section`
   text-align: center;
   justify-content: center;
 `;
+
 const Type = styled(Typography)`
   margin-bottom: 0.5rem;
   padding-left: 0.5rem;

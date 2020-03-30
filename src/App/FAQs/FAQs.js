@@ -1,59 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Header, Footer, ButtonBack } from '../index';
-import styled from 'styled-components';
-import { Typography } from '@rmwc/typography';
+import { Header, Footer } from '../index';
+import { Collapse } from './index';
 import {
   TypeQ,
   FormContainer,
   FlexColumn,
   PageContainer,
   ContentWrap,
+  ButtonBack,
+  Type5,
 } from '../style';
 
-const Type5 = styled(Typography)`
-  && {
-    text-align: left;
-    padding-bottom: 0.8em;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    color: #5763a2;
-    z-index: 50;
-  }
-`;
-
-function Collapse(props) {
-  const [isCollapsed, setIsCollapsed] = React.useState(props.collapsed);
-  const style = {
-    collapsed: {
-      display: 'none',
-    },
-    expanded: {
-      display: 'block',
-    },
-    buttonStyle: {
-      display: 'block',
-      width: '100%',
-    },
-  };
-  return (
-    <div>
-      <button
-        style={style.buttonStyle}
-        onClick={() => setIsCollapsed(!isCollapsed)}
-      >
-        {isCollapsed ? 'Show' : 'Hide'} content
-      </button>
-      <div
-        className='collapse-content'
-        style={isCollapsed ? style.collapsed : style.expanded}
-        aria-expanded={isCollapsed}
-      >
-        {props.children}
-      </div>
-    </div>
-  );
-}
 const FAQs = () => {
   return (
     <>
