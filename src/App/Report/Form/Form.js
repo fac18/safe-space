@@ -13,7 +13,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 
 // fn: filter full questions object to determine which to display on page being rendered
 const filterQuestions = (questions, page, responses) => {
-  return questions.filter((question, i) => {
+  return questions.filter(question => {
     if (question.page === page) {
       if (question.split) {
         return question.condition.includes(responses[question.split]);
@@ -107,10 +107,10 @@ const Form = ({ questions, responses, updateResponses }) => {
           <FlexColumn>
             <form id='report-form'>
               {(() =>
-                pageQuestions.map((question, i) => (
+                pageQuestions.map((question, index) => (
                   <FormQuestion
-                    key={`${page}.${i}`}
-                    i={i}
+                    key={`${page}.${index}`}
+                    index={index}
                     question={question}
                     responses={responses}
                     updateResponses={updateResponses}

@@ -14,7 +14,7 @@ import hardDividers from '../../model/dividers';
 // fn: reducer to handle form updates
 // the action object passed in is immediately destructured
 const reducer = (state, { field, value, type, checked }) => {
-  if (value.length === 0) return state; // if value empty (i.e. it's an 'Other' option), no change
+  if (value.length === 0) return state; // if value empty (i.e. first interaction w/ an 'Other' option), no change
   if (type === 'checkbox') {
     // checkboxes need special handling since they can take multiple answers
     if (checked) {

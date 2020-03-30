@@ -1,37 +1,34 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { TypeQ } from '../../../style';
-import {
-  FlexInputs,
-  InputWrapper,
-  TextArea,
-  TextInput,
-  // Radio,
-  // FormField,
-} from './style';
+import { FlexInputs, InputWrapper, TextArea, TextInput } from './style';
 
-const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
-  // get initial value of 'other' state from response object if available
+const FormQuestion = ({
+  index,
+  page,
+  question,
+  responses,
+  updateResponses,
+}) => {
+  // get initial value of other state (see below) from response object if available
   let initialOther = '';
-  // if (question.type === 'checkbox') {
-  //   if (responses[question.question]) {
-  //     responses[question.question].forEach(answer => {
-  //       if (!question.content.includes(answer) && answer !== '') {
-  //         initialOther = answer;
-  //       }
-  //     });
-  //   }
-  // } else if (question.type === 'radio') {
-  //   if (responses[question.question]) {
-  //     if (!question.content === responses[question.question] && answer !== '') {
-  //       initialOther = answer;
-  //     }
-  //   }
-  // }
+  useEffect(() => {
+    if (responses[question.question]) {
+      if (question.type === 'checkbox' || question.type === 'radio') {
+        responses[question.question].forEach(answer => {
+          // if a response exists which is not a pre-set answer, that is user-generated text i.e. an 'Other' response
+          if (!question.content.includes(answer)) {
+            initialOther = answer;
+            console.log(initialOther);
+          }
+        });
+      }
+    }
+  }, []);
 
-  // to capture text in optional 'Other' field, we will trick the dispatch in updateResponses into including it
-  // first we set up a state and ref to track 'Other' text and element respectively, for this question
+  // to capture text in optional 'Other' fields, we will trick the dispatch in updateResponses into including it
+  // first we set up a state and ref to track the 'Other' text and element respectively, for this particular FormQuestion
   const [other, setOther] = useState(initialOther);
-  const otherOption = useRef(null); // NEED TO:
+  const otherOption = useRef(null);
 
   // fn: replace other state w/ new content when text field changes
   const changeOther = e => {
@@ -39,28 +36,27 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
   };
 
   // fn: force inclusion of 'Other' text into responses object when text field loses focus (onblur)
-  // BUG#128: if the user returns to edit the text, another answer will be submitted to the responses object
+  // BUG#128: if the user returns to edit the text, another answer will be submitted to the responses object (solve via reducer?)
   const triggerUpdate = () => {
-    // we do this by simulating an onchange event on the 'Other' checkbox
+    // we do this by simulating an onchange event on the 'Other' checkbox, which we access via the associated ref
     const changeEvent = new Event('change', { bubbles: true });
     otherOption.current.dispatchEvent(changeEvent);
   };
 
-  // use a callback ref to check checkboxes/radios where data already exists in responses object
+  // use a callback ref to select checkboxes/radios where data already exists in the responses object
   // this fires separately for each checkbox, on mount (empty dependency array ensures one run only)
   const syncRef = useCallback(el => {
-    // if the element referenced is not null, we continue...
+    // if the element referenced is not null (still unsure why it sometimes is!), we continue...
     if (el) {
-      // check for data for this question, and see if the given element's value is included
-      if (
-        responses[question.question] &&
-        responses[question.question].includes(el.value)
-      ) {
+      // check for data for this question
+      if (responses[question.question]) {
+        console.log('element is other?', el.value === other);
         if (el.value === other) {
-          otherOption.current = el; // re-associate object ref to 'Other' option
-          el.setAttribute('checked', 'true'); // BUG: does not reveal text field (bcos programmatic?)
-        } else {
-          el.setAttribute('checked', 'true');
+          console.log('syncRef for other option tripped');
+          otherOption.current = el; // (re-)associate object ref to 'Other' option
+          el.click(); // BUG: does not reveal text field (bcos this line produces no state change!) - use another ref??
+        } else if (responses[question.question].includes(el.value)) {
+          el.click(); // crucially, this fires the event - writing el.setAttribute('checked', ...) does not!
         }
       } else if (el.value === other) {
         // in the case that 'Other' has not been selected before, we still need to attach the ref
@@ -84,7 +80,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   name={question.question}
                   type={question.type}
                   placeholder={question.content[0]}
-                  id={`${page}.${i}`}
+                  id={`${page}.${index}`}
                   onChange={updateResponses}
                   value={
                     responses[question.question]
@@ -107,7 +103,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                     rows='10'
                     cols='70'
                     onChange={updateResponses}
-                    id={`${page}.${i}`}
+                    id={`${page}.${index}`}
                     value={
                       responses[question.question]
                         ? responses[question.question]
@@ -123,7 +119,6 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
-                      {/* <FormField> */}
                       <input
                         ref={syncRef}
                         name={question.question}
@@ -131,11 +126,10 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         value={
                           answer === 'Other (please specify)' ? other : answer
                         }
-                        id={`${page}.${i}.${j}`}
+                        id={`${page}.${index}.${j}`}
                         onChange={updateResponses}
                       />
-                      <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
-                      {/* </FormField> */}
+                      <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
                     </FlexInputs>
                   );
                 })}
@@ -177,10 +171,10 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                         value={
                           answer === 'Other (please specify)' ? other : answer
                         }
-                        id={`${page}.${i}.${j}`}
+                        id={`${page}.${index}.${j}`}
                         onChange={updateResponses}
                       />
-                      <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
                       {/* </FormField> */}
                     </FlexInputs>
                   );
@@ -214,7 +208,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   <input
                     name={question.question}
                     type={question.type}
-                    id={`${page}.${i}`}
+                    id={`${page}.${index}`}
                     onChange={updateResponses}
                     value={
                       responses[question.question]
