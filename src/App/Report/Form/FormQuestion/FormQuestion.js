@@ -13,14 +13,18 @@ const FormQuestion = ({
   let initialOther = '';
   useEffect(() => {
     if (responses[question.question]) {
-      if (question.type === 'checkbox' || question.type === 'radio') {
-        responses[question.question].forEach(answer => {
-          // if a response exists which is not a pre-set answer, that is user-generated text i.e. an 'Other' response
+      const response = responses[question.question];
+      if (question.type === 'checkbox') {
+        response.forEach(answer => {
+          // if a response exists which is not a pre-set answer, it is user-generated text i.e. an 'Other' response
           if (!question.content.includes(answer)) {
             initialOther = answer;
-            console.log(initialOther);
           }
         });
+      } else if (question.type === 'radio') {
+        if (!question.content.includes(response)) {
+          initialOther = response;
+        }
       }
     }
   }, []);
@@ -29,6 +33,8 @@ const FormQuestion = ({
   // first we set up a state and ref to track the 'Other' text and element respectively, for this particular FormQuestion
   const [other, setOther] = useState(initialOther);
   const otherOption = useRef(null);
+  // as well as a state to track whether or not the 'Other' text field is rendered
+  const [otherVisibility, setOtherVisibility] = useState(false);
 
   // fn: replace other state w/ new content when text field changes
   const changeOther = e => {
@@ -43,6 +49,12 @@ const FormQuestion = ({
     otherOption.current.dispatchEvent(changeEvent);
   };
 
+  // fn: event handling function that runs updateResponses and also reveals/hides 'Other' text field
+  const updateAndReveal = e => {
+    setOtherVisibility(otherOption.current && otherOption.current.checked);
+    updateResponses(e);
+  };
+
   // use a callback ref to select checkboxes/radios where data already exists in the responses object
   // this fires separately for each checkbox, on mount (empty dependency array ensures one run only)
   const syncRef = useCallback(el => {
@@ -50,13 +62,11 @@ const FormQuestion = ({
     if (el) {
       // check for data for this question
       if (responses[question.question]) {
-        console.log('element is other?', el.value === other);
         if (el.value === other) {
-          console.log('syncRef for other option tripped');
           otherOption.current = el; // (re-)associate object ref to 'Other' option
-          el.click(); // BUG: does not reveal text field (bcos this line produces no state change!) - use another ref??
+          el.click(); // crucially, this fires an event - writing el.setAttribute('checked', ...) does not!
         } else if (responses[question.question].includes(el.value)) {
-          el.click(); // crucially, this fires the event - writing el.setAttribute('checked', ...) does not!
+          el.click();
         }
       } else if (el.value === other) {
         // in the case that 'Other' has not been selected before, we still need to attach the ref
@@ -75,7 +85,6 @@ const FormQuestion = ({
           case 'text':
             return (
               <InputWrapper>
-                {/* <FlexInputs> */}
                 <TextInput
                   name={question.question}
                   type={question.type}
@@ -88,7 +97,6 @@ const FormQuestion = ({
                       : ''
                   }
                 />
-                {/* </FlexInputs> */}
               </InputWrapper>
             );
           case 'textarea':
@@ -127,33 +135,23 @@ const FormQuestion = ({
                           answer === 'Other (please specify)' ? other : answer
                         }
                         id={`${page}.${index}.${j}`}
-                        onChange={updateResponses}
+                        onChange={updateAndReveal}
                       />
                       <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
                     </FlexInputs>
                   );
                 })}
-                {(() => {
-                  // if the question has an 'other' flag and the 'Other' option is checked by user
-                  if (
-                    question.other === true &&
-                    otherOption.current &&
-                    otherOption.current.checked
-                  ) {
-                    // then we display a text box to capture the 'other' submission
-                    return (
-                      <FlexInputs>
-                        <input
-                          name={`${question.question} - other`}
-                          type='text'
-                          placeholder='Give more detail here'
-                          onChange={changeOther}
-                          onBlur={triggerUpdate}
-                        />
-                      </FlexInputs>
-                    );
-                  }
-                })()}
+                {otherVisibility ? (
+                  <FlexInputs>
+                    <input
+                      name={`${question.question} - other`}
+                      type='text'
+                      placeholder='Give more detail here'
+                      onChange={changeOther}
+                      onBlur={triggerUpdate}
+                    />
+                  </FlexInputs>
+                ) : null}
               </InputWrapper>
             );
           case 'radio':
@@ -162,8 +160,6 @@ const FormQuestion = ({
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
-                      {/* <FormField> */}
-                      {/* <Radio */}
                       <input
                         ref={syncRef}
                         name={question.question}
@@ -175,7 +171,6 @@ const FormQuestion = ({
                         onChange={updateResponses}
                       />
                       <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
-                      {/* </FormField> */}
                     </FlexInputs>
                   );
                 })}
@@ -193,6 +188,7 @@ const FormQuestion = ({
                           placeholder='Give more detail here'
                           onChange={changeOther}
                           onBlur={triggerUpdate}
+                          id={`${page}.${index}.other`}
                         />
                       </FlexInputs>
                     );
