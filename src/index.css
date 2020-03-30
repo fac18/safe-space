@@ -20,7 +20,7 @@ code {
     monospace;
 }
 
-.mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+/* .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
 .mdc-checkbox__native-control:enabled:indeterminate
   ~ .mdc-checkbox__background {
   border-color: #7768a6 !important;
@@ -81,4 +81,31 @@ code {
   border-color: #5763a2 !important;
   /* background-color: #5763a2 !important; */
   color: #5763a2 !important;
+} */
+
+input[type='text'] {
+  border: 1px solid lightgrey;
+  margin-top: 0.5rem;
+  width: 16rem;
+  min-height: 2rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+input[type='text']:focus {
+  outline-color: #5763a2;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: 1px;
+  border: none;
+}
+
+label {
+  margin-left: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  input[type='text'] {
+    width: 35rem;
+  }
 }

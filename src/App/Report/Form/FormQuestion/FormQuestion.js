@@ -4,9 +4,9 @@ import {
   FlexInputs,
   InputWrapper,
   TextArea,
-  Radio,
-  Checkbox,
-  FormField,
+  TextInput,
+  // Radio,
+  // FormField,
 } from './style';
 
 const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
@@ -39,7 +39,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
             return (
               <InputWrapper>
                 {/* <FlexInputs> */}
-                <TextArea
+                <TextInput
                   name={question.question}
                   type={question.type}
                   placeholder={question.content[0]}
@@ -82,23 +82,23 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
-                      <FormField>
-                        <Checkbox
-                          ref={
-                            answer === 'Other (please specify)'
-                              ? otherOption
-                              : null
-                          }
-                          name={question.question}
-                          type={question.type}
-                          value={
-                            answer === 'Other (please specify)' ? other : answer
-                          }
-                          id={`${page}.${i}.${j}`}
-                          onClick={updateResponses}
-                        />
-                        <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
-                      </FormField>
+                      {/* <FormField> */}
+                      <input
+                        ref={
+                          answer === 'Other (please specify)'
+                            ? otherOption
+                            : null
+                        }
+                        name={question.question}
+                        type={question.type}
+                        value={
+                          answer === 'Other (please specify)' ? other : answer
+                        }
+                        id={`${page}.${i}.${j}`}
+                        onClick={updateResponses}
+                      />
+                      <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      {/* </FormField> */}
                     </FlexInputs>
                   );
                 })}
@@ -112,7 +112,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                     // then we display a text box to capture the 'other' submission
                     return (
                       <FlexInputs>
-                        <TextArea
+                        <input
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
@@ -131,23 +131,24 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                 {question.content.map((answer, j) => {
                   return (
                     <FlexInputs key={j}>
-                      <FormField>
-                        <Radio
-                          ref={
-                            answer === 'Other (please specify)'
-                              ? otherOption
-                              : null
-                          }
-                          name={question.question}
-                          type={question.type}
-                          value={
-                            answer === 'Other (please specify)' ? other : answer
-                          }
-                          id={`${page}.${i}.${j}`}
-                          onClick={updateResponses}
-                        />
-                        <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
-                      </FormField>
+                      {/* <FormField> */}
+                      {/* <Radio */}
+                      <input
+                        ref={
+                          answer === 'Other (please specify)'
+                            ? otherOption
+                            : null
+                        }
+                        name={question.question}
+                        type={question.type}
+                        value={
+                          answer === 'Other (please specify)' ? other : answer
+                        }
+                        id={`${page}.${i}.${j}`}
+                        onClick={updateResponses}
+                      />
+                      <label htmlFor={`${page}.${i}.${j}`}>{answer}</label>
+                      {/* </FormField> */}
                     </FlexInputs>
                   );
                 })}
@@ -159,7 +160,7 @@ const FormQuestion = ({ i, page, question, responses, updateResponses }) => {
                   ) {
                     return (
                       <FlexInputs>
-                        <TextArea
+                        <input
                           name={`${question.question} - other`}
                           type='text'
                           placeholder='Give more detail here'
