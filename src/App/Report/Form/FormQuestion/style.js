@@ -42,4 +42,25 @@ const TextArea = styled.textarea`
   }
 `;
 
-export { FlexInputs, InputWrapper, TextArea, Radio, FormField, Checkbox };
+const TextInput = styled.input`
+  border: 1px solid lightgrey;
+  margin-top: 0.5rem;
+  width: 16rem;
+  min-height: 2rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+
+  &:focus {
+    outline-color: #5763a2;
+    outline-style: solid;
+    outline-width: 1px;
+    outline-offset: 1px;
+    border: none;
+  }
+
+  @media (min-width: 600px) {
+    min-width: 35rem;
+  }
+`;
+
+export { FlexInputs, InputWrapper, TextArea, TextInput, Radio, FormField };
