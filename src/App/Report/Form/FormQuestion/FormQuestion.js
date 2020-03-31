@@ -20,6 +20,7 @@ const FormQuestion = ({
   const [otherVisibility, setVisibility] = useState(false);
 
   // set initial value of states for 'Other' implementation above, if response data available
+  // NEED TO test this once text from 'Other' field is actually being incorporated into responses object
   useEffect(() => {
     if (response) {
       if (question.type === 'checkbox') {
@@ -28,10 +29,12 @@ const FormQuestion = ({
           // if a response exists which is not a pre-set answer, it is user-generated text i.e. an 'Other' response
           if (!question.content.includes(answer)) {
             console.log(
-              'initialisation of other states for checkboxes tripped'
+              `initialisation of other states for checkboxes tripped with answer ${answer}`
             );
             setOther(answer);
             setVisibility(true);
+            console.log('other state changed to: ', other);
+            console.log('otherVisibility state changed to: ', otherVisibility);
           }
         });
       } else if (question.type === 'radio') {
@@ -51,43 +54,37 @@ const FormQuestion = ({
   };
 
   // fn: force inclusion of 'Other' text into responses object when text field loses focus (onblur)
-  // BUG#128: if the user returns to edit the text, another answer will be submitted to the responses object (solve via reducer?)
-  const triggerUpdate = () => {
+  // BUG #128: if the user returns to edit the text, another answer will be submitted to the responses object (solve via reducer?)
+  const triggerUpdate = e => {
     // we do this by simulating an onchange event on the 'Other' checkbox, which we access via the associated ref
-    const changeEvent = new Event('change', { bubbles: true });
-    console.log('triggerUpdate running on: ', otherOption.current);
-    otherOption.current.dispatchEvent(changeEvent);
+    const changeEvent = new Event('change');
+    otherOption.current.dispatchEvent(changeEvent); // NB. dispatchEvent is synchronous (i.e. doesn't follow usual event loop)
   };
 
-  // fn: event handling function that runs updateResponses and also reveals/hides 'Other' text field
+  // fn: event handling function that reveals (/hides) the 'Other' text field and runs updateResponses
   const updateAndReveal = e => {
     setVisibility(otherOption.current && otherOption.current.checked);
     updateResponses(e);
   };
 
   // use a callback ref to select checkboxes/radios where data already exists in the responses object
-  // this fires separately for each element, on mount (the empty dependency array ensures one run only)
+  // this fires separately for each element, on mount (an empty dependency array ensures the fn isn't unneccessarily redeclared later)
   const syncRef = useCallback(el => {
     // if the element referenced is not null (still unsure why it sometimes is...), we continue
     if (el) {
       // check for data for this question
       if (response) {
         if (other.length > 0 && el.value === other) {
-          console.log(
-            'syncRef branch w/ response data and el.value === other is tripped'
-          );
-          console.log('el.value: ', el.value);
-          console.log('other: ', other);
+          // addEventListener makes script-generated event in triggerUpdate trip updateAndReveal (onChange doesn't do it)
+          el.addEventListener('change', updateAndReveal);
           otherOption.current = el; // (re-)associate object ref to 'Other' option
-          el.click(); // crucially, this line fires an event (thereby running the function to reveal corresponding text field)
+          el.click(); // crucially, this line fires an event (thereby revealing corresponding text field)
         } else if (response === el.value || response.includes(el.value)) {
           el.click();
         }
       } else if (el.value === other) {
-        console.log(
-          'syncRef branch w/o response data and el.value === other is tripped'
-        );
         // in the case that 'Other' has not been selected before, we still need to attach the ref
+        el.addEventListener('change', updateAndReveal);
         otherOption.current = el;
       }
     }
@@ -206,7 +203,7 @@ const FormQuestion = ({
                 ) : null}
               </InputWrapper>
             );
-          // default handles te remaining 'date' case
+          // default handles the remaining 'date' case
           default:
             return (
               <InputWrapper>

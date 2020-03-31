@@ -37,6 +37,7 @@ const Submit = ({ responses, updateResponses }) => {
     };
     postResponses('first-responses', stringify(finalResponses)).then(res => {
       // navigate to confirmation once response from POST successfully received
+      console.log(res);
       history.push('/report/confirm');
     });
   };
