@@ -89,8 +89,6 @@ const Form = ({ questions, responses, updateResponses }) => {
   const page = parseInt(useParams().index, 10);
   const history = useHistory();
 
-  console.log({ responses });
-
   // get questions to be displayed on this page
   const pageQuestions = filterQuestions(questions, page, responses);
 
