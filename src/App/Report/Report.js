@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 // import subcomponents and reusables
 import { Form, Divider, Confirm, Submit, Loading } from './index';
 
-// and packages and utils
+// and utils
 import { getQuestions, getDividers, deleteValue } from '../../utils/index';
 
-// fallback data
+// and fallback data
 import hardQuestions from '../../model/questions';
 import hardDividers from '../../model/dividers';
 
@@ -17,13 +17,21 @@ const reducer = (state, { field, value, type, checked }) => {
   if (value.length === 0) return state; // if value empty (i.e. first interaction w/ an 'Other' option), no change
   if (type === 'checkbox') {
     // checkboxes need special handling since they can take multiple answers
-    if (checked) {
-      // if checkbox is being checked, incorporate response
-      const newResponses = state[field] ? [...state[field], value] : [value];
-      return { ...state, [field]: newResponses };
-      // NB. the square brackets in [field] enable use of the variable as a key in the object literal
+    if (checked && state[field]) {
+      console.log(state[field]);
+      // if there's response data, checkbox is checked, but response already includess this value, no change
+      // and else we incorporate the new value
+      return state[field].includes(value)
+        ? state
+        : { ...state, [field]: [...state[field], value] };
+    } else if (checked) {
+      // else if there is no response data and checkbox is being checked, it is for the first time, so incorporate given value
+      return { ...state, [field]: [value] };
+      // NB. here the square brackets in [field] enable use of the value of field as a key in the object literal
+      // but the square brackets in [value] denote an array literal i.e. an array with one entry, value
     } else {
-      // else if checkbox is being deselected, remove this value from responses
+      console.log(`deselection branch triggered for field: ${field}`);
+      // else if checkbox is being deselected, remove given value from responses
       const newResponses = deleteValue(state[field], value);
       // if this action results in an empty array, this field should be removed altogether (w/o mutation)
       if (newResponses.length === 0) {
@@ -35,7 +43,7 @@ const reducer = (state, { field, value, type, checked }) => {
       }
     }
   } else {
-    // for all other input types, we simply reproduce the state with new field incorporated
+    // for all other input types, we simply reproduce the state with new field incorporated (/overwritten)
     return {
       ...state,
       [field]: value,

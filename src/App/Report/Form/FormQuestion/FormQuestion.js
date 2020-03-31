@@ -9,32 +9,41 @@ const FormQuestion = ({
   responses,
   updateResponses,
 }) => {
-  // get initial value of other state (see below) from response object if available
-  let initialOther = '';
+  // pull existing response data out of responses object, if available
+  const response = responses[question.question];
+
+  // to capture text in optional 'Other' fields, we will trick the dispatch in updateResponses into including it
+  // first we set up a state and ref to track the 'Other' text and element respectively, for this particular FormQuestion
+  const [other, setOther] = useState('');
+  const otherOption = useRef(null);
+  // as well as a state to track whether or not the 'Other' text field should be rendered
+  const [otherVisibility, setVisibility] = useState(false);
+
+  // set initial value of states for 'Other' implementation above, if response data available
   useEffect(() => {
-    if (responses[question.question]) {
-      const response = responses[question.question];
+    if (response) {
       if (question.type === 'checkbox') {
+        // here response is an array of one or more choices, since multiple checkboxes can be selected
         response.forEach(answer => {
           // if a response exists which is not a pre-set answer, it is user-generated text i.e. an 'Other' response
           if (!question.content.includes(answer)) {
-            initialOther = answer;
+            console.log(
+              'initialisation of other states for checkboxes tripped'
+            );
+            setOther(answer);
+            setVisibility(true);
           }
         });
       } else if (question.type === 'radio') {
+        // and here response is a string, since radio buttons allow only a single choice
         if (!question.content.includes(response)) {
-          initialOther = response;
+          console.log('initialisation of other states for radios tripped');
+          setOther(response);
+          setVisibility(true);
         }
       }
     }
   }, []);
-
-  // to capture text in optional 'Other' fields, we will trick the dispatch in updateResponses into including it
-  // first we set up a state and ref to track the 'Other' text and element respectively, for this particular FormQuestion
-  const [other, setOther] = useState(initialOther);
-  const otherOption = useRef(null);
-  // as well as a state to track whether or not the 'Other' text field is rendered
-  const [otherVisibility, setOtherVisibility] = useState(false);
 
   // fn: replace other state w/ new content when text field changes
   const changeOther = e => {
@@ -46,29 +55,38 @@ const FormQuestion = ({
   const triggerUpdate = () => {
     // we do this by simulating an onchange event on the 'Other' checkbox, which we access via the associated ref
     const changeEvent = new Event('change', { bubbles: true });
+    console.log('triggerUpdate running on: ', otherOption.current);
     otherOption.current.dispatchEvent(changeEvent);
   };
 
   // fn: event handling function that runs updateResponses and also reveals/hides 'Other' text field
   const updateAndReveal = e => {
-    setOtherVisibility(otherOption.current && otherOption.current.checked);
+    setVisibility(otherOption.current && otherOption.current.checked);
     updateResponses(e);
   };
 
   // use a callback ref to select checkboxes/radios where data already exists in the responses object
-  // this fires separately for each checkbox, on mount (empty dependency array ensures one run only)
+  // this fires separately for each element, on mount (the empty dependency array ensures one run only)
   const syncRef = useCallback(el => {
-    // if the element referenced is not null (still unsure why it sometimes is!), we continue...
+    // if the element referenced is not null (still unsure why it sometimes is...), we continue
     if (el) {
       // check for data for this question
-      if (responses[question.question]) {
-        if (el.value === other) {
+      if (response) {
+        if (other.length > 0 && el.value === other) {
+          console.log(
+            'syncRef branch w/ response data and el.value === other is tripped'
+          );
+          console.log('el.value: ', el.value);
+          console.log('other: ', other);
           otherOption.current = el; // (re-)associate object ref to 'Other' option
-          el.click(); // crucially, this fires an event - writing el.setAttribute('checked', ...) does not!
-        } else if (responses[question.question].includes(el.value)) {
+          el.click(); // crucially, this line fires an event (thereby running the function to reveal corresponding text field)
+        } else if (response === el.value || response.includes(el.value)) {
           el.click();
         }
       } else if (el.value === other) {
+        console.log(
+          'syncRef branch w/o response data and el.value === other is tripped'
+        );
         // in the case that 'Other' has not been selected before, we still need to attach the ref
         otherOption.current = el;
       }
@@ -168,32 +186,24 @@ const FormQuestion = ({
                           answer === 'Other (please specify)' ? other : answer
                         }
                         id={`${page}.${index}.${j}`}
-                        onChange={updateResponses}
+                        onChange={updateAndReveal}
                       />
                       <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
                     </FlexInputs>
                   );
                 })}
-                {(() => {
-                  if (
-                    question.other === true &&
-                    otherOption.current &&
-                    otherOption.current.checked
-                  ) {
-                    return (
-                      <FlexInputs>
-                        <input
-                          name={`${question.question} - other`}
-                          type='text'
-                          placeholder='Give more detail here'
-                          onChange={changeOther}
-                          onBlur={triggerUpdate}
-                          id={`${page}.${index}.other`}
-                        />
-                      </FlexInputs>
-                    );
-                  }
-                })()}
+                {otherVisibility ? (
+                  <FlexInputs>
+                    <input
+                      name={`${question.question} - other`}
+                      type='text'
+                      placeholder='Give more detail here'
+                      onChange={changeOther}
+                      onBlur={triggerUpdate}
+                      id={`${page}.${index}.other`}
+                    />
+                  </FlexInputs>
+                ) : null}
               </InputWrapper>
             );
           // default handles te remaining 'date' case

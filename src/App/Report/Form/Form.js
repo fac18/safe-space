@@ -121,15 +121,13 @@ const Form = ({ questions, responses, updateResponses }) => {
             <FlexRow>
               <ButtonBack
                 tag={Link}
-                to={findPrevPage(questions, page)}
-                // onClick={triggerChange}
+                to={findPrevPage(questions, page, responses)}
               >
                 Back
               </ButtonBack>
               <ButtonNext
                 tag={Link}
-                to={findNextPage(questions, page)}
-                // onClick={triggerChange}
+                to={findNextPage(questions, page, responses)}
               >
                 Next
               </ButtonNext>
