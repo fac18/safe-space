@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { TypeQ } from '../../../style';
-import { FlexInputs, InputWrapper, TextArea, TextInput } from './style';
+import {
+  TextQuestion,
+  TextareaQuestion,
+  CheckboxQuestion,
+  RadioQuestion,
+  DateQuestion,
+} from './index';
 
 const FormQuestion = ({
   index,
@@ -22,13 +28,9 @@ const FormQuestion = ({
       if (question.type === 'checkbox') {
         let result = '';
         response.forEach(answer => {
-          console.log(`considering answer ${answer}`);
           // here response is an array of one or more choices, since multiple checkboxes can be selected
           // if a response exists which is not a pre-set answer, it is user-generated text i.e. an 'Other' response
           if (!question.content.includes(answer)) {
-            console.log(
-              `init of other state for checkboxes tripped with answer ${answer}`
-            );
             result = answer;
           }
         });
@@ -38,7 +40,6 @@ const FormQuestion = ({
         !question.content.includes(response)
       ) {
         // and here response is a string, since radio buttons allow only a single choice
-        console.log('init of other state for radios tripped');
         return response;
       } else return '';
     } else return '';
@@ -80,7 +81,6 @@ const FormQuestion = ({
         ((el.type === 'radio' && response === el.value) ||
           (el.type === 'checkbox' && response.includes(el.value)))
       ) {
-        console.log(`selecting value ${el.value} from response ${response}`);
         el.click(); // crucially, this line fires an event, which means the checkbox can still be deselected properly (whereas setAttribute doesn't)
       }
     }
@@ -90,7 +90,6 @@ const FormQuestion = ({
   // whether or not there is response data, we set it up the same way - that is, we attach object ref and event listener
   const syncRefOther = useCallback(el => {
     if (el) {
-      console.log(`run set up on 'Other' option`);
       // event listener makes script-generated event in triggerUpdate trip updateAndReveal (onChange doesn't do this)
       el.addEventListener('change', updateAndReveal);
       otherOption.current = el;
@@ -100,16 +99,13 @@ const FormQuestion = ({
   // we have to handle the selection of the 'Other' option outside syncRefOther because we have to wait on successful lazy initialisation of other
   // for this we implement a useEffect which acts every time other updates (should always run after the above sync refs)
   useEffect(() => {
-    console.log('useEffect running');
-    console.log({ other });
-    console.log({ otherOption });
     // if other and otherOption are defined, other is non-empty and the text field is not visible yet, make it so!
     if (other && otherOption.current && other.length > 0 && !otherVisibility) {
-      console.log('SELECTING OTHER AND REVEALING TEXT FIELD');
       otherOption.current.click();
     }
   }, [other]);
 
+  // ideally the below would be refactored into one component that internally examines question.type to determine form
   return (
     <>
       <TypeQ use='headline5' tag='h2'>
@@ -119,143 +115,68 @@ const FormQuestion = ({
         switch (question.type) {
           case 'text':
             return (
-              <InputWrapper>
-                <TextInput
-                  name={question.question}
-                  type={question.type}
-                  placeholder={question.content[0]}
-                  id={`${page}.${index}`}
-                  onChange={updateResponses}
-                  value={
-                    responses[question.question]
-                      ? responses[question.question]
-                      : ''
-                  }
-                />
-              </InputWrapper>
+              <TextQuestion
+                index={index}
+                page={page}
+                question={question}
+                response={response}
+                updateResponses={updateResponses}
+              />
             );
           case 'textarea':
             return (
-              <InputWrapper>
-                <FlexInputs>
-                  <TextArea
-                    form='report-form'
-                    name={question.question}
-                    placeholder={question.content[0]}
-                    wrap='soft'
-                    rows='10'
-                    cols='70'
-                    onChange={updateResponses}
-                    id={`${page}.${index}`}
-                    value={
-                      responses[question.question]
-                        ? responses[question.question]
-                        : ''
-                    }
-                  />
-                </FlexInputs>
-              </InputWrapper>
+              <TextareaQuestion
+                index={index}
+                page={page}
+                question={question}
+                response={response}
+                updateResponses={updateResponses}
+              />
             );
           case 'checkbox':
             return (
-              <InputWrapper>
-                {question.content.map((answer, j) => {
-                  return (
-                    <FlexInputs key={j}>
-                      <input
-                        ref={
-                          answer === 'Other (please specify)'
-                            ? syncRefOther
-                            : syncRef
-                        }
-                        name={question.question}
-                        type={question.type}
-                        value={
-                          answer === 'Other (please specify)' ? other : answer
-                        }
-                        id={`${page}.${index}.${j}`}
-                        onChange={updateAndReveal}
-                      />
-                      <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
-                    </FlexInputs>
-                  );
-                })}
-                {otherVisibility ? (
-                  <FlexInputs>
-                    <input
-                      name={`${question.question} - other`}
-                      type='text'
-                      placeholder='Give more detail here'
-                      onChange={changeOther}
-                      onBlur={triggerUpdate}
-                      id={`${page}.${index}.otherText`}
-                      value={other}
-                    />
-                  </FlexInputs>
-                ) : null}
-              </InputWrapper>
+              <CheckboxQuestion
+                index={index}
+                page={page}
+                question={question}
+                other={other}
+                otherVisibility={otherVisibility}
+                syncRef={syncRef}
+                syncRefOther={syncRefOther}
+                updateAndReveal={updateAndReveal}
+                changeOther={changeOther}
+                triggerUpdate={triggerUpdate}
+              />
             );
           case 'radio':
             return (
-              <InputWrapper>
-                {question.content.map((answer, j) => {
-                  return (
-                    <FlexInputs key={j}>
-                      <input
-                        ref={
-                          answer === 'Other (please specify)'
-                            ? syncRefOther
-                            : syncRef
-                        }
-                        name={question.question}
-                        type={question.type}
-                        value={
-                          answer === 'Other (please specify)' ? other : answer
-                        }
-                        id={`${page}.${index}.${j}`}
-                        onChange={updateAndReveal}
-                      />
-                      <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
-                    </FlexInputs>
-                  );
-                })}
-                {otherVisibility ? (
-                  <FlexInputs>
-                    <input
-                      name={`${question.question} - other`}
-                      type='text'
-                      placeholder='Give more detail here'
-                      onChange={changeOther}
-                      onBlur={triggerUpdate}
-                      id={`${page}.${index}.otheText`}
-                      value={other}
-                    />
-                  </FlexInputs>
-                ) : null}
-              </InputWrapper>
+              <RadioQuestion
+                index={index}
+                page={page}
+                question={question}
+                other={other}
+                otherVisibility={otherVisibility}
+                syncRef={syncRef}
+                syncRefOther={syncRefOther}
+                updateAndReveal={updateAndReveal}
+                changeOther={changeOther}
+                triggerUpdate={triggerUpdate}
+              />
             );
+
           // default handles the remaining 'date' case
           default:
             return (
-              <InputWrapper>
-                <FlexInputs>
-                  <input
-                    name={question.question}
-                    type={question.type}
-                    id={`${page}.${index}`}
-                    onChange={updateResponses}
-                    value={
-                      responses[question.question]
-                        ? responses[question.question]
-                        : ''
-                    }
-                  />
-                </FlexInputs>
-              </InputWrapper>
+              <DateQuestion
+                index={index}
+                page={page}
+                question={question}
+                response={response}
+                updateResponses={updateResponses}
+              />
             );
         }
       })()}
-      <h1>{other}</h1>
     </>
   );
 };
