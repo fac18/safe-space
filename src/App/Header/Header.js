@@ -45,9 +45,9 @@ const Logo = () => {
         </Link>
         <Prompt
           message={location =>
-            location.pathname === `/`
+            location.pathname.includes('report')
               ? true
-              : `Are you sure you want to go to the homepage? Any changes you've made will be lost`
+              : `Are you sure you want to go leave this page? Any changes you've made will be lost`
           }
         />
       </>
