@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Collapse = props => {
+function Collapse(props) {
   const [isCollapsed, setIsCollapsed] = React.useState(props.collapsed);
   const style = {
     collapsed: {
@@ -31,6 +31,6 @@ const Collapse = props => {
       </div>
     </div>
   );
-};
+}
 
 export { Collapse };
