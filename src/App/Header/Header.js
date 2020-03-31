@@ -5,7 +5,7 @@ import { Bubbles } from '../style';
 import { ReactComponent as Logo1 } from '../../assets/safespace-logo.svg';
 import { ReactComponent as Logo2 } from '../../assets/safespace-logo2.svg';
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 
 const SSLogo1 = styled(Logo1)`
   width: 12rem;
@@ -37,15 +37,20 @@ const DisplayLogo = () => {
 const Logo = () => {
   const location = useLocation();
 
-  const handleAlert = () => {
-    window.confirm('Prss a button');
-  };
-
   if (location.pathname.includes('report')) {
     return (
-      <Link to='/' onClick={handleAlert}>
-        <DisplayLogo />
-      </Link>
+      <>
+        <Link to='/'>
+          <DisplayLogo />
+        </Link>
+        <Prompt
+          message={location =>
+            location.pathname === `/`
+              ? true
+              : `Are you sure you want to go to the homepage? Any changes you've made will be lost`
+          }
+        />
+      </>
     );
   } else {
     return (
