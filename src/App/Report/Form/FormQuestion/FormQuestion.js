@@ -14,50 +14,52 @@ const FormQuestion = ({
 
   // to capture text in optional 'Other' fields, we will trick the dispatch in updateResponses into including it
   // first we set up a state and ref to track the 'Other' text and element respectively, for this particular FormQuestion
-  const [other, setOther] = useState('');
   const otherOption = useRef(null);
-  // as well as a state to track whether or not the 'Other' text field should be rendered
-  const [otherVisibility, setVisibility] = useState(false);
-
-  // set initial value of states for 'Other' implementation above, if response data available
-  // NEED TO test this once text from 'Other' field is actually being incorporated into responses object
-  useEffect(() => {
+  const [other, setOther] = useState(() => {
+    // we do 'lazy' initialisation of other, since this needs to happen before the text field is (potentially) revealed
+    // BUT this operation is still asynchronous i.e. React doesn't guarantee immediate update of state (in fact it won't do it until after first paint)
     if (response) {
       if (question.type === 'checkbox') {
-        // here response is an array of one or more choices, since multiple checkboxes can be selected
+        let result = '';
         response.forEach(answer => {
+          console.log(`considering answer ${answer}`);
+          // here response is an array of one or more choices, since multiple checkboxes can be selected
           // if a response exists which is not a pre-set answer, it is user-generated text i.e. an 'Other' response
           if (!question.content.includes(answer)) {
             console.log(
-              `initialisation of other states for checkboxes tripped with answer ${answer}`
+              `init of other state for checkboxes tripped with answer ${answer}`
             );
-            setOther(answer);
-            setVisibility(true);
-            console.log('other state changed to: ', other);
-            console.log('otherVisibility state changed to: ', otherVisibility);
+            result = answer;
           }
         });
-      } else if (question.type === 'radio') {
+        return result;
+      } else if (
+        question.type === 'radio' &&
+        !question.content.includes(response)
+      ) {
         // and here response is a string, since radio buttons allow only a single choice
-        if (!question.content.includes(response)) {
-          console.log('initialisation of other states for radios tripped');
-          setOther(response);
-          setVisibility(true);
-        }
-      }
-    }
-  }, []);
+        console.log('init of other state for radios tripped');
+        return response;
+      } else return '';
+    } else return '';
+  });
+  // as well as a state to track whether or not the 'Other' text field should be rendered
+  const [otherVisibility, setVisibility] = useState(false);
 
   // fn: replace other state w/ new content when text field changes
   const changeOther = e => {
+    // React implements events as SyntheticEvent (wrapper for native Event), which it 'pools' and reuses for performance purposes
+    // this nullifies their references - event.persist() removes it from the pool and allows us to maintain access
+    e.persist();
     setOther(e.target.value);
   };
 
   // fn: force inclusion of 'Other' text into responses object when text field loses focus (onblur)
-  // BUG #128: if the user returns to edit the text, another answer will be submitted to the responses object (solve via reducer?)
+  // BUG #128: if the user returns to edit the text, another answer will be submitted to the responses object (solve via reducer? could check event.isTrusted?)
   const triggerUpdate = e => {
     // we do this by simulating an onchange event on the 'Other' checkbox, which we access via the associated ref
-    const changeEvent = new Event('change');
+    // NB. this is bad practice (it's 'hacky') - but sometimes recognised as necessary to handle 3rd party libraries/frameworks (e.g. React)
+    const changeEvent = new Event('change'); // doesn't bubble by default (Event constructor accepts options as second argument to change this)
     otherOption.current.dispatchEvent(changeEvent); // NB. dispatchEvent is synchronous (i.e. doesn't follow usual event loop)
   };
 
@@ -70,25 +72,43 @@ const FormQuestion = ({
   // use a callback ref to select checkboxes/radios where data already exists in the responses object
   // this fires separately for each element, on mount (an empty dependency array ensures the fn isn't unneccessarily redeclared later)
   const syncRef = useCallback(el => {
-    // if the element referenced is not null (still unsure why it sometimes is...), we continue
+    // if the element referenced is not null (it sometimes is - unsure why), we continue...
     if (el) {
-      // check for data for this question
-      if (response) {
-        if (other.length > 0 && el.value === other) {
-          // addEventListener makes script-generated event in triggerUpdate trip updateAndReveal (onChange doesn't do it)
-          el.addEventListener('change', updateAndReveal);
-          otherOption.current = el; // (re-)associate object ref to 'Other' option
-          el.click(); // crucially, this line fires an event (thereby revealing corresponding text field)
-        } else if (response === el.value || response.includes(el.value)) {
-          el.click();
-        }
-      } else if (el.value === other) {
-        // in the case that 'Other' has not been selected before, we still need to attach the ref
-        el.addEventListener('change', updateAndReveal);
-        otherOption.current = el;
+      // check for data for this question, and whether it matches/includes the value of considered element (for radio/checkbox resp.) - select if so
+      if (
+        response &&
+        ((el.type === 'radio' && response === el.value) ||
+          (el.type === 'checkbox' && response.includes(el.value)))
+      ) {
+        console.log(`selecting value ${el.value} from response ${response}`);
+        el.click(); // crucially, this line fires an event, which means the checkbox can still be deselected properly (whereas setAttribute doesn't)
       }
     }
+  }, []); // React would have me write [responses, question] for dependency array
+
+  // we have a separate callback ref for the 'Other' radio or checkbox options
+  // whether or not there is response data, we set it up the same way - that is, we attach object ref and event listener
+  const syncRefOther = useCallback(el => {
+    if (el) {
+      console.log(`run set up on 'Other' option`);
+      // event listener makes script-generated event in triggerUpdate trip updateAndReveal (onChange doesn't do this)
+      el.addEventListener('change', updateAndReveal);
+      otherOption.current = el;
+    }
   }, []);
+
+  // we have to handle the selection of the 'Other' option outside syncRefOther because we have to wait on successful lazy initialisation of other
+  // for this we implement a useEffect which acts every time other updates (should always run after the above sync refs)
+  useEffect(() => {
+    console.log('useEffect running');
+    console.log({ other });
+    console.log({ otherOption });
+    // if other and otherOption are defined, other is non-empty and the text field is not visible yet, make it so!
+    if (other && otherOption.current && other.length > 0 && !otherVisibility) {
+      console.log('SELECTING OTHER AND REVEALING TEXT FIELD');
+      otherOption.current.click();
+    }
+  }, [other]);
 
   return (
     <>
@@ -143,7 +163,11 @@ const FormQuestion = ({
                   return (
                     <FlexInputs key={j}>
                       <input
-                        ref={syncRef}
+                        ref={
+                          answer === 'Other (please specify)'
+                            ? syncRefOther
+                            : syncRef
+                        }
                         name={question.question}
                         type={question.type}
                         value={
@@ -164,6 +188,8 @@ const FormQuestion = ({
                       placeholder='Give more detail here'
                       onChange={changeOther}
                       onBlur={triggerUpdate}
+                      id={`${page}.${index}.otherText`}
+                      value={other}
                     />
                   </FlexInputs>
                 ) : null}
@@ -176,7 +202,11 @@ const FormQuestion = ({
                   return (
                     <FlexInputs key={j}>
                       <input
-                        ref={syncRef}
+                        ref={
+                          answer === 'Other (please specify)'
+                            ? syncRefOther
+                            : syncRef
+                        }
                         name={question.question}
                         type={question.type}
                         value={
@@ -197,7 +227,8 @@ const FormQuestion = ({
                       placeholder='Give more detail here'
                       onChange={changeOther}
                       onBlur={triggerUpdate}
-                      id={`${page}.${index}.other`}
+                      id={`${page}.${index}.otheText`}
+                      value={other}
                     />
                   </FlexInputs>
                 ) : null}
@@ -224,6 +255,7 @@ const FormQuestion = ({
             );
         }
       })()}
+      <h1>{other}</h1>
     </>
   );
 };

@@ -14,13 +14,13 @@ import hardDividers from '../../model/dividers';
 // fn: reducer to handle form updates
 // the action object passed in is immediately destructured
 const reducer = (state, { field, value, type, checked }) => {
-  console.log('reducer is running on field: ', field);
+  // console.log('reducer is running on field: ', field);
   if (value.length === 0) return state; // if value empty (i.e. first interaction w/ an 'Other' option), no change
   if (type === 'checkbox') {
-    console.log('reducer checkbox branch running with value: ', value);
+    // console.log('reducer checkbox branch running with value: ', value);
     // checkboxes need special handling since they can take multiple answers
     if (checked && state[field]) {
-      console.log(state[field]);
+      // console.log(state[field]);
       // if there's response data, checkbox is checked, but response already includess this value, no change
       // and else we incorporate the new value
       return state[field].includes(value)
