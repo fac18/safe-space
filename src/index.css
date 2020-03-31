@@ -80,8 +80,8 @@ code {
 .mdc-ripple-upgraded--foreground-activation {
   border-color: #5763a2 !important;
   /* background-color: #5763a2 !important; */
-  color: #5763a2 !important;
-} */
+  /* color: #5763a2 !important;
+} */ */
 
 input[type='text'] {
   border: 1px solid lightgrey;
