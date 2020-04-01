@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { FAQs, Home, About, Report, Support } from './index';
+import { FAQs, Home, About, Report, Support, Splitter } from './index';
 
 function App() {
   return (
     <>
       <Switch>
         <Route exact path='/' render={() => <Home />} />
+        <Route exact path='/choose' render={() => <Splitter />} />
         <Route exact path='/report/:index' render={() => <Report />} />
         <Route exact path='/report/section/:index' render={() => <Report />} />
         <Route exact path='/report/submit' render={() => <Report />} />

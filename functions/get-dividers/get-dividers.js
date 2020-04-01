@@ -1,7 +1,8 @@
 const Airtable = require('airtable');
 
-exports.handler = async () => {
+exports.handler = async (event, context) => {
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
+  const table = event.queryStringParameters.table;
 
   const base = new Airtable({
     endpointUrl: AIRTABLE_API_URL,
@@ -11,7 +12,7 @@ exports.handler = async () => {
   let data = [];
 
   // need to paginate this time, in case # records exceeds 100
-  await base('dividers')
+  await base(table)
     .select({
       maxRecords: 100,
       view: 'Grid view',

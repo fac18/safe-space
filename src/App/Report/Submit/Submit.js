@@ -2,12 +2,13 @@ import React from 'react';
 import { postResponses, stringify } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
-import { Header, ButtonPrimary } from '../../index';
+import { Header } from '../../index';
+import { ButtonPrimary } from '../../style';
 import { Container, Type5, TypeB1 } from './style';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
 
-const Submit = ({ responses, user, updateResponses }) => {
+const Submit = ({ responses, updateResponses, choice, userRef }) => {
   const history = useHistory();
 
   // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
@@ -31,10 +32,13 @@ const Submit = ({ responses, user, updateResponses }) => {
     event.preventDefault();
     const finalResponses = {
       ...processResponses(responses),
-      userRef: user,
+      userRef,
     };
-    postResponses('first-responses', stringify(finalResponses)).then(
-      history.push('/report/confirm')
+    postResponses(`${choice}-responses`, stringify(finalResponses)).then(
+      res => {
+        // navigate to confirmation once response from POST successfully received
+        history.push('/report/confirm');
+      }
     );
   };
 
@@ -59,7 +63,7 @@ const Submit = ({ responses, user, updateResponses }) => {
           use='body1'
           fullwidth
           label='email'
-          pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+          pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
           onChange={updateResponses}
           name='userEmail'
         ></TextField>
@@ -72,8 +76,3 @@ const Submit = ({ responses, user, updateResponses }) => {
 };
 
 export default Submit;
-
-// show unique user reference and tell user to keep it somewhere safe
-// give form field for user to input email if they want to
-// make button to enable pdf download
-// make final submit button that posts user and responses to Airtable

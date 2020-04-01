@@ -1,4 +1,4 @@
-const services = [
+export default [
   {
     title: 'Sexual Assault Referral Centre (SARC)',
     description:
@@ -48,5 +48,3 @@ const services = [
     email: 'safespace@theMU.org',
   },
 ];
-
-export { services };

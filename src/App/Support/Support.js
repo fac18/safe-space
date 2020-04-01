@@ -1,10 +1,9 @@
 import React from 'react';
-import { services } from '../../model/services'; // replace with Airtable source
+import services from '../../model/services'; // replace with Airtable source
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../style';
-import { ContentWrapper, Text, Type, Type5 } from './style';
-import { Header, Footer, ButtonPrimary } from '../index';
-import { ServiceCard } from './index';
+import { PageContainer, ButtonPrimary } from '../style';
+import { ContentWrapper, Text, Type, Type5, ServiceCard } from './style';
+import { Header, Footer } from '../index';
 
 const Support = () => {
   return (
@@ -14,8 +13,8 @@ const Support = () => {
         <ContentWrapper>
           <Type5 use='headline4'>Support Services</Type5>
           <Text>
-            {services.map(service => (
-              <ServiceCard>
+            {services.map((service, i) => (
+              <ServiceCard key={i}>
                 <Type use='headline5'> {service.title}</Type>
                 <Type use='body1'>{service.description}</Type>
                 <Type use='body1'>

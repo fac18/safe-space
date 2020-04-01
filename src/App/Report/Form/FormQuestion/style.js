@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FlexRow } from '../../../style';
 import { Radio } from '@rmwc/radio';
-import { Checkbox } from '@rmwc/checkbox';
 import { FormField } from '@rmwc/formfield';
 import '@material/radio/dist/mdc.radio.css';
 import '@material/checkbox/dist/mdc.checkbox.css';

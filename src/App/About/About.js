@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FlexColumn, PageContainer } from '../style';
+import { Header, Footer } from '../index';
+import { FlexColumn, PageContainer, ButtonBack } from '../style';
 import { ContentWrapper, Container, Type } from './style';
-import { Header, Footer, ButtonBack } from '../index';
 
 const About = () => {
   return (

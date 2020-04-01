@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ButtonNext, ButtonBack, Header } from '../../index';
+import { Header } from '../../index';
 import {
   FormContainer,
   FlexColumn,
@@ -8,6 +8,8 @@ import {
   TypeQ,
   Bubbles2,
   CenterContents,
+  ButtonNext,
+  ButtonBack,
 } from '../../style';
 
 const SectionDivider = ({ questions, dividers }) => {
@@ -48,7 +50,9 @@ const SectionDivider = ({ questions, dividers }) => {
               <ButtonBack
                 tag={Link}
                 to={
-                  section === 0 ? `/` : `/report/${questions[prevIndex].page}`
+                  section === 0
+                    ? `/choose`
+                    : `/report/${questions[prevIndex].page}`
                 }
               >
                 Back

@@ -1,7 +1,8 @@
-// we'll be calling postResponses on submit and passing it the state 'responses'
-//which will contain all of the user's answers
+// we'll be calling postResponses in the Submit component
+// and passing it the 'responses' object (by that point populated with users' answers)
+
 const postResponses = async (table, responses) => {
-  // first we wait for the fetch to resolve to a response
+  // first we wait for the POST to airtable to resolve to a response
   console.log({ responses });
   let response = await fetch(
     `../../.netlify/functions/post-responses/post-responses.js?table=${table}`,
@@ -14,8 +15,7 @@ const postResponses = async (table, responses) => {
     }
   );
   // then we wait for the response to stream as json, and return the result
-  let result = await response.json();
-  return result;
+  return await response.json();
 };
 
 export { postResponses };

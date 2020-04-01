@@ -4,14 +4,16 @@ import {
   FlexColumn,
   FlexRow,
   CenterContents,
+  ButtonNext,
+  ButtonBack,
 } from '../../style';
-import { Header, ButtonNext, ButtonBack } from '../../index';
+import { Header } from '../../index';
 import { FormQuestion } from './index';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 // fn: filter full questions object to determine which to display on page being rendered
 const filterQuestions = (questions, page, responses) => {
-  return questions.filter((question, i) => {
+  return questions.filter(question => {
     if (question.page === page) {
       if (question.split) {
         return question.condition.includes(responses[question.split]);
@@ -87,8 +89,6 @@ const Form = ({ questions, responses, updateResponses }) => {
   const page = parseInt(useParams().index, 10);
   const history = useHistory();
 
-  console.log({ responses });
-
   // get questions to be displayed on this page
   const pageQuestions = filterQuestions(questions, page, responses);
 
@@ -105,10 +105,10 @@ const Form = ({ questions, responses, updateResponses }) => {
           <FlexColumn>
             <form id='report-form'>
               {(() =>
-                pageQuestions.map((question, i) => (
+                pageQuestions.map((question, index) => (
                   <FormQuestion
-                    key={`${page}.${i}`}
-                    i={i}
+                    key={`${page}.${index}`}
+                    index={index}
                     question={question}
                     responses={responses}
                     updateResponses={updateResponses}
@@ -119,15 +119,13 @@ const Form = ({ questions, responses, updateResponses }) => {
             <FlexRow>
               <ButtonBack
                 tag={Link}
-                to={findPrevPage(questions, page)}
-                // onClick={triggerChange}
+                to={findPrevPage(questions, page, responses)}
               >
                 Back
               </ButtonBack>
               <ButtonNext
                 tag={Link}
-                to={findNextPage(questions, page)}
-                // onClick={triggerChange}
+                to={findNextPage(questions, page, responses)}
               >
                 Next
               </ButtonNext>
