@@ -217,6 +217,30 @@ const ButtonBack = styled(Button)`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 3rem;
+  margin: 0rem 2rem 2rem 2rem;
+
+  @media (min-width: 600px) {
+    justify-content: space-between;
+    padding-top: 5rem;
+    height: 50vh;
+  }
+`;
+
 export {
   Bubbles,
   Bubbles2,
@@ -233,4 +257,6 @@ export {
   ButtonSecondary,
   ButtonNext,
   ButtonBack,
+  ButtonWrapper,
+  Container,
 };

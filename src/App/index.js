@@ -5,5 +5,6 @@ import Report from './Report/Report';
 import Support from './Support/Support';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
+import Splitter from './Splitter/Splitter';
 
-export { FAQs, Home, About, Report, Support, Header, Footer };
+export { FAQs, Home, About, Report, Support, Header, Footer, Splitter };

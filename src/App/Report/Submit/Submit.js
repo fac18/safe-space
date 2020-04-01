@@ -9,7 +9,7 @@ import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
 import uuid from 'uuid/v4';
 
-const Submit = ({ responses, updateResponses }) => {
+const Submit = ({ responses, updateResponses, choice }) => {
   const history = useHistory();
 
   // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
@@ -35,11 +35,13 @@ const Submit = ({ responses, updateResponses }) => {
       ...processResponses(responses),
       userRef: uuid(),
     };
-    postResponses('first-responses', stringify(finalResponses)).then(res => {
-      // navigate to confirmation once response from POST successfully received
-      console.log(res);
-      history.push('/report/confirm');
-    });
+    postResponses(`${choice}-responses`, stringify(finalResponses)).then(
+      res => {
+        // navigate to confirmation once response from POST successfully received
+        console.log(res);
+        history.push('/report/confirm');
+      }
+    );
   };
 
   return (

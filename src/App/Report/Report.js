@@ -12,12 +12,18 @@ import hardQuestions from '../../model/questions';
 import hardDividers from '../../model/dividers';
 
 const Report = () => {
+  // grab React Router state to determine which components to render at Report level, and which questions/dividers to fetch
+  const location = useLocation();
+  // default to first person version if choice not available (i.e. user navigated directly to report)
+  const choice =
+    location.state && location.state.choice ? location.state.choice : 'first';
+
   // set up states
   const [questions, setQuestions] = useState(null);
   const [dividers, setDividers] = useState(null);
 
   useEffect(() => {
-    getQuestions('first-questions')
+    getQuestions(`${choice}-questions`)
       .then(records => {
         setQuestions(records);
       })
@@ -29,7 +35,7 @@ const Report = () => {
         );
       });
 
-    getDividers()
+    getDividers(`${choice}-dividers`)
       .then(dividers => {
         setDividers(dividers);
       })
@@ -80,7 +86,6 @@ const Report = () => {
           // NB. here the square brackets in [field] enable use of the value of field as a key in the object literal
           // but the square brackets in [value] denote an array literal i.e. an array with one entry, value
         } else {
-          console.log('reducer deselection path triggered');
           // else if checkbox is being deselected, remove given value from responses
           const newResponses = deleteValue(state[field], value);
           // if this action results in an empty array, this field should be removed altogether (w/o mutation)
@@ -119,9 +124,6 @@ const Report = () => {
     });
   }, []);
 
-  // grab React Router state to determine which components to render at Report level
-  const location = useLocation();
-
   // if any API calls have yet to resolve, render Loading component
   if (!(questions && dividers)) return <Loading />;
 
@@ -130,7 +132,13 @@ const Report = () => {
   } else if (location.pathname.includes('confirm')) {
     return <Confirm questions={questions} responses={responses} />;
   } else if (location.pathname.includes('submit')) {
-    return <Submit responses={responses} updateResponses={updateResponses} />;
+    return (
+      <Submit
+        responses={responses}
+        updateResponses={updateResponses}
+        choice={choice}
+      />
+    );
   } else {
     return (
       <Form

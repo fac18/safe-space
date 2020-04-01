@@ -11,13 +11,16 @@ const getQuestions = async table => {
   )
     .json()
     .then(records => {
+      // also we screen for empty records before returning
       return records.filter(record => Object.keys(record).length > 0);
     });
 };
 
-const getDividers = async () => {
+const getDividers = async table => {
   return await (
-    await fetch('../../.netlify/functions/get-dividers/get-dividers.js')
+    await fetch(
+      `../../.netlify/functions/get-dividers/get-dividers.js?table=${table}`
+    )
   )
     .json()
     .then(records => {

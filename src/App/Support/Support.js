@@ -13,8 +13,8 @@ const Support = () => {
         <ContentWrapper>
           <Type5 use='headline4'>Support Services</Type5>
           <Text>
-            {services.map(service => (
-              <ServiceCard>
+            {services.map((service, i) => (
+              <ServiceCard key={i}>
                 <Type use='headline5'> {service.title}</Type>
                 <Type use='body1'>{service.description}</Type>
                 <Type use='body1'>

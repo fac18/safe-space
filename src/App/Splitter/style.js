@@ -13,19 +13,4 @@ const Type5 = styled(Typography)`
   }
 `;
 
-const TypeB1 = styled(Typography)`
-  && {
-    text-align: center;
-    color: #5763a2;
-    margin: 0.5rem 0rem;
-  }
-`;
-
-const TypeExtra = styled(TypeB1)`
-  display: none;
-  @media (min-width: 600px) {
-    display: block;
-  }
-`;
-
-export { Type5, TypeB1, TypeExtra };
+export { Type5 };

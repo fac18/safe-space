@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, Footer } from '../index';
-import { Container, Type5, TypeB1, TypeExtra, ButtonWrapper } from './style';
-import { ButtonPrimary, ButtonSecondary } from '../style';
+import { Type5, TypeB1, TypeExtra } from './style';
+import {
+  Container,
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonWrapper,
+} from '../style';
 
 const Home = () => {
   return (
@@ -27,7 +32,7 @@ const Home = () => {
         </TypeExtra>
 
         <ButtonWrapper>
-          <ButtonPrimary raised tag={Link} to='/report/section/0'>
+          <ButtonPrimary raised tag={Link} to='/choose-report'>
             Report to SafeSpace
           </ButtonPrimary>
 

@@ -66,7 +66,6 @@ const FormQuestion = ({
   // fn: event handling function runs updateResponses and reveals (/hides) the 'Other' text field
   const updateAndReveal = useCallback(
     e => {
-      console.log('updateAndReveal running with event: ', e);
       updateResponses(e);
       const isChecked = otherOption.current && otherOption.current.checked;
       // other state should only be reset if the event is 'Other' option is is being deselected, not just any checkbox!
@@ -87,7 +86,6 @@ const FormQuestion = ({
         ((el.type === 'radio' && response === el.value) ||
           (el.type === 'checkbox' && response.includes(el.value)))
       ) {
-        console.log('NORMAL CHECKBOX PROGRAMMATICALLY CLICK');
         el.click(); // crucially, this line fires an event, which means the checkbox can still be deselected properly (whereas setAttribute doesn't)
       }
     }
@@ -110,10 +108,8 @@ const FormQuestion = ({
   // we have to handle the selection of the 'Other' option outside syncRefOther because we have to wait on successful lazy initialisation of other
   // for this we implement a useEffect which acts every time other updates (and always after the above 'sync' functions)
   useEffect(() => {
-    console.log('value of other as useEffect invoked: ', other);
     // if other and otherOption are defined, other is non-empty and the text field is not shown, make it visible!
     if (other && otherOption.current && other.length > 0 && !otherVisibility) {
-      console.log('OTHER CHECKBOX PROGRAMMATICALLY CLICKED');
       otherOption.current.click();
     }
   }, [other]); // similarly adding OtherVisibility to dependency array here breaks app
