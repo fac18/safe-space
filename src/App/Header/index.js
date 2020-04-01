@@ -22,11 +22,17 @@ const Logo = () => {
           <DisplayLogo />
         </Link>
         <Prompt
-          message={location =>
-            location.pathname.includes('report')
-              ? true
-              : `Are you sure you want to go leave this page? Any changes you've made will be lost`
-          }
+          message={location => {
+            const promptText = `Are you sure you want to go leave this page? Any changes you've made will be lost.`;
+            if (
+              location.pathname.includes('report') &&
+              location.pathname.includes('confirm')
+            ) {
+              return promptText;
+            } else {
+              return true;
+            }
+          }}
         />
       </>
     );

@@ -35,10 +35,11 @@ const Submit = ({ responses, updateResponses, choice }) => {
       ...processResponses(responses),
       userRef: uuid(),
     };
+    console.log('responses just before submission: ', responses);
     postResponses(`${choice}-responses`, stringify(finalResponses)).then(
       res => {
         // navigate to confirmation once response from POST successfully received
-        console.log(res);
+        console.log('response from airtable: ', res);
         history.push('/report/confirm');
       }
     );
@@ -78,8 +79,3 @@ const Submit = ({ responses, updateResponses, choice }) => {
 };
 
 export default Submit;
-
-// show unique user reference and tell user to keep it somewhere safe
-// give form field for user to input email if they want to
-// make button to enable pdf download
-// make final submit button that posts user and responses to Airtable
