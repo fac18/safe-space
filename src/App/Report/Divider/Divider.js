@@ -50,7 +50,9 @@ const SectionDivider = ({ questions, dividers }) => {
               <ButtonBack
                 tag={Link}
                 to={
-                  section === 0 ? `/` : `/report/${questions[prevIndex].page}`
+                  section === 0
+                    ? `/choose`
+                    : `/report/${questions[prevIndex].page}`
                 }
               >
                 Back

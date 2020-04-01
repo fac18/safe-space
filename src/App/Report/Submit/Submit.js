@@ -7,9 +7,8 @@ import { ButtonPrimary } from '../../style';
 import { Container, Type5, TypeB1 } from './style';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
-import uuid from 'uuid/v4';
 
-const Submit = ({ responses, updateResponses, choice }) => {
+const Submit = ({ responses, updateResponses, choice, userRef }) => {
   const history = useHistory();
 
   // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
@@ -33,13 +32,11 @@ const Submit = ({ responses, updateResponses, choice }) => {
     event.preventDefault();
     const finalResponses = {
       ...processResponses(responses),
-      userRef: uuid(),
+      userRef,
     };
-    console.log('responses just before submission: ', responses);
     postResponses(`${choice}-responses`, stringify(finalResponses)).then(
       res => {
         // navigate to confirmation once response from POST successfully received
-        console.log('response from airtable: ', res);
         history.push('/report/confirm');
       }
     );
@@ -66,7 +63,7 @@ const Submit = ({ responses, updateResponses, choice }) => {
           use='body1'
           fullwidth
           label='email'
-          pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+          pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
           onChange={updateResponses}
           name='userEmail'
         ></TextField>

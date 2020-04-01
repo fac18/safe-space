@@ -1,11 +1,18 @@
-import React, { useReducer, useState, useEffect, useCallback } from 'react';
+import React, {
+  useReducer,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 
 // import subcomponents and reusables
 import { Form, Divider, Confirm, Submit, Loading } from './index';
 
-// and utils
+// and utils and libraries
 import { getQuestions, getDividers, deleteValue } from '../../utils/index';
+import uuid from 'uuid/v4';
 
 // and fallback data
 import hardQuestions from '../../model/questions';
@@ -15,12 +22,19 @@ const Report = () => {
   // grab React Router state to determine which components to render at Report level, and which questions/dividers to fetch
   const location = useLocation();
   // default to first person version if choice not available (i.e. user navigated directly to report)
-  const choice =
-    location.state && location.state.choice ? location.state.choice : 'first';
+  const choice = useMemo(
+    () =>
+      location.state && location.state.choice ? location.state.choice : 'first',
+    []
+  );
+  console.log('choice: ', choice);
 
   // set up states
   const [questions, setQuestions] = useState(null);
   const [dividers, setDividers] = useState(null);
+
+  // generate uuid as userRef and memoize (to be passed into Submit and Confirm)
+  const userRef = useMemo(() => uuid(), []);
 
   useEffect(() => {
     getQuestions(`${choice}-questions`)
@@ -129,16 +143,17 @@ const Report = () => {
 
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
-  } else if (location.pathname.includes('confirm')) {
-    return <Confirm questions={questions} responses={responses} />;
   } else if (location.pathname.includes('submit')) {
     return (
       <Submit
         responses={responses}
         updateResponses={updateResponses}
         choice={choice}
+        userRef={userRef}
       />
     );
+  } else if (location.pathname.includes('confirm')) {
+    return <Confirm userRef={userRef} />;
   } else {
     return (
       <Form

@@ -6,6 +6,7 @@ import {
   Container,
   ButtonPrimary,
   ButtonSecondary,
+  ButtonBack,
   ButtonWrapper,
 } from '../style';
 
@@ -46,6 +47,9 @@ const Splitter = () => {
             I witnessed it
           </ButtonSecondary>
         </ButtonWrapper>
+        <ButtonBack tag={Link} to={'/'}>
+          Back
+        </ButtonBack>
       </Container>
       <Footer />
     </>

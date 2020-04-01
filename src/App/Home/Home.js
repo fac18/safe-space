@@ -32,7 +32,7 @@ const Home = () => {
         </TypeExtra>
 
         <ButtonWrapper>
-          <ButtonPrimary raised tag={Link} to='/choose-report'>
+          <ButtonPrimary raised tag={Link} to='/choose'>
             Report to SafeSpace
           </ButtonPrimary>
 

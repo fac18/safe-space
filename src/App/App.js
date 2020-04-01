@@ -7,7 +7,7 @@ function App() {
     <>
       <Switch>
         <Route exact path='/' render={() => <Home />} />
-        <Route exact path='/choose-report' render={() => <Splitter />} />
+        <Route exact path='/choose' render={() => <Splitter />} />
         <Route exact path='/report/:index' render={() => <Report />} />
         <Route exact path='/report/section/:index' render={() => <Report />} />
         <Route exact path='/report/submit' render={() => <Report />} />
