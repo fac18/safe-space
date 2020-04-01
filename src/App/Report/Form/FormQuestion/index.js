@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlexInputs, InputWrapper, TextArea, TextInput } from './style';
 
+// ideally these components would be refactored into 1 or 2 components that internally examine question.type to determine form
 const TextQuestion = ({ index, page, question, response, updateResponses }) => (
   <InputWrapper>
     <TextInput
@@ -52,17 +53,19 @@ const CheckboxQuestion = ({
 }) => (
   <InputWrapper>
     {question.content.map((answer, j) => {
+      const isOther = answer === 'Other (please specify)';
+      const idString = `${page}.${index}.${j}${isOther ? '.other' : ''}`;
       return (
         <FlexInputs key={j}>
           <input
-            ref={answer === 'Other (please specify)' ? syncRefOther : syncRef}
+            ref={isOther ? syncRefOther : syncRef}
             name={question.question}
             type={question.type}
-            value={answer === 'Other (please specify)' ? other : answer}
-            id={`${page}.${index}.${j}`}
-            onChange={updateAndReveal}
+            value={isOther ? other : answer}
+            id={idString}
+            onChange={isOther ? null : updateAndReveal}
           />
-          <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
+          <label htmlFor={idString}>{answer}</label>
         </FlexInputs>
       );
     })}
@@ -96,17 +99,19 @@ const RadioQuestion = ({
 }) => (
   <InputWrapper>
     {question.content.map((answer, j) => {
+      const isOther = answer === 'Other (please specify)';
+      const idString = `${page}.${index}.${j}${isOther ? '.other' : ''}`;
       return (
         <FlexInputs key={j}>
           <input
-            ref={answer === 'Other (please specify)' ? syncRefOther : syncRef}
+            ref={isOther ? syncRefOther : syncRef}
             name={question.question}
             type={question.type}
-            value={answer === 'Other (please specify)' ? other : answer}
-            id={`${page}.${index}.${j}`}
-            onChange={updateAndReveal}
+            value={isOther ? other : answer}
+            id={idString}
+            onChange={isOther ? null : updateAndReveal}
           />
-          <label htmlFor={`${page}.${index}.${j}`}>{answer}</label>
+          <label htmlFor={idString}>{answer}</label>
         </FlexInputs>
       );
     })}

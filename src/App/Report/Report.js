@@ -80,6 +80,7 @@ const Report = () => {
           // NB. here the square brackets in [field] enable use of the value of field as a key in the object literal
           // but the square brackets in [value] denote an array literal i.e. an array with one entry, value
         } else {
+          console.log('reducer deselection path triggered');
           // else if checkbox is being deselected, remove given value from responses
           const newResponses = deleteValue(state[field], value);
           // if this action results in an empty array, this field should be removed altogether (w/o mutation)
@@ -108,7 +109,7 @@ const Report = () => {
 
   // fn: pass appropriate parts of a changed element into the dispatch's action object
   // NB. in this instance we are 'closing over' the dispatch function
-  const updateResponses = event => {
+  const updateResponses = useCallback(event => {
     dispatch({
       type: event.target.type, // pass in the input type (checkbox, radio, text, date or textarea)
       field: event.target.name, // the name of the field (question text)
@@ -116,7 +117,7 @@ const Report = () => {
       checked: event.target.checked, // for a checkbox, whether it's checked!
       trusted: event.isTrusted, // and whether the event is native or user generated (to catch 'Other' submissions)
     });
-  };
+  }, []);
 
   // grab React Router state to determine which components to render at Report level
   const location = useLocation();

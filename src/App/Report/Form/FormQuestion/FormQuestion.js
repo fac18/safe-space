@@ -15,7 +15,7 @@ const FormQuestion = ({
   responses,
   updateResponses,
 }) => {
-  // pull existing response data out of responses object, if available
+  // pull existing response data out of responses object on every render (if available)
   const response = responses[question.question];
 
   // to capture text in optional 'Other' fields, we will trick the dispatch in updateResponses into including it
@@ -56,7 +56,6 @@ const FormQuestion = ({
   };
 
   // fn: force inclusion of 'Other' text into responses object when text field loses focus (onblur)
-  // BUG #128: if the user returns to edit the text, another answer will be submitted to the responses object (solve via reducer? could check event.isTrusted?)
   const triggerUpdate = e => {
     // we do this by simulating an onchange event on the 'Other' checkbox, which we access via the associated ref
     // NB. this is bad practice (it's 'hacky') - but sometimes recognised as necessary to handle 3rd party libraries/frameworks (e.g. React)
@@ -64,48 +63,62 @@ const FormQuestion = ({
     otherOption.current.dispatchEvent(changeEvent); // NB. dispatchEvent is synchronous (i.e. doesn't follow usual event loop)
   };
 
-  // fn: event handling function that reveals (/hides) the 'Other' text field and runs updateResponses
-  const updateAndReveal = e => {
-    setVisibility(otherOption.current && otherOption.current.checked);
-    updateResponses(e);
-  };
+  // fn: event handling function runs updateResponses and reveals (/hides) the 'Other' text field
+  const updateAndReveal = useCallback(
+    e => {
+      console.log('updateAndReveal running with event: ', e);
+      updateResponses(e);
+      const isChecked = otherOption.current && otherOption.current.checked;
+      // other state should only be reset if the event is 'Other' option is is being deselected, not just any checkbox!
+      // if (!isChecked && e.target.id.includes('other')) setOther('');
+      setVisibility(isChecked);
+    },
+    [updateResponses]
+  ); // updateResponses will never change (memoized at Report level w/ no dependencies) so this fn memoized on mount only
 
   // use a callback ref to select checkboxes/radios where data already exists in the responses object
-  // this fires separately for each element, on mount (an empty dependency array ensures the fn isn't unneccessarily redeclared later)
+  // this fires separately for each element (an empty dependency array ensures this only happens on mount)
   const syncRef = useCallback(el => {
     // if the element referenced is not null (it sometimes is - unsure why), we continue...
     if (el) {
-      // check for data for this question, and whether it matches/includes the value of considered element (for radio/checkbox resp.) - select if so
+      // check for response data and whether it matches/includes (for radio/checkbox resp.) value of considered element - select if so
       if (
         response &&
         ((el.type === 'radio' && response === el.value) ||
           (el.type === 'checkbox' && response.includes(el.value)))
       ) {
+        console.log('NORMAL CHECKBOX PROGRAMMATICALLY CLICK');
         el.click(); // crucially, this line fires an event, which means the checkbox can still be deselected properly (whereas setAttribute doesn't)
       }
     }
-  }, []); // React would have me write [responses, question] for dependency array
+  }, []); // React would have me write [response] for dependency array, but this breaks the app
+  // (because any checkbox selection is immediately programmatically negated by re-run of syncRef)
 
   // we have a separate callback ref for the 'Other' radio or checkbox options
   // whether or not there is response data, we set it up the same way - that is, we attach object ref and event listener
-  const syncRefOther = useCallback(el => {
-    if (el) {
-      // event listener makes script-generated event in triggerUpdate trip updateAndReveal (onChange doesn't do this)
-      el.addEventListener('change', updateAndReveal);
-      otherOption.current = el;
-    }
-  }, []);
+  const syncRefOther = useCallback(
+    el => {
+      if (el) {
+        // event listener makes script-generated event in triggerUpdate trip updateAndReveal (onChange doesn't do this)
+        el.addEventListener('change', updateAndReveal);
+        otherOption.current = el;
+      }
+    },
+    [updateAndReveal]
+  ); // as updateAndReveal defined only on mount, so with this callback ref
 
   // we have to handle the selection of the 'Other' option outside syncRefOther because we have to wait on successful lazy initialisation of other
-  // for this we implement a useEffect which acts every time other updates (should always run after the above sync refs)
+  // for this we implement a useEffect which acts every time other updates (and always after the above 'sync' functions)
   useEffect(() => {
-    // if other and otherOption are defined, other is non-empty and the text field is not visible yet, make it so!
+    console.log('value of other as useEffect invoked: ', other);
+    // if other and otherOption are defined, other is non-empty and the text field is not shown, make it visible!
     if (other && otherOption.current && other.length > 0 && !otherVisibility) {
+      console.log('OTHER CHECKBOX PROGRAMMATICALLY CLICKED');
       otherOption.current.click();
     }
-  }, [other]);
+  }, [other]); // similarly adding OtherVisibility to dependency array here breaks app
+  // (by producing a double click - 1x user + 1x programmatic - on deselection of 'Other' option)
 
-  // ideally the below would be refactored into one component that internally examines question.type to determine form
   return (
     <>
       <TypeQ use='headline5' tag='h2'>
