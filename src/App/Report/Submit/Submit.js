@@ -45,7 +45,7 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
       <Header />
       <Container>
         <Type5 use='headline5' tag='h5'>
-          Thank you for reporting
+          Thank you for reporting!
         </Type5>
         <TypeB1 use='subtitle1'>
           Please confirm that you give permission to the MU to use this report
