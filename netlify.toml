@@ -20,25 +20,25 @@
   to = "/index.html"
   status = 200
 
-[[redirect]]
+[[redirects]]
   from = "https://www.musafespace.co.uk/*"
   to = "https://www.musafespace.org.uk/:splat"
   status = 301
   force = true
 
-[[redirect]]
+[[redirects]]
   from = "https://musafespace.co.uk/*"
   to = "https://www.musafespace.org.uk/:splat"
   status = 301
   force = true
 
-[[redirect]]
+[[redirects]]
   from = "https://musafespace.netlify.com/*"
   to = "https://www.musafespace.org.uk/:splat"
   status = 301
   force = true
 
-[[redirect]]
+[[redirects]]
   from = "https://musafespace.netlify.com/*"
   to = "https://www.musafespace.org.uk/:splat"
   status = 301
