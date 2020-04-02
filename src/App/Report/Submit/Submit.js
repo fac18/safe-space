@@ -26,8 +26,6 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
     return responses;
   };
 
-  // NEED TO devise a way to submit multiple responses to Airtable, rather than just concatenate into one string
-  // OR have them arrive in separate columns in the responses tables
   const handleSubmit = event => {
     event.preventDefault();
     const finalResponses = {

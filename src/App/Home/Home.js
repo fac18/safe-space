@@ -24,7 +24,7 @@ const Home = () => {
           Together we can change this
         </Type5>
         <TypeB1 use='body1' tag='p'>
-          This site to a safe space for everyone working in the music industry
+          This site is a safe space for everyone working in the music industry
           to log instances of sexual harassment and abuse on the job.
         </TypeB1>
         <TypeExtra use='body1' tag='p'>

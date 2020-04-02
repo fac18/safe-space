@@ -37,3 +37,9 @@
   to = "https://www.musafespace.org.uk/:splat"
   status = 301
   force = true
+
+[[redirect]]
+  from = "https://musafespace.netlify.com/*"
+  to = "https://www.musafespace.org.uk/:splat"
+  status = 301
+  force = true
