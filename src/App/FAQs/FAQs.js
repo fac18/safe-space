@@ -13,6 +13,7 @@ const FAQs = () => {
   useEffect(() => {
     getData('faq-questions')
       .then(records => {
+        console.log(records);
         setFaqQuestions(records);
       })
       .catch(err => {
@@ -38,7 +39,7 @@ const FAQs = () => {
 
               <ul>
                 {faqQuestions.map((faq, i) => (
-                  <li>
+                  <li key={i}>
                     <a href={`#${makeSlug(faq.question)}`}>{faq.question}</a>
                   </li>
                 ))}

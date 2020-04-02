@@ -16,7 +16,12 @@ import { getData, deleteValue } from '../../utils';
 import uuid from 'uuid/v4';
 
 // and fallback data
-import { hardQuestions, hardDividers } from '../../model';
+import {
+  firstQuestions,
+  witnessQuestions,
+  firstDividers,
+  witnessDividers,
+} from '../../model';
 
 const Report = () => {
   // grab React Router state to determine which components to render at Report level, and which questions/dividers to fetch
@@ -41,7 +46,7 @@ const Report = () => {
         setQuestions(records);
       })
       .catch(err => {
-        setQuestions(hardQuestions);
+        setQuestions(choice === 'first' ? firstQuestions : witnessQuestions);
         console.log(
           'Failed to fetch question data - falling back to hard coding. Error: ',
           err
@@ -53,7 +58,7 @@ const Report = () => {
         setDividers(dividers);
       })
       .catch(err => {
-        setDividers(hardDividers);
+        setDividers(choice === 'first' ? firstDividers : witnessDividers);
         console.log(
           'Failed to fetch divider data - falling back to hard coding. Error: ',
           err
