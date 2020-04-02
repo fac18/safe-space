@@ -1,0 +1,5 @@
+/* /index.html 200
+https://www.musafespace.co.uk/* https://www.musafespace.org.uk/:splat 301!
+https://musafespace.co.uk/* https://www.musafespace.org.uk/:splat 301!
+https://www.musafespace.netlify.com/* https://www.musafespace.org.uk/:splat 301!
+https://www.musafespace.netlify.app/* https://www.musafespace.org.uk/:splat 301!
