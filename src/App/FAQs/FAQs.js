@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { Header, Footer, Loading } from '../index';
-import { FlexColumn, PageContainer, ButtonBack } from '../style';
+import { FlexColumn, PageContainer, ButtonBack, ButtonNext } from '../style';
 import { Container, ContentWrapper, Type5, TypeH3 } from './style';
 import { getData, makeSlug } from '../../utils';
 import { hardFaqQuestions } from '../../model';
@@ -33,7 +33,9 @@ const FAQs = () => {
           <Header />
           <Container>
             <FlexColumn>
-              <TypeH3 use='headline4'>Frequently Asked Questions</TypeH3>
+              <TypeH3 use='headline4' id='page-title'>
+                Frequently Asked Questions
+              </TypeH3>
               <br></br>
 
               <ul>
@@ -73,6 +75,9 @@ const FAQs = () => {
                 ) : null
               )}
 
+              <ButtonNext>
+                <a href='#page-title'>Back to top</a>
+              </ButtonNext>
               <ButtonBack tag={Link} to={'/'}>
                 Home
               </ButtonBack>

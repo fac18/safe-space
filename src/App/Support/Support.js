@@ -38,7 +38,11 @@ const Support = () => {
                 <Type use='body1'>{service.description}</Type>
                 {service.website ? (
                   <Type use='body1'>
-                    <a href={service.website} target='_blank'>
+                    <a
+                      href={service.website}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
                       Visit {service.title} online
                     </a>
                   </Type>

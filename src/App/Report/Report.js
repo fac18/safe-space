@@ -31,7 +31,9 @@ const Report = () => {
     () =>
       location.state && location.state.choice ? location.state.choice : 'first',
     []
-  );
+  ); // React would have me include [location.state] in dependency arrays, but we only want to memoize on mount!
+
+  console.log(choice);
 
   // set up states
   const [questions, setQuestions] = useState(null);
@@ -64,7 +66,7 @@ const Report = () => {
           err
         );
       });
-  }, []);
+  }, []); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
 
   // fn: reducer to handle form updates
   // the action object passed in (see dispatch definition inside component) is immediately destructured
