@@ -8,7 +8,8 @@ import React, {
 import { useLocation } from 'react-router-dom';
 
 // import subcomponents and reusables
-import { Form, Divider, Confirm, Submit, Loading } from './index';
+import { Form, Divider, Confirm, Submit } from './index';
+import { Loading } from '../index';
 
 // and utils and libraries
 import { getData, deleteValue } from '../../utils';
