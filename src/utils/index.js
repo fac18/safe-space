@@ -1,6 +1,7 @@
-import { getQuestions, getDividers } from './getData';
-import { postResponses } from './postData';
+import getData from './getData';
+import postResponses from './postData';
 import stringify from './stringify';
 import deleteValue from './deleteValue';
+import makeSlug from './makeSlug';
 
-export { getQuestions, getDividers, postResponses, stringify, deleteValue };
+export { getData, postResponses, stringify, deleteValue, makeSlug };

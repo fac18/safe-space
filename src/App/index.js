@@ -6,5 +6,16 @@ import Support from './Support/Support';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Splitter from './Splitter/Splitter';
+import Loading from './Loading/Loading';
 
-export { FAQs, Home, About, Report, Support, Header, Footer, Splitter };
+export {
+  FAQs,
+  Home,
+  About,
+  Report,
+  Support,
+  Header,
+  Footer,
+  Splitter,
+  Loading,
+};

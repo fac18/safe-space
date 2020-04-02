@@ -8,26 +8,30 @@ import React, {
 import { useLocation } from 'react-router-dom';
 
 // import subcomponents and reusables
-import { Form, Divider, Confirm, Submit, Loading } from './index';
+import { Form, Divider, Confirm, Submit } from './index';
+import { Loading } from '../index';
 
 // and utils and libraries
-import { getQuestions, getDividers, deleteValue } from '../../utils/index';
+import { getData, deleteValue } from '../../utils';
 import uuid from 'uuid/v4';
 
 // and fallback data
-import hardQuestions from '../../model/questions';
-import hardDividers from '../../model/dividers';
+import {
+  firstQuestions,
+  witnessQuestions,
+  firstDividers,
+  witnessDividers,
+} from '../../model';
 
 const Report = () => {
   // grab React Router state to determine which components to render at Report level, and which questions/dividers to fetch
   const location = useLocation();
-  // default to first person version if choice not available (i.e. user navigated directly to report)
+  // default to first person version if choice not available (i.e. if user navigates directly to report)
   const choice = useMemo(
     () =>
       location.state && location.state.choice ? location.state.choice : 'first',
     []
   );
-  console.log('choice: ', choice);
 
   // set up states
   const [questions, setQuestions] = useState(null);
@@ -37,24 +41,24 @@ const Report = () => {
   const userRef = useMemo(() => uuid(), []);
 
   useEffect(() => {
-    getQuestions(`${choice}-questions`)
+    getData(`${choice}-questions`)
       .then(records => {
         setQuestions(records);
       })
       .catch(err => {
-        setQuestions(hardQuestions);
+        setQuestions(choice === 'first' ? firstQuestions : witnessQuestions);
         console.log(
           'Failed to fetch question data - falling back to hard coding. Error: ',
           err
         );
       });
 
-    getDividers(`${choice}-dividers`)
+    getData(`${choice}-dividers`)
       .then(dividers => {
         setDividers(dividers);
       })
       .catch(err => {
-        setDividers(hardDividers);
+        setDividers(choice === 'first' ? firstDividers : witnessDividers);
         console.log(
           'Failed to fetch divider data - falling back to hard coding. Error: ',
           err
@@ -70,8 +74,7 @@ const Report = () => {
       if (type === 'checkbox') {
         // checkboxes need special handling since they can take multiple answers
         if (checked && state[field]) {
-          // if the value is an 'Other' submission but we've already collected a response not belonging to pre-set answers, replace it
-          // for this we will first need to derive the question from which the event emanates, by searching the questions object with field
+          // we first derive the question from which the event emanates, by searching the questions object with field
           let index;
           questions.forEach((question, i) => {
             if (question.question === field) index = i;
@@ -79,21 +82,24 @@ const Report = () => {
           const otherSubmissions = state[field].filter(
             answer => !questions[index].content.includes(answer)
           );
-          if (!trusted && otherSubmissions.length > 0) {
+          // if there's response data, checkbox is checked, but response already includes this value, no change
+          if (state[field].includes(value)) {
+            return state;
+            // else if the value is an 'Other' submission but we've already collected an 'Other' response (i.e. one not belonging to pre-set answers), replace it
+            // NB. the re-selection of checkboxes on returning to a page are not trusted events, but those relating to non-'Other' options are caught by previous branch
+          } else if (!trusted && otherSubmissions.length > 0) {
             const newResponses = deleteValue(state[field], otherSubmissions[0]);
             return {
               ...state,
               [field]: [...newResponses, value],
             };
-            // else if there's response data, checkbox is checked, but response already includes this value, no change
-          } else if (state[field].includes(value)) {
-            return state;
             // and else simply incorporate the new value
-          } else
+          } else {
             return {
               ...state,
               [field]: [...state[field], value],
             };
+          }
         } else if (checked) {
           // else if there is no response data and checkbox is being checked, it is for the first time, so incorporate given value
           return { ...state, [field]: [value] };

@@ -1,15 +1,14 @@
-// import Airtable.js package
-// import Airtable from 'airtable'; // produces a SyntaxError ('cannot use import statement outside a module')
+// import Airtable.js package (NB. doing so w/ ES modules produces a SyntaxError: 'cannot use import statement outside a module')
 const Airtable = require('airtable');
 
-// Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
-// the handler function can take event and context params (not required in this case)
-// it can also take a callback as third argument, but we will stick to promises
+// Docs on event and context: https://www.netlify.com/docs/functions/#the-handler-method
+// handler function takes event and context params, and can take a callback as third argument (but we will use promises)
 exports.handler = async (event, context) => {
   // grab airtable variables from Netlify environment (uploaded via UI)
   const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_API_URL } = process.env;
   // grab table from event object (submitted via query string in fetch made from util)
   const table = event.queryStringParameters.table;
+  console.log(`getting data from table ${table}`);
 
   // configure connection to airtable base
   const base = new Airtable({
