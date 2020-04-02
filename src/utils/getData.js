@@ -1,13 +1,11 @@
 // TO DO: refactor these util functions and corresponding Netlify functions into one
 
-const getQuestions = async table => {
-  // get-questions.js is async so returns a promise
+const getData = async table => {
+  // get-data.js is async so returns a promise
   // first we wait for the fetch to resolve to a response
   // then we wait for the response to stream as json, and return the result
   return await (
-    await fetch(
-      `../../.netlify/functions/get-questions/get-questions.js?table=${table}`
-    )
+    await fetch(`../../.netlify/functions/get-data/get-data.js?table=${table}`)
   )
     .json()
     .then(records => {
@@ -16,16 +14,4 @@ const getQuestions = async table => {
     });
 };
 
-const getDividers = async table => {
-  return await (
-    await fetch(
-      `../../.netlify/functions/get-dividers/get-dividers.js?table=${table}`
-    )
-  )
-    .json()
-    .then(records => {
-      return records.filter(record => Object.keys(record).length > 0);
-    });
-};
-
-export { getQuestions, getDividers };
+export default getData;

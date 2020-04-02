@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { PageContainer, ButtonPrimary } from '../style';
 import { ContentWrapper, Text, Type, Type5, ServiceCard } from './style';
 import { Header, Footer } from '../index';
+import { getData } from '../../utils';
+import { hardServices } from '../../model';
 
 const Support = () => {
   return (

@@ -4,6 +4,8 @@ import { Header, Footer } from '../index';
 // import { Collapse } from './index';
 import { FlexColumn, PageContainer, ButtonBack } from '../style';
 import { Container, ContentWrapper, Type5, TypeH3 } from './style';
+import { getData } from '../../utils';
+import { hardFaqQuestions } from '../../model';
 
 const FAQs = () => {
   return (

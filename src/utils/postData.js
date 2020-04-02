@@ -18,4 +18,4 @@ const postResponses = async (table, responses) => {
   return await response.json();
 };
 
-export { postResponses };
+export default postResponses;

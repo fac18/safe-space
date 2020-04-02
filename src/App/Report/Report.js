@@ -11,12 +11,11 @@ import { useLocation } from 'react-router-dom';
 import { Form, Divider, Confirm, Submit, Loading } from './index';
 
 // and utils and libraries
-import { getQuestions, getDividers, deleteValue } from '../../utils/index';
+import { getData, deleteValue } from '../../utils';
 import uuid from 'uuid/v4';
 
 // and fallback data
-import hardQuestions from '../../model/questions';
-import hardDividers from '../../model/dividers';
+import { hardQuestions, hardDividers } from '../../model';
 
 const Report = () => {
   // grab React Router state to determine which components to render at Report level, and which questions/dividers to fetch
@@ -36,7 +35,7 @@ const Report = () => {
   const userRef = useMemo(() => uuid(), []);
 
   useEffect(() => {
-    getQuestions(`${choice}-questions`)
+    getData(`${choice}-questions`)
       .then(records => {
         setQuestions(records);
       })
@@ -48,7 +47,7 @@ const Report = () => {
         );
       });
 
-    getDividers(`${choice}-dividers`)
+    getData(`${choice}-dividers`)
       .then(dividers => {
         setDividers(dividers);
       })
