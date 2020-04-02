@@ -4,7 +4,7 @@ export default [
     description:
       'Provide immediate support and advice, including medical examinations and tests.',
     website: 'https://www.thesurvivorstrust.org/sarc',
-    phone: 'dial 111 to find the nearest centre',
+    phone: 'Dial 111 to find the nearest centre',
   },
   {
     title: 'Rape Crisis',
@@ -41,9 +41,9 @@ export default [
     phone: '0845 790 9090',
   },
   {
-    title: "Musician's Union",
+    title: "Musicians' Union",
     description:
-      'You can directly contact the Musicians Union for further support in confidence.',
+      "You can directly contact the Musicians' Union for further support in confidence.",
     website: 'https://www.musiciansunion.org.uk/safespace',
     email: 'safespace@theMU.org',
   },

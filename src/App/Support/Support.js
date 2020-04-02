@@ -12,7 +12,6 @@ const Support = () => {
   useEffect(() => {
     getData('support-services')
       .then(records => {
-        console.log(records);
         setServices(records);
       })
       .catch(err => {

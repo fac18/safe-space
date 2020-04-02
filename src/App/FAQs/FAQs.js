@@ -13,7 +13,6 @@ const FAQs = () => {
   useEffect(() => {
     getData('faq-questions')
       .then(records => {
-        console.log(records);
         setFaqQuestions(records);
       })
       .catch(err => {

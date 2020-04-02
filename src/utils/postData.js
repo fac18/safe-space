@@ -3,7 +3,6 @@
 
 const postResponses = async (table, responses) => {
   // first we wait for the POST to airtable to resolve to a response
-  console.log({ responses });
   let response = await fetch(
     `../../.netlify/functions/post-responses/post-responses.js?table=${table}`,
     {

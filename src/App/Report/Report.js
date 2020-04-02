@@ -74,9 +74,6 @@ const Report = () => {
       if (type === 'checkbox') {
         // checkboxes need special handling since they can take multiple answers
         if (checked && state[field]) {
-          console.log(
-            `existing data checkbox branch of reducer invoked with value '${value} and trusted ${trusted}'`
-          );
           // we first derive the question from which the event emanates, by searching the questions object with field
           let index;
           questions.forEach((question, i) => {
@@ -87,16 +84,10 @@ const Report = () => {
           );
           // if there's response data, checkbox is checked, but response already includes this value, no change
           if (state[field].includes(value)) {
-            console.log(
-              `#1 normal existing value branch triggered for value '${value}'`
-            );
             return state;
             // else if the value is an 'Other' submission but we've already collected an 'Other' response (i.e. one not belonging to pre-set answers), replace it
             // NB. the re-selection of checkboxes on returning to a page are not trusted events, but those relating to non-'Other' options are caught by previous branch
           } else if (!trusted && otherSubmissions.length > 0) {
-            console.log(
-              `#2 changed other submission branch triggered for value '${value}'`
-            );
             const newResponses = deleteValue(state[field], otherSubmissions[0]);
             return {
               ...state,
@@ -104,7 +95,6 @@ const Report = () => {
             };
             // and else simply incorporate the new value
           } else {
-            console.log(`#3 new value branch triggered for value '${value}'`);
             return {
               ...state,
               [field]: [...state[field], value],
