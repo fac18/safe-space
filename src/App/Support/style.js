@@ -53,6 +53,10 @@ const ServiceCard = styled(Card)`
       width: 31.25rem;
       padding: 2rem 2rem 0rem 2rem;
     }
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) {
+      width: 18rem;
+    }
   }
 `;
 
