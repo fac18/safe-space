@@ -33,8 +33,8 @@ code {
 input[type='text'] {
   border: 1px solid lightgrey;
   margin-top: 0.5rem;
-  width: 16rem;
-  min-height: 2rem;
+  width: 12rem;
+  min-height: 1rem;
   padding: 0.5rem;
   font-size: 1rem;
 }

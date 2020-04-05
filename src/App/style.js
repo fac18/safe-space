@@ -174,6 +174,7 @@ const ButtonSecondary = styled(Button)`
   && {
     height: 3.5em;
     border: 2px solid #7768a6;
+    width: 17rem;
     border-radius: 2rem;
     color: #7768a6;
     background: -webkit-linear-gradient(
