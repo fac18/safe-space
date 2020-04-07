@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '../../index';
 import { ButtonPrimary } from '../../style';
+import { ButtonSecondary } from '../../style';
 import { Link } from 'react-router-dom';
 import { Container, Type5, TypeB1, TypeB2 } from './style';
 
