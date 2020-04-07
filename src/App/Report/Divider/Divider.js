@@ -5,12 +5,12 @@ import {
   FormContainer,
   FlexColumn,
   FlexRow,
-  TypeQ,
   Bubbles2,
   CenterContents,
   ButtonNext,
   ButtonBack,
 } from '../../style';
+import H2 from './style';
 
 const SectionDivider = ({ questions, dividers }) => {
   const params = useParams();
@@ -39,13 +39,13 @@ const SectionDivider = ({ questions, dividers }) => {
         <FormContainer>
           <FlexColumn>
             {paras.map((para, i) => (
-              <TypeQ use='headline5' tag='p' key={i}>
+              <H2 key={i}>
                 {para}
-              </TypeQ>
+              </H2>
             ))}
-            <TypeQ use='body1' tag='h5'>
+            <h4>
               {explainer}
-            </TypeQ>
+            </h4>
             <FlexRow>
               <ButtonBack
                 tag={Link}

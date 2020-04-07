@@ -112,13 +112,6 @@ const FormContainer = styled.div`
   }
 `;
 
-const TypeQ = styled(Typography)`
-  && {
-    color: #2d3c8a;
-    display: block;
-  }
-`;
-
 const Type5 = styled(Typography)`
   && {
     text-align: left;
@@ -236,7 +229,7 @@ const Container = styled.div`
   margin: 0rem 2rem 2rem 2rem;
 
   @media (min-width: 600px) {
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding-top: 5rem;
     height: 60vh;
   }
@@ -247,7 +240,6 @@ export {
   Bubbles2,
   FooterBubbles,
   FormContainer,
-  TypeQ,
   Type5,
   FlexColumn,
   FlexRow,
