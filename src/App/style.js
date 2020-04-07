@@ -238,7 +238,7 @@ const Container = styled.div`
   @media (min-width: 600px) {
     justify-content: space-between;
     padding-top: 5rem;
-    height: 50vh;
+    height: 60vh;
   }
 `;
 
