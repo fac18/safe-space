@@ -6,7 +6,7 @@ const Footer = () => {
     <Bottom>
       <Link href='/about'>What is MU Safe Space</Link>
      
-      <Link href='/frequently-asked-questions'>What you might need to know</Link>
+      <Link href='/frequently-asked-questions'>What you need to know</Link>
      <Link href='/support'>Get help and support</Link>
     </Bottom>
   );
