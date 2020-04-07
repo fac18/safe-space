@@ -12,19 +12,19 @@ const Confirm = ({ userRef }) => {
         <Type5 use='headline5' tag='h5'>
           Your report has now been received! 
         </Type5>
-        <Type5 use='headline5' tag='h5'>
+        <TypeB1 use='body1'>
           Thank you for taking time and courage to tell us about your experience. With your help we can make a change.
-        </Type5>
+        </TypeB1>
         <TypeB1 use='body1'>
           This is your unique code for your response. You can save it somewhere safe for your reference:
         </TypeB1>
         <TypeB2 use='body2'>{userRef}</TypeB2>
         <ButtonPrimary raised tag={Link} to='/frequently-asked-questions#how-might-my-unique-code-be-useful-to-me?'>
           About the unique code
-        </ButtonPrimary>
+        </ButtonSecondary>
      <ButtonPrimary raised tag={Link} to='/'>
           GO HOME
-        </ButtonPrimary>
+        </ButtonSecondary>
       </Container>
     </>
   );
