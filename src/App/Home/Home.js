@@ -37,7 +37,7 @@ const Home = () => {
           </ButtonPrimary>
 
           <ButtonSecondary outlined tag={Link} to='/support'>
-            Access Support Services
+            Get help and support
           </ButtonSecondary>
         </ButtonWrapper>
       </Container>
