@@ -75,7 +75,7 @@ code {
     monospace;
 }
 
-.mdc-text-field .mdc-text-field__input {
+/* .mdc-text-field .mdc-text-field__input {
   caret-color: #7768a6 !important;
 }
 .mdc-floating-label {
@@ -83,7 +83,7 @@ code {
 }
 .mdc-line-ripple {
   background-color: #7768a6 !important;
-}
+} */
 
 input[type='text'] {
   border: 1px solid lightgrey;
