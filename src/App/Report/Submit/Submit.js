@@ -45,16 +45,13 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
       <Header />
       <Container>
         <Type5 use='headline5' tag='h5'>
-          Thank you for reporting!
+          One mor thing...
         </Type5>
         <TypeB1 use='subtitle1'>
-          Please confirm that you give permission to the MU to use this report
-          to bring about change in the music industry.
+          If you wish the MU staff to get in touch with you regarding your response, please leave your e-mail address: below. 
         </TypeB1>
-
-        <TypeB1 use='subtitle1'>
-          This is entirely optional, but if you wish to be contacted by the MU
-          in regard to this report, please provide your email below:
+    <TypeB1 use='subtitle1'>
+          Otherwise, just click 'Submit' to finish. 
         </TypeB1>
 
         <TextField
@@ -66,7 +63,7 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
           name='userEmail'
         ></TextField>
         <ButtonPrimary onClick={handleSubmit} raised>
-          Submit
+          Submit my responses
         </ButtonPrimary>
       </Container>
     </>
