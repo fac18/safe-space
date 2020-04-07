@@ -16,10 +16,6 @@ const ContentWrap = styled.div`
   padding-bottom: 5.5rem; /* Footer height */
   display: flex;
 
-  /* @media (max-width: 768px) { */
-  /* flex-direction: column; */
-  /* } */
-
   @media (min-width: 600px) {
     padding-bottom: 6.5rem;
   }
