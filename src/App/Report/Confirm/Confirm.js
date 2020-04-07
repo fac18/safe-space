@@ -10,17 +10,20 @@ const Confirm = ({ userRef }) => {
       <Header />
       <Container>
         <Type5 use='headline5' tag='h5'>
-          Thank you for taking the time to tell us about your experience.
+          Your report has now been received! 
         </Type5>
         <Type5 use='headline5' tag='h5'>
-          Together we can make a change.
+          Thank you for taking time and courage to tell us about your experience. With your help we can make a change.
         </Type5>
         <TypeB1 use='body1'>
-          Please save this unique reference somewhere safe, in case:
+          This is your unique code for your response. You can save it somewhere safe for your reference:
         </TypeB1>
         <TypeB2 use='body2'>{userRef}</TypeB2>
-        <ButtonPrimary raised tag={Link} to='/'>
-          Home
+        <ButtonPrimary raised tag={Link} to='/frequently-asked-questions#how-might-my-unique-code-be-useful-to-me?'>
+          About the unique code
+        </ButtonPrimary>
+     <ButtonPrimary raised tag={Link} to='/'>
+          GO HOME
         </ButtonPrimary>
       </Container>
     </>
