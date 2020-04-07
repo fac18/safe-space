@@ -22,8 +22,8 @@ const Confirm = ({ userRef }) => {
         <TypeB2 use='body2'>{userRef}</TypeB2>
         <ButtonPrimary raised tag={Link} to='/frequently-asked-questions#how-might-my-unique-code-be-useful-to-me?'>
           About the unique code
-        </ButtonSecondary>
-     <ButtonPrimary raised tag={Link} to='/'>
+        </ButtonPrimary>
+     <ButtonSecondary raised tag={Link} to='/'>
           GO HOME
         </ButtonSecondary>
       </Container>
