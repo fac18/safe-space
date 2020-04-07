@@ -56,7 +56,6 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
 
         <TextField
           use='body1'
-          fullwidth
           label='email'
           pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
           onChange={updateResponses}
