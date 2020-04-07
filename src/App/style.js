@@ -19,6 +19,10 @@ const ContentWrap = styled.div`
   /* @media (max-width: 768px) { */
   /* flex-direction: column; */
   /* } */
+
+  @media (min-width: 600px) {
+    padding-bottom: 6.5rem;
+  }
 `;
 
 const StyledBubbles = styled(HeaderBubbles)`

@@ -56,6 +56,17 @@ a:hover {
   color: #2d3c8a;
 }
 
+footer > a {
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+}
+
+footer > a:hover {
+  color: #c1c8eb;
+  /* color: white; */
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
