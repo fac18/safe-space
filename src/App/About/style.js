@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContentWrap, TypeQ } from '../style';
+import { ContentWrap} from '../style';
 
 const ContentWrapper = styled(ContentWrap)`
   display: flex;
@@ -18,8 +18,4 @@ const Container = styled.section`
   }
 `;
 
-const Type = styled(TypeQ)`
-  padding: 0.5rem 0rem;
-`;
-
-export { ContentWrapper, Container, Type };
+export { ContentWrapper, Container };

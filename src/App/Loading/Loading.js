@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CircularProgress } from '@rmwc/circular-progress';
-import { TypeQ } from '../style';
 
 const CenterWrapper = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const Loading = () => {
   return (
     <>
       <CenterWrapper>
-        <TypeQ use='headline3'> Loading... </TypeQ>
+        <h2> Loading... </h2>
         <Spinner />
       </CenterWrapper>
     </>

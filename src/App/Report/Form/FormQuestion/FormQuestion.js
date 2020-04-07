@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { TypeQ } from '../../../style';
 import {
   TextQuestion,
   TextareaQuestion,
@@ -117,9 +116,9 @@ const FormQuestion = ({
 
   return (
     <>
-      <TypeQ use='headline5' tag='h2'>
+      <h2>
         {question.question}
-      </TypeQ>
+      </h2>
       {(() => {
         switch (question.type) {
           case 'text':
