@@ -45,13 +45,13 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
       <Header />
       <Container>
         <Type5 use='headline5' tag='h5'>
-          One mor thing...
+          One more thing...
         </Type5>
         <TypeB1 use='subtitle1'>
-          If you wish the MU staff to get in touch with you regarding your response, please leave your e-mail address: below. 
+          If you wish one of the MU employees to get in touch with you regarding this report, please leave your e-mail address below: 
         </TypeB1>
     <TypeB1 use='subtitle1'>
-          Otherwise, just click 'Submit' to finish. 
+          Otherwise, just sumbit your report to finish. 
         </TypeB1>
 
         <TextField
@@ -63,7 +63,7 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
           name='userEmail'
         ></TextField>
         <ButtonPrimary onClick={handleSubmit} raised>
-          Submit my responses
+          Submit this report
         </ButtonPrimary>
       </Container>
     </>
