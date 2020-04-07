@@ -24,11 +24,10 @@ const Home = () => {
           Together we can change this.
         </Type5>
         <TypeB1 use='body1' tag='p'>
-          This site is a safe space for musicians safe space for all musicians to share instances of sexism, sexual harassment and sexual abuse at work.
+          This site is a safe space for musicians to share instances of sexism, sexual harassment and sexual abuse at work.
+      All submissions are kept in confidence by the Musicians' Union.
         </TypeB1>
-        <TypeExtra use='body1' tag='p'>
-          All submissions are kept in confidence by the Musicians' Union.
-        </TypeExtra>
+     
 
         <ButtonWrapper>
           <ButtonPrimary raised tag={Link} to='/choose'>
