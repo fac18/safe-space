@@ -7,7 +7,7 @@ const Bottom = styled.footer`
   justify-content: center;
   line-height: 1.5rem;
   /* background-color: #abb1d0; */
-  background-color: #39416b;
+  background-color: #596084;
   margin-right: 2em;
   position: absolute;
   bottom: 0;
@@ -26,6 +26,7 @@ const Link = styled.a`
   padding-right: 1.5em;
   font-size: 0.8rem;
   line-height: 1.2rem;
+  cursor: pointer;
 
   @media (min-width: 600px) {
     line-height: 1.6rem;
