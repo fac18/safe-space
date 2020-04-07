@@ -54,6 +54,7 @@ a {
 
 a:hover {
   color: #2d3c8a;
+  cursor: pointer;
 }
 
 footer > a {
@@ -64,6 +65,8 @@ footer > a {
 
 footer > a:hover {
   color: #c1c8eb;
+  cursor: pointer;
+
   /* color: white; */
 }
 

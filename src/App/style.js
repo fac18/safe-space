@@ -17,7 +17,7 @@ const ContentWrap = styled.div`
   display: flex;
 
   @media (min-width: 600px) {
-    padding-bottom: 6.5rem;
+    padding-bottom: 7rem;
   }
 `;
 
