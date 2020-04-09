@@ -12,7 +12,7 @@ import { Form, Divider, Confirm, Submit } from './index';
 import { Loading } from '../index';
 
 // and utils and libraries
-import { getData, deleteValue } from '../../utils';
+import { getData, deleteValue, findIndex } from '../../utils';
 import uuid from 'uuid/v4';
 
 // and fallback data
@@ -30,10 +30,9 @@ const Report = () => {
   const choice = useMemo(
     () =>
       location.state && location.state.choice ? location.state.choice : 'first',
+    // eslint-disable-next-line
     []
   ); // React would have me include [location.state] in dependency arrays, but we only want to memoize on mount!
-
-  console.log(choice);
 
   // set up states
   const [questions, setQuestions] = useState(null);
@@ -66,64 +65,72 @@ const Report = () => {
           err
         );
       });
+    // eslint-disable-next-line
   }, []); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
 
   // fn: reducer to handle form updates
   // the action object passed in (see dispatch definition inside component) is immediately destructured
   const reducer = useCallback(
     (state, { field, value, type, checked, trusted }) => {
+      // we first derive the question from which the event emanates, by searching the questions object with field
+      console.log('reducer called with field:', field);
+      const index = findIndex(questions, field);
+      console.log('index in questions array:', index);
       if (value.length === 0) return state; // if value empty (i.e. first interaction w/ an 'Other' option), no change
       if (type === 'checkbox') {
         // checkboxes need special handling since they can take multiple answers
-        if (checked && state[field]) {
-          // we first derive the question from which the event emanates, by searching the questions object with field
-          let index;
-          questions.forEach((question, i) => {
-            if (question.question === field) index = i;
-          });
-          const otherSubmissions = state[field].filter(
+        if (checked && state[index]) {
+          const otherSubmissions = state[index].filter(
             answer => !questions[index].content.includes(answer)
           );
           // if there's response data, checkbox is checked, but response already includes this value, no change
-          if (state[field].includes(value)) {
+          if (state[index].includes(value)) {
             return state;
             // else if the value is an 'Other' submission but we've already collected an 'Other' response (i.e. one not belonging to pre-set answers), replace it
             // NB. the re-selection of checkboxes on returning to a page are not trusted events, but those relating to non-'Other' options are caught by previous branch
           } else if (!trusted && otherSubmissions.length > 0) {
-            const newResponses = deleteValue(state[field], otherSubmissions[0]);
+            const newResponses = deleteValue(state[index], otherSubmissions[0]);
             return {
               ...state,
-              [field]: [...newResponses, value],
+              [index]: [...newResponses, value],
             };
             // and else simply incorporate the new value
           } else {
             return {
               ...state,
-              [field]: [...state[field], value],
+              [index]: [...state[index], value],
             };
           }
         } else if (checked) {
           // else if there is no response data and checkbox is being checked, it is for the first time, so incorporate given value
-          return { ...state, [field]: [value] };
-          // NB. here the square brackets in [field] enable use of the value of field as a key in the object literal
-          // but the square brackets in [value] denote an array literal i.e. an array with one entry, value
+          return {
+            ...state,
+            [index]: [value],
+          };
+          // NB. here the square brackets in [index] enable use of the value of index as a key in the object literal
+          // whereas the square brackets in [value] denote an array literal i.e. an array with one entry, value
         } else {
           // else if checkbox is being deselected, remove given value from responses
-          const newResponses = deleteValue(state[field], value);
+          const newResponses = deleteValue(state[index], value);
           // if this action results in an empty array, this field should be removed altogether (w/o mutation)
           if (newResponses.length === 0) {
-            const newState = { ...state };
-            delete newState[field];
+            const newState = {
+              ...state,
+            };
+            delete newState[index];
             return newState;
           } else {
-            return { ...state, [field]: newResponses };
+            return {
+              ...state,
+              [index]: newResponses,
+            };
           }
         }
       } else {
         // for all other input types, we simply reproduce the state with new field incorporated (/overwritten)
         return {
           ...state,
-          [field]: value,
+          [index]: value,
         };
       }
     },
@@ -133,6 +140,8 @@ const Report = () => {
 
   // set up responses state with reducer defined above
   const [responses, dispatch] = useReducer(reducer, {});
+
+  console.log(responses);
 
   // fn: pass appropriate parts of a changed element into the dispatch's action object
   // NB. in this instance we are 'closing over' the dispatch function
@@ -152,14 +161,7 @@ const Report = () => {
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
   } else if (location.pathname.includes('submit')) {
-    return (
-      <Submit
-        responses={responses}
-        updateResponses={updateResponses}
-        choice={choice}
-        userRef={userRef}
-      />
-    );
+    return <Submit responses={responses} choice={choice} userRef={userRef} />;
   } else if (location.pathname.includes('confirm')) {
     return <Confirm userRef={userRef} />;
   } else {

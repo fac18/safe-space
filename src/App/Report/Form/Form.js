@@ -105,14 +105,15 @@ const Form = ({ questions, responses, updateResponses }) => {
           <FlexColumn>
             <form id='report-form'>
               {(() =>
-                pageQuestions.map((question, index) => (
+                pageQuestions.map((question, pageIndex) => (
                   <FormQuestion
-                    key={`${page}.${index}`}
-                    index={index}
+                    key={`${page}.${pageIndex}`}
+                    page={page}
+                    pageIndex={pageIndex}
                     question={question}
+                    questions={questions}
                     responses={responses}
                     updateResponses={updateResponses}
-                    page={page}
                   ></FormQuestion>
                 )))()}
             </form>

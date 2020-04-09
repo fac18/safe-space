@@ -6,16 +6,23 @@ import {
   RadioQuestion,
   DateQuestion,
 } from './index';
+import { findIndex } from '../../../../utils';
 
 const FormQuestion = ({
-  index,
   page,
+  pageIndex,
   question,
+  questions,
   responses,
   updateResponses,
 }) => {
+  // find index of this specific question in overall questions array
+  const index = useRef(findIndex(questions, question.question));
+
+  console.log('index of question rendered:', index);
+
   // pull existing response data out of responses object on every render (if available)
-  const response = responses[question.question];
+  const response = responses[index.current];
 
   // to capture text in optional 'Other' fields, we will trick the dispatch in updateResponses into including it
   // first we set up a state and ref to track the 'Other' text and element respectively, for this particular FormQuestion
@@ -88,6 +95,7 @@ const FormQuestion = ({
         el.click(); // crucially, this line fires an event, which means the checkbox can still be deselected properly (whereas setAttribute doesn't)
       }
     }
+    // eslint-disable-next-line
   }, []); // React would have me write [response] for dependency array, but this breaks the app
   // (because any checkbox selection is immediately programmatically negated by re-run of syncRef)
 
@@ -111,21 +119,20 @@ const FormQuestion = ({
     if (other && otherOption.current && other.length > 0 && !otherVisibility) {
       otherOption.current.click();
     }
+    // eslint-disable-next-line
   }, [other]); // similarly adding OtherVisibility to dependency array here breaks app
   // (by producing a double click - 1x user + 1x programmatic - on deselection of 'Other' option)
 
   return (
     <>
-      <h2>
-        {question.question}
-      </h2>
+      <h2>{question.question}</h2>
       {(() => {
         switch (question.type) {
           case 'text':
             return (
               <TextQuestion
-                index={index}
                 page={page}
+                pageIndex={pageIndex}
                 question={question}
                 response={response}
                 updateResponses={updateResponses}
@@ -134,8 +141,8 @@ const FormQuestion = ({
           case 'textarea':
             return (
               <TextareaQuestion
-                index={index}
                 page={page}
+                pageIndex={pageIndex}
                 question={question}
                 response={response}
                 updateResponses={updateResponses}
@@ -144,8 +151,8 @@ const FormQuestion = ({
           case 'checkbox':
             return (
               <CheckboxQuestion
-                index={index}
                 page={page}
+                pageIndex={pageIndex}
                 question={question}
                 other={other}
                 otherVisibility={otherVisibility}
@@ -159,8 +166,8 @@ const FormQuestion = ({
           case 'radio':
             return (
               <RadioQuestion
-                index={index}
                 page={page}
+                pageIndex={pageIndex}
                 question={question}
                 other={other}
                 otherVisibility={otherVisibility}
@@ -176,8 +183,8 @@ const FormQuestion = ({
           default:
             return (
               <DateQuestion
-                index={index}
                 page={page}
+                pageIndex={pageIndex}
                 question={question}
                 response={response}
                 updateResponses={updateResponses}

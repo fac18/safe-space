@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { postResponses, stringify } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
@@ -8,36 +8,43 @@ import { Container, Type5, TypeB1 } from './style';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
 
-const Submit = ({ responses, updateResponses, choice, userRef }) => {
-  const history = useHistory();
-
-  // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
-  const processResponses = responses => {
-    for (let question in responses) {
-      // use hasOwnProperty to avoid considering inherited properties (objects are messy)
-      if (responses.hasOwnProperty(question)) {
-        if (Array.isArray(responses[question])) {
-          responses[question].filter(answer => {
-            return !(answer === '');
-          });
-        }
+// fn: process data in responses object to prepare it for submission to airtable
+const processResponses = responses => {
+  for (let question in responses) {
+    // use hasOwnProperty to avoid considering inherited properties (objects are messy)
+    if (responses.hasOwnProperty(question)) {
+      // select for responses to checkbox questions (the only values which are arrays)
+      if (Array.isArray(responses[question])) {
+        responses[question].filter(answer => {
+          // previously we were filtering out empty strings - no longer necessary since other implementation improved
+          // keeping functionality in case we want to unspool array responses into key-value pairs (if so, remove stringify)
+          return true;
+        });
       }
     }
-    return responses;
-  };
+  }
+  // finally stringify array responses and return final object
+  return stringify(responses);
+};
+
+const Submit = ({ responses, choice, userRef }) => {
+  const history = useHistory();
+  const [userEmail, setUserEmail] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
+    // just before posting data, include uuid generated userRef
     const finalResponses = {
-      ...processResponses(responses),
       userRef,
+      userEmail,
+      ...processResponses(responses),
     };
-    postResponses(`${choice}-responses`, stringify(finalResponses)).then(
-      res => {
-        // navigate to confirmation once response from POST successfully received
-        history.push('/report/confirm');
-      }
-    );
+    console.log('responses object just before submission:', finalResponses);
+    postResponses(`${choice}-responses`, finalResponses).then(res => {
+      // navigate to confirmation once response from POST successfully received
+      console.log(res);
+      history.push('/report/confirm');
+    });
   };
 
   return (
@@ -59,7 +66,11 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
           use='body1'
           label='email'
           pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-          onChange={updateResponses}
+          onChange={e => {
+            console.log('email before update:', userEmail);
+            setUserEmail(e.target.value);
+          }}
+          value={userEmail}
           name='userEmail'
         ></TextField>
         <ButtonPrimary onClick={handleSubmit} raised>
