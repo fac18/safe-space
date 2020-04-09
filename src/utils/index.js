@@ -5,6 +5,7 @@ import deleteValue from './deleteValue';
 import makeSlug from './makeSlug';
 import findIndex from './findIndex';
 import incrementKeys from './incrementKeys';
+import unspoolArrays from './unspoolArrays';
 
 export {
   getData,
@@ -14,4 +15,5 @@ export {
   makeSlug,
   findIndex,
   incrementKeys,
+  unspoolArrays,
 };

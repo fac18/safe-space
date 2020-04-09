@@ -159,7 +159,14 @@ const Report = () => {
   if (location.pathname.includes('section')) {
     return <Divider questions={questions} dividers={dividers} />;
   } else if (location.pathname.includes('submit')) {
-    return <Submit responses={responses} choice={choice} userRef={userRef} />;
+    return (
+      <Submit
+        questions={questions}
+        responses={responses}
+        choice={choice}
+        userRef={userRef}
+      />
+    );
   } else if (location.pathname.includes('confirm')) {
     return <Confirm userRef={userRef} />;
   } else {
