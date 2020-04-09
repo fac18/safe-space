@@ -48,10 +48,11 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
           One more thing...
         </Type5>
         <TypeB1 use='subtitle1'>
-          If you wish one of the MU employees to get in touch with you regarding this report, please leave your e-mail address below: 
+          If you wish one of the MU employees to get in touch with you regarding
+          this report, please leave your e-mail address below:
         </TypeB1>
-    <TypeB1 use='subtitle1'>
-          Otherwise, just sumbit your report to finish. 
+        <TypeB1 use='subtitle1'>
+          Otherwise, just submit your report to finish.
         </TypeB1>
 
         <TextField
