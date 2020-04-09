@@ -73,9 +73,7 @@ const Report = () => {
   const reducer = useCallback(
     (state, { field, value, type, checked, trusted }) => {
       // we first derive the question from which the event emanates, by searching the questions object with field
-      console.log('reducer called with field:', field);
       const index = findIndex(questions, field);
-      console.log('index in questions array:', index);
       if (value.length === 0) return state; // if value empty (i.e. first interaction w/ an 'Other' option), no change
       if (type === 'checkbox') {
         // checkboxes need special handling since they can take multiple answers

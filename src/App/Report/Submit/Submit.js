@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { postResponses, stringify } from '../../../utils';
+import { postResponses, stringify, incrementKeys } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
 import { Header } from '../../index';
@@ -24,7 +24,7 @@ const processResponses = responses => {
     }
   }
   // finally stringify array responses and return final object
-  return stringify(responses);
+  return stringify(incrementKeys(responses));
 };
 
 const Submit = ({ responses, choice, userRef }) => {

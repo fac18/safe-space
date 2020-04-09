@@ -16,7 +16,13 @@ const filterQuestions = (questions, page, responses) => {
   return questions.filter(question => {
     if (question.page === page) {
       if (question.split) {
-        return question.condition.includes(responses[question.split]);
+        const splitNum = question.split - 1;
+        // here we account for the fact that the 'split' number references 1-indexed questions by decrementing by 1
+        console.log('split - 1:', splitNum);
+        console.log('type of split:', typeof splitNum);
+        console.log('response on splitter:', responses[splitNum]);
+        console.log(question.condition.includes(responses[splitNum]));
+        return question.condition.includes(responses[splitNum]);
       } else {
         return true;
       }
@@ -48,10 +54,14 @@ const findNextPage = (questions, page, responses) => {
   if (
     questions[lastIndex + 1] &&
     questions[lastIndex + 1].split &&
-    !responses[questions[lastIndex + 1].split]
+    !responses[questions[lastIndex + 1].split - 1]
   ) {
     // then recur the function with revised page and index values
     const nextPage = page + 1;
+    console.log(
+      'findNextPage recurrence branch triggered with page:',
+      nextPage
+    );
     const [, newLastIndex] = findIndices(questions, nextPage);
     return findNextPage(questions, nextPage, newLastIndex);
   } else {
@@ -70,7 +80,7 @@ const findPrevPage = (questions, page, responses) => {
   if (
     questions[firstIndex - 1] &&
     questions[firstIndex - 1].split &&
-    responses[questions[firstIndex - 1].split]
+    responses[questions[firstIndex - 1].split - 1]
   ) {
     const prevPage = page - 1;
     const [newFirstIndex] = findIndices(questions, prevPage);

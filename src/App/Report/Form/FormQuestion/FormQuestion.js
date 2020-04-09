@@ -19,8 +19,6 @@ const FormQuestion = ({
   // find index of this specific question in overall questions array
   const index = useRef(findIndex(questions, question.question));
 
-  console.log('index of question rendered:', index);
-
   // pull existing response data out of responses object on every render (if available)
   const response = responses[index.current];
 
