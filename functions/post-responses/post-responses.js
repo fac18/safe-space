@@ -29,18 +29,18 @@ exports.handler = async (event, context) => {
         fields: responses,
       },
     ])
-    .then(records => {
-      records.forEach(record => data.push(record.getId()));
+    .then((records) => {
+      records.forEach((record) => data.push(record.fields));
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
     });
 
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Success you've posted to the lambda",
-      id: data,
+      message: `The response data has been successfully sent to the ${table} table`,
+      response: data,
     }),
   };
 };
