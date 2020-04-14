@@ -1,5 +1,5 @@
-import React from 'react';
-import { postResponses, stringify } from '../../../utils';
+import React, { useState } from 'react';
+import { postResponses, incrementKeys, unspoolArrays } from '../../../utils';
 import { TextField } from '@rmwc/textfield';
 import { useHistory } from 'react-router-dom';
 import { Header } from '../../index';
@@ -8,36 +8,32 @@ import { Container, Type5, TypeB1 } from './style';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/typography/dist/mdc.typography.css';
 
-const Submit = ({ responses, updateResponses, choice, userRef }) => {
+// fn: process data in responses object to prepare it for submission to airtable
+const processResponses = (responses, questions) => {
+  let processed;
+  processed = unspoolArrays(incrementKeys(responses), questions);
+  console.log(processed);
+  return processed;
+};
+
+const Submit = ({ questions, responses, choice, userRef }) => {
   const history = useHistory();
+  const [userEmail, setUserEmail] = useState('');
 
-  // fn: process data in responses object (e.g. strip out empty strings produced by implementation of 'Other' fields)
-  const processResponses = responses => {
-    for (let question in responses) {
-      // use hasOwnProperty to avoid considering inherited properties (objects are messy)
-      if (responses.hasOwnProperty(question)) {
-        if (Array.isArray(responses[question])) {
-          responses[question].filter(answer => {
-            return !(answer === '');
-          });
-        }
-      }
-    }
-    return responses;
-  };
-
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    // just before posting data, include uuid generated userRef
     const finalResponses = {
-      ...processResponses(responses),
       userRef,
+      userEmail,
+      ...processResponses(responses, questions),
     };
-    postResponses(`${choice}-responses`, stringify(finalResponses)).then(
-      res => {
-        // navigate to confirmation once response from POST successfully received
-        history.push('/report/confirm');
-      }
-    );
+    console.log('responses object just before submission:', finalResponses);
+    postResponses(`${choice}-responses`, finalResponses).then((res) => {
+      // navigate to confirmation once response from POST successfully received
+      console.log(res);
+      history.push('/report/confirm');
+    });
   };
 
   return (
@@ -48,17 +44,22 @@ const Submit = ({ responses, updateResponses, choice, userRef }) => {
           One more thing...
         </Type5>
         <TypeB1 use='subtitle1'>
-          If you wish one of the MU employees to get in touch with you regarding this report, please leave your e-mail address below: 
+          If you wish one of the MU employees to get in touch with you regarding
+          this report, please leave your e-mail address below:
         </TypeB1>
-    <TypeB1 use='subtitle1'>
-          Otherwise, just sumbit your report to finish. 
+        <TypeB1 use='subtitle1'>
+          Otherwise, just submit your report to finish.
         </TypeB1>
 
         <TextField
           use='body1'
           label='email'
           pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-          onChange={updateResponses}
+          onChange={(e) => {
+            console.log('email before update:', userEmail);
+            setUserEmail(e.target.value);
+          }}
+          value={userEmail}
           name='userEmail'
         ></TextField>
         <ButtonPrimary onClick={handleSubmit} raised>

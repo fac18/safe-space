@@ -7,6 +7,7 @@ import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Splitter from './Splitter/Splitter';
 import Loading from './Loading/Loading';
+import Refresh from './Refresh/Refresh';
 
 export {
   FAQs,
@@ -18,4 +19,5 @@ export {
   Footer,
   Splitter,
   Loading,
+  Refresh,
 };

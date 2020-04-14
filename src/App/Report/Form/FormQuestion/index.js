@@ -2,13 +2,19 @@ import React from 'react';
 import { FlexInputs, InputWrapper, TextArea, TextInput } from './style';
 
 // ideally these components would be refactored into 1 or 2 components that internally examine question.type to determine form
-const TextQuestion = ({ index, page, question, response, updateResponses }) => (
+const TextQuestion = ({
+  pageIndex,
+  page,
+  question,
+  response,
+  updateResponses,
+}) => (
   <InputWrapper>
     <TextInput
       name={question.question}
       type={question.type}
       placeholder={question.content[0]}
-      id={`${page}.${index}`}
+      id={`${page}.${pageIndex}`}
       onChange={updateResponses}
       value={response ? response : ''}
     />
@@ -16,7 +22,7 @@ const TextQuestion = ({ index, page, question, response, updateResponses }) => (
 );
 
 const TextareaQuestion = ({
-  index,
+  pageIndex,
   page,
   question,
   response,
@@ -32,7 +38,7 @@ const TextareaQuestion = ({
         rows='10'
         cols='70'
         onChange={updateResponses}
-        id={`${page}.${index}`}
+        id={`${page}.${pageIndex}`}
         value={response ? response : ''}
       />
     </FlexInputs>
@@ -40,7 +46,7 @@ const TextareaQuestion = ({
 );
 
 const CheckboxQuestion = ({
-  index,
+  pageIndex,
   page,
   question,
   other,
@@ -54,7 +60,7 @@ const CheckboxQuestion = ({
   <InputWrapper>
     {question.content.map((answer, j) => {
       const isOther = answer === 'Other (please specify)';
-      const idString = `${page}.${index}.${j}${isOther ? '.other' : ''}`;
+      const idString = `${page}.${pageIndex}.${j}${isOther ? '.other' : ''}`;
       return (
         <FlexInputs key={j}>
           <input
@@ -77,7 +83,7 @@ const CheckboxQuestion = ({
           placeholder='Give more detail here'
           onChange={changeOther}
           onBlur={triggerUpdate}
-          id={`${page}.${index}.otherText`}
+          id={`${page}.${pageIndex}.otherText`}
           value={other}
         />
       </FlexInputs>
@@ -86,7 +92,7 @@ const CheckboxQuestion = ({
 );
 
 const RadioQuestion = ({
-  index,
+  pageIndex,
   page,
   question,
   other,
@@ -100,7 +106,7 @@ const RadioQuestion = ({
   <InputWrapper>
     {question.content.map((answer, j) => {
       const isOther = answer === 'Other (please specify)';
-      const idString = `${page}.${index}.${j}${isOther ? '.other' : ''}`;
+      const idString = `${page}.${pageIndex}.${j}${isOther ? '.other' : ''}`;
       return (
         <FlexInputs key={j}>
           <input
@@ -123,7 +129,7 @@ const RadioQuestion = ({
           placeholder='Give more detail here'
           onChange={changeOther}
           onBlur={triggerUpdate}
-          id={`${page}.${index}.otheText`}
+          id={`${page}.${pageIndex}.otheText`}
           value={other}
         />
       </FlexInputs>
@@ -131,13 +137,19 @@ const RadioQuestion = ({
   </InputWrapper>
 );
 
-const DateQuestion = ({ index, page, question, response, updateResponses }) => (
+const DateQuestion = ({
+  pageIndex,
+  page,
+  question,
+  response,
+  updateResponses,
+}) => (
   <InputWrapper>
     <FlexInputs>
       <input
         name={question.question}
         type={question.type}
-        id={`${page}.${index}`}
+        id={`${page}.${pageIndex}`}
         onChange={updateResponses}
         value={response ? response : ''}
       />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, Footer } from '../index';
-import { Type5, TypeB1, TypeExtra, ContentWrapper, PageContain } from './style';
+import { Type5, TypeB1, TypeExtra, PageContain } from './style';
 import {
   Container,
   ButtonPrimary,
@@ -15,7 +15,6 @@ const Home = () => {
     <>
       <Header />
       <PageContain>
-        {/* <ContentWrapper> */}
         <Container>
           <Type5 use='headline5' tag='h1'>
             48% of musicians have experienced sexual harassment at work
@@ -44,7 +43,6 @@ const Home = () => {
             </ButtonSecondary>
           </ButtonWrapper>
         </Container>
-        {/* </ContentWrapper> */}
         <Footer />
       </PageContain>
     </>
