@@ -10,7 +10,7 @@ const postResponses = async (table, responses) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(responses),
+      body: JSON.stringify([{ fields: responses }]),
     }
   );
   // then we wait for the response to stream as json, and return the result

@@ -24,11 +24,7 @@ exports.handler = async (event, context) => {
 
   let data = [];
   await base(table)
-    .create([
-      {
-        fields: responses,
-      },
-    ])
+    .create(responses)
     .then((records) => {
       records.forEach((record) => data.push(record.fields));
     })

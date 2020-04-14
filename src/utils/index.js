@@ -6,6 +6,7 @@ import makeSlug from './makeSlug';
 import findIndex from './findIndex';
 import incrementKeys from './incrementKeys';
 import unspoolArrays from './unspoolArrays';
+import refreshTable from './refreshTable';
 
 export {
   getData,
@@ -16,4 +17,5 @@ export {
   findIndex,
   incrementKeys,
   unspoolArrays,
+  refreshTable,
 };
