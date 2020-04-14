@@ -5,8 +5,8 @@ import { act } from 'react-dom/test-utils';
 import { Report } from '../App/index';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-import mockResponse from '../model/questions';
-import { stringify } from './index';
+import { stringify, unspoolArrays } from './index';
+import { witnessQuestions } from '../model';
 
 describe('stringify makes arrays in an object into comma separated strings', () => {
   const obj = {
@@ -49,4 +49,15 @@ it('mocks a returns of expected data', async () => {
   await wait();
   // Why use async await in a test? :
   // https://kentcdodds.com/blog/write-fewer-longer-tests
+});
+
+describe('unspoolArrays works as expected', () => {
+  const responses = {
+    9: ['Audience member', 'Some other text'],
+  };
+  const expected = {
+    9.6: 'Audience member',
+    9.12: 'Some other text',
+  };
+  expect(unspoolArrays(responses, witnessQuestions)).toBe(expected);
 });

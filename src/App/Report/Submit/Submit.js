@@ -10,19 +10,6 @@ import '@material/typography/dist/mdc.typography.css';
 
 // fn: process data in responses object to prepare it for submission to airtable
 const processResponses = (responses, questions) => {
-  // for (let question in responses) {
-  //   // use hasOwnProperty to avoid considering inherited properties (objects are messy)
-  //   if (responses.hasOwnProperty(question)) {
-  //     // select for responses to checkbox questions (the only values which are arrays)
-  //     if (Array.isArray(responses[question])) {
-  //       responses[question].filter(answer => {
-  //         // previously we were filtering out empty strings - no longer necessary since other implementation improved
-  //         // keeping functionality in case we want to unspool array responses into key-value pairs (if so, remove stringify)
-  //         return true;
-  //       });
-  //     }
-  //   }
-  // }
   let processed;
   processed = unspoolArrays(incrementKeys(responses), questions);
   console.log(processed);
@@ -33,7 +20,7 @@ const Submit = ({ questions, responses, choice, userRef }) => {
   const history = useHistory();
   const [userEmail, setUserEmail] = useState('');
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     // just before posting data, include uuid generated userRef
     const finalResponses = {
@@ -42,7 +29,7 @@ const Submit = ({ questions, responses, choice, userRef }) => {
       ...processResponses(responses, questions),
     };
     console.log('responses object just before submission:', finalResponses);
-    postResponses(`${choice}-responses`, finalResponses).then(res => {
+    postResponses(`${choice}-responses`, finalResponses).then((res) => {
       // navigate to confirmation once response from POST successfully received
       console.log(res);
       history.push('/report/confirm');
@@ -68,7 +55,7 @@ const Submit = ({ questions, responses, choice, userRef }) => {
           use='body1'
           label='email'
           pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-          onChange={e => {
+          onChange={(e) => {
             console.log('email before update:', userEmail);
             setUserEmail(e.target.value);
           }}
