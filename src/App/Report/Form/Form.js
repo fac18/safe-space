@@ -13,15 +13,11 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 
 // fn: filter full questions object to determine which to display on page being rendered
 const filterQuestions = (questions, page, responses) => {
-  return questions.filter(question => {
+  return questions.filter((question) => {
     if (question.page === page) {
       if (question.split) {
         const splitNum = question.split - 1;
         // here we account for the fact that the 'split' number references 1-indexed questions by decrementing by 1
-        console.log('split - 1:', splitNum);
-        console.log('type of split:', typeof splitNum);
-        console.log('response on splitter:', responses[splitNum]);
-        console.log(question.condition.includes(responses[splitNum]));
         return question.condition.includes(responses[splitNum]);
       } else {
         return true;
@@ -58,10 +54,6 @@ const findNextPage = (questions, page, responses) => {
   ) {
     // then recur the function with revised page and index values
     const nextPage = page + 1;
-    console.log(
-      'findNextPage recurrence branch triggered with page:',
-      nextPage
-    );
     const [, newLastIndex] = findIndices(questions, nextPage);
     return findNextPage(questions, nextPage, newLastIndex);
   } else {

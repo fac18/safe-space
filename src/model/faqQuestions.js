@@ -14,7 +14,7 @@ export default [
       'Physical behaviour: unwelcome sexual advances, touching and various forms of sexual assault.',
       'Displaying photos, pictures or drawings of a sexual nature.',
       'Sending messages, emails etc. with sexual content.',
-      "Learn more on <a href='http://themu.org/'>theMU.org</a>",
+      "Learn more on <a href='https://www.musiciansunion.org.uk//'>theMU.org</a>",
     ],
   },
   {
@@ -35,7 +35,7 @@ export default [
     ],
   },
   {
-    question: 'What can the MU Safe Space do?',
+    question: 'What the MU Safe Space can do?',
     paras: [
       'For MU members:',
       'We can advise you on your legal rights.',
@@ -51,11 +51,35 @@ export default [
     ],
   },
   {
-    question: 'What can the MU Safe Space not do?',
+    question: 'What the MU Safe Space cannot do?',
     paras: [
       'We cannot provide counselling. But we will always provide information on relevant support services.',
       'We are very limited in terms of what can be done industrially to address a complaint of a sexual assault.',
       'We cannot guarantee the outcome that you want.',
+    ],
+  },
+  {
+    question: 'What happens to my data?',
+    paras: [
+      'When we collect your responses we will not collect your personal data, this includes your IP address. ',
+      'Each response will be stored against a unique code that is automatically generated and consists of random characters, including letters in various cases and numbers. ',
+      'At the end of the survey you will be asked if you are willing to leave your e-mail address – this is entirely optional and is only needed if you want the MU to get in touch with you about your response.',
+      'If you choose not to leave an email address, we will have no way to identify you. This means you will be effectively anonymous unless you provide sufficiently personal information in your responses.',
+      'Only four members of MU staff have access to response data, which we will use to inform our work on making the music industry safer. ',
+    ],
+  },
+  {
+    question: 'How might my unique code be useful to me?',
+    paras: [
+      'A unique code will be given to you upon submitting your responses. The code ensures you can distinguish your response from other responses.',
+      'The code is provided to you for your reference, no one else will be able to use it to identify you – you can store it somewhere safe or ignore it.',
+      'If you submit more than one response, we won’t know it was submitted by the same person. However, if you have your reference code(s) you can ask us to retrieve your response(s) at any time. ',
+    ],
+  },
+  {
+    question: 'How can I get involved in the movement?',
+    paras: [
+      "Learn more about the MU's Safe Space Scheme and how to get involved on theMU.org/safespace",
     ],
   },
 ];

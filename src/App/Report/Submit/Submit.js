@@ -10,10 +10,7 @@ import '@material/typography/dist/mdc.typography.css';
 
 // fn: process data in responses object to prepare it for submission to airtable
 const processResponses = (responses, questions) => {
-  let processed;
-  processed = unspoolArrays(incrementKeys(responses), questions);
-  console.log(processed);
-  return processed;
+  return unspoolArrays(incrementKeys(responses), questions);
 };
 
 const Submit = ({ questions, responses, choice, userRef }) => {
@@ -28,10 +25,8 @@ const Submit = ({ questions, responses, choice, userRef }) => {
       userEmail,
       ...processResponses(responses, questions),
     };
-    console.log('responses object just before submission:', finalResponses);
     postResponses(`${choice}-responses`, finalResponses).then((res) => {
       // navigate to confirmation once response from POST successfully received
-      console.log(res);
       history.push('/report/confirm');
     });
   };
@@ -56,7 +51,6 @@ const Submit = ({ questions, responses, choice, userRef }) => {
           label='email'
           pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
           onChange={(e) => {
-            console.log('email before update:', userEmail);
             setUserEmail(e.target.value);
           }}
           value={userEmail}

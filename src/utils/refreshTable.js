@@ -16,8 +16,6 @@ const refreshTable = async (table, questions) => {
     }
   });
 
-  console.log(`newRecords before submission to ${table}:`, newRecords);
-
   let response = await fetch(
     `../../.netlify/functions/post-responses/post-responses.js?table=${table}`,
     {

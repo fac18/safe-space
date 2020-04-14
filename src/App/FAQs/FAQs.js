@@ -17,10 +17,10 @@ const FAQs = () => {
       })
       .catch((err) => {
         setFaqQuestions(hardFaqQuestions);
-        console.log(
-          'Failed to fetch FAQ question data - falling back to hard coding. Error: ',
-          err
-        );
+        // console.log(
+        //   'Failed to fetch FAQ question data - falling back to hard coding. Error: ',
+        //   err
+        // );
       });
   }, []);
 
@@ -38,9 +38,11 @@ const FAQs = () => {
 
               <ul>
                 {faqQuestions.map((faq, i) => (
-                  <h2><li key={i}>
+                  <h2 key={i}>
+                    <li>
                       <a href={`#${makeSlug(faq.question)}`}>{faq.question}</a>
-                  </li></h2>
+                    </li>
+                  </h2>
                 ))}
               </ul>
 

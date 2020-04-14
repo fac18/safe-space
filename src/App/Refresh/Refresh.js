@@ -14,28 +14,23 @@ const Refresh = () => {
     if (choice) {
       getData(`${choice}-questions`)
         .then((records) => {
-          console.log(
-            'question records going into refreshTable function:',
-            records
-          );
           return refreshTable(`${choice}-responses`, records);
         })
         .catch((err) => {
-          console.log(
-            `Failed to refresh the ${choice}-responses table. Error: `,
-            err
-          );
+          // console.log(
+          //   `Failed to refresh the ${choice}-responses table. Error: `,
+          //   err
+          // );
           setFailure(true);
         })
         .then((res) => {
-          console.log(res);
           setSuccess(true);
         })
         .catch((err) => {
-          console.log(
-            `Failed to fetch data from ${choice}-questions. Error: `,
-            err
-          );
+          // console.log(
+          //   `Failed to fetch data from ${choice}-questions. Error: `,
+          //   err
+          // );
           setFailure(true);
         });
     }

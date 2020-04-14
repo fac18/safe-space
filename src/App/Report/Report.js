@@ -43,27 +43,27 @@ const Report = () => {
 
   useEffect(() => {
     getData(`${choice}-questions`)
-      .then(records => {
+      .then((records) => {
         setQuestions(records);
       })
-      .catch(err => {
+      .catch((err) => {
         setQuestions(choice === 'first' ? firstQuestions : witnessQuestions);
-        console.log(
-          'Failed to fetch question data - falling back to hard coding. Error: ',
-          err
-        );
+        // console.log(
+        //   'Failed to fetch question data - falling back to hard coding. Error: ',
+        //   err
+        // );
       });
 
     getData(`${choice}-dividers`)
-      .then(dividers => {
-        setDividers(dividers);
+      .then((records) => {
+        setDividers(records);
       })
-      .catch(err => {
+      .catch((err) => {
         setDividers(choice === 'first' ? firstDividers : witnessDividers);
-        console.log(
-          'Failed to fetch divider data - falling back to hard coding. Error: ',
-          err
-        );
+        // console.log(
+        //   'Failed to fetch divider data - falling back to hard coding. Error: ',
+        //   err
+        // );
       });
     // eslint-disable-next-line
   }, []); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
@@ -79,7 +79,7 @@ const Report = () => {
         // checkboxes need special handling since they can take multiple answers
         if (checked && state[index]) {
           const otherSubmissions = state[index].filter(
-            answer => !questions[index].content.includes(answer)
+            (answer) => !questions[index].content.includes(answer)
           );
           // if there's response data, checkbox is checked, but response already includes this value, no change
           if (state[index].includes(value)) {
@@ -139,11 +139,9 @@ const Report = () => {
   // set up responses state with reducer defined above
   const [responses, dispatch] = useReducer(reducer, {});
 
-  console.log(responses);
-
   // fn: pass appropriate parts of a changed element into the dispatch's action object
   // NB. in this instance we are 'closing over' the dispatch function
-  const updateResponses = useCallback(event => {
+  const updateResponses = useCallback((event) => {
     dispatch({
       type: event.target.type, // pass in the input type (checkbox, radio, text, date or textarea)
       field: event.target.name, // the name of the field (question text)

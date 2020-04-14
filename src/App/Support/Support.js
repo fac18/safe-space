@@ -11,15 +11,15 @@ const Support = () => {
 
   useEffect(() => {
     getData('support-services')
-      .then(records => {
+      .then((records) => {
         setServices(records);
       })
-      .catch(err => {
+      .catch((err) => {
         setServices(hardServices);
-        console.log(
-          'Failed to fetch services data - falling back to hard coding. Error: ',
-          err
-        );
+        // console.log(
+        //   'Failed to fetch services data - falling back to hard coding. Error: ',
+        //   err
+        // );
       });
   }, []);
 
