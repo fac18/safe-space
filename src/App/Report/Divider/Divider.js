@@ -2,15 +2,15 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Header } from '../../index';
 import {
-  FormContainer,
   FlexColumn,
   FlexRow,
   Bubbles2,
   CenterContents,
   ButtonNext,
   ButtonBack,
+  FormContainer,
 } from '../../style';
-import H2 from './style';
+import { H2 } from './style';
 
 const SectionDivider = ({ questions, dividers }) => {
   const params = useParams();
@@ -38,14 +38,12 @@ const SectionDivider = ({ questions, dividers }) => {
       <CenterContents>
         <FormContainer>
           <FlexColumn>
-            {paras.map((para, i) => (
-              <H2 key={i}>
-                {para}
-              </H2>
-            ))}
-            <h4>
-              {explainer}
-            </h4>
+            <div>
+              {paras.map((para, i) => (
+                <H2 key={i}>{para}</H2>
+              ))}
+              <h4>{explainer}</h4>
+            </div>
             <FlexRow>
               <ButtonBack
                 tag={Link}

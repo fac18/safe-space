@@ -3,7 +3,7 @@ import { Header } from '../../index';
 import { ButtonPrimary } from '../../style';
 import { ButtonSecondary } from '../../style';
 import { Link } from 'react-router-dom';
-import { Container, Type5, TypeB1, TypeB2 } from './style';
+import { Container, Type5, TypeB1 } from './style';
 import CopyText from './CopyText';
 
 const Confirm = ({ userRef }) => {
@@ -23,7 +23,7 @@ const Confirm = ({ userRef }) => {
           This is a unique code of the report you just submitted. You can save
           it somewhere safe for your reference:
         </TypeB1>
-        <CopyText userRef={userRef}/>
+        <CopyText userRef={userRef} />
         {/* <TypeB2 use='body2'>{userRef}</TypeB2> */}
         <ButtonPrimary
           raised
