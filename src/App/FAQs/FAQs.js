@@ -33,7 +33,7 @@ const FAQs = () => {
           <Header />
           <Container>
             <FlexColumn>
-              <h1>Frequently Asked Questions</h1>
+              <h1 id='page-title'>Frequently Asked Questions</h1>
               <br></br>
 
               <ul>
