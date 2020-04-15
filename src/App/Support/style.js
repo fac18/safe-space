@@ -45,7 +45,8 @@ const ServiceCard = styled(Card)`
     width: 20rem;
     min-height: 15rem;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding-top: 1rem;
 

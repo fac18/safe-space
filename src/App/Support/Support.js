@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PageContainer, ButtonPrimary } from '../style';
+import { PageContainer, ButtonBack } from '../style';
 import { ContentWrapper, Text, Type, Type5, ServiceCard } from './style';
 import { Header, Footer, Loading } from '../index';
 import { getData } from '../../utils';
@@ -60,9 +60,9 @@ const Support = () => {
               </ServiceCard>
             ))}
           </Text>
-          <ButtonPrimary raised tag={Link} to='/'>
+          <ButtonBack tag={Link} to={'/'}>
             Home
-          </ButtonPrimary>
+          </ButtonBack>
         </ContentWrapper>
         <Footer />
       </PageContainer>
