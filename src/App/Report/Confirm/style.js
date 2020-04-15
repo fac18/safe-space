@@ -36,23 +36,4 @@ const TypeB2 = styled(Typography)`
   }
 `;
 
-const FlexRow = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-`;
-
-const CopyArea = styled.textarea`
-  resize: none;
-  color: #ca68a4;
-  width: 12rem;
-  border: none;
-  font-size: 1.1rem;
-  font-weight: 700;
-
-  @media (min-width: 600px) {
-    width: inherit;
-  }
-`;
-
-export { Container, Type5, TypeB1, TypeB2, FlexRow, CopyArea };
+export { Container, Type5, TypeB1, TypeB2 };

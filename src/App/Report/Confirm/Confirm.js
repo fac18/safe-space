@@ -1,10 +1,9 @@
 import React from 'react';
 import { Header } from '../../index';
-import { ButtonPrimary } from '../../style';
-import { ButtonSecondary } from '../../style';
+import { ButtonPrimary, ButtonSecondary, ButtonWrapper } from '../../style';
 import { Link } from 'react-router-dom';
 import { Container, Type5, TypeB1 } from './style';
-import CopyText from './CopyText';
+import CopyText from './CopyText/CopyText';
 
 const Confirm = ({ userRef }) => {
   return (
@@ -21,20 +20,21 @@ const Confirm = ({ userRef }) => {
         <br />
         <TypeB1 use='body1'>
           This is a unique code of the report you just submitted. You can save
-          it somewhere safe for your reference:
+          it somewhere safe for your reference.
         </TypeB1>
         <CopyText userRef={userRef} />
-        {/* <TypeB2 use='body2'>{userRef}</TypeB2> */}
-        <ButtonPrimary
-          raised
-          tag={Link}
-          to='/frequently-asked-questions#how-might-my-unique-code-be-useful-to-me?'
-        >
-          About the unique code
-        </ButtonPrimary>
-        <ButtonSecondary raised tag={Link} to='/'>
-          GO HOME
-        </ButtonSecondary>
+        <ButtonWrapper>
+          <ButtonPrimary
+            raised
+            tag={Link}
+            to='/frequently-asked-questions#how-might-my-unique-code-be-useful-to-me?'
+          >
+            About the unique code
+          </ButtonPrimary>
+          <ButtonSecondary raised tag={Link} to='/'>
+            Go home
+          </ButtonSecondary>
+        </ButtonWrapper>
       </Container>
     </>
   );

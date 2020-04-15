@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { FlexRow, CopyArea } from './style';
-import { ButtonBack } from '../../style';
+import { ButtonBack } from '../../../style';
 
 const CopyText = ({ userRef }) => {
-  const [copySuccess, setCopySuccess] = useState('');
+  const [copySuccess, setCopySuccess] = useState(false);
   const textAreaRef = useRef(null);
   function copyToClipboard(e) {
     textAreaRef.current.select();
@@ -15,13 +15,15 @@ const CopyText = ({ userRef }) => {
     <>
       <br />
       <FlexRow>
-        <form spellcheck='false'>
-          <CopyArea ref={textAreaRef} value={userRef} />
+        <form spellCheck='false'>
+          <CopyArea ref={textAreaRef} value={userRef} readOnly />
         </form>
         {document.queryCommandSupported('copy') && (
           <div>
-            <ButtonBack onClick={copyToClipboard}>Copy</ButtonBack>
-            <p>{copySuccess}</p>
+            <ButtonBack onClick={copyToClipboard}>
+              {copySuccess ? 'Copied!' : 'Copy'}
+            </ButtonBack>
+            {/* <p>{copySuccess}</p> */}
           </div>
         )}
       </FlexRow>
