@@ -35,23 +35,25 @@ const Report = () => {
   const userRef = useMemo(() => uuid(), []);
 
   useEffect(() => {
-    getData(`${choice}-questions`)
-      .then((records) => {
-        setQuestions(records);
-      })
-      .catch((err) => {
-        setServerError(true);
-      });
+    if (!serverError) {
+      getData(`${choice}-questions`)
+        .then((records) => {
+          setQuestions(records);
+        })
+        .catch((err) => {
+          setServerError(true);
+        });
 
-    getData(`${choice}-dividers`)
-      .then((records) => {
-        setDividers(records);
-      })
-      .catch((err) => {
-        setServerError(true);
-      });
+      getData(`${choice}-dividers`)
+        .then((records) => {
+          setDividers(records);
+        })
+        .catch((err) => {
+          setServerError(true);
+        });
+    }
     // eslint-disable-next-line
-  }, []); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
+  }, [serverError]); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
 
   // fn: reducer to handle form updates
   // the action object passed in (see dispatch definition inside component) is immediately destructured
@@ -139,7 +141,15 @@ const Report = () => {
   // if either API call explicitly fails, render the 500 error and prompt user to reload
   // this will only happen, as if they proceed past this point the data must be available
   if (serverError) {
-    return <Error500 pathname='/choose' />;
+    return (
+      <Error500
+        clickFunc={() => {
+          setServerError(false);
+        }}
+        pathname='/report/section/0'
+        state={{ choice }}
+      />
+    );
   }
 
   // if the API calls have simply yet to resolve, render Loading component

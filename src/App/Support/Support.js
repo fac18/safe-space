@@ -2,26 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PageContainer, ButtonBack } from '../style';
 import { ContentWrapper, Text, Type, Type5, ServiceCard } from './style';
-import { Header, Footer, Loading } from '../index';
+import { Header, Footer, Loading, Error500 } from '../index';
 import { getData } from '../../utils';
-import { hardServices } from '../../model';
 
 const Support = () => {
   const [services, setServices] = useState(null);
+  const [serverError, setServerError] = useState(false);
 
   useEffect(() => {
-    getData('support-services')
-      .then((records) => {
-        setServices(records);
-      })
-      .catch((err) => {
-        setServices(hardServices);
-        // console.log(
-        //   'Failed to fetch services data - falling back to hard coding. Error: ',
-        //   err
-        // );
-      });
-  }, []);
+    if (!serverError) {
+      getData('support-services')
+        .then((records) => {
+          setServices(records);
+        })
+        .catch((err) => {
+          setServerError(true);
+        });
+    }
+  }, [serverError]);
+
+  if (serverError)
+    return (
+      <Error500
+        clickFunc={() => {
+          setServerError(false);
+        }}
+        pathname='/support'
+      />
+    );
 
   if (!services) return <Loading />;
 
