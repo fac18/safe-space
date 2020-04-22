@@ -8,6 +8,7 @@ import Header from './Header/Header';
 import Splitter from './Splitter/Splitter';
 import Loading from './Loading/Loading';
 import Refresh from './Refresh/Refresh';
+import Error500 from './Error500/Error500';
 
 export {
   FAQs,
@@ -20,4 +21,5 @@ export {
   Splitter,
   Loading,
   Refresh,
+  Error500,
 };

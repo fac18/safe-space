@@ -1,5 +1,5 @@
 import React from 'react';
-import { CenterWrapper } from './style';
+import { CenterWrapper } from '../style';
 
 const Loading = () => {
   return (

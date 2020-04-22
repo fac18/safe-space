@@ -9,19 +9,11 @@ import { useLocation } from 'react-router-dom';
 
 // import subcomponents and reusables
 import { Form, Divider, Confirm, Submit } from './index';
-import { Loading } from '../index';
+import { Loading, Error500 } from '../index';
 
 // and utils and libraries
 import { getData, deleteValue, findIndex } from '../../utils';
 import uuid from 'uuid/v4';
-
-// and fallback data
-import {
-  firstQuestions,
-  witnessQuestions,
-  firstDividers,
-  witnessDividers,
-} from '../../model';
 
 const Report = () => {
   // grab React Router state to determine which components to render at Report level, and which questions/dividers to fetch
@@ -37,36 +29,31 @@ const Report = () => {
   // set up states
   const [questions, setQuestions] = useState(null);
   const [dividers, setDividers] = useState(null);
+  const [serverError, setServerError] = useState(false);
 
   // generate uuid as userRef and memoize (to be passed into Submit and Confirm)
   const userRef = useMemo(() => uuid(), []);
 
   useEffect(() => {
-    getData(`${choice}-questions`)
-      .then((records) => {
-        setQuestions(records);
-      })
-      .catch((err) => {
-        setQuestions(choice === 'first' ? firstQuestions : witnessQuestions);
-        // console.log(
-        //   'Failed to fetch question data - falling back to hard coding. Error: ',
-        //   err
-        // );
-      });
+    if (!serverError) {
+      getData(`${choice}-questions`)
+        .then((records) => {
+          setQuestions(records);
+        })
+        .catch((err) => {
+          setServerError(true);
+        });
 
-    getData(`${choice}-dividers`)
-      .then((records) => {
-        setDividers(records);
-      })
-      .catch((err) => {
-        setDividers(choice === 'first' ? firstDividers : witnessDividers);
-        // console.log(
-        //   'Failed to fetch divider data - falling back to hard coding. Error: ',
-        //   err
-        // );
-      });
+      getData(`${choice}-dividers`)
+        .then((records) => {
+          setDividers(records);
+        })
+        .catch((err) => {
+          setServerError(true);
+        });
+    }
     // eslint-disable-next-line
-  }, []); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
+  }, [serverError]); // simiarly if we write [choice] here, we'll repeatedly fetch the same data
 
   // fn: reducer to handle form updates
   // the action object passed in (see dispatch definition inside component) is immediately destructured
@@ -151,7 +138,21 @@ const Report = () => {
     });
   }, []);
 
-  // if any API calls have yet to resolve, render Loading component
+  // if either API call explicitly fails, render the 500 error and prompt user to reload
+  // this will only happen, as if they proceed past this point the data must be available
+  if (serverError) {
+    return (
+      <Error500
+        clickFunc={() => {
+          setServerError(false);
+        }}
+        pathname='/report/section/0'
+        state={{ choice }}
+      />
+    );
+  }
+
+  // if the API calls have simply yet to resolve, render Loading component
   if (!(questions && dividers)) return <Loading />;
 
   if (location.pathname.includes('section')) {

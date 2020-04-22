@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
-import { Header, Footer, Loading } from '../index';
+import { Header, Footer, Loading, Error500 } from '../index';
 import { FlexColumn, PageContainer, ButtonBack, ButtonNext } from '../style';
 import { Container, ContentWrapper } from './style';
 import { getData, makeSlug } from '../../utils';
-import { hardFaqQuestions } from '../../model';
 
 const FAQs = () => {
   const [faqQuestions, setFaqQuestions] = useState(null);
+  const [serverError, setServerError] = useState(false);
 
   useEffect(() => {
-    getData('faq-questions')
-      .then((records) => {
-        setFaqQuestions(records);
-      })
-      .catch((err) => {
-        setFaqQuestions(hardFaqQuestions);
-        // console.log(
-        //   'Failed to fetch FAQ question data - falling back to hard coding. Error: ',
-        //   err
-        // );
-      });
-  }, []);
+    if (!serverError) {
+      getData('faq-questions')
+        .then((records) => {
+          setFaqQuestions(records);
+        })
+        .catch((err) => {
+          setServerError(true);
+        });
+    }
+  }, [serverError]);
+
+  if (serverError)
+    return (
+      <Error500
+        clickFunc={() => {
+          setServerError(false);
+        }}
+        pathname='/frequently-asked-questions'
+      />
+    );
 
   if (!faqQuestions) return <Loading />;
 
