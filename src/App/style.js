@@ -235,6 +235,17 @@ const Container = styled.div`
   }
 `;
 
+const CenterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+`;
+
 export {
   Bubbles,
   Bubbles2,
@@ -252,4 +263,5 @@ export {
   ButtonBack,
   ButtonWrapper,
   Container,
+  CenterWrapper,
 };
