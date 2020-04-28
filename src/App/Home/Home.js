@@ -27,7 +27,7 @@ const Home = () => {
               Together we can change this
             </Type5>
           </div>
-          <div>
+          <div className="home-bodytext">
             <TypeB1 use='body1' tag='p'>
               This site is a safe space for everyone working in the music
               industry to log instances of sexual harassment and abuse on the
