@@ -170,13 +170,19 @@ const ButtonSecondary = styled(Button)`
     width: 17rem;
     border-radius: 2rem;
     color: #7768a6;
-    background: -webkit-linear-gradient(
+    /* background: transparent; */
+    -webkit-mask-image: linear-gradient(
+      296.3deg,
+      #7768a6 2.65%,
+      #ca68a4 86.52%
+    );
+    /* background: -webkit-linear-gradient(
       296.3deg,
       #7768a6 2.65%,
       #ca68a4 86.52%
     );
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
     font-weight: bold;
     justify-content: center;
     margin-bottom: 1rem;
