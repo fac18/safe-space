@@ -41,7 +41,7 @@ const BubblesContainer = styled.div`
   top: 0em;
   position: absolute;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   z-index: -10;
   /* height: 200px; */
 `;
