@@ -75,7 +75,8 @@ code {
     monospace;
 }
 
-.home-bodytext, .bodytext {
+.home-bodytext,
+.bodytext {
   max-width: 700px;
 }
 

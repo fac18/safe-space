@@ -8,8 +8,8 @@ const About = () => {
   return (
     <>
       <PageContainer>
+        <Header />
         <ContentWrapper>
-          <Header />
           <Container>
             <FlexColumn>
               <h2>What is MU Safe Space?</h2>

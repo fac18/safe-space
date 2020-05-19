@@ -23,7 +23,7 @@ const Logo = () => {
       </Link>
       <Prompt
         when={showPrompt} // i.e. Prompt only effective when in Report (and not in Confirm)
-        message={location => {
+        message={(location) => {
           // this location is the destination the user is attempting to navigate to
           return location.pathname === '/'
             ? `Are you sure you want to go leave this page? Any changes you've made will be lost.`
@@ -34,4 +34,4 @@ const Logo = () => {
   );
 };
 
-export { DisplayLogo, Logo };
+export { Logo };

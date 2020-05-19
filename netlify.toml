@@ -14,32 +14,3 @@
 
 [dev]
   # any configs specific to running 'netlify dev' go here
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "https://www.musafespace.co.uk/*"
-  to = "https://www.musafespace.org.uk/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://musafespace.co.uk/*"
-  to = "https://www.musafespace.org.uk/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://musafespace.netlify.com/*"
-  to = "https://www.musafespace.org.uk/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://musafespace.netlify.app/*"
-  to = "https://www.musafespace.org.uk/:splat"
-  status = 301
-  force = true
