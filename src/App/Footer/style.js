@@ -11,7 +11,7 @@ const Bottom = styled.footer`
   margin-right: 2em;
   position: absolute;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   height: 4.5rem;
   padding-top: 0.5rem;
 
