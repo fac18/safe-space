@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContentWrap} from '../style';
+import { ContentWrap } from '../style';
 
 const ContentWrapper = styled(ContentWrap)`
   display: flex;

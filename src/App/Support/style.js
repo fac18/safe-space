@@ -9,6 +9,7 @@ const ContentWrapper = styled(ContentWrap)`
   justify-content: center;
   /* text-align: center; */
 `;
+
 const Text = styled.section`
   display: flex;
   flex-direction: column;

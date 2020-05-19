@@ -30,7 +30,7 @@ const TypeExtra = styled(TypeB1)`
 `;
 
 const ContentWrapper = styled(ContentWrap)`
-  padding-bottom: 0rem;
+  padding-bottom: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
