@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, Footer } from '../index';
 import { FlexColumn, PageContainer, ButtonBack } from '../style';
-import { ContentWrapper, Container } from './style';
+import { ContentWrapper, Container, Type5 } from './style';
 
 const About = () => {
   return (
@@ -12,7 +12,12 @@ const About = () => {
         <ContentWrapper>
           <Container>
             <FlexColumn>
-              <h2>What is MU Safe Space?</h2>
+              <Type5 use='headline4' tag='h1'>
+                About
+              </Type5>
+              <Type5 use='headline5' tag='h2'>
+                What is MU Safe Space?
+              </Type5>
               <p>
                 Safe Space exists to provide a safe space for all musicians to
                 share instances of sexism, sexual harassment and sexual abuse in
@@ -28,7 +33,9 @@ const About = () => {
                 which we will use to inform our work on making the music
                 industry safer.
               </p>
-              <h2>Why does the MU Safe Space exist?</h2>
+              <Type5 use='headline5' tag='h2'>
+                Why does the MU Safe Space exist?
+              </Type5>
               <p>
                 A recent MU survey revealed that 48% of musicians have been
                 sexually harassed at work. Not only have almost half of
@@ -84,7 +91,9 @@ const About = () => {
                 focus our work to create meaningful and lasting change.
               </p>
 
-              <h2>Our principles</h2>
+              <Type5 use='headline5' tag='h2'>
+                Our principles
+              </Type5>
               <p>
                 We always start from a position of belief. We never blame the
                 victim. We understand that the survivor is never responsible.

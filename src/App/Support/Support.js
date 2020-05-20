@@ -38,11 +38,15 @@ const Support = () => {
       <Header />
       <PageContainer>
         <ContentWrapper>
-          <Type5 use='headline4'>Support Services</Type5>
+          <Type5 use='headline4' tag='h1'>
+            Support Services
+          </Type5>
           <Text>
             {services.map((service, i) => (
               <ServiceCard key={i}>
-                <Type use='headline5'> {service.title}</Type>
+                <Type5 use='headline5' tag='h2'>
+                  {service.title}
+                </Type5>
                 <Type use='body1'>{service.description}</Type>
                 {service.website ? (
                   <Type use='body1'>

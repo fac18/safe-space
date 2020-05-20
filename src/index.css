@@ -47,6 +47,10 @@ ul {
   margin-block-start: 0rem;
 }
 
+li {
+  margin-bottom: 0.25rem;
+}
+
 a {
   color: #e16a1e;
   font-weight: bold;
