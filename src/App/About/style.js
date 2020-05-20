@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ContentWrap } from '../style';
+import { Typography } from '@rmwc/typography';
 
 const ContentWrapper = styled(ContentWrap)`
   display: flex;
@@ -18,4 +19,16 @@ const Container = styled.section`
   }
 `;
 
-export { ContentWrapper, Container };
+const Type5 = styled(Typography)`
+  && {
+    text-align: left;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    color: #5763a2;
+    z-index: 50;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+`;
+
+export { ContentWrapper, Container, Type5 };

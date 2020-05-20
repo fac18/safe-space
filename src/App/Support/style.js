@@ -24,6 +24,7 @@ const Type = styled(Typography)`
   padding-top: 0.5rem;
   color: #2d3c8a;
 `;
+
 const Type5 = styled(Typography)`
   && {
     text-align: center;
@@ -32,6 +33,7 @@ const Type5 = styled(Typography)`
     color: #5763a2;
     z-index: 50;
     padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 `;
 
