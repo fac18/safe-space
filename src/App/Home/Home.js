@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, Footer } from '../index';
-import { Type5, TypeB1, TypeExtra, PageContain } from './style';
+import { Type5, TypeB1, TypeExtra } from './style';
 import {
   Container,
   ButtonPrimary,

@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CenterWrapper, ButtonPrimary, Container } from '../style';
+import { CenterWrapper, ButtonPrimary, Container, Type5 } from '../style';
 
 const Error404 = () => {
   return (
     <>
       <CenterWrapper>
         <Container>
-          <h2>
+          <Type5 use='headline1' tag='h1'>
+            404
+          </Type5>
+          <Type5 use='headline6' tag='p' style={{ textAlign: 'center' }}>
             Sorry, this page does not exist. Please return home by clicking the
             button below.
-          </h2>
+          </Type5>
           <ButtonPrimary raised tag={Link} to='/'>
-            Reload
+            Home
           </ButtonPrimary>
         </Container>
       </CenterWrapper>
