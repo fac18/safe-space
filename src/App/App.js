@@ -4,6 +4,7 @@ import { FAQs, Home, About, Report, Support, Splitter, Refresh } from './index';
 
 // React Router renders the first <Route> with path matching the URL
 // we use the 'exact' keyword where necessary to tell the router that the match must be perfect
+// the 404 is handled by leaving out the path property - this component will always be rendered if none above it yield a match
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
         <Route path='/about' render={() => <About />} />
         <Route path='/support' render={() => <Support />} />
         <Route path='/refresh' render={() => <Refresh />} />
+        <Route render={() => <Error404 />} />
       </Switch>
     </>
   );
