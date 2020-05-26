@@ -1,6 +1,15 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { FAQs, Home, About, Report, Support, Splitter, Refresh } from './index';
+import {
+  FAQs,
+  Home,
+  About,
+  Report,
+  Support,
+  Splitter,
+  Refresh,
+  Error404,
+} from './index';
 
 // React Router renders the first <Route> with path matching the URL
 // we use the 'exact' keyword where necessary to tell the router that the match must be perfect
