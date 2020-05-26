@@ -9,6 +9,7 @@ import Splitter from './Splitter/Splitter';
 import Loading from './Loading/Loading';
 import Refresh from './Refresh/Refresh';
 import Error500 from './Error500/Error500';
+import Error404 from './Error404/Error404';
 
 export {
   FAQs,
@@ -22,4 +23,5 @@ export {
   Loading,
   Refresh,
   Error500,
+  Error404,
 };
