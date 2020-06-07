@@ -12,7 +12,7 @@ const CopyText = ({ userRef }) => {
     setCopySuccess('Copied!');
   }
   return (
-    <>
+    <div className="pl-1rem">
       <br />
       <FlexRow>
         <form spellCheck='false'>
@@ -27,7 +27,7 @@ const CopyText = ({ userRef }) => {
           </div>
         )}
       </FlexRow>
-    </>
+    </div>
   );
 };
 

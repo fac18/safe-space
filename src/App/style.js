@@ -139,6 +139,7 @@ const FlexRow = styled.div`
   flex-flow: row nowrap;
   padding-bottom: 1rem;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const CenterContents = styled.div`
