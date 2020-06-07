@@ -24,7 +24,7 @@ const Bottom = styled.footer`
 const AlignLeft = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 `;
 
 const Link = styled.a`
