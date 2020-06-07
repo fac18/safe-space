@@ -61,6 +61,12 @@ const About = () => {
                 musicians at work, and are on a mission to create cultural
                 change within the music industry.
               </p>
+              <p>
+                If you support our mission and feel comfortable doing so, please help spread the word. </p>
+                <p>
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-text="48% of musicians have experienced sexual harassment at work. Over 85% felt unable to report it. Together we can change this" data-url="https://www.musafespace.org.uk/" data-via="WeAreTheMu" data-lang="en" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+              </p>
               <h2>Is the MU Safe Space for you?</h2>
 
               <p>
