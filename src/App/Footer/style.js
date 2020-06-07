@@ -21,6 +21,12 @@ const Bottom = styled.footer`
   }
 `;
 
+const AlignLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+`;
+
 const Link = styled.a`
   color: white;
   padding-right: 1.5em;
@@ -33,4 +39,5 @@ const Link = styled.a`
   }
 `;
 
-export { Bottom, Link };
+export { Bottom, Link, AlignLeft };
+
