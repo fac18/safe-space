@@ -86,6 +86,10 @@ footer a:hover {
   align-items: center;
 }
 
+.pl-1rem {
+  margin-left: 1rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
