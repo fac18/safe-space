@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
+import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
+
 
 const Bottom = styled.footer`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: row;
+  /* align-items: flex-end; */
+  justify-content: space-between;
   line-height: 1.5rem;
   /* background-color: #abb1d0; */
   background-color: #596084;
@@ -21,6 +24,20 @@ const Bottom = styled.footer`
   }
 `;
 
+const AlignLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+`;
+
+const AlignRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+
 const Link = styled.a`
   color: white;
   padding-right: 1.5em;
@@ -33,4 +50,5 @@ const Link = styled.a`
   }
 `;
 
-export { Bottom, Link };
+export { Bottom, Link, AlignLeft, AlignRow, TwitterLogo, FacebookLogo };
+
