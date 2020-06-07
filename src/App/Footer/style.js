@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
+import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
+
 
 const Bottom = styled.footer`
   display: flex;
@@ -47,5 +50,5 @@ const Link = styled.a`
   }
 `;
 
-export { Bottom, Link, AlignLeft, AlignRow };
+export { Bottom, Link, AlignLeft, AlignRow, TwitterLogo, FacebookLogo };
 
