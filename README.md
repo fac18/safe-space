@@ -2,7 +2,7 @@
 
 ![Netlify Status](https://api.netlify.com/api/v1/badges/5c6fdabe-1590-4128-bdb4-f981780281bf/deploy-status) | ![Travis Status](https://travis-ci.com/fac18/safe-space.svg?branch=master) | ![codecov](https://codecov.io/gh/fac18/safe-space/branch/master/graph/badge.svg)
 
-**Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@edificex](https://github.com/edificex)
+**Authors**: [@redahaq](https://github.com/redahaq) | [@bethanyios](https://github.com/bethanyios) | [@alexandraOM](https://github.com/fac18/safe-space/commits?author=AlexandraOM) | [@freemvmt](https://github.com/freemvmt)
 
 We're a team of four developers working on a [_Tech for Better_](https://www.foundersandcoders.com/tech-for-better) project for the [Musicians' Union](https://www.musiciansunion.org.uk/).
 
