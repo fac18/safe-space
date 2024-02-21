@@ -33,13 +33,33 @@ const About = () => {
                 which we will use to inform our work on making the music
                 industry safer.
               </p>
+                  <Type5 use='headline5' tag='h2'>
+                Our principles
+              </Type5>
+              <p>
+                We always start from a position of belief. We never blame the
+                victim. We understand that the survivor is never responsible.
+              </p>
+              <p>
+                We aim for Safe Space to be a safe place for survivors to report
+                without fear of unwanted consequences.
+              </p>
+              <p>
+                We respect requests for confidentiality and/or anonymity and aim
+                to deliver on this. It is always your choice whether you want us
+                to investigate or follow up in any way.
+              </p>
+              <p>
+                However, there may come a point where we cannot maintain
+                confidentiality or anonymity in order to act and we will make
+                this clear in order to give you a choice as to whether to move
+                forward or not.
+              </p>
               <Type5 use='headline5' tag='h2'>
                 Why does the MU Safe Space exist?
               </Type5>
               <p>
-                A recent MU survey revealed that 48% of musicians have been
-                sexually harassed at work. Not only have almost half of
-                musicians experienced harassment at work, but:
+                An MU survey in 2019 revealed that 48% of musicians have been sexually harassed at work. Not only have almost half of musicians experienced harassment at work, but:
               </p>
               <ul>
                 <li>
@@ -56,11 +76,10 @@ const About = () => {
                 </li>
               </ul>
               <p>
-                We want to build up a picture of the problems that exist and
-                seek long term solutions. We are campaigning for laws to protect
-                musicians at work, and are on a mission to create cultural
-                change within the music industry.
+               We want to build up a picture of the problems that exist and seek long term solutions. We are campaigning for laws to protect musicians at work, and are on a mission to create cultural change within the music industry.
               </p>
+                      <p>Safe Space has been receiving reports from survivors since its launch in 2018 and continues to, indicating that this reporting mechanism is still needed by the music industry.
+                      </p>
               <p>If you support our mission, you can help spread the word: </p>
               <p>
                 <div className='share-buttons-container'>
@@ -123,28 +142,7 @@ const About = () => {
                 focus our work to create meaningful and lasting change.
               </p>
 
-              <Type5 use='headline5' tag='h2'>
-                Our principles
-              </Type5>
-              <p>
-                We always start from a position of belief. We never blame the
-                victim. We understand that the survivor is never responsible.
-              </p>
-              <p>
-                We aim for Safe Space to be a safe place for survivors to report
-                without fear of unwanted consequences.
-              </p>
-              <p>
-                We respect requests for confidentiality and/or anonymity and aim
-                to deliver on this. It is always your choice whether you want us
-                to investigate or follow up in any way.
-              </p>
-              <p>
-                However, there may come a point where we cannot maintain
-                confidentiality or anonymity in order to act and we will make
-                this clear in order to give you a choice as to whether to move
-                forward or not.
-              </p>
+              
               <ButtonBack tag={Link} to={'/'}>
                 Home
               </ButtonBack>
