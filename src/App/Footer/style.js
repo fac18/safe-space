@@ -51,5 +51,5 @@ const Link = styled.a`
   }
 `;
 
-export { Bottom, Link, AlignLeft, AlignRow, TwitterLogo, FacebookLogo };
+export { Bottom, Link, AlignLeft, AlignRow, XLogo, FacebookLogo, InstagramLogo };
 
