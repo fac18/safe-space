@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
+import { ReactComponent as XLogo } from '../../assets/x-social-media-round-icon.svg';
 import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
+import { ReactComponent as InstagramLogo } from '../../assets/iconmonstr-instagram-11.svg';
 
 
 const Bottom = styled.footer`
