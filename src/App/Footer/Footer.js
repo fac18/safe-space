@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="footer-text">Follow the MU on socials @WeAretheMU</p>
         <AlignRow>
       <Link href="https://twitter.com/WeAreTheMU" target="_blank" title="Visit Musicians' Union on X (Twitter)"><XLogo/></Link>
-     <Link href="https://www.instagram.com/wearethemu" target="_blank" title="Visit Musicians' Union on Twitter"><InstagramLogo/></Link>
+     <Link href="https://www.instagram.com/wearethemu" target="_blank" title="Visit Musicians' Union on Instagram"><InstagramLogo/></Link>
       <Link href="https://www.facebook.com/Musicians.Union" target="_blank" title="Visit Musicians' Union on Facebook"><FacebookLogo/></Link>
       </AlignRow>
       </AlignLeft>
