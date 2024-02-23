@@ -39,11 +39,12 @@ const Submit = ({ questions, responses, choice, userRef }) => {
           One more thing...
         </Type5>
         <TypeB1 use='subtitle1'>
-          If you want the MU's Safe Space team to take any action based on your report, our policy dictates that we need to confirm this with you, the person making the report. In order to do this, please leave your e-mail address below:
+          If you want the MU's Safe Space team to take any action based on your report, our policy dictates that we need to confirm this with you, the person making the report.
         </TypeB1>
-        <TypeB1 use='subtitle1'>
-          Otherwise, just submit your report to finish.
-        </TypeB1>
+     <TypeB1 use='subtitle1'>
+    In order to do this, please leave your e-mail address below. Otherwise, just submit your report to finish.
+     </TypeB1>
+     
 
         <TextField
           use='body1'
