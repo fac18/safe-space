@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as TwitterLogo } from '../../assets/x-social-media-round-icon.svg';
+import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
 import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
 
 
