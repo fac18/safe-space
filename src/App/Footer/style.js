@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ReactComponent as XLogo } from '../../assets/x-social-media-round-icon.svg';
+import { ReactComponent as TwitterLogo } from '../../assets/x-social-media-round-icon.svg';
 import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
-import { ReactComponent as InstagramLogo } from '../../assets/iconmonstr-instagram-11.svg';
+
 
 
 const Bottom = styled.footer`
@@ -51,5 +51,5 @@ const Link = styled.a`
   }
 `;
 
-export { Bottom, Link, AlignLeft, AlignRow, XLogo, FacebookLogo, InstagramLogo };
+export { Bottom, Link, AlignLeft, AlignRow, TwitterLogo, FacebookLogo };
 
