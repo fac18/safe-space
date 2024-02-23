@@ -39,8 +39,7 @@ const Submit = ({ questions, responses, choice, userRef }) => {
           One more thing...
         </Type5>
         <TypeB1 use='subtitle1'>
-          If you wish one of the MU employees to get in touch with you regarding
-          this report, please leave your e-mail address below:
+          If you want the MU's Safe Space team to take any action based on your report, our policy dictates that we need to confirm this with you, the person making the report. In order to do this, please leave your e-mail address below:
         </TypeB1>
         <TypeB1 use='subtitle1'>
           Otherwise, just submit your report to finish.
